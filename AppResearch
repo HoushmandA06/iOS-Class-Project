@@ -19,9 +19,10 @@ App 3: Zillow
 - the app runs advert on the bottom of the screen related to a Zillow sponsored show
 
 App 4: Osmos HD (game) 
+- Navigation on the first page lists three primary game play modes, with secondary categories (like settings, leader board, music, etc) above in smaller / grayed formatting
 - Osmos is a simple (in concept) game that relies heavily on the accelerometer
-- There is emphasis on "newton" physics, momentum, gravity, to effect movement of the main character in the game (the Mote)
-- 
+- There is emphasis on "newton" physics, momentum, gravity, to effect movement of the main character in the game (the Mote); the Mote moves by tapping; with every tap, the Mote loses mass, but gains velocity
+- Most games are won by "becoming the largest", i.e. absorbing all other elements (computer or user driven players)
 
 App 5:
 
