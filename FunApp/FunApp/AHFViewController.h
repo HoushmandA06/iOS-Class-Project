@@ -10,4 +10,12 @@
 
 @interface AHFViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UILabel *MyLabel;
+
+- (IBAction)buttonPressed:(id)sender;
+
+
+
+
+
 @end
