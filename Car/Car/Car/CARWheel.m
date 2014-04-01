@@ -18,6 +18,9 @@
         self.tirePressure = 30;
         self.flat = NO;
         
+        self.backgroundColor = [UIColor darkGrayColor];
+        self.layer.cornerRadius = 20;
+        
     }
     return self;
 }

@@ -10,14 +10,18 @@
 
 @implementation CARGas
 
-- (id)initWithFrame:(CGRect)frame
+- (id)init
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
+    self = [super init];
+    if (self)
+    {
+        
+        self.backgroundColor = [UIColor greenColor];
+        
     }
     return self;
 }
+
 
 /*
 // Only override drawRect: if you perform custom drawing.

@@ -10,11 +10,14 @@
 
 @implementation CARWindow
 
-- (id)initWithFrame:(CGRect)frame
+- (id)init
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
+    self = [super init];
+    if (self)
+    {
+        
+        self.backgroundColor = [UIColor orangeColor];
+        
     }
     return self;
 }

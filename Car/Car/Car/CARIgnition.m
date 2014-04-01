@@ -10,11 +10,15 @@
 
 @implementation CARIgnition
 
-- (id)initWithFrame:(CGRect)frame
+- (id)init
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
+    self = [super init];
+    if (self)
+    {
+        
+        self.backgroundColor = [UIColor greenColor];
+        self.layer.cornerRadius = 25;
+        
     }
     return self;
 }

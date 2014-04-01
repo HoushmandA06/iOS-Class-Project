@@ -18,11 +18,14 @@
     // Override point for customization after application launch.
     
     CARRootViewController *carVC = [[CARRootViewController alloc] init];
+    
     self.window.rootViewController = carVC;
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
+    
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
