@@ -33,6 +33,7 @@
 		0FAB21A918EC8ADC00136587 /* SavithaReddy.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FAB219A18EC8ADC00136587 /* SavithaReddy.png */; };
 		0FAB21AA18EC8ADC00136587 /* TeddyConyers.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FAB219B18EC8ADC00136587 /* TeddyConyers.png */; };
 		0FAB21AB18EC8ADC00136587 /* TJMercer.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FAB219C18EC8ADC00136587 /* TJMercer.png */; };
+		0FAB21AF18EDA78C00136587 /* TDLTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FAB21AE18EDA78C00136587 /* TDLTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,8 @@
 		0FAB219A18EC8ADC00136587 /* SavithaReddy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SavithaReddy.png; sourceTree = "<group>"; };
 		0FAB219B18EC8ADC00136587 /* TeddyConyers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TeddyConyers.png; sourceTree = "<group>"; };
 		0FAB219C18EC8ADC00136587 /* TJMercer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TJMercer.png; sourceTree = "<group>"; };
+		0FAB21AD18EDA78C00136587 /* TDLTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDLTableViewCell.h; sourceTree = "<group>"; };
+		0FAB21AE18EDA78C00136587 /* TDLTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDLTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +109,7 @@
 		0F3D7DEE18EC4AEC0097CA4E = {
 			isa = PBXGroup;
 			children = (
+				0FAB21B018EDA7A700136587 /* Controllers */,
 				0F3D7E0018EC4AEC0097CA4E /* ToDo */,
 				0F3D7E1918EC4AEC0097CA4E /* ToDoTests */,
 				0F3D7DF918EC4AEC0097CA4E /* Frameworks */,
@@ -136,11 +140,9 @@
 		0F3D7E0018EC4AEC0097CA4E /* ToDo */ = {
 			isa = PBXGroup;
 			children = (
-				0FAB21AC18EC8AF600136587 /* Images */,
 				0F3D7E0918EC4AEC0097CA4E /* TDLAppDelegate.h */,
 				0F3D7E0A18EC4AEC0097CA4E /* TDLAppDelegate.m */,
-				0F3D7E2918EC4C770097CA4E /* TDLTableViewController.h */,
-				0F3D7E2A18EC4C770097CA4E /* TDLTableViewController.m */,
+				0FAB21AC18EC8AF600136587 /* Images */,
 				0F3D7E0C18EC4AEC0097CA4E /* Images.xcassets */,
 				0F3D7E0118EC4AEC0097CA4E /* Supporting Files */,
 			);
@@ -194,6 +196,26 @@
 				0FAB219C18EC8ADC00136587 /* TJMercer.png */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		0FAB21B018EDA7A700136587 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0F3D7E2918EC4C770097CA4E /* TDLTableViewController.h */,
+				0F3D7E2A18EC4C770097CA4E /* TDLTableViewController.m */,
+				0FAB21B118EDA7B900136587 /* TableView */,
+			);
+			name = Controllers;
+			path = ToDo;
+			sourceTree = "<group>";
+		};
+		0FAB21B118EDA7B900136587 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				0FAB21AD18EDA78C00136587 /* TDLTableViewCell.h */,
+				0FAB21AE18EDA78C00136587 /* TDLTableViewCell.m */,
+			);
+			name = TableView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -305,6 +327,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FAB21AF18EDA78C00136587 /* TDLTableViewCell.m in Sources */,
 				0F3D7E2B18EC4C770097CA4E /* TDLTableViewController.m in Sources */,
 				0F3D7E0718EC4AEC0097CA4E /* main.m in Sources */,
 				0F3D7E0B18EC4AEC0097CA4E /* TDLAppDelegate.m in Sources */,

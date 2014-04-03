@@ -7,6 +7,8 @@
 //
 
 #import "TDLTableViewController.h"
+#import "TDLTableViewCell.h"
+
 
 @implementation TDLTableViewController
 
@@ -42,20 +44,22 @@
         
         
         listItems = @[
-                      @{@"name" : @"AliHoushmand",@"image" : [UIImage imageNamed:@"AliHoushmand"]},
-                      @{@"name" : @"Ashby",@"image" : [UIImage imageNamed:@"Ashby"]},
-                      @{@"name" : @"AustenJohnson",@"image" : [UIImage imageNamed:@"AustenJohnson"]},
-                      @{@"name" : @"DerekWeber",@"image" : [UIImage imageNamed:@"DerekWeber"]},
-                      @{@"name" : @"HeidiProske",@"image" : [UIImage imageNamed:@"HeidiProske"]},
-                      @{@"name" : @"JeffKing",@"image" : [UIImage imageNamed:@"JeffKing"]},
-                      @{@"name" : @"JeffMoulds",@"image" : [UIImage imageNamed:@"JeffMoulds"]},
-                      @{@"name" : @"JishaObukwelu",@"image" : [UIImage imageNamed:@"JishaObukwelu"]},
-                      @{@"name" : @"JohnYam",@"image" : [UIImage imageNamed:@"JohnYam"]},
-                      @{@"name" : @"JonFox",@"image" : [UIImage imageNamed:@"JonFox"]},
-                      @{@"name" : @"SavithaReddy",@"image" : [UIImage imageNamed:@"SavithaReddy"]},
-                      @{@"name" : @"TeddyConyers",@"image" : [UIImage imageNamed:@"TeddyConyers"]},
-                      @{@"name" : @"TJMercer",@"image" : [UIImage imageNamed:@"TJMercer"]}];
+                      @{@"name" : @"AliHoushmand",@"image" : [UIImage imageNamed:@"AliHoushmand"],@"github" : @"https://github.com/HoushmandA06"},
+                      @{@"name" : @"Ashby",@"image" : [UIImage imageNamed:@"Ashby"],@"github" : @"https://github.com/athornwell"},
+                      @{@"name" : @"AustenJohnson",@"image" : [UIImage imageNamed:@"AustenJohnson"], @"github" : @"https://github.com/ajohnson21"},
+                      @{@"name" : @"DerekWeber",@"image" : [UIImage imageNamed:@"DerekWeber"], @"github" : @"https://github.com/dweber03"},
+                      @{@"name" : @"HeidiProske",@"image" : [UIImage imageNamed:@"HeidiProske"], @"github" : @"https://github.com/justagirlcoding"},
+                      @{@"name" : @"JeffKing",@"image" : [UIImage imageNamed:@"JeffKing"], @"github" : @"https://github.com/rampis"},
+                      @{@"name" : @"JeffMoulds",@"image" : [UIImage imageNamed:@"JeffMoulds"], @"github" : @"https://github.com/jdmgithub"},
+                      @{@"name" : @"JishaObukwelu",@"image" : [UIImage imageNamed:@"JishaObukwelu"], @"github" : @"https://github.com/Jiobu"},
+                      @{@"name" : @"JohnYam",@"image" : [UIImage imageNamed:@"JohnYam"], @"github" : @"https://github.com/yamski"},
+                      @{@"name" : @"JonFox",@"image" : [UIImage imageNamed:@"JonFox"], @"github" : @"https://github.com/FoxJon"},
+                      @{@"name" : @"SavithaReddy",@"image" : [UIImage imageNamed:@"SavithaReddy"], @"github" : @"https://github.com/savithareddy"},
+                      @{@"name" : @"TeddyConyers",@"image" : [UIImage imageNamed:@"TeddyConyers"], @"github" : @"https://github.com/talented76"},
+                      @{@"name" : @"TJMercer",@"image" : [UIImage imageNamed:@"TJMercer"], @"github" : @"https://github.com/gwanunig14}"}];
+        
     
+
     // the above creates a dictionary, allowing array with multiple pieces for each item using keys to reference index]
         
     /* listItems = @[@"AliHoushmand",@"Ashby"];
@@ -75,18 +79,19 @@
     
         //the above is a literal @[ starts a literal where we inputted the images and names separately, in ordered arrays
         
+        self.tableView.backgroundColor = [UIColor lightGrayColor];
+        
         self.tableView.contentInset = UIEdgeInsetsMake(50,0,0,0);
-        self.tableView.rowHeight = 75;
+        self.tableView.rowHeight = 100;
         
-        UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0,0,320,50)];
-        header.backgroundColor = [UIColor greenColor];
+        UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0,0,320,100)];
+        header.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1.0];
         
-        UILabel *titleHeader = [[UILabel alloc] initWithFrame:CGRectMake(10,10,300,30)];
-        titleHeader.text = @"Contacts";
-        titleHeader.textColor = [UIColor whiteColor];
+        UILabel *titleHeader = [[UILabel alloc] initWithFrame:CGRectMake(20,70,280,30)];
+        titleHeader.text = @"GitHub Users";
+        titleHeader.textColor = [UIColor blackColor];
         [header addSubview:titleHeader];
     
-
         UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0,0,320,50)];
         footer.backgroundColor = [UIColor blueColor];
         
@@ -95,12 +100,23 @@
         titleFooter.TextColor = [UIColor whiteColor];
         [footer addSubview:titleFooter];
         
-        
         self.tableView.tableHeaderView = header;
         self.tableView.tableFooterView = footer;
         
+        UITextField *nameField = [[UITextField alloc] initWithFrame:CGRectMake(20,20, 160, 30)];
+        nameField.backgroundColor = [UIColor colorWithWhite:0.99 alpha:1.0];
+        nameField.layer.cornerRadius = 6;
+        [header addSubview:nameField];
+        
         NSLog(@"listItems : %@ .... %@", listItems, listItems[0]);
         
+        UIButton *submitButton = [[UIButton alloc] initWithFrame:CGRectMake(200, 20, 100, 30)];
+        [submitButton setTitle:@"New User" forState:UIControlStateNormal];
+        submitButton.backgroundColor = [UIColor darkGrayColor];
+        submitButton.layer.cornerRadius = 6;
+        [header addSubview:submitButton];
+        
+    
         
     }
     return self;
@@ -137,15 +153,19 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"]; //this is a memory mgmt tool
+    TDLTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"]; //this is a memory mgmt tool
     
     if (cell == nil)
     {
-        cell = [[UITableViewCell alloc] init];
-        
+        cell = [[TDLTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
     
+    // if(cell == nil) cell = [[TDLTableViewCell alloc] init];
+    // shorthand way of doing an if with one condition vs. lines 144 - 147
+    
+    
     // int index = [indexPath row]
+    
     int index = indexPath.row;
     
     // NSString *name = listItems[index];
@@ -159,12 +179,15 @@
     
     NSDictionary *listItem = listItems[index]; //literal
     
-    cell.textLabel.text = listItem[@"name"];
-    cell.imageView.image = listItem[@"image"];
+    cell.profileInfo = listItem;
     
-    cell.textLabel.textColor = [UIColor blueColor];
-    cell.backgroundColor = [UIColor redColor];
-    cell.textLabel.font = [UIFont fontWithName:@"Courier" size:(12)];
+    
+    // cell.textLabel.text = listItem[@"name"];
+    // [[cell imageView] setImage:listItem[@"image"]];  "getter" method
+    // cell.imageView.image = listItem[@"image"]; // "setter" method (does what getter does also)
+    // cell.textLabel.textColor = [UIColor blueColor];
+    // cell.backgroundColor = [UIColor redColor];
+    // cell.textLabel.font = [UIFont fontWithName:@"Courier" size:(12)];
     
     // Configure the cell...
     
