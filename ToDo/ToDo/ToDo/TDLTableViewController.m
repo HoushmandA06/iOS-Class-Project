@@ -83,13 +83,15 @@
         
         self.tableView.contentInset = UIEdgeInsetsMake(50,0,0,0);
         self.tableView.rowHeight = 100;
+        self.tableView.separatorInset = UIEdgeInsetsMake(0,20,0,20);
         
         UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0,0,320,100)];
         header.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1.0];
         
         UILabel *titleHeader = [[UILabel alloc] initWithFrame:CGRectMake(20,70,280,30)];
         titleHeader.text = @"GitHub Users";
-        titleHeader.textColor = [UIColor blackColor];
+        titleHeader.textColor = [UIColor darkGrayColor];
+        titleHeader.font =[UIFont systemFontOfSize:(26)];
         [header addSubview:titleHeader];
     
         UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0,0,320,50)];
@@ -106,6 +108,8 @@
         UITextField *nameField = [[UITextField alloc] initWithFrame:CGRectMake(20,20, 160, 30)];
         nameField.backgroundColor = [UIColor colorWithWhite:0.99 alpha:1.0];
         nameField.layer.cornerRadius = 6;
+        nameField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0,0,10,30)]; // puts the cursor a few pixels right of the textfield
+        nameField.leftViewMode = UITextFieldViewModeAlways;
         [header addSubview:nameField];
         
         NSLog(@"listItems : %@ .... %@", listItems, listItems[0]);
