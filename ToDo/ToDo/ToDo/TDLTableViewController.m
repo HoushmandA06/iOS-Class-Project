@@ -12,9 +12,8 @@
 
 {
     NSArray *listItems;
-    // declaring it up here makes it global to this file
-    
     NSArray *listImages;
+    // declaring it up here makes it global to this file
 }
 
 
@@ -30,9 +29,37 @@
         // NSLog (@"listItems : %@", day);
         //}
         
-        listItems = @[@"Ali",@"Ashby",@"Austen",@"Derek",@"Heidi",@"Jeff",@"Jeffery",@"Jisha",@"John",@"Jon",@"Savitha",@"Teddy",@"TJ"];
         
-        listImages = @[[UIImage imageNamed:@"AliHoushmand"],
+        
+        // NSDictionary *list = [[NSDictionary alloc]  initWithObjects:()]
+        
+        // NSDictionary *list = @{
+        //                       @"name" : @"Ali Houshmand",
+        //                       @"image" : [UIImage imageNamed:@"Ali Houshmand"]
+        //
+        //                       };
+        
+        
+        
+        listItems = @[
+                      @{@"name" : @"AliHoushmand",@"image" : [UIImage imageNamed:@"AliHoushmand"]},
+                      @{@"name" : @"Ashby",@"image" : [UIImage imageNamed:@"Ashby"]},
+                      @{@"name" : @"AustenJohnson",@"image" : [UIImage imageNamed:@"AustenJohnson"]},
+                      @{@"name" : @"DerekWeber",@"image" : [UIImage imageNamed:@"DerekWeber"]},
+                      @{@"name" : @"HeidiProske",@"image" : [UIImage imageNamed:@"HeidiProske"]},
+                      @{@"name" : @"JeffKing",@"image" : [UIImage imageNamed:@"JeffKing"]},
+                      @{@"name" : @"JeffMoulds",@"image" : [UIImage imageNamed:@"JeffMoulds"]},
+                      @{@"name" : @"JishaObukwelu",@"image" : [UIImage imageNamed:@"JishaObukwelu"]},
+                      @{@"name" : @"JohnYam",@"image" : [UIImage imageNamed:@"JohnYam"]},
+                      @{@"name" : @"JonFox",@"image" : [UIImage imageNamed:@"JonFox"]},
+                      @{@"name" : @"SavithaReddy",@"image" : [UIImage imageNamed:@"SavithaReddy"]},
+                      @{@"name" : @"TeddyConyers",@"image" : [UIImage imageNamed:@"TeddyConyers"]},
+                      @{@"name" : @"TJMercer",@"image" : [UIImage imageNamed:@"TJMercer"]}];
+    
+    // the above creates a dictionary, allowing array with multiple pieces for each item using keys to reference index]
+        
+    /* listItems = @[@"AliHoushmand",@"Ashby"];
+       listImages = @[[UIImage imageNamed:@"AliHoushmand"],
                        [UIImage imageNamed:@"Ashby"],
                        [UIImage imageNamed:@"AustenJohnson"],
                        [UIImage imageNamed:@"DerekWeber"],
@@ -44,12 +71,12 @@
                        [UIImage imageNamed:@"JonFox"],
                        [UIImage imageNamed:@"SavithaReddy"],
                        [UIImage imageNamed:@"TeddyConyers"],
-                       [UIImage imageNamed:@"TJMercer"]];
+                       [UIImage imageNamed:@"TJMercer"]]; */
     
-        //the above is a literal @[ starts a literal
+        //the above is a literal @[ starts a literal where we inputted the images and names separately, in ordered arrays
         
         self.tableView.contentInset = UIEdgeInsetsMake(50,0,0,0);
-        self.tableView.rowHeight = 100;
+        self.tableView.rowHeight = 75;
         
         UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0,0,320,50)];
         header.backgroundColor = [UIColor greenColor];
@@ -58,7 +85,7 @@
         titleHeader.text = @"Contacts";
         titleHeader.textColor = [UIColor whiteColor];
         [header addSubview:titleHeader];
-        
+    
 
         UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0,0,320,50)];
         footer.backgroundColor = [UIColor blueColor];
@@ -118,17 +145,26 @@
         
     }
     
-    int index = [indexPath row];
+    // int index = [indexPath row]
+    int index = indexPath.row;
     
-    NSString *name = listItems[index];
+    // NSString *name = listItems[index];
+    // cell.textLabel.text = name;
     
-    cell.textLabel.text = name;
-    
+    // UIImage *image = listImages[index];
+    // cell.imageView.image = image;
     // faster way to write the above cell.textLabel.text = listItems[index]; dont need placeholder variable
     
-    UIImage *image = listImages[index];
+    // NSDictionary *listItem = [listItems objectAtIndex:index]; //instance method
     
-    cell.imageView.image = image;
+    NSDictionary *listItem = listItems[index]; //literal
+    
+    cell.textLabel.text = listItem[@"name"];
+    cell.imageView.image = listItem[@"image"];
+    
+    cell.textLabel.textColor = [UIColor blueColor];
+    cell.backgroundColor = [UIColor redColor];
+    cell.textLabel.font = [UIFont fontWithName:@"Courier" size:(12)];
     
     // Configure the cell...
     
