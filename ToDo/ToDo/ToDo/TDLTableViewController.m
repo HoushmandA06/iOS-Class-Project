@@ -108,7 +108,7 @@
         UITextField *nameField = [[UITextField alloc] initWithFrame:CGRectMake(20,20, 160, 30)];
         nameField.backgroundColor = [UIColor colorWithWhite:0.99 alpha:1.0];
         nameField.layer.cornerRadius = 6;
-        nameField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0,0,10,30)]; // puts the cursor a few pixels right of the textfield
+        nameField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0,0,10,30)]; // puts the cursor a set amt right of the textfield
         nameField.leftViewMode = UITextFieldViewModeAlways;
         [header addSubview:nameField];
         
