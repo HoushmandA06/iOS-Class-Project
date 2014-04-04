@@ -116,6 +116,9 @@
         nameField.leftViewMode = UITextFieldViewModeAlways;
         [header addSubview:nameField];
         
+        nameField.delegate = self;
+        
+        
         NSLog(@"listItems : %@ .... %@", listItems, listItems[0]);
         
         UIButton *submitButton = [[UIButton alloc] initWithFrame:CGRectMake(200, 20, 100, 30)];
@@ -138,19 +141,31 @@
 {
     
     NSString *username = nameField.text;
+
+    nameField.text = @"";
     
     [listItems addObject:@{
                            @"name" : username,
                         //   @"image" : [UIImage imageNamed:@"new_user"],
                            @"github" : [NSString stringWithFormat:@"https://github.com/%@",username]}];
 
-    [self.tableView reloadData];
     NSLog(@"clicking");
     NSLog(@"listItems Count : %d",[listItems count]);
     
-    
+    [nameField resignFirstResponder];
+    [self.tableView reloadData];
+
     
 }
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self newUser];
+    return YES;
+
+}
+
+
 
 - (void)viewDidLoad
 {
@@ -207,7 +222,9 @@
     
     // NSDictionary *listItem = [listItems objectAtIndex:index]; //instance method
     
-    NSDictionary *listItem = listItems[index]; //literal
+    NSArray *reverseArray = [[listItems reverseObjectEnumerator] allObjects];
+    
+    NSDictionary *listItem = reverseArray[index]; //literal
     
     cell.profileInfo = listItem;
     
