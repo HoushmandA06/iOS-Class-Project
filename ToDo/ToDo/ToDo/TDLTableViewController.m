@@ -13,8 +13,10 @@
 @implementation TDLTableViewController
 
 {
-    NSArray *listItems;
+    NSMutableArray *listItems;
     NSArray *listImages;
+    UITextField *nameField;
+    
     // declaring it up here makes it global to this file
 }
 
@@ -43,7 +45,7 @@
         
         
         
-        listItems = @[
+        NSArray *array = @[
                       @{@"name" : @"AliHoushmand",@"image" : [UIImage imageNamed:@"AliHoushmand"],@"github" : @"https://github.com/HoushmandA06"},
                       @{@"name" : @"Ashby",@"image" : [UIImage imageNamed:@"Ashby"],@"github" : @"https://github.com/athornwell"},
                       @{@"name" : @"AustenJohnson",@"image" : [UIImage imageNamed:@"AustenJohnson"], @"github" : @"https://github.com/ajohnson21"},
@@ -58,7 +60,9 @@
                       @{@"name" : @"TeddyConyers",@"image" : [UIImage imageNamed:@"TeddyConyers"], @"github" : @"https://github.com/talented76"},
                       @{@"name" : @"TJMercer",@"image" : [UIImage imageNamed:@"TJMercer"], @"github" : @"https://github.com/gwanunig14}"}];
         
-    
+        listItems = [array mutableCopy];
+        
+
 
     // the above creates a dictionary, allowing array with multiple pieces for each item using keys to reference index]
         
@@ -105,7 +109,7 @@
         self.tableView.tableHeaderView = header;
         self.tableView.tableFooterView = footer;
         
-        UITextField *nameField = [[UITextField alloc] initWithFrame:CGRectMake(20,20, 160, 30)];
+        nameField = [[UITextField alloc] initWithFrame:CGRectMake(20,20, 160, 30)];
         nameField.backgroundColor = [UIColor colorWithWhite:0.99 alpha:1.0];
         nameField.layer.cornerRadius = 6;
         nameField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0,0,10,30)]; // puts the cursor a set amt right of the textfield
@@ -118,12 +122,34 @@
         [submitButton setTitle:@"New User" forState:UIControlStateNormal];
         submitButton.backgroundColor = [UIColor darkGrayColor];
         submitButton.layer.cornerRadius = 6;
+        [submitButton addTarget:self action:@selector(newUser) forControlEvents:UIControlEventTouchUpInside];
+
         [header addSubview:submitButton];
         
-    
+        
         
     }
     return self;
+}
+
+
+
+- (void)newUser // this will collect info from button
+{
+    
+    NSString *username = nameField.text;
+    
+    [listItems addObject:@{
+                           @"name" : username,
+                        //   @"image" : [UIImage imageNamed:@"new_user"],
+                           @"github" : [NSString stringWithFormat:@"https://github.com/%@",username]}];
+
+    [self.tableView reloadData];
+    NSLog(@"clicking");
+    NSLog(@"listItems Count : %d",[listItems count]);
+    
+    
+    
 }
 
 - (void)viewDidLoad

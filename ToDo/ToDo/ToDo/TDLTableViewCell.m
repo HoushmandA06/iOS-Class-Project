@@ -27,7 +27,6 @@
         profileImage = [[UIImageView alloc] initWithFrame:CGRectMake(20, 20, 60, 60)];
         profileImage.layer.cornerRadius = 30;
         profileImage.layer.masksToBounds = YES;
-        
         [self.contentView addSubview:profileImage];
         
         profileName = [[UILabel alloc] initWithFrame:CGRectMake(100, 20, 200, 30)];
