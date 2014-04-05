@@ -24,7 +24,7 @@
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
-    self = [super initWithStyle:style];
+    self = [super initWithStyle:UITableViewStylePlain];
     if (self)
     {
 
@@ -114,6 +114,9 @@
         nameField.layer.cornerRadius = 6;
         nameField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0,0,10,30)]; // puts the cursor a set amt right of the textfield
         nameField.leftViewMode = UITextFieldViewModeAlways;
+        nameField.placeholder = @"Enter name";
+        
+        
         [header addSubview:nameField];
         
         nameField.delegate = self;
@@ -134,6 +137,7 @@
     }
     return self;
 }
+
 
 
 
@@ -158,12 +162,16 @@
     
 }
 
+
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [self newUser];
     return YES;
 
 }
+
+
 
 
 
@@ -206,28 +214,24 @@
     }
     
     // if(cell == nil) cell = [[TDLTableViewCell alloc] init];
-    // shorthand way of doing an if with one condition vs. lines 144 - 147
-    
-    
+    // shorthand way of doing an if with one condition
     // int index = [indexPath row]
     
-    int index = indexPath.row;
+  
     
     // NSString *name = listItems[index];
     // cell.textLabel.text = name;
-    
     // UIImage *image = listImages[index];
     // cell.imageView.image = image;
     // faster way to write the above cell.textLabel.text = listItems[index]; dont need placeholder variable
-    
     // NSDictionary *listItem = [listItems objectAtIndex:index]; //instance method
     
-    NSArray *reverseArray = [[listItems reverseObjectEnumerator] allObjects];
     
-    NSDictionary *listItem = reverseArray[index]; //literal
+    // int index = indexPath.row;
+    // NSArray *reverseArray = [[listItems reverseObjectEnumerator] allObjects];
+    //    NSDictionary *listItem = ; //literal
     
-    cell.profileInfo = listItem;
-    
+    cell.profileInfo = [self getListItem:indexPath.row];
     
     // cell.textLabel.text = listItem[@"name"];
     // [[cell imageView] setImage:listItem[@"image"]];  "getter" method
@@ -239,6 +243,23 @@
     // Configure the cell...
     
     return cell;
+}
+
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+
+{    
+    NSDictionary *listItem = [self getListItem:indexPath.row];
+    NSLog(@"%@",listItem);
+    
+}
+
+- (NSDictionary *)getListItem:(NSInteger)row
+{
+
+    NSArray * reverseArray = [[listItems reverseObjectEnumerator] allObjects];
+    return reverseArray[row];
+    
 }
 
 

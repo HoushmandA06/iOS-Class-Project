@@ -22,7 +22,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self)
     {
-        self.backgroundColor = [UIColor clearColor];
+        self.backgroundColor = [UIColor blackColor];
     
         profileImage = [[UIImageView alloc] initWithFrame:CGRectMake(20, 20, 60, 60)];
         profileImage.layer.cornerRadius = 30;
@@ -31,6 +31,7 @@
         
         profileName = [[UILabel alloc] initWithFrame:CGRectMake(100, 20, 200, 30)];
         profileName.font = [UIFont systemFontOfSize:30];
+        profileName.textColor = [UIColor whiteColor];
         [self.contentView addSubview:profileName];
         
         profileURL = [[UILabel alloc] initWithFrame:CGRectMake(100, 50, 200, 30)];
