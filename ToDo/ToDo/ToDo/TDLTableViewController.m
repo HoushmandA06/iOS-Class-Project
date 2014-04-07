@@ -292,7 +292,11 @@
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [listItems removeObjectAtIndex:indexPath.row];
+    // [listItems removeObjectAtIndex:indexPath.row];
+    
+    NSDictionary * listItem = [self getListItem:indexPath.row];
+    
+    [listItems removeObjectIdenticalTo:listItem];
     
     [self.tableView reloadData];
 }
@@ -305,8 +309,14 @@
 
 -(void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
 {
-
-   
+    if(sourceIndexPath == destinationIndexPath) return;
+    
+    NSDictionary * sourceItem = [self getListItem:sourceIndexPath.row];
+    NSDictionary * toItem = [self getListItem:destinationIndexPath.row];
+    
+    [listItems removeObjectIdenticalTo:sourceItem];
+    [listItems insertObject:sourceItem atIndex:[listItems indexOfObject:toItem]];
+    
 }
 
 
