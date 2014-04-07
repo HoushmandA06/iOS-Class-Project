@@ -20,21 +20,9 @@
 		0F3D7E1E18EC4AEC0097CA4E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0F3D7E1C18EC4AEC0097CA4E /* InfoPlist.strings */; };
 		0F3D7E2018EC4AEC0097CA4E /* ToDoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F3D7E1F18EC4AEC0097CA4E /* ToDoTests.m */; };
 		0F3D7E2B18EC4C770097CA4E /* TDLTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F3D7E2A18EC4C770097CA4E /* TDLTableViewController.m */; };
-		0FAB219D18EC8ADC00136587 /* AliHoushmand.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FAB218E18EC8ADC00136587 /* AliHoushmand.png */; };
-		0FAB219E18EC8ADC00136587 /* Ashby.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FAB218F18EC8ADC00136587 /* Ashby.png */; };
-		0FAB219F18EC8ADC00136587 /* AustenJohnson.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FAB219018EC8ADC00136587 /* AustenJohnson.png */; };
-		0FAB21A118EC8ADC00136587 /* DerekWeber.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FAB219218EC8ADC00136587 /* DerekWeber.png */; };
-		0FAB21A318EC8ADC00136587 /* HeidiProske.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FAB219418EC8ADC00136587 /* HeidiProske.png */; };
-		0FAB21A418EC8ADC00136587 /* JeffKing.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FAB219518EC8ADC00136587 /* JeffKing.png */; };
-		0FAB21A518EC8ADC00136587 /* JeffMoulds.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FAB219618EC8ADC00136587 /* JeffMoulds.png */; };
-		0FAB21A618EC8ADC00136587 /* JishaObukwelu.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FAB219718EC8ADC00136587 /* JishaObukwelu.png */; };
-		0FAB21A718EC8ADC00136587 /* JohnYam.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FAB219818EC8ADC00136587 /* JohnYam.png */; };
-		0FAB21A818EC8ADC00136587 /* JonFox.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FAB219918EC8ADC00136587 /* JonFox.png */; };
-		0FAB21A918EC8ADC00136587 /* SavithaReddy.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FAB219A18EC8ADC00136587 /* SavithaReddy.png */; };
-		0FAB21AA18EC8ADC00136587 /* TeddyConyers.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FAB219B18EC8ADC00136587 /* TeddyConyers.png */; };
-		0FAB21AB18EC8ADC00136587 /* TJMercer.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FAB219C18EC8ADC00136587 /* TJMercer.png */; };
 		0FAB21AF18EDA78C00136587 /* TDLTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FAB21AE18EDA78C00136587 /* TDLTableViewCell.m */; };
 		0FAB21B318EF332300136587 /* GitHubFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FAB21B218EF332300136587 /* GitHubFlow.storyboard */; };
+		0FAB21B718F2F45300136587 /* TDLGitHubRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FAB21B618F2F45300136587 /* TDLGitHubRequest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,22 +54,11 @@
 		0F3D7E1F18EC4AEC0097CA4E /* ToDoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToDoTests.m; sourceTree = "<group>"; };
 		0F3D7E2918EC4C770097CA4E /* TDLTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDLTableViewController.h; sourceTree = "<group>"; };
 		0F3D7E2A18EC4C770097CA4E /* TDLTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDLTableViewController.m; sourceTree = "<group>"; };
-		0FAB218E18EC8ADC00136587 /* AliHoushmand.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AliHoushmand.png; sourceTree = "<group>"; };
-		0FAB218F18EC8ADC00136587 /* Ashby.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ashby.png; sourceTree = "<group>"; };
-		0FAB219018EC8ADC00136587 /* AustenJohnson.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AustenJohnson.png; sourceTree = "<group>"; };
-		0FAB219218EC8ADC00136587 /* DerekWeber.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DerekWeber.png; sourceTree = "<group>"; };
-		0FAB219418EC8ADC00136587 /* HeidiProske.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HeidiProske.png; sourceTree = "<group>"; };
-		0FAB219518EC8ADC00136587 /* JeffKing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JeffKing.png; sourceTree = "<group>"; };
-		0FAB219618EC8ADC00136587 /* JeffMoulds.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JeffMoulds.png; sourceTree = "<group>"; };
-		0FAB219718EC8ADC00136587 /* JishaObukwelu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JishaObukwelu.png; sourceTree = "<group>"; };
-		0FAB219818EC8ADC00136587 /* JohnYam.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JohnYam.png; sourceTree = "<group>"; };
-		0FAB219918EC8ADC00136587 /* JonFox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JonFox.png; sourceTree = "<group>"; };
-		0FAB219A18EC8ADC00136587 /* SavithaReddy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SavithaReddy.png; sourceTree = "<group>"; };
-		0FAB219B18EC8ADC00136587 /* TeddyConyers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TeddyConyers.png; sourceTree = "<group>"; };
-		0FAB219C18EC8ADC00136587 /* TJMercer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TJMercer.png; sourceTree = "<group>"; };
 		0FAB21AD18EDA78C00136587 /* TDLTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDLTableViewCell.h; sourceTree = "<group>"; };
 		0FAB21AE18EDA78C00136587 /* TDLTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDLTableViewCell.m; sourceTree = "<group>"; };
 		0FAB21B218EF332300136587 /* GitHubFlow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = GitHubFlow.storyboard; sourceTree = "<group>"; };
+		0FAB21B518F2F45300136587 /* TDLGitHubRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDLGitHubRequest.h; sourceTree = "<group>"; };
+		0FAB21B618F2F45300136587 /* TDLGitHubRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDLGitHubRequest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				0FAB21B218EF332300136587 /* GitHubFlow.storyboard */,
+				0FAB21B418F2F3CB00136587 /* Random */,
 				0FAB21B018EDA7A700136587 /* Controllers */,
 				0F3D7E0018EC4AEC0097CA4E /* ToDo */,
 				0F3D7E1918EC4AEC0097CA4E /* ToDoTests */,
@@ -145,7 +123,6 @@
 			children = (
 				0F3D7E0918EC4AEC0097CA4E /* TDLAppDelegate.h */,
 				0F3D7E0A18EC4AEC0097CA4E /* TDLAppDelegate.m */,
-				0FAB21AC18EC8AF600136587 /* Images */,
 				0F3D7E0C18EC4AEC0097CA4E /* Images.xcassets */,
 				0F3D7E0118EC4AEC0097CA4E /* Supporting Files */,
 			);
@@ -181,26 +158,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		0FAB21AC18EC8AF600136587 /* Images */ = {
-			isa = PBXGroup;
-			children = (
-				0FAB218E18EC8ADC00136587 /* AliHoushmand.png */,
-				0FAB218F18EC8ADC00136587 /* Ashby.png */,
-				0FAB219018EC8ADC00136587 /* AustenJohnson.png */,
-				0FAB219218EC8ADC00136587 /* DerekWeber.png */,
-				0FAB219418EC8ADC00136587 /* HeidiProske.png */,
-				0FAB219518EC8ADC00136587 /* JeffKing.png */,
-				0FAB219618EC8ADC00136587 /* JeffMoulds.png */,
-				0FAB219718EC8ADC00136587 /* JishaObukwelu.png */,
-				0FAB219818EC8ADC00136587 /* JohnYam.png */,
-				0FAB219918EC8ADC00136587 /* JonFox.png */,
-				0FAB219A18EC8ADC00136587 /* SavithaReddy.png */,
-				0FAB219B18EC8ADC00136587 /* TeddyConyers.png */,
-				0FAB219C18EC8ADC00136587 /* TJMercer.png */,
-			);
-			name = Images;
-			sourceTree = "<group>";
-		};
 		0FAB21B018EDA7A700136587 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -219,6 +176,16 @@
 				0FAB21AE18EDA78C00136587 /* TDLTableViewCell.m */,
 			);
 			name = TableView;
+			sourceTree = "<group>";
+		};
+		0FAB21B418F2F3CB00136587 /* Random */ = {
+			isa = PBXGroup;
+			children = (
+				0FAB21B518F2F45300136587 /* TDLGitHubRequest.h */,
+				0FAB21B618F2F45300136587 /* TDLGitHubRequest.m */,
+			);
+			name = Random;
+			path = ToDo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -297,22 +264,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0FAB219D18EC8ADC00136587 /* AliHoushmand.png in Resources */,
-				0FAB21AA18EC8ADC00136587 /* TeddyConyers.png in Resources */,
 				0F3D7E0518EC4AEC0097CA4E /* InfoPlist.strings in Resources */,
-				0FAB21AB18EC8ADC00136587 /* TJMercer.png in Resources */,
-				0FAB21A418EC8ADC00136587 /* JeffKing.png in Resources */,
 				0FAB21B318EF332300136587 /* GitHubFlow.storyboard in Resources */,
-				0FAB21A518EC8ADC00136587 /* JeffMoulds.png in Resources */,
-				0FAB21A118EC8ADC00136587 /* DerekWeber.png in Resources */,
-				0FAB219F18EC8ADC00136587 /* AustenJohnson.png in Resources */,
-				0FAB21A818EC8ADC00136587 /* JonFox.png in Resources */,
-				0FAB21A718EC8ADC00136587 /* JohnYam.png in Resources */,
-				0FAB21A618EC8ADC00136587 /* JishaObukwelu.png in Resources */,
 				0F3D7E0D18EC4AEC0097CA4E /* Images.xcassets in Resources */,
-				0FAB219E18EC8ADC00136587 /* Ashby.png in Resources */,
-				0FAB21A318EC8ADC00136587 /* HeidiProske.png in Resources */,
-				0FAB21A918EC8ADC00136587 /* SavithaReddy.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,6 +287,7 @@
 			files = (
 				0FAB21AF18EDA78C00136587 /* TDLTableViewCell.m in Sources */,
 				0F3D7E2B18EC4C770097CA4E /* TDLTableViewController.m in Sources */,
+				0FAB21B718F2F45300136587 /* TDLGitHubRequest.m in Sources */,
 				0F3D7E0718EC4AEC0097CA4E /* main.m in Sources */,
 				0F3D7E0B18EC4AEC0097CA4E /* TDLAppDelegate.m in Sources */,
 			);

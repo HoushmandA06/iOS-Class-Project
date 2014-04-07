@@ -59,12 +59,16 @@
 
 - (void)setProfileInfo:(NSDictionary *)profileInfo; // THIS IS A SETTER
 {
+    NSString *imageUrlString = profileInfo[@"image"];
     
+    NSURL *imageUrl = [[NSURL alloc] initWithString:imageUrlString];
+    NSData *imageData = [NSData dataWithContentsOfURL:imageUrl];
     
-    profileImage.image = profileInfo[@"image"];
+    UIImage *image = [UIImage imageWithData:imageData];
+    profileImage.image = image;
+    
     profileName.text = profileInfo[@"name"];
     profileURL.text = profileInfo[@"github"];
-    
     _profileInfo = profileInfo;
     
     

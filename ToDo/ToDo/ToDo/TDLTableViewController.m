@@ -8,7 +8,7 @@
 
 #import "TDLTableViewController.h"
 #import "TDLTableViewCell.h"
-
+#import "TDLGitHubRequest.h"
 
 @implementation TDLTableViewController
 
@@ -27,6 +27,7 @@
     self = [super initWithStyle:UITableViewStylePlain];
     if (self)
     {
+        listItems = [@[] mutableCopy];
 
         //listItems = [[NSArray alloc] initWithObjects:@"Monday",@"Tuesday",@"Wednesday",nil];
         // for (NSString *day in listItems) {
@@ -45,23 +46,20 @@
         
         
         
-        NSArray *array = @[
-                      @{@"name" : @"AliHoushmand",@"image" : [UIImage imageNamed:@"AliHoushmand"],@"github" : @"https://github.com/HoushmandA06"},
-                      @{@"name" : @"Ashby",@"image" : [UIImage imageNamed:@"Ashby"],@"github" : @"https://github.com/athornwell"},
-                      @{@"name" : @"AustenJohnson",@"image" : [UIImage imageNamed:@"AustenJohnson"], @"github" : @"https://github.com/ajohnson21"},
-                      @{@"name" : @"DerekWeber",@"image" : [UIImage imageNamed:@"DerekWeber"], @"github" : @"https://github.com/dweber03"},
-                      @{@"name" : @"HeidiProske",@"image" : [UIImage imageNamed:@"HeidiProske"], @"github" : @"https://github.com/justagirlcoding"},
-                      @{@"name" : @"JeffKing",@"image" : [UIImage imageNamed:@"JeffKing"], @"github" : @"https://github.com/rampis"},
-                      @{@"name" : @"JeffMoulds",@"image" : [UIImage imageNamed:@"JeffMoulds"], @"github" : @"https://github.com/jdmgithub"},
-                      @{@"name" : @"JishaObukwelu",@"image" : [UIImage imageNamed:@"JishaObukwelu"], @"github" : @"https://github.com/Jiobu"},
-                      @{@"name" : @"JohnYam",@"image" : [UIImage imageNamed:@"JohnYam"], @"github" : @"https://github.com/yamski"},
-                      @{@"name" : @"JonFox",@"image" : [UIImage imageNamed:@"JonFox"], @"github" : @"https://github.com/FoxJon"},
-                      @{@"name" : @"SavithaReddy",@"image" : [UIImage imageNamed:@"SavithaReddy"], @"github" : @"https://github.com/savithareddy"},
-                      @{@"name" : @"TeddyConyers",@"image" : [UIImage imageNamed:@"TeddyConyers"], @"github" : @"https://github.com/talented76"},
-                      @{@"name" : @"TJMercer",@"image" : [UIImage imageNamed:@"TJMercer"], @"github" : @"https://github.com/gwanunig14}"}];
-        
-        listItems = [array mutableCopy];
-        
+//        NSArray *array = @[
+//                      @{@"name" : @"AliHoushmand",@"image" : [UIImage imageNamed:@"AliHoushmand"],@"github" : @"https://github.com/HoushmandA06"},
+//                      @{@"name" : @"Ashby",@"image" : [UIImage imageNamed:@"Ashby"],@"github" : @"https://github.com/athornwell"},
+//                      @{@"name" : @"AustenJohnson",@"image" : [UIImage imageNamed:@"AustenJohnson"], @"github" : @"https://github.com/ajohnson21"},
+//                      @{@"name" : @"DerekWeber",@"image" : [UIImage imageNamed:@"DerekWeber"], @"github" : @"https://github.com/dweber03"},
+//                      @{@"name" : @"HeidiProske",@"image" : [UIImage imageNamed:@"HeidiProske"], @"github" : @"https://github.com/justagirlcoding"},
+//                      @{@"name" : @"JeffKing",@"image" : [UIImage imageNamed:@"JeffKing"], @"github" : @"https://github.com/rampis"},
+//                      @{@"name" : @"JeffMoulds",@"image" : [UIImage imageNamed:@"JeffMoulds"], @"github" : @"https://github.com/jdmgithub"},
+//                      @{@"name" : @"JishaObukwelu",@"image" : [UIImage imageNamed:@"JishaObukwelu"], @"github" : @"https://github.com/Jiobu"},
+//                      @{@"name" : @"JohnYam",@"image" : [UIImage imageNamed:@"JohnYam"], @"github" : @"https://github.com/yamski"},
+//                      @{@"name" : @"JonFox",@"image" : [UIImage imageNamed:@"JonFox"], @"github" : @"https://github.com/FoxJon"},
+//                      @{@"name" : @"SavithaReddy",@"image" : [UIImage imageNamed:@"SavithaReddy"], @"github" : @"https://github.com/savithareddy"},
+//                      @{@"name" : @"TeddyConyers",@"image" : [UIImage imageNamed:@"TeddyConyers"], @"github" : @"https://github.com/talented76"},
+//                      @{@"name" : @"TJMercer",@"image" : [UIImage imageNamed:@"TJMercer"], @"github" : @"https://github.com/gwanunig14"}];
 
 
     // the above creates a dictionary, allowing array with multiple pieces for each item using keys to reference index]
@@ -121,8 +119,7 @@
         
         nameField.delegate = self;
         
-        
-        NSLog(@"listItems : %@ .... %@", listItems, listItems[0]);
+        NSLog(@"listItems : %@ .... ", listItems);
         
         UIButton *submitButton = [[UIButton alloc] initWithFrame:CGRectMake(200, 20, 100, 30)];
         [submitButton setTitle:@"New User" forState:UIControlStateNormal];
@@ -131,9 +128,6 @@
         [submitButton addTarget:self action:@selector(newUser) forControlEvents:UIControlEventTouchUpInside];
 
         [header addSubview:submitButton];
-        
-        
-        
     }
     return self;
 }
@@ -148,15 +142,21 @@
 
     nameField.text = @"";
     
-    [listItems addObject:@{
-                           @"name" : username,
-                        //   @"image" : [UIImage imageNamed:@"new_user"],
-                           @"github" : [NSString stringWithFormat:@"https://github.com/%@",username]}];
-
+//  [listItems addObject:@{
+//                           @"name" : username,
+//                           @"image" : [UIImage imageNamed:@"new_user"],
+//                           @"github" : [NSString stringWithFormat:@"https://github.com/%@",username]}];
+//  the lines above do same as NSDcitionary in line 161 now that we have added GitHubRequest file
+    
+    
     NSLog(@"clicking");
     NSLog(@"listItems Count : %d",[listItems count]);
     
-    [nameField resignFirstResponder];
+    NSDictionary * userInfo = [TDLGitHubRequest getUserWithUsername:username];
+    
+    [listItems addObject:userInfo];
+    
+    [nameField resignFirstResponder]; //this is what makes keyboard go away
     [self.tableView reloadData];
 
     
@@ -213,25 +213,24 @@
         cell = [[TDLTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
     
+    cell.profileInfo = [self getListItem:indexPath.row];
+    return cell;
+    
+    
     // if(cell == nil) cell = [[TDLTableViewCell alloc] init];
     // shorthand way of doing an if with one condition
     // int index = [indexPath row]
     
-  
-    
     // NSString *name = listItems[index];
     // cell.textLabel.text = name;
+    // faster way to write the above cell.textLabel.text = listItems[index]; dont need placeholder variable
     // UIImage *image = listImages[index];
     // cell.imageView.image = image;
-    // faster way to write the above cell.textLabel.text = listItems[index]; dont need placeholder variable
     // NSDictionary *listItem = [listItems objectAtIndex:index]; //instance method
-    
     
     // int index = indexPath.row;
     // NSArray *reverseArray = [[listItems reverseObjectEnumerator] allObjects];
     //    NSDictionary *listItem = ; //literal
-    
-    cell.profileInfo = [self getListItem:indexPath.row];
     
     // cell.textLabel.text = listItem[@"name"];
     // [[cell imageView] setImage:listItem[@"image"]];  "getter" method
@@ -239,10 +238,8 @@
     // cell.textLabel.textColor = [UIColor blueColor];
     // cell.backgroundColor = [UIColor redColor];
     // cell.textLabel.font = [UIFont fontWithName:@"Courier" size:(12)];
-    
     // Configure the cell...
     
-    return cell;
 }
 
 
@@ -250,7 +247,27 @@
 
 {    
     NSDictionary *listItem = [self getListItem:indexPath.row];
+    
     NSLog(@"%@",listItem);
+    
+    UIViewController *webController = [[UIViewController alloc] init];
+    
+    UIWebView *webView = [[UIWebView alloc] init];
+    
+    webController.view = webView;
+    
+    UIWindow *window = [[UIApplication sharedApplication].windows firstObject];
+    
+    UINavigationController *navController = (UINavigationController *)window.rootViewController;
+    
+    [navController pushViewController:webController animated:YES];
+    
+    //NSURL * url = [NSURL URLWithString:listItem[@"github"]];
+    //NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    //[webView loadRequest:request];
+    // above does same as line with [webview...
+    
+    [webView loadRequest:[NSURLRequest requestWithURL: [NSURL URLWithString:listItem[@"github"]]]];
     
 }
 
