@@ -12,7 +12,7 @@
 
 + (NSDictionary *)getUserWithUsername:(NSString *)username
 {
-    NSDictionary * userInfo = @{};  //literal - it's alloc and init'ing an NSDictionary
+    NSMutableDictionary * userInfo = [@{} mutableCopy];
     
     NSString * github = [NSString stringWithFormat:@"https://api.github.com/users/%@",username];
     
@@ -46,11 +46,23 @@
  //
  //   }
     
-   
-        userInfo = @{@"name":githubProfile[@"name"],
-                     @"image":githubProfile[@"avatar_url"],
-                     @"github":githubProfile[@"html_url"]
-                     };
+
+//    if(githubProfile[@"name"] != nil) [userInfo setObject:githubProfile[@"name"] forKey:@"name"];
+//    if(githubProfile[@"image"] != nil) [userInfo setObject:githubProfile[@"avatar_url"] forKey:@"image"];
+//    if(githubProfile[@"github"] != nil) [userInfo setObject:githubProfile[@"html_url"] forKey:@"github"];
+//  above does same as the literals below
+    
+    if(githubProfile[@"name"] != nil) userInfo[@"name"] = githubProfile[@"name"];
+    if(githubProfile[@"avatar_url"] != nil) userInfo[@"image"] = githubProfile[@"avatar_url"];
+    if(githubProfile[@"html_url"] != nil) userInfo[@"github"] = githubProfile[@"html_url"];
+    
+
+    
+    
+//        userInfo = @{@"name":githubProfile[@"name"],
+//                     @"image":githubProfile[@"avatar_url"],
+//                     @"github":githubProfile[@"html_url"]
+//                     };
 
     return userInfo;
     

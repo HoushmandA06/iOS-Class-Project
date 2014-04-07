@@ -133,8 +133,6 @@
 }
 
 
-
-
 - (void)newUser // this will collect info from button
 {
     
@@ -146,7 +144,7 @@
 //                           @"name" : username,
 //                           @"image" : [UIImage imageNamed:@"new_user"],
 //                           @"github" : [NSString stringWithFormat:@"https://github.com/%@",username]}];
-//  the lines above do same as NSDcitionary in line 161 now that we have added GitHubRequest file
+//  the lines above do same as NSDictionary in line 161 now that we have added GitHubRequest file
     
     
     NSLog(@"clicking");
@@ -154,15 +152,13 @@
     
     NSDictionary * userInfo = [TDLGitHubRequest getUserWithUsername:username];
     
-    [listItems addObject:userInfo];
+    if([[userInfo allKeys] count] == 3) [listItems addObject:userInfo];
+    else NSLog(@"not enough data");
     
     [nameField resignFirstResponder]; //this is what makes keyboard go away
     [self.tableView reloadData];
-
     
 }
-
-
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -170,10 +166,6 @@
     return YES;
 
 }
-
-
-
-
 
 - (void)viewDidLoad
 {
