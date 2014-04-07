@@ -16,10 +16,17 @@
     NSMutableArray *listItems;
     NSArray *listImages;
     UITextField *nameField;
-    
     // declaring it up here makes it global to this file
 }
 
+
+-(void)toggleEdit;
+{
+    [self.tableView setEditing:!self.tableView.editing animated:YES];
+    
+    // self.tableView.editing = !self.tableView.editing;
+    // [self.tableView reloadData];
+}
 
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -28,6 +35,17 @@
     if (self)
     {
         listItems = [@[] mutableCopy];
+        
+        UIBarButtonItem * editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(toggleEdit)];
+        self.navigationItem.rightBarButtonItem = editButton;
+        
+        
+//        listItems = [@[@{
+//                           @"name" : @"Jo Albright",
+//                           @"image" : @"https://avatars.githubusercontent.com/u/1536630?",
+//                           @"github" : @"https://github.com/joalbright"
+//                           }] mutableCopy];
+       
 
         //listItems = [[NSArray alloc] initWithObjects:@"Monday",@"Tuesday",@"Wednesday",nil];
         // for (NSString *day in listItems) {
@@ -86,6 +104,8 @@
         self.tableView.contentInset = UIEdgeInsetsMake(50,0,0,0);
         self.tableView.rowHeight = 100;
         self.tableView.separatorInset = UIEdgeInsetsMake(0,20,0,20);
+        
+        self.tableView.editing = YES;
         
         UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0,0,320,100)];
         header.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1.0];
@@ -248,11 +268,11 @@
     
     webController.view = webView;
     
-    UIWindow *window = [[UIApplication sharedApplication].windows firstObject];
+    [self.navigationController pushViewController:webController animated:YES];
     
-    UINavigationController *navController = (UINavigationController *)window.rootViewController;
+   // UIWindow *window = [[UIApplication sharedApplication].windows firstObject];
     
-    [navController pushViewController:webController animated:YES];
+   //  UINavigationController *navController = (UINavigationController *)window.rootViewController;
     
     //NSURL * url = [NSURL URLWithString:listItem[@"github"]];
     //NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -262,6 +282,33 @@
     [webView loadRequest:[NSURLRequest requestWithURL: [NSURL URLWithString:listItem[@"github"]]]];
     
 }
+
+
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [listItems removeObjectAtIndex:indexPath.row];
+    
+    [self.tableView reloadData];
+}
+
+-(BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    return YES;
+}
+
+-(void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
+{
+
+   
+}
+
 
 - (NSDictionary *)getListItem:(NSInteger)row
 {
