@@ -20,13 +20,13 @@
 }
 
 
--(void)toggleEdit;
-{
-    [self.tableView setEditing:!self.tableView.editing animated:YES];
-    
-    // self.tableView.editing = !self.tableView.editing;
-    // [self.tableView reloadData];
-}
+//-(void)toggleEdit;   // this instance method was to support UIBarButtonItem below to make edit button, dont need anymore
+//{
+//    [self.tableView setEditing:!self.tableView.editing animated:YES];
+//    
+//    // self.tableView.editing = !self.tableView.editing;
+//    // [self.tableView reloadData];
+//}
 
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -36,8 +36,11 @@
     {
         listItems = [@[] mutableCopy];
         
-        UIBarButtonItem * editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(toggleEdit)];
-        self.navigationItem.rightBarButtonItem = editButton;
+        [self loadListItems];
+        
+        
+//        UIBarButtonItem * editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(toggleEdit)];
+//        self.navigationItem.rightBarButtonItem = editButton;
         
         
 //        listItems = [@[@{
@@ -153,6 +156,7 @@
 }
 
 
+
 - (void)newUser // this will collect info from button
 {
     
@@ -172,13 +176,23 @@
     
     NSDictionary * userInfo = [TDLGitHubRequest getUserWithUsername:username];
     
-    if([[userInfo allKeys] count] == 3) [listItems addObject:userInfo];
-    else NSLog(@"not enough data");
+    if([[userInfo allKeys] count] == 3)
+    {
+        [listItems addObject:userInfo];
+    }
+    else
+    {
+        NSLog(@"not enough data");
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Bad Information" message:@"Unable to Add User" delegate:self cancelButtonTitle:@"Try Again" otherButtonTitles:nil];
+        [alertView show];
+    }
     
     [nameField resignFirstResponder]; //this is what makes keyboard go away
     [self.tableView reloadData];
+    [self saveData];
     
 }
+
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -195,7 +209,7 @@
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning
@@ -252,6 +266,7 @@
     // cell.textLabel.font = [UIFont fontWithName:@"Courier" size:(12)];
     // Configure the cell...
     
+    
 }
 
 
@@ -298,7 +313,14 @@
     
     [listItems removeObjectIdenticalTo:listItem];
     
-    [self.tableView reloadData];
+    //[self.tableView reloadData];
+    
+    TDLTableViewCell *cell = (TDLTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+    cell.alpha = 0;
+    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    
+    [self saveData];
+    
 }
 
 -(BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
@@ -317,6 +339,8 @@
     [listItems removeObjectIdenticalTo:sourceItem];
     [listItems insertObject:sourceItem atIndex:[listItems indexOfObject:toItem]];
     
+    [self saveData];
+    
 }
 
 
@@ -327,6 +351,33 @@
     return reverseArray[row];
     
 }
+
+
+-(void)saveData  //saves the data
+{
+    NSString *path = [self listArchivePath];
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:listItems]; //what we are archiving to, should be same as unarchive
+    [data writeToFile:path options:NSDataWritingAtomic error:nil];
+    
+}
+
+-(NSString *)listArchivePath  //finds the path to the data to save
+{
+    NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentDirectory = documentDirectories[0];
+    return [documentDirectory stringByAppendingPathComponent:@"listdata.data"];
+
+}
+
+-(void)loadListItems //to load data from saved
+{
+    NSString *path = [self listArchivePath];
+    if([[NSFileManager defaultManager] fileExistsAtPath:path])
+    {
+        listItems = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+    }
+}
+
 
 
 /*
