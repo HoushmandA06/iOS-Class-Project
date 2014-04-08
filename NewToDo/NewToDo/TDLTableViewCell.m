@@ -21,11 +21,18 @@
     {
         self.backgroundColor = [UIColor blackColor];
         
-        profileName = [[UILabel alloc] initWithFrame:CGRectMake(100, 20, 200, 30)];
+        profileName = [[UILabel alloc] initWithFrame:CGRectMake(20, 10, 200, 30)];
         profileName.font = [UIFont systemFontOfSize:30];
         profileName.textColor = [UIColor whiteColor];
         [self.contentView addSubview:profileName];
         
+        UIButton *strikeThrough = [[UIButton alloc] initWithFrame:CGRectMake(270, 10, 30, 30)];
+        [strikeThrough setTitle:@"x" forState:UIControlStateNormal];
+        strikeThrough.backgroundColor = [UIColor blueColor];
+        strikeThrough.layer.cornerRadius = 15;
+        [strikeThrough addTarget:self action:@selector(newTodoitem) forControlEvents:UIControlEventTouchUpInside];
+        
+        [self addSubview:strikeThrough];
     }
     return self;
 }

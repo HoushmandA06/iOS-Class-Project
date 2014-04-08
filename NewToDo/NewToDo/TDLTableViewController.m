@@ -95,7 +95,10 @@
     // missing some code here to make newTodoitem work
     
     NSDictionary * todoInfo = @{@"name":todoitem};
-
+    
+    
+    
+    
     if([todoitem  isEqual: @""])
     {
         NSLog(@"nothing entered");
@@ -111,6 +114,7 @@
     [nameField resignFirstResponder]; //this is what makes keyboard go away
     [self.tableView reloadData];
 //  [self saveData];
+    
     
 }
 
@@ -174,27 +178,30 @@
 }
 
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+
+
+ 
+
+
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath   // allows for deletion of todo cell items
 {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+    
+    NSDictionary * listItem = [self getListItem:indexPath.row];
+    
+    [listItems removeObjectIdenticalTo:listItem];
+    
+    TDLTableViewCell *cell = (TDLTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+    cell.alpha = 0;
+    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    
+    
 }
-*/
 
 /*
 // Override to support rearranging the table view.
