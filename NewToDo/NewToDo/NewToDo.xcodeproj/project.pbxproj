@@ -21,6 +21,7 @@
 		0FAB21EA18F44AAB00136587 /* NewToDoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FAB21E918F44AAB00136587 /* NewToDoTests.m */; };
 		0FAB21F918F44B3200136587 /* TDLTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FAB21F818F44B3200136587 /* TDLTableViewCell.m */; };
 		0FAB220018F44D1F00136587 /* TDLTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FAB21FF18F44D1F00136587 /* TDLTableViewController.m */; };
+		0FAB224B18F5D4AD00136587 /* MOVE.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FAB224A18F5D4AD00136587 /* MOVE.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,8 @@
 		0FAB21F818F44B3200136587 /* TDLTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDLTableViewCell.m; sourceTree = "<group>"; };
 		0FAB21FE18F44D1F00136587 /* TDLTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDLTableViewController.h; sourceTree = "<group>"; };
 		0FAB21FF18F44D1F00136587 /* TDLTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDLTableViewController.m; sourceTree = "<group>"; };
+		0FAB224918F5D4AD00136587 /* MOVE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOVE.h; sourceTree = "<group>"; };
+		0FAB224A18F5D4AD00136587 /* MOVE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOVE.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +86,8 @@
 		0FAB21B818F44AAA00136587 = {
 			isa = PBXGroup;
 			children = (
+				0FAB224918F5D4AD00136587 /* MOVE.h */,
+				0FAB224A18F5D4AD00136587 /* MOVE.m */,
 				0FAB21F618F44AED00136587 /* Controllers */,
 				0FAB21CA18F44AAB00136587 /* NewToDo */,
 				0FAB21E318F44AAB00136587 /* NewToDoTests */,
@@ -266,6 +271,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FAB224B18F5D4AD00136587 /* MOVE.m in Sources */,
 				0FAB21F918F44B3200136587 /* TDLTableViewCell.m in Sources */,
 				0FAB21D118F44AAB00136587 /* main.m in Sources */,
 				0FAB220018F44D1F00136587 /* TDLTableViewController.m in Sources */,

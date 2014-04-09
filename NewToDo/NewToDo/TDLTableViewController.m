@@ -44,7 +44,7 @@
         self.tableView.backgroundColor = [UIColor clearColor];
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         
-        self.tableView.contentInset = UIEdgeInsetsMake(50,0,0,0);
+        self.tableView.contentInset = UIEdgeInsetsMake(10,0,0,0);
         self.tableView.rowHeight = 50;
         self.tableView.separatorInset = UIEdgeInsetsMake(0,20,0,20);
         //self.tableView.editing = YES; //this is what puts the "edit" circle in the cell
@@ -66,7 +66,7 @@
         
         NSLog(@"listItems : %@ .... ", listItems);
         
-        submitButtonHigh = [[UIButton alloc] initWithFrame:CGRectMake(200, 20, 30, 30)];
+        submitButtonHigh = [[UIButton alloc] initWithFrame:CGRectMake(270, 20, 30, 30)];
         submitButtonHigh.tag = 3;
         [submitButtonHigh setTitle:@"H" forState:UIControlStateNormal];
         submitButtonHigh.backgroundColor = RED_COLOR;
@@ -86,7 +86,7 @@
         [header addSubview:submitButtonMed];
         
 
-        submitButtonLow = [[UIButton alloc] initWithFrame:CGRectMake(270, 20, 30, 30)];
+        submitButtonLow = [[UIButton alloc] initWithFrame:CGRectMake(200, 20, 30, 30)];
         submitButtonLow.tag = 1;
         [submitButtonLow setTitle:@"L" forState:UIControlStateNormal];
         submitButtonLow.backgroundColor = YELLOW_COLOR;
@@ -217,21 +217,25 @@
     NSDictionary *listItem = listItems[indexPath.row];
         
     cell.bgView.backgroundColor = priorityColors[[listItem[@"priority"] intValue]];
-    
     cell.nameLabel.text = listItem[@"name"];
-    
     cell.nameLabel.textColor = [UIColor whiteColor];
     
-    return cell;
+    UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeCell:)];
+    swipeLeft.direction = UISwipeGestureRecognizerDirectionLeft;
+    [cell addGestureRecognizer:swipeLeft];
     
+    UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeCell:)];
+    swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
+    [cell addGestureRecognizer:swipeRight];
+    
+    return cell;
 }
 
 - (NSDictionary *)getListItem:(NSInteger)row
 {
-    
+ 
     NSArray * reverseArray = [[listItems reverseObjectEnumerator] allObjects];
     return reverseArray[row];
-    
 }
 
 
@@ -240,7 +244,6 @@
 
 -(BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     return YES;
 }
 
@@ -266,7 +269,7 @@
 }
 
 
--(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath   // allows for deletion of todo cell items
+/*-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath   // allows for deletion of todo cell items with swipe left revealing delete
 {
     
     NSDictionary * listItem = [self getListItem:indexPath.row];
@@ -278,7 +281,27 @@
     [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     
     
+}*/
+
+-(void)swipeCell:(UISwipeGestureRecognizer *)gesture
+{
+    switch (gesture.direction)
+    {
+        case 1: // right
+            NSLog(@"swiping right");
+            
+            break;
+        case 2: // left
+            NSLog(@"swiping left");
+            
+            break;
+        default:
+            break;
+    }
 }
+
+
+-(BOOL)prefersStatusBarHidden {return YES;}
 
 /*
 // Override to support rearranging the table view.
