@@ -10,6 +10,10 @@
 
 @interface TDLTableViewCell : UITableViewCell
 
+@property (nonatomic) UILabel *nameLabel;
+@property (nonatomic) UIView *bgView;
+@property (nonatomic) UIButton *circleButton;
+
 @property (nonatomic) NSDictionary *profileInfo;
 
 

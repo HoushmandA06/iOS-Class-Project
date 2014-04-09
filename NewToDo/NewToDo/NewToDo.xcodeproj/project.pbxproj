@@ -125,8 +125,8 @@
 		0FAB21CB18F44AAB00136587 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				0FAB21CC18F44AAB00136587 /* NewToDo-Info.plist */,
 				0FAB21CD18F44AAB00136587 /* InfoPlist.strings */,
+				0FAB21CC18F44AAB00136587 /* NewToDo-Info.plist */,
 				0FAB21D018F44AAB00136587 /* main.m */,
 				0FAB21D218F44AAB00136587 /* NewToDo-Prefix.pch */,
 			);

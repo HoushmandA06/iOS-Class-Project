@@ -17,6 +17,10 @@
 {
     NSMutableArray *listItems;
     UITextField *nameField;
+    NSArray * priorityColors;
+    UIButton *submitButtonHigh;
+    UIButton *submitButtonMed;
+    UIButton *submitButtonLow;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -28,13 +32,22 @@
         
 //      [self loadListItems];
         
+        priorityColors = @[TAN_COLOR,YELLOW_COLOR,ORANGE_COLOR,RED_COLOR];
+        
+        listItems = [@[
+                    @{@"name": @"Workshop App", @"priority":@3},
+                    @{@"name": @"Something Else", @"priority":@2},
+                    @{@"name": @"One more thing", @"priority":@1},
+                    @{@"name": @"A done item",@"priority":@0}
+                      ] mutableCopy];
         
         self.tableView.backgroundColor = [UIColor clearColor];
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         
         self.tableView.contentInset = UIEdgeInsetsMake(50,0,0,0);
         self.tableView.rowHeight = 50;
         self.tableView.separatorInset = UIEdgeInsetsMake(0,20,0,20);
-        self.tableView.editing = YES;
+        //self.tableView.editing = YES; //this is what puts the "edit" circle in the cell
         
         UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0,0,320,70)];
         header.backgroundColor = [UIColor clearColor];
@@ -53,29 +66,32 @@
         
         NSLog(@"listItems : %@ .... ", listItems);
         
-        UIButton *submitButtonHigh = [[UIButton alloc] initWithFrame:CGRectMake(200, 20, 30, 30)];
+        submitButtonHigh = [[UIButton alloc] initWithFrame:CGRectMake(200, 20, 30, 30)];
+        submitButtonHigh.tag = 3;
         [submitButtonHigh setTitle:@"H" forState:UIControlStateNormal];
-        submitButtonHigh.backgroundColor = [UIColor redColor];
+        submitButtonHigh.backgroundColor = RED_COLOR;
         submitButtonHigh.layer.cornerRadius = 15;
-        [submitButtonHigh addTarget:self action:@selector(newTodoitem) forControlEvents:UIControlEventTouchUpInside];
-        
+        [submitButtonHigh addTarget:self action:@selector(newTodoitem:) forControlEvents:UIControlEventTouchUpInside];
         [header addSubview:submitButtonHigh];
+        
+        //[self.tableView.tableHeaderView addSubview:submitButtonHigh];
 
         
-        UIButton *submitButtonMed = [[UIButton alloc] initWithFrame:CGRectMake(235, 20, 30, 30)];
+        submitButtonMed = [[UIButton alloc] initWithFrame:CGRectMake(235, 20, 30, 30)];
+        submitButtonMed.tag = 2;
         [submitButtonMed setTitle:@"M" forState:UIControlStateNormal];
-        submitButtonMed.backgroundColor = [UIColor orangeColor];
+        submitButtonMed.backgroundColor = ORANGE_COLOR;
         submitButtonMed.layer.cornerRadius = 15;
-        [submitButtonMed addTarget:self action:@selector(newTodoitem) forControlEvents:UIControlEventTouchUpInside];
-        
+        [submitButtonMed addTarget:self action:@selector(newTodoitem:) forControlEvents:UIControlEventTouchUpInside];
         [header addSubview:submitButtonMed];
         
-        UIButton *submitButtonLow = [[UIButton alloc] initWithFrame:CGRectMake(270, 20, 30, 30)];
+
+        submitButtonLow = [[UIButton alloc] initWithFrame:CGRectMake(270, 20, 30, 30)];
+        submitButtonLow.tag = 1;
         [submitButtonLow setTitle:@"L" forState:UIControlStateNormal];
-        submitButtonLow.backgroundColor = [UIColor greenColor];
+        submitButtonLow.backgroundColor = YELLOW_COLOR;
         submitButtonLow.layer.cornerRadius = 15;
-        [submitButtonLow addTarget:self action:@selector(newTodoitem) forControlEvents:UIControlEventTouchUpInside];
-        
+        [submitButtonLow addTarget:self action:@selector(newTodoitem:) forControlEvents:UIControlEventTouchUpInside];
         [header addSubview:submitButtonLow];
     }
     return self;
@@ -96,9 +112,6 @@
     
     NSDictionary * todoInfo = @{@"name":todoitem};
     
-    
-    
-    
     if([todoitem  isEqual: @""])
     {
         NSLog(@"nothing entered");
@@ -110,8 +123,7 @@
         [listItems addObject:todoInfo];
     }
 
-  //  [listItems addObject:todoInfo];
-    [nameField resignFirstResponder]; //this is what makes keyboard go away
+    [nameField resignFirstResponder]; //this is what makes keyboard go away in this method
     [self.tableView reloadData];
 //  [self saveData];
     
@@ -119,14 +131,52 @@
 }
 
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
+
+
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField //for when u hit enter
 {
-    [self newTodoitem];
+
+    //  [self newTodoitem:nil];
+    
+    if([nameField.text  isEqual: @""])
+    {
+        NSLog(@"nothing entered");
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Nothing Entered" message:@"Unable to Add ToDo" delegate:self cancelButtonTitle:@"Try Again" otherButtonTitles:nil];
+        [alertView show];
+    }
+    
+    [nameField resignFirstResponder];
+    nameField.text = @"";
+    nameField.placeholder = @"Enter ToDo";
+    [self.tableView reloadData];
     return YES;
     
 }
 
 
+-(void)newTodoitem:(id)sender
+{
+
+    UIButton *button = (UIButton *)sender;
+    NSString *name = nameField.text;
+    nameField.text = @"";
+
+    
+    if(![name isEqualToString:@""])
+    {
+        [listItems insertObject:@{@"name" : name, @"priority" : @(button.tag)} atIndex:0];
+    } else {
+        
+    }
+    
+    [self.tableView reloadData];
+    
+    NSLog(@"%@", sender);
+    
+    
+    
+}
 
 - (void)viewDidLoad
 {
@@ -164,7 +214,14 @@
         cell = [[TDLTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
     
-    cell.profileInfo = [self getListItem:indexPath.row];
+    NSDictionary *listItem = listItems[indexPath.row];
+        
+    cell.bgView.backgroundColor = priorityColors[[listItem[@"priority"] intValue]];
+    
+    cell.nameLabel.text = listItem[@"name"];
+    
+    cell.nameLabel.textColor = [UIColor whiteColor];
+    
     return cell;
     
 }
@@ -178,10 +235,30 @@
 }
 
 
+#pragma mark - next two methods allow you to move rows up/down by selecting the triple line
 
 
+-(BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    return YES;
+}
+
+-(void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
+{
+    if(sourceIndexPath == destinationIndexPath) return;
+    
+    NSDictionary * sourceItem = [self getListItem:sourceIndexPath.row];
+    NSDictionary * toItem = [self getListItem:destinationIndexPath.row];
+    
+    [listItems removeObjectIdenticalTo:sourceItem];
+    [listItems insertObject:sourceItem atIndex:[listItems indexOfObject:toItem]];
+    
+    // [self saveData];
+    
+}
  
-
+#pragma mark - next two methods for row deletion, works with "editing yes" up top
 
 -(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
