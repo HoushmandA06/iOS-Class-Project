@@ -13,8 +13,9 @@
 @property (nonatomic) UILabel *nameLabel;
 @property (nonatomic) UIView *bgView;
 @property (nonatomic) UIButton *circleButton;
+@property (nonatomic) UIView *strikeThrough;
 
-@property (nonatomic) NSDictionary *profileInfo;
-
+-(void)showCircleButtons;
+-(void)hideCircleButtons;
 
 @end

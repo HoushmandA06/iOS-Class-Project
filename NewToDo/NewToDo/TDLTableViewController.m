@@ -8,6 +8,7 @@
 
 #import "TDLTableViewController.h"
 #import "TDLTableViewCell.h"
+#import "MOVE.h"
 
 @interface TDLTableViewController ()
 
@@ -214,9 +215,21 @@
         cell = [[TDLTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
     
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     NSDictionary *listItem = listItems[indexPath.row];
         
     cell.bgView.backgroundColor = priorityColors[[listItem[@"priority"] intValue]];
+    
+    if([listItem[@"priority"] intValue] == 0)
+    {
+        cell.strikeThrough.alpha = 1;
+        cell.circleButton.alpha = 0;
+    } else {
+        cell.strikeThrough.alpha = 0;
+        cell.circleButton.alpha = 1;
+    }
+    
     cell.nameLabel.text = listItem[@"name"];
     cell.nameLabel.textColor = [UIColor whiteColor];
     
@@ -283,16 +296,59 @@
     
 }*/
 
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // get cell from tableview at row
+    TDLTableViewCell *cell = (TDLTableViewCell *)[tableView cellForRowAtIndexPath:indexPath]; // ask how this reads
+    
+    
+    // if() return; to stop the strike through if slid over
+    
+    
+    //set cell background to the done color
+    cell.bgView.backgroundColor = priorityColors[0];
+    cell.strikeThrough.alpha = 1;
+    cell.circleButton.alpha = 0;
+    
+    // create new dictionary with the done priority
+    NSDictionary * updateListItem = @{
+                                      @"name" : listItems[indexPath.row][@"name"],
+                                      @"priority" : @0};
+    
+    // remove old dictionary for cell
+    [listItems removeObjectAtIndex:indexPath.row];
+    
+    // add new dictionary for cell
+    [listItems insertObject:updateListItem atIndex:indexPath.row];
+    
+    
+}
+
+
+
 -(void)swipeCell:(UISwipeGestureRecognizer *)gesture
 {
+    TDLTableViewCell * cell = (TDLTableViewCell *)gesture.view;
+    
+    NSInteger index = [self.tableView indexPathForCell:cell].row;
+    
+    // gonna use index 
+    
     switch (gesture.direction)
     {
         case 1: // right
             NSLog(@"swiping right");
             
+            [MOVE animateView:cell.bgView properties:@{@"x" : @10, @"duration" : @0.5}];
+            [cell hideCircleButtons];
+            
             break;
         case 2: // left
             NSLog(@"swiping left");
+            
+            [MOVE animateView:cell.bgView properties:@{@"x" : @-120, @"duration" : @0.5}];
+            [cell showCircleButtons];
             
             break;
         default:
