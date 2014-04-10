@@ -16,12 +16,12 @@
 
 @implementation TDLTableViewController
 {
-    NSMutableArray *listItems;
-    UITextField *nameField;
+    NSMutableArray * listItems;
+    UITextField * nameField;
     NSArray * priorityColors;
-    UIButton *submitButtonHigh;
-    UIButton *submitButtonMed;
-    UIButton *submitButtonLow;
+    UIButton * submitButtonHigh;
+    UIButton * submitButtonMed;
+    UIButton * submitButtonLow;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -300,8 +300,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // get cell from tableview at row
-    TDLTableViewCell *cell = (TDLTableViewCell *)[tableView cellForRowAtIndexPath:indexPath]; // ask how this reads
-    
+    TDLTableViewCell *cell = (TDLTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
     
     // if() return; to stop the strike through if slid over
     
@@ -312,9 +311,7 @@
     cell.circleButton.alpha = 0;
     
     // create new dictionary with the done priority
-    NSDictionary * updateListItem = @{
-                                      @"name" : listItems[indexPath.row][@"name"],
-                                      @"priority" : @0};
+    NSDictionary * updateListItem = @{@"name" : listItems[indexPath.row][@"name"], @"priority" : @0};
     
     // remove old dictionary for cell
     [listItems removeObjectAtIndex:indexPath.row];
@@ -322,9 +319,7 @@
     // add new dictionary for cell
     [listItems insertObject:updateListItem atIndex:indexPath.row];
     
-    
 }
-
 
 
 -(void)swipeCell:(UISwipeGestureRecognizer *)gesture
@@ -332,6 +327,8 @@
     TDLTableViewCell * cell = (TDLTableViewCell *)gesture.view;
     
     NSInteger index = [self.tableView indexPathForCell:cell].row;
+    NSLog(@"%d", index);
+    
     
     // gonna use index 
     

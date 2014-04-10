@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TDLTableViewController.m"
-            timestampString = "418767771.310466"
+            timestampString = "418785822.061862"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "332"
-            endingLineNumber = "332"
+            startingLineNumber = "366"
+            endingLineNumber = "366"
             landmarkName = "-swipeCell:"
             landmarkType = "5">
          </BreakpointContent>
