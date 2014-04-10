@@ -67,32 +67,42 @@
     submitButtonHigh = [[UIButton alloc] initWithFrame:CGRectMake(270, 5, 30, 30)];
     submitButtonHigh.tag = 3;
     submitButtonHigh.alpha = 0;
-    [submitButtonHigh setTitle:@"H" forState:UIControlStateNormal];
+    //[submitButtonHigh setTitle:@"H" forState:UIControlStateNormal];
     submitButtonHigh.backgroundColor = RED_COLOR;
     submitButtonHigh.layer.cornerRadius = 15;
-    // [submitButtonHigh addTarget:self action:@selector(newTodoitem:) forControlEvents:UIControlEventTouchUpInside]
+    [submitButtonHigh addTarget:self action:@selector(pressPriorityButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:submitButtonHigh];
 
 
     submitButtonMed = [[UIButton alloc] initWithFrame:CGRectMake(235, 5, 30, 30)];
     submitButtonMed.tag = 2;
     submitButtonMed.alpha = 0;
-    [submitButtonMed setTitle:@"M" forState:UIControlStateNormal];
+    //[submitButtonMed setTitle:@"M" forState:UIControlStateNormal];
     submitButtonMed.backgroundColor = ORANGE_COLOR;
     submitButtonMed.layer.cornerRadius = 15;
-    //[submitButtonMed addTarget:self action:@selector(newTodoitem:) forControlEvents:UIControlEventTouchUpInside];
+    [submitButtonMed addTarget:self action:@selector(pressPriorityButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:submitButtonMed];
 
 
     submitButtonLow = [[UIButton alloc] initWithFrame:CGRectMake(200, 5, 30, 30)];
     submitButtonLow.tag = 1;
     submitButtonLow.alpha = 0;
-    [submitButtonLow setTitle:@"L" forState:UIControlStateNormal];
+    //[submitButtonLow setTitle:@"L" forState:UIControlStateNormal];
     submitButtonLow.backgroundColor = YELLOW_COLOR;
     submitButtonLow.layer.cornerRadius = 15;
-    //[submitButtonLow addTarget:self action:@selector(newTodoitem:) forControlEvents:UIControlEventTouchUpInside];
+    [submitButtonLow addTarget:self action:@selector(pressPriorityButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:submitButtonLow];
 }
+
+-(void)pressPriorityButton:(id)sender
+{
+    UIButton * button = (UIButton *)sender;
+    
+    [self.delegate setItemPriority:button.tag withItem:self];
+    
+}
+
+
 
 -(void)showCircleButtons
 {
@@ -112,7 +122,6 @@
     [MOVE animateView:submitButtonLow properties:@{@"alpha":@0,@"duration":@0.2,@"delay":@0.0, @"remove":@YES}];
     [MOVE animateView:submitButtonMed properties:@{@"alpha":@0,@"duration":@0.2,@"delay":@0.1,@"remove":@YES}];
     [MOVE animateView:submitButtonHigh properties:@{@"alpha":@0,@"duration":@0.2,@"delay":@0.2,@"remove":@YES}];
-
 }
 
 
@@ -123,12 +132,19 @@
     [submitButtonHigh setTitle:@"H" forState:UIControlStateNormal];
     submitButtonHigh.backgroundColor = RED_COLOR;
     submitButtonHigh.layer.cornerRadius = submitButtonHigh.frame.size.width / 2.0;
-    // [submitButtonHigh addTarget:self action:@selector(newTodoitem:) forControlEvents:UIControlEventTouchUpInside]
+    
+    [submitButtonHigh addTarget:self action:@selector(pressDeleteButton) forControlEvents:UIControlEventTouchUpInside];
+    
     [self.contentView addSubview:submitButtonHigh];
     [MOVE animateView:submitButtonHigh properties:@{@"alpha":@1,@"duration":@0.2,@"delay":@0.3}];
+}
 
+-(void)pressDeleteButton
+{
+    [self.delegate deleteItem:self]; //talking back to TVController, self.delegate is the TVC -- deleteItem:self is cell
     
 }
+
 
 -(void)hideDeleteButton
 {

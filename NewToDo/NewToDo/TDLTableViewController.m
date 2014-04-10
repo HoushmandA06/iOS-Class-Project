@@ -68,7 +68,7 @@
         
         submitButtonHigh = [[UIButton alloc] initWithFrame:CGRectMake(270, 20, 30, 30)];
         submitButtonHigh.tag = 3;
-        [submitButtonHigh setTitle:@"H" forState:UIControlStateNormal];
+       // [submitButtonHigh setTitle:@"H" forState:UIControlStateNormal];
         submitButtonHigh.backgroundColor = RED_COLOR;
         submitButtonHigh.layer.cornerRadius = 15;
         [submitButtonHigh addTarget:self action:@selector(newTodoitem:) forControlEvents:UIControlEventTouchUpInside];
@@ -79,7 +79,7 @@
         
         submitButtonMed = [[UIButton alloc] initWithFrame:CGRectMake(235, 20, 30, 30)];
         submitButtonMed.tag = 2;
-        [submitButtonMed setTitle:@"M" forState:UIControlStateNormal];
+       // [submitButtonMed setTitle:@"M" forState:UIControlStateNormal];
         submitButtonMed.backgroundColor = ORANGE_COLOR;
         submitButtonMed.layer.cornerRadius = 15;
         [submitButtonMed addTarget:self action:@selector(newTodoitem:) forControlEvents:UIControlEventTouchUpInside];
@@ -88,7 +88,7 @@
 
         submitButtonLow = [[UIButton alloc] initWithFrame:CGRectMake(200, 20, 30, 30)];
         submitButtonLow.tag = 1;
-        [submitButtonLow setTitle:@"L" forState:UIControlStateNormal];
+      //  [submitButtonLow setTitle:@"L" forState:UIControlStateNormal];
         submitButtonLow.backgroundColor = YELLOW_COLOR;
         submitButtonLow.layer.cornerRadius = 15;
         [submitButtonLow addTarget:self action:@selector(newTodoitem:) forControlEvents:UIControlEventTouchUpInside];
@@ -130,23 +130,44 @@
     
 }
 
+#pragma mark Required protocol methods
 
 -(void)deleteItem:(TDLTableViewCell *)cell
 {
-
+    NSIndexPath * indexPath = [self.tableView indexPathForCell:cell];
+    
+    [listItems removeObjectAtIndex:indexPath.row];
+    
+    cell.alpha = 0;
+    
+    [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    
 }
 
--(void)setItemPriority:(id)sender
+
+-(void)setItemPriority:(int)priority withItem:(TDLTableViewCell *)cell
 {
+    NSIndexPath * indexPath = [self.tableView indexPathForCell:cell];
     
+    NSDictionary * listItem = listItems[indexPath.row];
+    
+    NSDictionary * updateListItems =@{
+                                    @"name": listItem[@"name"],
+                                    @"priority" : listItem[@"constant"],
+                                    @"constant" : listItem[@"constant"]};
+    
+    [listItems removeObjectAtIndex:indexPath.row];
+    
+    [listItems insertObject:updateListItems atIndex:indexPath.row];
+    
+    cell.bgView.backgroundColor = priorityColors[priority];
+    
+    NSLog(@"Priority : %d",priority);
 }
 
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField //for when u hit enter
-{
-
-    //  [self newTodoitem:nil];
-    
+{    
     if([nameField.text  isEqual: @""])
     {
         NSLog(@"nothing entered");
@@ -159,7 +180,6 @@
     nameField.placeholder = @"Enter ToDo";
     [self.tableView reloadData];
     return YES;
-    
 }
 
 
@@ -225,6 +245,9 @@
     [cell resetLayout];
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    cell.delegate = self;
+    
     NSDictionary *listItem = listItems[indexPath.row];
     
     cell.bgView.backgroundColor = priorityColors[[listItem[@"priority"] intValue]];

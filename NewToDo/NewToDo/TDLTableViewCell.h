@@ -34,7 +34,8 @@
 @protocol TDLTableViewCellDelegate <NSObject> // definition
 
 -(void)deleteItem:(TDLTableViewCell *)cell;
--(void)setItemPriority:(id)sender;
+-(void)setItemPriority:(int)priority withItem:(TDLTableViewCell *)cell;
+
 
 @optional
 
