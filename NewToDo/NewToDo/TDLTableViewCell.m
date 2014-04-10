@@ -46,7 +46,9 @@
     return self;
 }
 
-- (void)showCircleButtons
+
+
+-(void)showCircleButtons
 {
     
     submitButtonHigh = [[UIButton alloc] initWithFrame:CGRectMake(270, 5, 30, 30)];

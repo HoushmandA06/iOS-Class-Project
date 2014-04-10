@@ -33,13 +33,13 @@
         
 //      [self loadListItems];
         
-        priorityColors = @[TAN_COLOR,YELLOW_COLOR,ORANGE_COLOR,RED_COLOR];
+        priorityColors = @[TAN_COLOR,YELLOW_COLOR,ORANGE_COLOR,RED_COLOR]; //sets index values for each color to be used later
         
         listItems = [@[
-                    @{@"name": @"Workshop App", @"priority":@3},
-                    @{@"name": @"Something Else", @"priority":@2},
-                    @{@"name": @"One more thing", @"priority":@1},
-                    @{@"name": @"A done item",@"priority":@0}
+                    @{@"name": @"Workshop App", @"priority":@3, @"constant":@3},
+                    @{@"name": @"Something Else", @"priority":@2, @"constant":@2},
+                    @{@"name": @"One more thing", @"priority":@1, @"constant":@1},
+                    @{@"name": @"A done item",@"priority":@0, @"constant":@0}
                       ] mutableCopy];
         
         self.tableView.backgroundColor = [UIColor clearColor];
@@ -166,7 +166,7 @@
     
     if(![name isEqualToString:@""])
     {
-        [listItems insertObject:@{@"name" : name, @"priority" : @(button.tag)} atIndex:0];
+        [listItems insertObject:@{@"name" : name, @"priority" : @(button.tag), @"constant" : @(button.tag)} atIndex:0];
     } else {
         
     }
@@ -216,9 +216,8 @@
     }
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
     NSDictionary *listItem = listItems[indexPath.row];
-        
+    
     cell.bgView.backgroundColor = priorityColors[[listItem[@"priority"] intValue]];
     
     if([listItem[@"priority"] intValue] == 0)
@@ -286,32 +285,59 @@
 {
     
     NSDictionary * listItem = [self getListItem:indexPath.row];
-    
+    if([listItem[@"priority"] intValue] == 0)
+    {
+        
     [listItems removeObjectIdenticalTo:listItem];
-    
     TDLTableViewCell *cell = (TDLTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
     cell.alpha = 0;
     [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    
+    } else {
+        return;
+    }
     
 }*/
 
+#pragma mark - handles strike through for selecting and unstrike
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // get cell from tableview at row
     TDLTableViewCell *cell = (TDLTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+    NSDictionary * listItem = listItems[indexPath.row];
+
+    if (cell.bgView.frame.origin.x < 0) {
+        return;
+    }
     
-    // if() return; to stop the strike through if slid over
-    
+    NSDictionary * updateListItem = listItem;
     
     //set cell background to the done color
-    cell.bgView.backgroundColor = priorityColors[0];
-    cell.strikeThrough.alpha = 1;
-    cell.circleButton.alpha = 0;
+    if([listItem[@"priority"] intValue] != 0)
+    {   cell.bgView.backgroundColor = priorityColors[0];
+        cell.strikeThrough.alpha = 1;
+        cell.circleButton.alpha = 0;
+        updateListItem = @{@"name": listItems[indexPath.row][@"name"], @"priority" : @0, @"constant" : listItems [indexPath.row][@"constant"]};
+    } else
+    {
+        cell.bgView.backgroundColor = priorityColors[[listItems [indexPath.row][@"constant"] intValue]];
+        cell.strikeThrough.alpha = 0;
+        cell.circleButton.alpha = 1;
+        // create new dictionary with the done priority
+        updateListItem = @{@"name": listItems[indexPath.row][@"name"],
+                       @"priority" : listItems[indexPath.row][@"constant"],
+                       @"constant" : listItems [indexPath.row][@"constant"]};
+    }
     
-    // create new dictionary with the done priority
-    NSDictionary * updateListItem = @{@"name" : listItems[indexPath.row][@"name"], @"priority" : @0};
+/*    if (cell.struck == YES)
+    {
+        cell.strikeThrough.alpha = 0;
+        cell.struck = NO;
+    } else {
+        cell.strikeThrough.alpha = 1;
+        cell.struck = YES;
+    }*/
+    
     
     // remove old dictionary for cell
     [listItems removeObjectAtIndex:indexPath.row];

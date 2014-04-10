@@ -14,6 +14,7 @@
 @property (nonatomic) UIView *bgView;
 @property (nonatomic) UIButton *circleButton;
 @property (nonatomic) UIView *strikeThrough;
+@property (nonatomic) BOOL struck;
 
 -(void)showCircleButtons;
 -(void)hideCircleButtons;
