@@ -14,7 +14,9 @@
 @property (nonatomic) UIView *bgView;
 @property (nonatomic) UIButton *circleButton;
 @property (nonatomic) UIView *strikeThrough;
-@property (nonatomic) BOOL struck;
+@property (nonatomic) BOOL struck; // not using this now, replaced with TJ method (using "constant" key)
+@property (nonatomic) BOOL swiped;
+
 
 -(void)showCircleButtons;
 -(void)hideCircleButtons;

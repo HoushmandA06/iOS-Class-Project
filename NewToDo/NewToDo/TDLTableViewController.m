@@ -304,29 +304,38 @@
 {
     // get cell from tableview at row
     TDLTableViewCell *cell = (TDLTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+    
     NSDictionary * listItem = listItems[indexPath.row];
 
-    if (cell.bgView.frame.origin.x < 0) {
-        return;
-    }
+    
+    
+    // one way of preventing a strikethrough when swiped left
+    // if (cell.bgView.frame.origin.x < 0) {
+    //     return;
+    // }
+    
+    if (cell.swiped) return;
+    
     
     NSDictionary * updateListItem = listItem;
     
     //set cell background to the done color
-    if([listItem[@"priority"] intValue] != 0)
+   
+    if([listItem[@"priority"] intValue] != 0)  //didnt need the !=0, could have left it at intValue, if 0 = false, anyother number = true
+        
     {   cell.bgView.backgroundColor = priorityColors[0];
         cell.strikeThrough.alpha = 1;
         cell.circleButton.alpha = 0;
-        updateListItem = @{@"name": listItems[indexPath.row][@"name"], @"priority" : @0, @"constant" : listItems [indexPath.row][@"constant"]};
+        updateListItem = @{@"name": listItem[@"name"], @"priority" : @0, @"constant" : listItem[@"constant"]};
     } else
     {
-        cell.bgView.backgroundColor = priorityColors[[listItems [indexPath.row][@"constant"] intValue]];
+        cell.bgView.backgroundColor = priorityColors[[listItem[@"constant"] intValue]];
         cell.strikeThrough.alpha = 0;
         cell.circleButton.alpha = 1;
         // create new dictionary with the done priority
-        updateListItem = @{@"name": listItems[indexPath.row][@"name"],
-                       @"priority" : listItems[indexPath.row][@"constant"],
-                       @"constant" : listItems [indexPath.row][@"constant"]};
+        updateListItem = @{@"name": listItem[@"name"],
+                       @"priority" : listItem[@"constant"],
+                       @"constant" : listItem[@"constant"]};
     }
     
 /*    if (cell.struck == YES)
@@ -365,6 +374,7 @@
             
             [MOVE animateView:cell.bgView properties:@{@"x" : @10, @"duration" : @0.5}];
             [cell hideCircleButtons];
+            cell.swiped = NO;
             
             break;
         case 2: // left
@@ -372,6 +382,7 @@
             
             [MOVE animateView:cell.bgView properties:@{@"x" : @-120, @"duration" : @0.5}];
             [cell showCircleButtons];
+            cell.swiped = YES;
             
             break;
         default:
