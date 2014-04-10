@@ -31,8 +31,6 @@
 
         listItems = [@[] mutableCopy];
         
-//      [self loadListItems];
-        
         priorityColors = @[TAN_COLOR,YELLOW_COLOR,ORANGE_COLOR,RED_COLOR]; //sets index values for each color to be used later
         
         listItems = [@[
@@ -61,9 +59,10 @@
         nameField.leftViewMode = UITextFieldViewModeAlways;
         nameField.placeholder = @"Enter ToDo Here";
         
-        [header addSubview:nameField];
+        nameField.delegate  = self;
         
-        nameField.delegate = self;
+        
+        [header addSubview:nameField];
         
         NSLog(@"listItems : %@ .... ", listItems);
         
@@ -132,7 +131,15 @@
 }
 
 
+-(void)deleteItem:(TDLTableViewCell *)cell
+{
 
+}
+
+-(void)setItemPriority:(id)sender
+{
+    
+}
 
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField //for when u hit enter

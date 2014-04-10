@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol TDLTableViewCellDelegate; // declaration
+
 @interface TDLTableViewCell : UITableViewCell
+
+@property (nonatomic,assign) id<TDLTableViewCellDelegate> delegate;
 
 @property (nonatomic) UILabel *nameLabel;
 @property (nonatomic) UIView *bgView;
@@ -24,6 +28,17 @@
 
 -(void)showDeleteButton;
 -(void)hideDeleteButton;
+
+@end
+
+@protocol TDLTableViewCellDelegate <NSObject> // definition
+
+-(void)deleteItem:(TDLTableViewCell *)cell;
+-(void)setItemPriority:(id)sender;
+
+@optional
+
+-(void)optionalMethod;
 
 
 @end

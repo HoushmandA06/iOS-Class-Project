@@ -49,17 +49,21 @@
 
 -(void)resetLayout
 {
-    self.bgView.frame = CGRectMake(10, 0, self.frame.size.width - 20, 40);
-    [submitButtonLow removeFromSuperview];
-    [submitButtonMed removeFromSuperview];
-    [submitButtonHigh removeFromSuperview];
-    self.swiped = NO;
+//    if (self.swiped)
+//    { [self createButtons];
+//        self.swiped = YES;
+//    } else {
+//    self.bgView.frame = CGRectMake(10, 0, self.frame.size.width - 20, 40);
+//    [submitButtonLow removeFromSuperview];
+//    [submitButtonMed removeFromSuperview];
+//    [submitButtonHigh removeFromSuperview];
+//    self.swiped = NO;
+//    }
 }
 
 
--(void)showCircleButtons
+-(void)createButtons
 {
-    
     submitButtonHigh = [[UIButton alloc] initWithFrame:CGRectMake(270, 5, 30, 30)];
     submitButtonHigh.tag = 3;
     submitButtonHigh.alpha = 0;
@@ -68,8 +72,8 @@
     submitButtonHigh.layer.cornerRadius = 15;
     // [submitButtonHigh addTarget:self action:@selector(newTodoitem:) forControlEvents:UIControlEventTouchUpInside]
     [self.contentView addSubview:submitButtonHigh];
-    
-    
+
+
     submitButtonMed = [[UIButton alloc] initWithFrame:CGRectMake(235, 5, 30, 30)];
     submitButtonMed.tag = 2;
     submitButtonMed.alpha = 0;
@@ -78,8 +82,8 @@
     submitButtonMed.layer.cornerRadius = 15;
     //[submitButtonMed addTarget:self action:@selector(newTodoitem:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:submitButtonMed];
-    
-    
+
+
     submitButtonLow = [[UIButton alloc] initWithFrame:CGRectMake(200, 5, 30, 30)];
     submitButtonLow.tag = 1;
     submitButtonLow.alpha = 0;
@@ -88,6 +92,12 @@
     submitButtonLow.layer.cornerRadius = 15;
     //[submitButtonLow addTarget:self action:@selector(newTodoitem:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:submitButtonLow];
+}
+
+-(void)showCircleButtons
+{
+    
+    [self createButtons];
     
     [MOVE animateView:submitButtonLow properties:@{@"alpha":@1,@"duration":@0.2,@"delay":@0.3}];
     [MOVE animateView:submitButtonMed properties:@{@"alpha":@1,@"duration":@0.2,@"delay":@0.2}];
