@@ -41,11 +41,20 @@
         self.circleButton.backgroundColor = [UIColor whiteColor];
         self.circleButton.layer.cornerRadius = 10;
         [self.bgView addSubview:self.circleButton];
-
+        
     }
     return self;
 }
 
+
+-(void)resetLayout
+{
+    self.bgView.frame = CGRectMake(10, 0, self.frame.size.width - 20, 40);
+    [submitButtonLow removeFromSuperview];
+    [submitButtonMed removeFromSuperview];
+    [submitButtonHigh removeFromSuperview];
+    self.swiped = NO;
+}
 
 
 -(void)showCircleButtons
@@ -97,14 +106,26 @@
 }
 
 
-
-/*- (void)setProfileInfo:(NSDictionary *)profileInfo; // THIS IS A SETTER
+-(void)showDeleteButton
 {
+    submitButtonHigh = [[UIButton alloc] initWithFrame:CGRectMake(270, 5, 30, 30)];
+    submitButtonHigh.alpha = 0;
+    [submitButtonHigh setTitle:@"H" forState:UIControlStateNormal];
+    submitButtonHigh.backgroundColor = RED_COLOR;
+    submitButtonHigh.layer.cornerRadius = submitButtonHigh.frame.size.width / 2.0;
+    // [submitButtonHigh addTarget:self action:@selector(newTodoitem:) forControlEvents:UIControlEventTouchUpInside]
+    [self.contentView addSubview:submitButtonHigh];
+    [MOVE animateView:submitButtonHigh properties:@{@"alpha":@1,@"duration":@0.2,@"delay":@0.3}];
 
-    profileName.text = profileInfo[@"name"];
-    _profileInfo = profileInfo;
     
-}*/
+}
+
+-(void)hideDeleteButton
+{
+    
+    [MOVE animateView:submitButtonHigh properties:@{@"alpha":@0,@"duration":@0.2,@"delay":@0.0,@"remove":@YES}];
+
+}
 
 
 - (void)awakeFromNib

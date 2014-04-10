@@ -17,8 +17,13 @@
 @property (nonatomic) BOOL struck; // not using this now, replaced with TJ method (using "constant" key)
 @property (nonatomic) BOOL swiped;
 
+-(void)resetLayout;
 
 -(void)showCircleButtons;
 -(void)hideCircleButtons;
+
+-(void)showDeleteButton;
+-(void)hideDeleteButton;
+
 
 @end

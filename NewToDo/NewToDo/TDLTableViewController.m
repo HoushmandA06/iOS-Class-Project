@@ -210,10 +210,12 @@
 {
     TDLTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"]; //this is a memory mgmt tool
     
-    if (cell == nil)
+    if (cell == nil) // creates the cell
     {
         cell = [[TDLTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
+    
+    [cell resetLayout];
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     NSDictionary *listItem = listItems[indexPath.row];
@@ -363,11 +365,18 @@
     
     NSInteger index = [self.tableView indexPathForCell:cell].row;
     NSLog(@"%d", index);
+    NSDictionary * listItem = listItems[index];
     
+    // gesture.direction == left : 2
+    // gesture.direction == right : 1
+    // gesture.direction == left && priority == 0 : 12
+    // gesture.direction == right && priority == 0 : 11
     
-    // gonna use index 
+    int completed;
     
-    switch (gesture.direction)
+    completed = ([listItem[@"priority"] intValue] == 0) ? 10 : 0;  // using ? makes a shorthand if-statement, first part conditional, after ? is true value, after : is false value
+    
+    switch (gesture.direction + completed)
     {
         case 1: // right
             NSLog(@"swiping right");
@@ -375,16 +384,28 @@
             [MOVE animateView:cell.bgView properties:@{@"x" : @10, @"duration" : @0.5}];
             [cell hideCircleButtons];
             cell.swiped = NO;
-            
             break;
+            
         case 2: // left
             NSLog(@"swiping left");
             
             [MOVE animateView:cell.bgView properties:@{@"x" : @-120, @"duration" : @0.5}];
             [cell showCircleButtons];
             cell.swiped = YES;
-            
             break;
+            
+        case 11: // right
+            [MOVE animateView:cell.bgView properties:@{@"x" : @10, @"duration" : @0.5}];
+            [cell hideDeleteButton];
+            cell.swiped = NO;
+            break;
+            
+        case 12: // left
+            [MOVE animateView:cell.bgView properties:@{@"x" : @-40, @"duration" : @0.5}];
+            [cell showDeleteButton];
+            cell.swiped = YES;
+            break;
+            
         default:
             break;
     }
