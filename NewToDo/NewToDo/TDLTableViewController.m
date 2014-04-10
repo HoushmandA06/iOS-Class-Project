@@ -162,7 +162,10 @@
     
     cell.bgView.backgroundColor = priorityColors[priority];
     
-    NSLog(@"Priority : %d",priority);
+    [MOVE animateView:cell.bgView properties:@{@"x":@10,@"duration":@0.5}];
+    [cell hideCircleButtons];
+    cell.swiped = NO;
+    
 }
 
 

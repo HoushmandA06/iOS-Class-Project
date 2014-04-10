@@ -129,7 +129,9 @@
 {
     submitButtonHigh = [[UIButton alloc] initWithFrame:CGRectMake(270, 5, 30, 30)];
     submitButtonHigh.alpha = 0;
-    [submitButtonHigh setTitle:@"H" forState:UIControlStateNormal];
+    [submitButtonHigh setTitle:@"Del" forState:UIControlStateNormal];
+    submitButtonHigh.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
+    
     submitButtonHigh.backgroundColor = RED_COLOR;
     submitButtonHigh.layer.cornerRadius = submitButtonHigh.frame.size.width / 2.0;
     
