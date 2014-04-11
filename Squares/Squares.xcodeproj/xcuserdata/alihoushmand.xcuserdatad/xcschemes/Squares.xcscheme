@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "0FAB225418F823B600136587"
-               BuildableName = "Squares.app"
+               BuildableName = "&#x25a2;s &amp; &#x25ef;s.app"
                BlueprintName = "&#x25a2;s &amp; &#x25ef;s"
                ReferencedContainer = "container:Squares.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0FAB225418F823B600136587"
-            BuildableName = "Squares.app"
+            BuildableName = "&#x25a2;s &amp; &#x25ef;s.app"
             BlueprintName = "&#x25a2;s &amp; &#x25ef;s"
             ReferencedContainer = "container:Squares.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0FAB225418F823B600136587"
-            BuildableName = "Squares.app"
+            BuildableName = "&#x25a2;s &amp; &#x25ef;s.app"
             BlueprintName = "&#x25a2;s &amp; &#x25ef;s"
             ReferencedContainer = "container:Squares.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0FAB225418F823B600136587"
-            BuildableName = "Squares.app"
+            BuildableName = "&#x25a2;s &amp; &#x25ef;s.app"
             BlueprintName = "&#x25a2;s &amp; &#x25ef;s"
             ReferencedContainer = "container:Squares.xcodeproj">
          </BuildableReference>
