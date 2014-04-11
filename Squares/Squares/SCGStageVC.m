@@ -19,6 +19,8 @@
     int playerTurn;
     
     NSMutableDictionary * tappedDots;
+    
+    NSMutableDictionary * allSquares;
 }
 
 
@@ -34,6 +36,8 @@
         
         tappedDots = [@{} mutableCopy];
         
+        allSquares = [@{} mutableCopy];
+         
     }
     return self;
 }
@@ -59,8 +63,11 @@
         
         SCGSquare * square = [[SCGSquare alloc] initWithFrame:CGRectMake(squareX, squareY, squareWidth, squareWidth)];
         square.backgroundColor = [UIColor lightGrayColor];
-        [self.view addSubview:square];
         
+
+        NSString * key = [NSString stringWithFormat:@"c%dr%d", sCol, sRow]; // 0,1 = c0r1
+        allSquares[key] = square;
+        [self.view addSubview:square];
     }
      
     }
@@ -91,6 +98,16 @@
 
 -(UIColor *)circleTappedWithPosition:(CGPoint)position
 {
+    
+    // get tappedDots key from position
+    NSString * key = [NSString stringWithFormat:@"c%dr%d", (int)position.x, (int)position.y];
+    
+    // set player num to value in tappedDots
+    tappedDots[key] = @(playerTurn);
+    
+    // check for square
+    [self checkForSquareAroundPosition:position];
+    
     UIColor * currentColor = playerColors[playerTurn];
     
     playerTurn = (playerTurn) ? 0 : 1;
@@ -130,10 +147,10 @@
             
             // -1,-1 0,-1 -1,0 0,0
             
-            NSString * topLeftDot = [NSString stringWithFormat:@"c@dr@d" , pX-1,pY-1];
-            NSString * topRightDot = [NSString stringWithFormat:@"c@dr@d" , pX,pY-1];
-            NSString * bottomLeftDot = [NSString stringWithFormat:@"c@dr@d" , pX-1,pY];
-            NSString * bottomRightDot = [NSString stringWithFormat:@"c@dr@d" , pX,pY];
+            NSString * topLeftDot = [NSString stringWithFormat:@"c%dr%d",pX-1,pY-1];
+            NSString * topRightDot = [NSString stringWithFormat:@"c%dr%d",pX,pY-1];
+            NSString * bottomLeftDot = [NSString stringWithFormat:@"c%dr%d",pX-1,pY];
+            NSString * bottomRightDot = [NSString stringWithFormat:@"c%dr%d",pX,pY];
             
             // checks if top left and top right are the same
             BOOL topDotsSame = ([tappedDots[topLeftDot] isEqualToValue:tappedDots[topRightDot]]);
@@ -143,10 +160,11 @@
             BOOL leftDotsSame = ([tappedDots[topLeftDot] isEqualToValue:tappedDots[bottomLeftDot]]);
             
             //if top, left, & bottom dots the same as player... then they own square
-            if(topDotsSame && bottomDotsSame && leftDotsSame && [topLeftDot isEqual:@(player)])
+            if(topDotsSame && bottomDotsSame && leftDotsSame && [tappedDots[topLeftDot] isEqual:@(player)])
             {
-                /// player owns square
-                
+                SCGSquare * currentSquare = allSquares[topLeftDot];
+            
+                currentSquare.backgroundColor = color;
             }
             
         }
