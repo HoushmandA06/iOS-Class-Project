@@ -8,18 +8,15 @@
 
 #import "SCGStageVC.h"
 
-#import "SCGCircle.h"
-
 #import "SCGSquare.h"
-
-
-@interface SCGStageVC ()
-
-@end
 
 @implementation SCGStageVC
 {
     int gameSize;
+    
+    NSArray * playerColors;
+    
+    int playerTurn;
 }
 
 
@@ -29,6 +26,9 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        playerColors = @[BLUE_COLOR, ORANGE_COLOR];
+        
+        playerTurn = 0;
     }
     return self;
 }
@@ -58,20 +58,57 @@
         float circleX = circleWidth * col;
         float circleY = (circleWidth * row) + ((SCREEN_HEIGHT - SCREEN_WIDTH)/2);
         
-        
-        
         SCGCircle * circle = [[SCGCircle alloc] initWithFrame:CGRectMake(circleX, circleY, circleWidth, circleWidth)];
         
-        circle.position = i;
+        circle.position = (CGPoint){row,col};
+        
+        circle.delegate = self; //now object can talk to parent class (i.e. child SCGCircle to parent SCGStageVC)
         
         [self.view addSubview:circle];
         
     }
     
+}
+
+
+
+
+-(UIColor *)circleTappedWithPosition:(CGPoint)position
+{
+    UIColor * currentColor = playerColors[playerTurn];
     
+    playerTurn = (playerTurn) ? 0 : 1;
     
+    return currentColor;
+
+}
+
+-(void)checkForSquareAroundPosition:(CGPoint)position
+{
+    BOOL above = (position.y > 0);
+    BOOL below = (position.y < gameSize - 1);
+    BOOL left = (position.x > 0);
+    BOOL right = (position.x < gameSize -1);
+    
+    if(above && left)
+    {
+    //check top left quadrant
+    }
+    if(above && right)
+    {
+        //check top right quadrant
+    }
+    if(below && left)
+    {
+        //check bottom left quadrant
+    }
+    if(below && right)
+    {
+        //check bottom right quadrant
+    }
     
 }
+
 
 - (void)didReceiveMemoryWarning
 {

@@ -9,6 +9,9 @@
 #import "SCGCircle.h"
 
 @implementation SCGCircle
+{
+    UIColor * dotColor;
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -16,6 +19,8 @@
     if (self) {
 
         self.backgroundColor = [UIColor clearColor];
+        
+        dotColor = [UIColor colorWithWhite:0.95 alpha:1.0];
         
     }
     return self;
@@ -31,7 +36,7 @@
     
     CGContextRef context = UIGraphicsGetCurrentContext(); //gets your drawing context, grabs the "paper" for ur drawing
     
-    [[UIColor lightGrayColor]set];  //sets the color you are drawing with
+    [dotColor set];  //sets the color you are drawing with
     
     float dotXY = (self.frame.size.width - 20) / 2; //
     
@@ -44,10 +49,13 @@
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 
 {
-
+    // asks for color from VC while giving position of tapped circle
+    dotColor = [self.delegate circleTappedWithPosition:self.position];
     
-    NSLog(@"my position is %d", self.position);
+    // redraws layer with the -drawRect method above
+    [self setNeedsDisplay];
     
+    NSLog(@"my position is row %d, col %d",(int)self.position.x,(int)self.position.y);
     
 }
 
