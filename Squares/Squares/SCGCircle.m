@@ -41,5 +41,15 @@
     
 }
 
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+
+{
+
+    
+    NSLog(@"my position is %d", self.position);
+    
+    
+}
+
 
 @end

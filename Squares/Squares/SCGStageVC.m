@@ -53,12 +53,16 @@
         int col = ceil((decimal - floorf(decimal)) * gameSize);
         
         NSLog(@"i / gameSize = %f",i /gameSize);
-        // NSLog(@"i : %d --- row : %d --- col : %d", (int)i, row, col);
+        NSLog(@"i : %d --- row : %d --- col : %d", (int)i, row, col);
     
         float circleX = circleWidth * col;
         float circleY = (circleWidth * row) + ((SCREEN_HEIGHT - SCREEN_WIDTH)/2);
         
+        
+        
         SCGCircle * circle = [[SCGCircle alloc] initWithFrame:CGRectMake(circleX, circleY, circleWidth, circleWidth)];
+        
+        circle.position = i;
         
         [self.view addSubview:circle];
         
