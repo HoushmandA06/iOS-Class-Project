@@ -1,0 +1,469 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0FF16F4618FAF1AF004DF85D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FF16F4518FAF1AF004DF85D /* Foundation.framework */; };
+		0FF16F4818FAF1AF004DF85D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FF16F4718FAF1AF004DF85D /* CoreGraphics.framework */; };
+		0FF16F4A18FAF1AF004DF85D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FF16F4918FAF1AF004DF85D /* UIKit.framework */; };
+		0FF16F5018FAF1AF004DF85D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0FF16F4E18FAF1AF004DF85D /* InfoPlist.strings */; };
+		0FF16F5218FAF1AF004DF85D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FF16F5118FAF1AF004DF85D /* main.m */; };
+		0FF16F5618FAF1AF004DF85D /* GATAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FF16F5518FAF1AF004DF85D /* GATAppDelegate.m */; };
+		0FF16F5818FAF1AF004DF85D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FF16F5718FAF1AF004DF85D /* Images.xcassets */; };
+		0FF16F5F18FAF1AF004DF85D /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FF16F5E18FAF1AF004DF85D /* XCTest.framework */; };
+		0FF16F6018FAF1AF004DF85D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FF16F4518FAF1AF004DF85D /* Foundation.framework */; };
+		0FF16F6118FAF1AF004DF85D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FF16F4918FAF1AF004DF85D /* UIKit.framework */; };
+		0FF16F6918FAF1AF004DF85D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0FF16F6718FAF1AF004DF85D /* InfoPlist.strings */; };
+		0FF16F6B18FAF1AF004DF85D /* GrabATweetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FF16F6A18FAF1AF004DF85D /* GrabATweetTests.m */; };
+		0FF16F7618FAF27F004DF85D /* GATTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FF16F7518FAF27F004DF85D /* GATTableViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0FF16F6218FAF1AF004DF85D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0FF16F3A18FAF1AF004DF85D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0FF16F4118FAF1AF004DF85D;
+			remoteInfo = GrabATweet;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0FF16F4218FAF1AF004DF85D /* GrabATweet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GrabATweet.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0FF16F4518FAF1AF004DF85D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		0FF16F4718FAF1AF004DF85D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		0FF16F4918FAF1AF004DF85D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		0FF16F4D18FAF1AF004DF85D /* GrabATweet-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GrabATweet-Info.plist"; sourceTree = "<group>"; };
+		0FF16F4F18FAF1AF004DF85D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		0FF16F5118FAF1AF004DF85D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		0FF16F5318FAF1AF004DF85D /* GrabATweet-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GrabATweet-Prefix.pch"; sourceTree = "<group>"; };
+		0FF16F5418FAF1AF004DF85D /* GATAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GATAppDelegate.h; sourceTree = "<group>"; };
+		0FF16F5518FAF1AF004DF85D /* GATAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GATAppDelegate.m; sourceTree = "<group>"; };
+		0FF16F5718FAF1AF004DF85D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		0FF16F5D18FAF1AF004DF85D /* GrabATweetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GrabATweetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0FF16F5E18FAF1AF004DF85D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		0FF16F6618FAF1AF004DF85D /* GrabATweetTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GrabATweetTests-Info.plist"; sourceTree = "<group>"; };
+		0FF16F6818FAF1AF004DF85D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		0FF16F6A18FAF1AF004DF85D /* GrabATweetTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GrabATweetTests.m; sourceTree = "<group>"; };
+		0FF16F7418FAF27F004DF85D /* GATTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GATTableViewController.h; sourceTree = "<group>"; };
+		0FF16F7518FAF27F004DF85D /* GATTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GATTableViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0FF16F3F18FAF1AF004DF85D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0FF16F4818FAF1AF004DF85D /* CoreGraphics.framework in Frameworks */,
+				0FF16F4A18FAF1AF004DF85D /* UIKit.framework in Frameworks */,
+				0FF16F4618FAF1AF004DF85D /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0FF16F5A18FAF1AF004DF85D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0FF16F5F18FAF1AF004DF85D /* XCTest.framework in Frameworks */,
+				0FF16F6118FAF1AF004DF85D /* UIKit.framework in Frameworks */,
+				0FF16F6018FAF1AF004DF85D /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0FF16F3918FAF1AF004DF85D = {
+			isa = PBXGroup;
+			children = (
+				0FF16F4B18FAF1AF004DF85D /* GrabATweet */,
+				0FF16F6418FAF1AF004DF85D /* GrabATweetTests */,
+				0FF16F4418FAF1AF004DF85D /* Frameworks */,
+				0FF16F4318FAF1AF004DF85D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		0FF16F4318FAF1AF004DF85D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0FF16F4218FAF1AF004DF85D /* GrabATweet.app */,
+				0FF16F5D18FAF1AF004DF85D /* GrabATweetTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0FF16F4418FAF1AF004DF85D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0FF16F4518FAF1AF004DF85D /* Foundation.framework */,
+				0FF16F4718FAF1AF004DF85D /* CoreGraphics.framework */,
+				0FF16F4918FAF1AF004DF85D /* UIKit.framework */,
+				0FF16F5E18FAF1AF004DF85D /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0FF16F4B18FAF1AF004DF85D /* GrabATweet */ = {
+			isa = PBXGroup;
+			children = (
+				0FF16F5418FAF1AF004DF85D /* GATAppDelegate.h */,
+				0FF16F5518FAF1AF004DF85D /* GATAppDelegate.m */,
+				0FF16F7718FAF575004DF85D /* TVC's */,
+				0FF16F5718FAF1AF004DF85D /* Images.xcassets */,
+				0FF16F4C18FAF1AF004DF85D /* Supporting Files */,
+			);
+			path = GrabATweet;
+			sourceTree = "<group>";
+		};
+		0FF16F4C18FAF1AF004DF85D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0FF16F4D18FAF1AF004DF85D /* GrabATweet-Info.plist */,
+				0FF16F4E18FAF1AF004DF85D /* InfoPlist.strings */,
+				0FF16F5118FAF1AF004DF85D /* main.m */,
+				0FF16F5318FAF1AF004DF85D /* GrabATweet-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0FF16F6418FAF1AF004DF85D /* GrabATweetTests */ = {
+			isa = PBXGroup;
+			children = (
+				0FF16F6A18FAF1AF004DF85D /* GrabATweetTests.m */,
+				0FF16F6518FAF1AF004DF85D /* Supporting Files */,
+			);
+			path = GrabATweetTests;
+			sourceTree = "<group>";
+		};
+		0FF16F6518FAF1AF004DF85D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0FF16F6618FAF1AF004DF85D /* GrabATweetTests-Info.plist */,
+				0FF16F6718FAF1AF004DF85D /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0FF16F7718FAF575004DF85D /* TVC's */ = {
+			isa = PBXGroup;
+			children = (
+				0FF16F7418FAF27F004DF85D /* GATTableViewController.h */,
+				0FF16F7518FAF27F004DF85D /* GATTableViewController.m */,
+			);
+			name = "TVC's";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0FF16F4118FAF1AF004DF85D /* GrabATweet */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0FF16F6E18FAF1AF004DF85D /* Build configuration list for PBXNativeTarget "GrabATweet" */;
+			buildPhases = (
+				0FF16F3E18FAF1AF004DF85D /* Sources */,
+				0FF16F3F18FAF1AF004DF85D /* Frameworks */,
+				0FF16F4018FAF1AF004DF85D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GrabATweet;
+			productName = GrabATweet;
+			productReference = 0FF16F4218FAF1AF004DF85D /* GrabATweet.app */;
+			productType = "com.apple.product-type.application";
+		};
+		0FF16F5C18FAF1AF004DF85D /* GrabATweetTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0FF16F7118FAF1AF004DF85D /* Build configuration list for PBXNativeTarget "GrabATweetTests" */;
+			buildPhases = (
+				0FF16F5918FAF1AF004DF85D /* Sources */,
+				0FF16F5A18FAF1AF004DF85D /* Frameworks */,
+				0FF16F5B18FAF1AF004DF85D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0FF16F6318FAF1AF004DF85D /* PBXTargetDependency */,
+			);
+			name = GrabATweetTests;
+			productName = GrabATweetTests;
+			productReference = 0FF16F5D18FAF1AF004DF85D /* GrabATweetTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0FF16F3A18FAF1AF004DF85D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = GAT;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Ali Houshmand";
+				TargetAttributes = {
+					0FF16F5C18FAF1AF004DF85D = {
+						TestTargetID = 0FF16F4118FAF1AF004DF85D;
+					};
+				};
+			};
+			buildConfigurationList = 0FF16F3D18FAF1AF004DF85D /* Build configuration list for PBXProject "GrabATweet" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 0FF16F3918FAF1AF004DF85D;
+			productRefGroup = 0FF16F4318FAF1AF004DF85D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0FF16F4118FAF1AF004DF85D /* GrabATweet */,
+				0FF16F5C18FAF1AF004DF85D /* GrabATweetTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0FF16F4018FAF1AF004DF85D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0FF16F5018FAF1AF004DF85D /* InfoPlist.strings in Resources */,
+				0FF16F5818FAF1AF004DF85D /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0FF16F5B18FAF1AF004DF85D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0FF16F6918FAF1AF004DF85D /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0FF16F3E18FAF1AF004DF85D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0FF16F5218FAF1AF004DF85D /* main.m in Sources */,
+				0FF16F7618FAF27F004DF85D /* GATTableViewController.m in Sources */,
+				0FF16F5618FAF1AF004DF85D /* GATAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0FF16F5918FAF1AF004DF85D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0FF16F6B18FAF1AF004DF85D /* GrabATweetTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0FF16F6318FAF1AF004DF85D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0FF16F4118FAF1AF004DF85D /* GrabATweet */;
+			targetProxy = 0FF16F6218FAF1AF004DF85D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		0FF16F4E18FAF1AF004DF85D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0FF16F4F18FAF1AF004DF85D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		0FF16F6718FAF1AF004DF85D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0FF16F6818FAF1AF004DF85D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		0FF16F6C18FAF1AF004DF85D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0FF16F6D18FAF1AF004DF85D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		0FF16F6F18FAF1AF004DF85D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GrabATweet/GrabATweet-Prefix.pch";
+				INFOPLIST_FILE = "GrabATweet/GrabATweet-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		0FF16F7018FAF1AF004DF85D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GrabATweet/GrabATweet-Prefix.pch";
+				INFOPLIST_FILE = "GrabATweet/GrabATweet-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		0FF16F7218FAF1AF004DF85D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/GrabATweet.app/GrabATweet";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GrabATweet/GrabATweet-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "GrabATweetTests/GrabATweetTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		0FF16F7318FAF1AF004DF85D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/GrabATweet.app/GrabATweet";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GrabATweet/GrabATweet-Prefix.pch";
+				INFOPLIST_FILE = "GrabATweetTests/GrabATweetTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0FF16F3D18FAF1AF004DF85D /* Build configuration list for PBXProject "GrabATweet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0FF16F6C18FAF1AF004DF85D /* Debug */,
+				0FF16F6D18FAF1AF004DF85D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0FF16F6E18FAF1AF004DF85D /* Build configuration list for PBXNativeTarget "GrabATweet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0FF16F6F18FAF1AF004DF85D /* Debug */,
+				0FF16F7018FAF1AF004DF85D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		0FF16F7118FAF1AF004DF85D /* Build configuration list for PBXNativeTarget "GrabATweetTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0FF16F7218FAF1AF004DF85D /* Debug */,
+				0FF16F7318FAF1AF004DF85D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0FF16F3A18FAF1AF004DF85D /* Project object */;
+}
