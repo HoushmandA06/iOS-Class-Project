@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0FAE145118FB13D5009DD4AE /* GATTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FAE145018FB13D5009DD4AE /* GATTableViewCell.m */; };
 		0FF16F4618FAF1AF004DF85D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FF16F4518FAF1AF004DF85D /* Foundation.framework */; };
 		0FF16F4818FAF1AF004DF85D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FF16F4718FAF1AF004DF85D /* CoreGraphics.framework */; };
 		0FF16F4A18FAF1AF004DF85D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FF16F4918FAF1AF004DF85D /* UIKit.framework */; };
@@ -33,6 +34,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0FAE144F18FB13D5009DD4AE /* GATTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GATTableViewCell.h; sourceTree = "<group>"; };
+		0FAE145018FB13D5009DD4AE /* GATTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GATTableViewCell.m; sourceTree = "<group>"; };
 		0FF16F4218FAF1AF004DF85D /* GrabATweet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GrabATweet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FF16F4518FAF1AF004DF85D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0FF16F4718FAF1AF004DF85D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -77,6 +80,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0FAE145218FB13DB009DD4AE /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				0FAE145018FB13D5009DD4AE /* GATTableViewCell.m */,
+				0FAE144F18FB13D5009DD4AE /* GATTableViewCell.h */,
+			);
+			name = TableView;
+			sourceTree = "<group>";
+		};
 		0FF16F3918FAF1AF004DF85D = {
 			isa = PBXGroup;
 			children = (
@@ -153,6 +165,7 @@
 			children = (
 				0FF16F7418FAF27F004DF85D /* GATTableViewController.h */,
 				0FF16F7518FAF27F004DF85D /* GATTableViewController.m */,
+				0FAE145218FB13DB009DD4AE /* TableView */,
 			);
 			name = "TVC's";
 			sourceTree = "<group>";
@@ -253,6 +266,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FAE145118FB13D5009DD4AE /* GATTableViewCell.m in Sources */,
 				0FF16F5218FAF1AF004DF85D /* main.m in Sources */,
 				0FF16F7618FAF27F004DF85D /* GATTableViewController.m in Sources */,
 				0FF16F5618FAF1AF004DF85D /* GATAppDelegate.m in Sources */,
@@ -454,6 +468,7 @@
 				0FF16F7018FAF1AF004DF85D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0FF16F7118FAF1AF004DF85D /* Build configuration list for PBXNativeTarget "GrabATweetTests" */ = {
 			isa = XCConfigurationList;
@@ -462,6 +477,7 @@
 				0FF16F7318FAF1AF004DF85D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

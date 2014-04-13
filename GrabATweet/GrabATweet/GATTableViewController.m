@@ -7,6 +7,8 @@
 //
 
 #import "GATTableViewController.h"
+#import "GATTableViewCell.h"
+
 
 @interface GATTableViewController ()
 
