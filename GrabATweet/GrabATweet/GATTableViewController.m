@@ -27,7 +27,9 @@
     if (self) {
         
         tweetItems = [@[@{
-                            @"text" : @"@foxjon123 What an awesome #FirstTweet ! So excited that you are doing things outside of what is being taught @TheIronYard #YouRock"
+                            @"username" : @"Jo Albright",
+                            @"image" : @"placeholder",
+                            @"text" : @"http://jo2.co/twitter.json",
                         }] mutableCopy];    }
     
     NSLog(@"tweetItems : %@ .... ", tweetItems);
@@ -59,29 +61,37 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return [tweetItems count];
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    return [tweetItems count];
+
 }
 
-/*
+
  - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     
-    // Configure the cell...
+    if (cell == nil)
+    {
+        cell = [[GATTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+    }
+    
+    NSDictionary *tweetItem = tweetItems[indexPath.row];
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.textLabel.text = tweetItem[@"username"];
+    cell.textLabel.textColor = [UIColor blackColor];
     
     
     return cell;
 }
-*/
+
  
  
 /*

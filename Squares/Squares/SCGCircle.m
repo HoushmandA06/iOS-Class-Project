@@ -11,6 +11,7 @@
 @implementation SCGCircle
 {
     UIColor * dotColor;
+    float dotWidth;
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -21,6 +22,7 @@
         self.backgroundColor = [UIColor clearColor];
         
         dotColor = [UIColor colorWithWhite:0.95 alpha:1.0];
+        dotWidth = frame.size.width / 5;
         
     }
     return self;

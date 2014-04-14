@@ -83,8 +83,8 @@
 		0FAE145218FB13DB009DD4AE /* TableView */ = {
 			isa = PBXGroup;
 			children = (
-				0FAE145018FB13D5009DD4AE /* GATTableViewCell.m */,
 				0FAE144F18FB13D5009DD4AE /* GATTableViewCell.h */,
+				0FAE145018FB13D5009DD4AE /* GATTableViewCell.m */,
 			);
 			name = TableView;
 			sourceTree = "<group>";

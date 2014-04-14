@@ -21,8 +21,13 @@
     NSMutableDictionary * tappedDots;
     
     NSMutableDictionary * allSquares;
+    
+    UIView * gameBoard;
+    
+    NSArray * gameSizes;
+    
+    UIButton * launchButton;
 }
-
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -37,7 +42,11 @@
         tappedDots = [@{} mutableCopy];
         
         allSquares = [@{} mutableCopy];
-         
+        
+        gameSizes = @[@"4",@"6",@"8"];
+        
+        gameBoard = [[UIView alloc] initWithFrame:self.view.frame];
+        
     }
     return self;
 }
@@ -46,58 +55,87 @@
 {
     [super viewDidLoad];
     
-    gameSize = 4;
+    gameSize = [gameSizes[0] intValue];
+    //need to make gameSize tab
+    UISegmentedControl *gameSizeChoices = [[UISegmentedControl alloc] initWithItems:gameSizes];
+    gameSizeChoices.frame = CGRectMake(50, SCREEN_HEIGHT - 50, 200, 30);
+    //above not finished
     
-    //width of each square, 4 on a screen
+    //gameBoard start button
+    launchButton = [[UIButton alloc] initWithFrame:CGRectMake(120, SCREEN_HEIGHT * .05, SCREEN_WIDTH/4, SCREEN_WIDTH/8)];
     
-    float circleWidth = SCREEN_WIDTH / gameSize;
-    float squareWidth = circleWidth / 2;
+    [launchButton setTitle:@"Start" forState:UIControlStateNormal];
+    [launchButton addTarget:self action:@selector(resetGameBoard) forControlEvents:UIControlEventTouchUpInside];
     
-    // create square
-    for (int sRow = 0; sRow < gameSize - 1; sRow++)
-    {
-        for(int sCol = 0; sCol < gameSize - 1; sCol++)
-    {
-        float squareX = ((circleWidth - squareWidth) * 1.5) + (circleWidth * sCol);
-        float squareY = ((circleWidth - squareWidth) * 1.5) + (circleWidth * sRow) + ((SCREEN_HEIGHT - SCREEN_WIDTH ) / 2);
-        
-        SCGSquare * square = [[SCGSquare alloc] initWithFrame:CGRectMake(squareX, squareY, squareWidth, squareWidth)];
-        square.backgroundColor = [UIColor lightGrayColor];
-        
-
-        NSString * key = [NSString stringWithFormat:@"c%dr%d", sCol, sRow]; // 0,1 = c0r1
-        allSquares[key] = square;
-        [self.view addSubview:square];
-    }
-     
-    }
+    launchButton.backgroundColor = [UIColor blueColor];
+    launchButton.layer.cornerRadius = 6;
     
-    // create dots
-    for (int row = 0; row < gameSize; row++)
-    {
-        for (int col = 0; col < gameSize; col++)
-        {
-            float circleX = circleWidth * col;
-            float circleY = (circleWidth * row) + ((SCREEN_HEIGHT - SCREEN_WIDTH)/2);
-            
-            SCGCircle * circle = [[SCGCircle alloc] initWithFrame:CGRectMake(circleX, circleY, circleWidth, circleWidth)];
-            
-            circle.position = (CGPoint){col,row};
-            
-            circle.delegate = self; //now object can talk to parent class (i.e. child SCGCircle to parent SCGStageVC)
-            
-            NSString * key = [NSString stringWithFormat:@"c%dr%d", col, row]; // 0,1 = c0r1
-            
-            tappedDots[key] = @2;
-            
-            [self.view addSubview:circle];
-        }
-    }
+    //how to make an NSLog to show if button is responding to select.
+    
+    
+    
+    [self.view addSubview:launchButton];
+    
 }
 
+-(void)resetGameBoard
+{
+    
+    [launchButton removeFromSuperview];
+    
+    gameSize = 6;
+    
+
+    //width of each square, 4 on a screen
+    
+        float circleWidth = SCREEN_WIDTH / gameSize;
+        float squareWidth = circleWidth / 2;
+        // create square
+        for (int sRow = 0; sRow < gameSize - 1; sRow++)
+        {
+            for(int sCol = 0; sCol < gameSize - 1; sCol++)
+            {
+                float squareX = ((circleWidth - squareWidth) * 1.5) + (circleWidth * sCol);
+                float squareY = ((circleWidth - squareWidth) * 1.5) + (circleWidth * sRow) + ((SCREEN_HEIGHT - SCREEN_WIDTH ) / 2);
+    
+                SCGSquare * square = [[SCGSquare alloc] initWithFrame:CGRectMake(squareX, squareY, squareWidth, squareWidth)];
+                square.backgroundColor = [UIColor lightGrayColor];
+                square.layer.cornerRadius = 5;
+    
+                NSString * key = [NSString stringWithFormat:@"c%dr%d", sCol, sRow]; // 0,1 = c0r1
+                allSquares[key] = square;
+                [self.view addSubview:square];
+            }
+        }
+        // create dots
+        for (int row = 0; row < gameSize; row++)
+        {
+            for (int col = 0; col < gameSize; col++)
+            {
+                float circleX = circleWidth * col;
+                float circleY = (circleWidth * row) + ((SCREEN_HEIGHT - SCREEN_WIDTH)/2);
+    
+                SCGCircle * circle = [[SCGCircle alloc] initWithFrame:CGRectMake(circleX, circleY, circleWidth, circleWidth)];
+    
+                circle.position = (CGPoint){col,row};
+    
+                circle.delegate = self; //now object can talk to parent class (i.e. child SCGCircle to parent SCGStageVC)
+    
+                NSString * key = [NSString stringWithFormat:@"c%dr%d", col, row]; // 0,1 = c0r1
+    
+                tappedDots[key] = @2;
+                
+                [self.view addSubview:circle];
+            }
+        }
+}
 
 -(UIColor *)circleTappedWithPosition:(CGPoint)position
 {
+    
+    //check for square and stop if locked
+    // if([self checkForSquareAroundPosition:position]) return nil;
+    
     
     // get tappedDots key from position
     NSString * key = [NSString stringWithFormat:@"c%dr%d", (int)position.x, (int)position.y];

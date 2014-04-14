@@ -192,7 +192,7 @@
     UIButton *button = (UIButton *)sender;
     NSString *name = nameField.text;
     nameField.text = @"";
-
+    
     
     if(![name isEqualToString:@""])
     {

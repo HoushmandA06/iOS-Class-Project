@@ -10,4 +10,7 @@
 
 @interface GATTableViewCell : UITableViewCell
 
+@property NSDictionary * tweetInfo;
+
+
 @end
