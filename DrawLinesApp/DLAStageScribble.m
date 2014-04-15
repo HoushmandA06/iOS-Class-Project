@@ -99,19 +99,23 @@
     
     [self.lineColor set];
     
-    for (NSArray * scribble in scribbles)
+    for (NSDictionary * scribble in scribbles)
     {
-        NSLog(@"%d",[scribble count]);
-        CGPoint start = [scribble[0] CGPointValue];
-        CGContextMoveToPoint(context, start.x, start.y);
-        for (NSValue * value in scribble) {
+        CGContextSetLineWidth(context, [scribble[@
+                              "width"] floatValue]);
+        [(UIColor *)scribble[@"color"] set];
 
-            //int index = [scribble indexOfObject:value];
-            
+        NSLog(@"%d",[scribble count]);
+
+        NSArray * points = scribble[@"points"];
+        
+        CGPoint start = [points[0] CGPointValue];
+        CGContextMoveToPoint(context, start.x, start.y);
+        for (NSValue * value in points) {
+
             CGPoint point = [value CGPointValue];
 
-            //if (index > 0 || [scribble count] < 3)
-                CGContextAddLineToPoint(context, point.x, point.y);
+            CGContextAddLineToPoint(context, point.x, point.y);
         }
         CGContextStrokePath(context); //run this to break up a line or shape
     }
@@ -122,9 +126,16 @@
     
     for (UITouch * touch in touches) {
         CGPoint location = [touch locationInView:self];
-        [scribbles addObject:[@[
-                                [NSValue valueWithCGPoint:location]]
-                                mutableCopy]];
+        
+//        [scribbles addObject:[@[
+//                                [NSValue valueWithCGPoint:location]]
+//                                mutableCopy]];
+        
+        [scribbles addObject:[@{
+                              @"color" : self.lineColor,
+                              @"width" : @(self.lineWidth), // makes the float (or an int) an object
+                              @"points" : [@[[NSValue valueWithCGPoint:location]] mutableCopy]} mutableCopy]];
+        
         
     }
     [self setNeedsDisplay];
@@ -135,8 +146,9 @@
 {
     for (UITouch * touch in touches) {
         CGPoint location = [touch locationInView:self];
-        [[scribbles lastObject] addObject:[NSValue valueWithCGPoint:location]];
-    
+//        [[scribbles lastObject] addObject:[NSValue valueWithCGPoint:location]];
+        
+        [[scribbles lastObject][@"points"] addObject: [NSValue valueWithCGPoint:location]];
 
     }
     [self setNeedsDisplay];
@@ -147,7 +159,9 @@
 {
     for (UITouch * touch in touches) {
         CGPoint location = [touch locationInView:self];
-        [[scribbles lastObject] addObject:[NSValue valueWithCGPoint:location]];
+//      [[scribbles lastObject] addObject:[NSValue valueWithCGPoint:location]];
+    
+        [[scribbles lastObject][@"points"] addObject:[NSValue valueWithCGPoint:location]];
 
     }
     [self setNeedsDisplay];
