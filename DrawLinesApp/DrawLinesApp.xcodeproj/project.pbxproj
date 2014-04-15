@@ -20,7 +20,8 @@
 		0F9A74DC18FD67320069EF84 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0F9A74DA18FD67320069EF84 /* InfoPlist.strings */; };
 		0F9A74DE18FD67320069EF84 /* DrawLinesAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9A74DD18FD67320069EF84 /* DrawLinesAppTests.m */; };
 		0F9A74E918FD677C0069EF84 /* DLAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9A74E818FD677C0069EF84 /* DLAViewController.m */; };
-		0F9A74EC18FD69B20069EF84 /* DLAStage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9A74EB18FD69B20069EF84 /* DLAStage.m */; };
+		0F9A74EC18FD69B20069EF84 /* DLAStageLines.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9A74EB18FD69B20069EF84 /* DLAStageLines.m */; };
+		0F9A74EF18FD7DBF0069EF84 /* DLAStageScribble.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9A74EE18FD7DBF0069EF84 /* DLAStageScribble.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,8 +53,10 @@
 		0F9A74DD18FD67320069EF84 /* DrawLinesAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrawLinesAppTests.m; sourceTree = "<group>"; };
 		0F9A74E718FD677C0069EF84 /* DLAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLAViewController.h; sourceTree = "<group>"; };
 		0F9A74E818FD677C0069EF84 /* DLAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLAViewController.m; sourceTree = "<group>"; };
-		0F9A74EA18FD69B20069EF84 /* DLAStage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLAStage.h; sourceTree = "<group>"; };
-		0F9A74EB18FD69B20069EF84 /* DLAStage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLAStage.m; sourceTree = "<group>"; };
+		0F9A74EA18FD69B20069EF84 /* DLAStageLines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLAStageLines.h; sourceTree = "<group>"; };
+		0F9A74EB18FD69B20069EF84 /* DLAStageLines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLAStageLines.m; sourceTree = "<group>"; };
+		0F9A74ED18FD7DBF0069EF84 /* DLAStageScribble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLAStageScribble.h; sourceTree = "<group>"; };
+		0F9A74EE18FD7DBF0069EF84 /* DLAStageScribble.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLAStageScribble.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,8 +88,10 @@
 			children = (
 				0F9A74E718FD677C0069EF84 /* DLAViewController.h */,
 				0F9A74E818FD677C0069EF84 /* DLAViewController.m */,
-				0F9A74EA18FD69B20069EF84 /* DLAStage.h */,
-				0F9A74EB18FD69B20069EF84 /* DLAStage.m */,
+				0F9A74EA18FD69B20069EF84 /* DLAStageLines.h */,
+				0F9A74EB18FD69B20069EF84 /* DLAStageLines.m */,
+				0F9A74ED18FD7DBF0069EF84 /* DLAStageScribble.h */,
+				0F9A74EE18FD7DBF0069EF84 /* DLAStageScribble.m */,
 				0F9A74BE18FD67320069EF84 /* DrawLinesApp */,
 				0F9A74D718FD67320069EF84 /* DrawLinesAppTests */,
 				0F9A74B718FD67320069EF84 /* Frameworks */,
@@ -251,8 +256,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0F9A74C918FD67320069EF84 /* DLAAppDelegate.m in Sources */,
+				0F9A74EF18FD7DBF0069EF84 /* DLAStageScribble.m in Sources */,
 				0F9A74C518FD67320069EF84 /* main.m in Sources */,
-				0F9A74EC18FD69B20069EF84 /* DLAStage.m in Sources */,
+				0F9A74EC18FD69B20069EF84 /* DLAStageLines.m in Sources */,
 				0F9A74E918FD677C0069EF84 /* DLAViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

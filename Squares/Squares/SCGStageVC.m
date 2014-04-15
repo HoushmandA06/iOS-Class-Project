@@ -64,10 +64,8 @@
     [gameSizeChoices addTarget:self
                         action:@selector(resetGameBoard:)
                forControlEvents:UIControlEventValueChanged];
-
-    
     [self.view addSubview:gameSizeChoices];
-    //above not finished
+
     
     launchButton = [[UIButton alloc] initWithFrame:CGRectMake(120, SCREEN_HEIGHT * .05, SCREEN_WIDTH/4, SCREEN_WIDTH/8)];
     [launchButton setTitle:@"Start" forState:UIControlStateNormal];
