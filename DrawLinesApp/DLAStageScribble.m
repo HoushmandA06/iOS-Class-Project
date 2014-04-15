@@ -15,7 +15,8 @@
     UIButton * greenColorButton;
     UIButton * blueColorButton;
     UISlider * widthSlider;
-}
+    NSArray * sliderRange;
+ }
 
 
 - (id)initWithFrame:(CGRect)frame
@@ -24,76 +25,79 @@
     if (self) {
         // Initialization code
         
-        scribbles = [@[] mutableCopy];
         
+        scribbles = [@[] mutableCopy];
+        self.lineWidth = 2.0;  // default width
+        self.lineColor = [UIColor colorWithWhite:0.3 alpha:1.0];  // default color
+        
+        /*
         redColorButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-300, SCREEN_HEIGHT * .85, 50, 50)];
-        redColorButton.tag = 0;
         [redColorButton setTitle:@"Red" forState:UIControlStateNormal];
-        [redColorButton addTarget:self action:@selector(changeLineColor) forControlEvents:UIControlEventTouchUpInside];
+        [redColorButton addTarget:self action:@selector(changeLineColor:) forControlEvents:UIControlEventTouchUpInside];
         [redColorButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         redColorButton.backgroundColor = [UIColor redColor];
         redColorButton.layer.cornerRadius = 25;
         [self addSubview:redColorButton];
         
         greenColorButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-240, SCREEN_HEIGHT * .85, 50, 50)];
-        greenColorButton.tag = 1;
         [greenColorButton setTitle:@"Green" forState:UIControlStateNormal];
-        [greenColorButton addTarget:self action:@selector(changeLineColor) forControlEvents:UIControlEventTouchUpInside];
+        [greenColorButton addTarget:self action:@selector(changeLineColor:) forControlEvents:UIControlEventTouchUpInside];
         [greenColorButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         greenColorButton.backgroundColor = [UIColor greenColor];
         greenColorButton.layer.cornerRadius = 25;
         [self addSubview:greenColorButton];
         
         blueColorButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-180, SCREEN_HEIGHT * .85, 50, 50)];
-        blueColorButton.tag = 2;
         [blueColorButton setTitle:@"Blue" forState:UIControlStateNormal];
-        [blueColorButton addTarget:self action:@selector(changeLineColor) forControlEvents:UIControlEventTouchUpInside];
+        [blueColorButton addTarget:self action:@selector(changeLineColor:) forControlEvents:UIControlEventTouchUpInside];
         [blueColorButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         blueColorButton.backgroundColor = [UIColor blueColor];
         blueColorButton.layer.cornerRadius = 25;
         [self addSubview:blueColorButton];
-        
-        widthSlider = [[UISlider alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-300, SCREEN_HEIGHT * .75,170,30)];
+       
+        widthSlider = [[UISlider alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-300, SCREEN_HEIGHT * .75,170,40)];
         widthSlider.backgroundColor = [UIColor blackColor];
-        // [widthSlider addTarget:self action:@selector(<#selector#>) forControlEvents:...]
+        // [widthSlider addTarget:self action:@selector(setwidth) forControlEvents:...]
         widthSlider.layer.cornerRadius = 6;
-        [self addSubview:widthSlider];
-        
-        
-        
+        [self addSubview:widthSlider]; */
+    
     }
     return self;
 }
 
 
--(void)changeLineColor
+
+
+//-(void)changeLineColor:(UIButton *)sender
+//{
+//    [self setLineColor:sender.backgroundColor];
+//}
+
+-(void)setLineWidth:(float)lineWidth
 {
-//would set the property of the UIColor
-    
-    
-    
-    
+
+    _lineWidth = lineWidth;
+    [self setNeedsDisplay];
+
 }
 
+    
+-(void)setLineColor:(UIColor *)lineColor
+{
+    _lineColor = lineColor;
+    [self setNeedsDisplay];
+}
 
-
-// override my setters inside UIView subclass, [self setNeedsDisplay] after the color changes and line width changes
-
-
-
-
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
 
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetLineCap(context, kCGLineCapRound);
-    CGContextSetLineWidth(context, 5.0);
+    CGContextSetLineWidth(context, self.lineWidth);
+    CGContextClearRect(context, rect);
     
- 
     
-    [[UIColor blueColor] set];
+    [self.lineColor set];
     
     for (NSArray * scribble in scribbles)
     {
