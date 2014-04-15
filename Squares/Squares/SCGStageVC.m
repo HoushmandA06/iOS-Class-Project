@@ -23,10 +23,12 @@
     NSMutableDictionary * allSquares;
     
     UIView * gameBoard;
+    UIView * home;
     
     NSArray * gameSizes;
     
     UIButton * launchButton;
+    UIButton * homeButton;
 }
 
 
@@ -51,44 +53,64 @@
     return self;
 }
 
-- (void)viewDidLoad
+- (void)viewDidLoad //launch screen
 {
     [super viewDidLoad];
     
     gameSize = [gameSizes[0] intValue];
     //need to make gameSize tab
     UISegmentedControl *gameSizeChoices = [[UISegmentedControl alloc] initWithItems:gameSizes];
-    gameSizeChoices.frame = CGRectMake(50, SCREEN_HEIGHT - 50, 200, 30);
+    gameSizeChoices.frame = CGRectMake(60, SCREEN_HEIGHT - 50, 200, 30);
+    [gameSizeChoices addTarget:self
+                        action:@selector(resetGameBoard:)
+               forControlEvents:UIControlEventValueChanged];
+
+    
+    [self.view addSubview:gameSizeChoices];
     //above not finished
     
-    //gameBoard start button
     launchButton = [[UIButton alloc] initWithFrame:CGRectMake(120, SCREEN_HEIGHT * .05, SCREEN_WIDTH/4, SCREEN_WIDTH/8)];
-    
     [launchButton setTitle:@"Start" forState:UIControlStateNormal];
-    [launchButton addTarget:self action:@selector(resetGameBoard) forControlEvents:UIControlEventTouchUpInside];
-    
+    [launchButton addTarget:self action:@selector(resetGameBoard:) forControlEvents:UIControlEventTouchUpInside];
     launchButton.backgroundColor = [UIColor blueColor];
     launchButton.layer.cornerRadius = 6;
-    
-    //how to make an NSLog to show if button is responding to select.
-    
-    
-    
     [self.view addSubview:launchButton];
+    
+    homeButton = [[UIButton alloc] initWithFrame:CGRectMake(120, SCREEN_HEIGHT * .05, SCREEN_WIDTH/4, SCREEN_WIDTH/8)];
+    [homeButton setTitle:@"Home" forState:UIControlStateNormal];
+    [homeButton addTarget:self action:@selector(goHome) forControlEvents:UIControlEventTouchUpInside];
+    homeButton.backgroundColor = [UIColor blueColor];
+    homeButton.layer.cornerRadius = 6;
+//    [self.view addSubview:homeButton];
     
 }
 
--(void)resetGameBoard
+-(void)goHome
 {
+    [gameBoard removeFromSuperview];
+    [homeButton removeFromSuperview];
+    [self.view addSubview:launchButton];
+ }
+
+
+-(void)resetGameBoard:(id)sender
+{
+    if([[sender class] isSubclassOfClass:[UISegmentedControl class]])
+    {
+        UISegmentedControl * control = (UISegmentedControl *)sender;
+        
+        int selected = control.selectedSegmentIndex;
+        gameSize = [gameSizes[selected] intValue];
+    }
     
+    [self.view addSubview:homeButton];
     [launchButton removeFromSuperview];
     
-    gameSize = 6;
     
-
-    //width of each square, 4 on a screen
+    gameBoard = [[UIView alloc] initWithFrame:self.view.frame];
+    [self.view insertSubview:gameBoard belowSubview:homeButton];
     
-        float circleWidth = SCREEN_WIDTH / gameSize;
+    float circleWidth = SCREEN_WIDTH / gameSize;
         float squareWidth = circleWidth / 2;
         // create square
         for (int sRow = 0; sRow < gameSize - 1; sRow++)
@@ -104,7 +126,8 @@
     
                 NSString * key = [NSString stringWithFormat:@"c%dr%d", sCol, sRow]; // 0,1 = c0r1
                 allSquares[key] = square;
-                [self.view addSubview:square];
+                [gameBoard addSubview:square];
+                [launchButton removeFromSuperview];
             }
         }
         // create dots
@@ -125,7 +148,7 @@
     
                 tappedDots[key] = @2;
                 
-                [self.view addSubview:circle];
+                [gameBoard addSubview:circle];
             }
         }
 }
