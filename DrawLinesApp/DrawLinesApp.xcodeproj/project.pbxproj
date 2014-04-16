@@ -22,6 +22,9 @@
 		0F9A74E918FD677C0069EF84 /* DLAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9A74E818FD677C0069EF84 /* DLAViewController.m */; };
 		0F9A74EC18FD69B20069EF84 /* DLAStageLines.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9A74EB18FD69B20069EF84 /* DLAStageLines.m */; };
 		0F9A74EF18FD7DBF0069EF84 /* DLAStageScribble.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9A74EE18FD7DBF0069EF84 /* DLAStageScribble.m */; };
+		0F9A74F118FEEE280069EF84 /* arrow_undo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F9A74F018FEEE280069EF84 /* arrow_undo.png */; };
+		0F9A74F418FEF0FD0069EF84 /* Delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F9A74F318FEF0FD0069EF84 /* Delete.png */; };
+		0F9A74F818FEF72B0069EF84 /* Toggle.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F9A74F718FEF72B0069EF84 /* Toggle.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +60,9 @@
 		0F9A74EB18FD69B20069EF84 /* DLAStageLines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLAStageLines.m; sourceTree = "<group>"; };
 		0F9A74ED18FD7DBF0069EF84 /* DLAStageScribble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLAStageScribble.h; sourceTree = "<group>"; };
 		0F9A74EE18FD7DBF0069EF84 /* DLAStageScribble.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLAStageScribble.m; sourceTree = "<group>"; };
+		0F9A74F018FEEE280069EF84 /* arrow_undo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_undo.png; sourceTree = "<group>"; };
+		0F9A74F318FEF0FD0069EF84 /* Delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Delete.png; sourceTree = "<group>"; };
+		0F9A74F718FEF72B0069EF84 /* Toggle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Toggle.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +98,7 @@
 				0F9A74EB18FD69B20069EF84 /* DLAStageLines.m */,
 				0F9A74ED18FD7DBF0069EF84 /* DLAStageScribble.h */,
 				0F9A74EE18FD7DBF0069EF84 /* DLAStageScribble.m */,
+				0F9A74F218FEEE2F0069EF84 /* Images */,
 				0F9A74BE18FD67320069EF84 /* DrawLinesApp */,
 				0F9A74D718FD67320069EF84 /* DrawLinesAppTests */,
 				0F9A74B718FD67320069EF84 /* Frameworks */,
@@ -157,6 +164,16 @@
 				0F9A74DA18FD67320069EF84 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0F9A74F218FEEE2F0069EF84 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				0F9A74F718FEF72B0069EF84 /* Toggle.png */,
+				0F9A74F018FEEE280069EF84 /* arrow_undo.png */,
+				0F9A74F318FEF0FD0069EF84 /* Delete.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,8 +252,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F9A74F418FEF0FD0069EF84 /* Delete.png in Resources */,
+				0F9A74F118FEEE280069EF84 /* arrow_undo.png in Resources */,
 				0F9A74C318FD67320069EF84 /* InfoPlist.strings in Resources */,
 				0F9A74CB18FD67320069EF84 /* Images.xcassets in Resources */,
+				0F9A74F818FEF72B0069EF84 /* Toggle.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,6 +480,7 @@
 				0F9A74E318FD67320069EF84 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0F9A74E418FD67320069EF84 /* Build configuration list for PBXNativeTarget "DrawLinesAppTests" */ = {
 			isa = XCConfigurationList;
@@ -468,6 +489,7 @@
 				0F9A74E618FD67320069EF84 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

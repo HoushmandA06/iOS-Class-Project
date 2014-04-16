@@ -21,6 +21,9 @@
    
     UIView * colorsDrawer;
 
+    float lineWidth;
+    UIColor * lineColor;
+    
 }
 
 
@@ -33,6 +36,8 @@
         // self.view = [[DLAStageLines alloc] initWithFrame:self.view.frame];
         // self.view = [[DLAStageScribble alloc] initWithFrame:self.view.frame];
     
+        
+        
     }
     return self;
 }
@@ -41,8 +46,14 @@
 {
     [super viewDidLoad];
     
-scribbleView = [[DLAStageLines alloc] initWithFrame:self.view.frame];
-[self.view addSubview:scribbleView];
+  //  scribbleView = [[DLAStageLines alloc] initWithFrame:self.view.frame];
+    
+    lineColor = [UIColor purpleColor];
+    lineWidth = 5.0;
+    
+    [self toggleStage];
+    
+    [self.view addSubview:scribbleView];
     
   //  linesView = [[DLAStageLines alloc] initWithFrame:self.view.frame];
   //  [self.view addSubview:linesView];
@@ -58,8 +69,11 @@ scribbleView = [[DLAStageLines alloc] initWithFrame:self.view.frame];
     UISlider * widthSlider = [[UISlider alloc] initWithFrame:CGRectMake(20, SCREEN_HEIGHT - 43,280,23)];
     widthSlider.backgroundColor = [UIColor colorWithRed:0.561f green:0.627f blue:0.733f alpha:1.0f];
     widthSlider.layer.cornerRadius = 6;
+    
     widthSlider.minimumValue = 2.0;
-    widthSlider.maximumValue = 20.0;
+    widthSlider.maximumValue = 80.0;
+    widthSlider.value = lineWidth;
+    
     [widthSlider addTarget:self action:@selector(changeSize:) forControlEvents:UIControlEventAllEvents];
     //CGAffineTransform trans = CGAffineTransformMakeRotation(M_PI_2);
     //widthSlider.transform = trans;
@@ -89,57 +103,92 @@ scribbleView = [[DLAStageLines alloc] initWithFrame:self.view.frame];
     [self.view addSubview:colorsDrawer];
     
     /////////////////////////////////////////////////////////////////
-    
+    /*
     UIButton * toggleButton = [[UIButton alloc] initWithFrame:CGRectMake(10,50,50,50)];
     toggleButton.backgroundColor = [UIColor orangeColor];
+    [toggleButton setImage:[UIImage imageNamed:@"Toggle"] forState:UIControlStateNormal];
     toggleButton.layer.cornerRadius = 25;
     [toggleButton addTarget:self action:@selector(toggleStage) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:toggleButton];
+    */
+    /////////////////////////////////////////////////////////////////
+    
+    UIButton * undoButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 120,50,50,50)];
+    undoButton.backgroundColor = [UIColor lightGrayColor];
+    [undoButton setImage:[UIImage imageNamed:@"arrow_undo"] forState:UIControlStateNormal];
+    undoButton.layer.cornerRadius = 25;
+    [undoButton addTarget:self action:@selector(undoStage) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:undoButton];
+    
+    /////////////////////////////////////////////////////////////////
+    
+    UIButton * clearButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 60,50,50,50)];
+    clearButton.backgroundColor = [UIColor redColor];
+    [clearButton setImage:[UIImage imageNamed:@"Delete"] forState:UIControlStateNormal];
+    clearButton.layer.cornerRadius = 25;
+    [clearButton addTarget:self action:@selector(clearStage) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:clearButton];
+    
+    /////////// sample toggle switch
+    UISwitch * sampleSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(10, 50, 50, 50)];
+    [sampleSwitch  addTarget:self action:@selector(toggleStage) forControlEvents:UIControlEventTouchUpInside];
+    sampleSwitch.tintColor = [UIColor orangeColor];
+    [self.view addSubview:sampleSwitch];
     
 }
 
 -(void)toggleStage
 {
-
+    
+    NSMutableArray * lines = scribbleView.lines;
+    
     [scribbleView removeFromSuperview];
     
     if([scribbleView isMemberOfClass:[DLAStageScribble class]])
         {
             scribbleView = [[DLAStageLines alloc] initWithFrame:self.view.frame];
+            
         } else
         {
             scribbleView = [[DLAStageScribble alloc] initWithFrame:self.view.frame];
         }
-    [self.view insertSubview:scribbleView atIndex:0];
     
+    scribbleView.lineWidth = lineWidth;
+    scribbleView.lineColor = lineColor;
+    
+    if(lines != nil) scribbleView.lines = lines;
+    
+    [self.view insertSubview:scribbleView atIndex:0];
+}
 
+-(void)undoStage
+{
+    [scribbleView undo];
+}
+
+-(void)clearStage
+{
+    [scribbleView clearStage];
 }
 
 
 -(void)changeSize:(UISlider *)sender
 {
+    lineWidth = sender.value;
     scribbleView.lineWidth = sender.value;
-    //linesView.lineWidth = sender.value;
     
+    //linesView.lineWidth = sender.value;
 }
 
 -(void)changeColor:(UIButton *)sender
 {
+    lineColor = sender.backgroundColor;
     scribbleView.lineColor = sender.backgroundColor;
+    
     //linesView.lineColor = sender.backgroundColor;
 }
-
-
--(void)drawEraser:(UIButton *)sender
-{
-    scribbleView.lineColor = sender.backgroundColor;
-    //linesView.lineColor = sender.backgroundColor;
-}
-
-
 
 -(BOOL)prefersStatusBarHidden { return YES; }
-
 
 - (void)didReceiveMemoryWarning
 {

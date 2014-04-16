@@ -346,10 +346,8 @@
 
 - (NSDictionary *)getListItem:(NSInteger)row
 {
-
     NSArray * reverseArray = [[listItems reverseObjectEnumerator] allObjects];
     return reverseArray[row];
-    
 }
 
 

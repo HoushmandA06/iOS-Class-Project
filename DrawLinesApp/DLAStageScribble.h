@@ -12,6 +12,7 @@
 
 @ property (nonatomic) float lineWidth;
 @ property (nonatomic) UIColor * lineColor;
+@ property (nonatomic) NSMutableArray * lines;
 
 -(void)clearStage;
 -(void)undo;
