@@ -11,9 +11,10 @@
 @interface DLAStageScribble : UIView
 
 @ property (nonatomic) float lineWidth;
-
 @ property (nonatomic) UIColor * lineColor;
 
+-(void)clearStage;
+-(void)undo;
 
 
 @end

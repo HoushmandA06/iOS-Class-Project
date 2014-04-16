@@ -17,7 +17,8 @@
 @implementation DLAViewController
 {
     DLAStageScribble * scribbleView;
-    
+    DLAStageLines * linesView;
+   
     UIView * colorsDrawer;
 
 }
@@ -40,10 +41,18 @@
 {
     [super viewDidLoad];
     
-    scribbleView = [[DLAStageScribble alloc] initWithFrame:self.view.frame];
-    // scribbleView.lineColor = [UIColor blueColor];
-    [self.view addSubview:scribbleView];
+scribbleView = [[DLAStageLines alloc] initWithFrame:self.view.frame];
+[self.view addSubview:scribbleView];
     
+  //  linesView = [[DLAStageLines alloc] initWithFrame:self.view.frame];
+  //  [self.view addSubview:linesView];
+    
+    
+//    UIButton * eraser = [[UIButton alloc] initWithFrame:CGRectMake(40,280,40,40)];
+//    eraser.backgroundColor = [UIColor whiteColor];
+//    eraser.layer.cornerRadius = 6;
+//    [eraser addTarget:self action:@selector(drawEraser:) forControlEvents:UIControlEventAllEvents];
+//    [self.view addSubview:eraser];
     
     //widthSlider button
     UISlider * widthSlider = [[UISlider alloc] initWithFrame:CGRectMake(20, SCREEN_HEIGHT - 43,280,23)];
@@ -60,14 +69,11 @@
     colorsDrawer = [[UIView alloc] initWithFrame:CGRectMake(0,0,SCREEN_WIDTH, 40)];
     
     //colors defined
-    NSArray * colors = @[
-                         [UIColor colorWithRed:0.251f green:0.251f blue:0.251f alpha:1.0f],
+    NSArray * colors = @[[UIColor colorWithRed:0.251f green:0.251f blue:0.251f alpha:1.0f],
                          [UIColor colorWithRed:0.008f green:0.353f blue:0.431f alpha:1.0f],
                          [UIColor colorWithRed:0.016f green:0.604f blue:0.671f alpha:1.0f],
                          [UIColor colorWithRed:1.000f green:0.988f blue:0.910f alpha:1.0f],
-                         [UIColor colorWithRed:1.000f green:0.298f blue:0.153f alpha:1.0f]
-     ];
-    
+                         [UIColor colorWithRed:1.000f green:0.298f blue:0.153f alpha:1.0f]];
     
     float buttonWidth = SCREEN_WIDTH/[colors count]; //use to set colorButton width
     
@@ -81,27 +87,55 @@
         [colorsDrawer addSubview:button];
     }
     [self.view addSubview:colorsDrawer];
-
     
-
-    // going to try to make a segmented control panel for color change (red, white, blue)
-//    UISegmentedControl *gameSizeChoices = [[UISegmentedControl alloc] initWithItems:gameSizes];
-//    gameSizeChoices.frame = CGRectMake(60, SCREEN_HEIGHT - 50, 200, 30);
-//    [gameSizeChoices addTarget:self action:@selector(resetGameBoard:)
-//              forControlEvents:UIControlEventValueChanged];
-//    [self.view addSubview:gameSizeChoices];
+    /////////////////////////////////////////////////////////////////
+    
+    UIButton * toggleButton = [[UIButton alloc] initWithFrame:CGRectMake(10,50,50,50)];
+    toggleButton.backgroundColor = [UIColor orangeColor];
+    toggleButton.layer.cornerRadius = 25;
+    [toggleButton addTarget:self action:@selector(toggleStage) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:toggleButton];
     
 }
+
+-(void)toggleStage
+{
+
+    [scribbleView removeFromSuperview];
+    
+    if([scribbleView isMemberOfClass:[DLAStageScribble class]])
+        {
+            scribbleView = [[DLAStageLines alloc] initWithFrame:self.view.frame];
+        } else
+        {
+            scribbleView = [[DLAStageScribble alloc] initWithFrame:self.view.frame];
+        }
+    [self.view insertSubview:scribbleView atIndex:0];
+    
+
+}
+
 
 -(void)changeSize:(UISlider *)sender
 {
     scribbleView.lineWidth = sender.value;
+    //linesView.lineWidth = sender.value;
+    
 }
 
 -(void)changeColor:(UIButton *)sender
 {
     scribbleView.lineColor = sender.backgroundColor;
+    //linesView.lineColor = sender.backgroundColor;
 }
+
+
+-(void)drawEraser:(UIButton *)sender
+{
+    scribbleView.lineColor = sender.backgroundColor;
+    //linesView.lineColor = sender.backgroundColor;
+}
+
 
 
 -(BOOL)prefersStatusBarHidden { return YES; }

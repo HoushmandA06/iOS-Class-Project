@@ -21,62 +21,76 @@
         // Initialization code
 
         lines = [@[] mutableCopy];
-        self.backgroundColor = [UIColor whiteColor];
+        self.lineWidth = 2.0;  // default width
+        self.lineColor = [UIColor colorWithWhite:0.3 alpha:1.0];  // default color
     }
     return self;
 }
 
 
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
+-(void)clearStage
+{
+    [lines removeAllObjects];
+    [self setNeedsDisplay]; // re-renders the page
+}
 
- 
+-(void)undo
+{
+    [lines removeLastObject];
+    
+    [self setNeedsDisplay];
+}
+
+
+
  - (void)drawRect:(CGRect)rect
 {
-    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextRef context = UIGraphicsGetCurrentContext(); // remind me what is context
+    CGContextSetLineCap(context, kCGLineCapRound);
+    CGContextClearRect(context, rect);
+    CGContextSetLineWidth(context, self.lineWidth);
     CGContextClearRect(context, rect);
     
-    [[UIColor blueColor] set]; //color of line
+    [self.lineColor set];
     
-    CGContextSetLineWidth(context, 2.0); //thickness of the line
-    CGContextSetLineCap(context, kCGLineCapRound); //makes a line a dot if just pressing once
-    
-    
-    
-    for (NSArray * line in lines) {
+    for (NSDictionary * line in lines) {
         
-        CGPoint start = [line[0] CGPointValue];
-        CGPoint end = [line[1] CGPointValue];
+        CGContextSetLineWidth(context, [line[@"width"] floatValue]);
+        [(UIColor *)line[@"color"] set];
         
+        CGPoint start = [line[@"points"][0] CGPointValue];
+        CGPoint end = [line[@"points"][1] CGPointValue];
+            
         CGContextMoveToPoint(context, start.x, start.y);
         CGContextAddLineToPoint(context, end.x, end.y);
-
-        CGContextStrokePath(context); //run this to break up a line or shape
-        
+        CGContextStrokePath(context); // to break up line properties for next line
     }
-
  }
 
  
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    
+    
     for (UITouch * touch in touches)
     {
         CGPoint location = [touch locationInView:self];
         
-        [lines addObject:[@[
-                            [NSValue valueWithCGPoint:location],
-                            [NSValue valueWithCGPoint:location]
-                            ] mutableCopy]];
-        
-//        UIBezierPath * path = [[UIBezierPath alloc] init];
-//        [path addLineToPoint:location];
-//        [self addSubview:path.copy];
-//        [self.layer addSublayer:path.bezierPath];
+        [lines addObject:[@{
+                                @"color" : self.lineColor,
+                                @"width" : @(self.lineWidth), // makes the float (or an int) an object
+                                @"points" : [
+                                             @[
+                                               [NSValue valueWithCGPoint:location],
+                                               [NSValue valueWithCGPoint:location]
+                                               ] mutableCopy]
+                                } mutableCopy]];
         
         
         NSLog(@"Touch X %f Y %f",location.x,location.y);
+        
+        
     }
     
     [self setNeedsDisplay];
@@ -88,9 +102,10 @@
     {
         CGPoint location = [touch locationInView:self];
         
-        [lines lastObject][1] = [NSValue valueWithCGPoint:location];
+       // [lines lastObject][1] = [NSValue valueWithCGPoint:location];
         
-        
+        [lines lastObject][@"points"][1] = [NSValue valueWithCGPoint:location];
+
         
         NSLog(@"Touch X %f Y %f",location.x,location.y);
     }
@@ -103,7 +118,9 @@
     {
         CGPoint location = [touch locationInView:self];
         
-        [lines lastObject][1] = [NSValue valueWithCGPoint:location];
+        // [lines lastObject][1] = [NSValue valueWithCGPoint:location];
+      
+        [lines lastObject][@"points"][1] = [NSValue valueWithCGPoint:location];
 
         
         NSLog(@"Touch X %f Y %f",location.x,location.y);

@@ -11,11 +11,12 @@
 @implementation DLAStageScribble
 {
     NSMutableArray * scribbles;
-    UIButton * redColorButton;
-    UIButton * greenColorButton;
-    UIButton * blueColorButton;
     UISlider * widthSlider;
     NSArray * sliderRange;
+    
+    UIButton * redColorButton;
+    UIButton * greenColorButton;
+    UIButton * blueColorButton;    
  }
 
 
@@ -66,19 +67,26 @@
 }
 
 
+-(void)clearStage
+{
+    [scribbles removeAllObjects];
+    [self setNeedsDisplay]; // re-renders the page
+}
+
+-(void)undo
+{
+    [scribbles removeLastObject];
+    
+    [self setNeedsDisplay];
+}
 
 
-//-(void)changeLineColor:(UIButton *)sender
-//{
-//    [self setLineColor:sender.backgroundColor];
-//}
+
 
 -(void)setLineWidth:(float)lineWidth
 {
-
     _lineWidth = lineWidth;
     [self setNeedsDisplay];
-
 }
 
     
@@ -108,13 +116,15 @@
         NSLog(@"%d",[scribble count]);
 
         NSArray * points = scribble[@"points"];
-        
         CGPoint start = [points[0] CGPointValue];
         CGContextMoveToPoint(context, start.x, start.y);
+        
         for (NSValue * value in points) {
 
+            //int index = [scribble indexOfObject:value];
+            //if (index > 0 || [scribble count] < 3)
+            
             CGPoint point = [value CGPointValue];
-
             CGContextAddLineToPoint(context, point.x, point.y);
         }
         CGContextStrokePath(context); //run this to break up a line or shape
