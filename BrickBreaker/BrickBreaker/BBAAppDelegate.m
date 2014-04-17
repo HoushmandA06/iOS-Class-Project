@@ -18,7 +18,7 @@
     
     self.window.rootViewController = [[BBAViewController alloc] initWithNibName:nil bundle:nil];
     
-    self.window.backgroundColor = [UIColor whiteColor];
+    self.window.backgroundColor = [UIColor blackColor];
     [self.window makeKeyAndVisible];
     return YES;
 }

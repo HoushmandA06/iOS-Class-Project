@@ -8,6 +8,8 @@
 
 #import "BBAViewController.h"
 #import "BBALevelController.h"
+#import "MOVE.h"
+
 
 @interface BBAViewController ()
 
@@ -16,6 +18,7 @@
 @implementation BBAViewController
 {
     BBALevelController * level;
+    UIButton * start;
     
 }
 
@@ -23,12 +26,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-
-        level = [[BBALevelController alloc] initWithNibName:nil bundle:nil];
-        [self.view addSubview:level.view];
-               
-        [level resetLevel];
-
+      
     }
     return self;
 }
@@ -37,11 +35,33 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    level = [[BBALevelController alloc] initWithNibName:nil bundle:nil];
+    [self.view addSubview:level.view];
+    
+    start = [[UIButton alloc] initWithFrame:CGRectMake((SCREEN_WIDTH)/2 - 50,(SCREEN_HEIGHT)/2-50,100,100)];
+    start.backgroundColor = [UIColor colorWithWhite:0.30 alpha:0.5];
+
+    // UNDERSTAND HOW TO CHANGE BUTTON TEXT FONT, SIZE, STYLE
+    
+    [start setTitle:@"START" forState:UIControlStateNormal];
+    start.layer.cornerRadius = 50;
+    [start addTarget:self action:@selector(goLevelScreen) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:start];
+
 }
+
+-(void)goLevelScreen
+{
+    [level resetLevel];
+    [start removeFromSuperview];
+}
+
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+    
     // Dispose of any resources that can be recreated.
 }
 

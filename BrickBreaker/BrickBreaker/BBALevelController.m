@@ -7,6 +7,7 @@
 //
 
 #import "BBALevelController.h"
+#import "MOVE.h"
 
 @interface BBALevelController () <UICollisionBehaviorDelegate>
 
@@ -40,6 +41,7 @@
 @implementation BBALevelController
 {
     float paddleWidth;
+    float points;
     
 }
 
@@ -53,7 +55,7 @@
         self.view.backgroundColor = [UIColor colorWithWhite:0.1 alpha:1.0];
         
         paddleWidth = 80;
-        
+        points = 0;
         
     }
     return self;
@@ -64,6 +66,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
+
+
+
 
 -(void)resetLevel
 {
@@ -91,16 +96,45 @@
     self.paddleDynamicsProp = [self createPropertiesForItems:@[self.paddle]];
 
     self.ballsDynamicsProp.allowsRotation = YES;
-    self.paddleDynamicsProp.density = 100,000;
-    self.bricksDynamicsProp.density = 100,000;
+    self.paddleDynamicsProp.density = 100000;
+    self.bricksDynamicsProp.density = 100000;
     
     self.ballsDynamicsProp.elasticity = 1.0;
     self.ballsDynamicsProp.resistance = 0.0;
+}
+
+-(void)collisionBehavior:(UICollisionBehavior *)behavior beganContactForItem:(id<UIDynamicItem>)item1 withItem:(id<UIDynamicItem>)item2 atPoint:(CGPoint)p
+{
+    UIView * tempBrick; // lets hold on to what the brick was, now that we found it, so we can do something with it
     
+    for (UIView * brick in self.bricks)
+    {
+        if([item1 isEqual:brick] || [item2 isEqual:brick]) //isEqual more specific than ==
+        {
+            if (brick.alpha == 0.5)
+            {
+            tempBrick = brick;
+            [self.collider removeItem:brick]; //removing brick collision behavior dynamics
+            
+            UILabel * pointLabel = [[UILabel alloc] initWithFrame:CGRectMake(tempBrick.frame.origin.x, 5, 50, 50)];
+            pointLabel.text = @"+100";
+            [pointLabel setTextColor:[UIColor orangeColor]];
+            [self.view addSubview:pointLabel];
+                
+            [MOVE animateView:pointLabel properties:@{@"alpha":@0,@"duration":@0.6,@"delay":@0.0, @"remove":@YES}];
+                
+            points += 100;
+            NSLog(@"Total Points = %f", points);
+            
+            [brick removeFromSuperview];
+            }
+            brick.alpha = 0.5;
+       }
+    }
+        if(tempBrick != nil) [self.bricks removeObjectIdenticalTo:tempBrick]; //removes brick from array
 }
 
 
-    
 -(UIDynamicItemBehavior *)createPropertiesForItems:(NSArray *)items
 {
     
@@ -108,12 +142,8 @@
     properties.allowsRotation = NO;
     properties.friction = 0.0;
     [self.animator addBehavior:properties];
-    
     return properties;
-    
 }
-    
-
 
 
 -(NSArray *)allItems
@@ -122,7 +152,6 @@
     
     for (UIView*item in self.balls) [items addObject:item];
     for (UIView*item in self.bricks) [items addObject:item];
-    
     return items;
 }
 
@@ -134,11 +163,7 @@
     self.paddle.layer.cornerRadius = 3;
     [self.view addSubview:self.paddle];
    
-    
-    
 
-    
-                
     
 }
 
@@ -179,7 +204,7 @@
     // start ball off with a push
     self.pusher = [[UIPushBehavior alloc] initWithItems:self.balls mode:UIPushBehaviorModeInstantaneous];
     
-    self.pusher.pushDirection = CGVectorMake(0.05, 0.05);  // two speeds x,y; altering speeds give different direc
+    self.pusher.pushDirection = CGVectorMake(0.02, 0.02);  // two speeds x,y; altering speeds give different direc
     
     self.pusher.active = YES; // because push is instantaneous, it will only happ once
     

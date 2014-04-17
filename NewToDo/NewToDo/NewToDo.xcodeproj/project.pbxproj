@@ -472,6 +472,7 @@
 				0FAB21EF18F44AAB00136587 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0FAB21F018F44AAB00136587 /* Build configuration list for PBXNativeTarget "NewToDoTests" */ = {
 			isa = XCConfigurationList;
@@ -480,6 +481,7 @@
 				0FAB21F218F44AAB00136587 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -107,9 +107,7 @@
     
     NSLog(@"clicking");
     NSLog(@"todoitem : %@",todoitem);
-    
-    // missing some code here to make newTodoitem work
-    
+        
     NSDictionary * todoInfo = @{@"name":todoitem};
     
     if([todoitem  isEqual: @""])
