@@ -14,13 +14,17 @@
 @end
 
 @implementation BBAViewController
+{
+    BBALevelController * level;
+    
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
 
-        BBALevelController * level = [[BBALevelController alloc] initWithNibName:nil bundle:nil];
+        level = [[BBALevelController alloc] initWithNibName:nil bundle:nil];
         [self.view addSubview:level.view];
                
         [level resetLevel];
@@ -40,6 +44,12 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+- (BOOL)prefersStatusBarHidden {
+    return YES;
+}
+
 
 /*
 #pragma mark - Navigation

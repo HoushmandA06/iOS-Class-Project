@@ -70,17 +70,68 @@
     self.animator  = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
     
     [self createPaddle];
+    [self createBall];
+    [self createBricks];
+
+    self.collider = [[UICollisionBehavior alloc] initWithItems:[self allItems]];
+    self.collider.collisionDelegate = self;
     
+    //includes boundaries and items for collisions by using everything
+    self.collider.collisionMode = UICollisionBehaviorModeEverything;
+
+    //sets the walls as the boundaries
+    self.collider.translatesReferenceBoundsIntoBoundary = YES;
     
+    [self.animator addBehavior:self.collider];
+    
+    /////////////////////////// initiating ball properties below
+    
+    self.ballsDynamicsProp = [self createPropertiesForItems:self.balls];
+    self.bricksDynamicsProp = [self createPropertiesForItems:self.bricks];
+    self.paddleDynamicsProp = [self createPropertiesForItems:@[self.paddle]];
+
+    self.ballsDynamicsProp.allowsRotation = YES;
+    self.paddleDynamicsProp.density = 100,000;
+    self.bricksDynamicsProp.density = 100,000;
+    
+    self.ballsDynamicsProp.elasticity = 1.0;
+    self.ballsDynamicsProp.resistance = 0.0;
     
 }
+
+
+    
+-(UIDynamicItemBehavior *)createPropertiesForItems:(NSArray *)items
+{
+    
+    UIDynamicItemBehavior * properties = [[UIDynamicItemBehavior alloc] initWithItems:items];
+    properties.allowsRotation = NO;
+    properties.friction = 0.0;
+    [self.animator addBehavior:properties];
+    
+    return properties;
+    
+}
+    
+
+
+
+-(NSArray *)allItems
+{
+    NSMutableArray * items = [@[self.paddle] mutableCopy];
+    
+    for (UIView*item in self.balls) [items addObject:item];
+    for (UIView*item in self.bricks) [items addObject:item];
+    
+    return items;
+}
+
 
 -(void)createPaddle
 {
     self.paddle = [[UIView alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - paddleWidth)/2, SCREEN_HEIGHT - 20, paddleWidth, 6)];
     self.paddle.backgroundColor = [UIColor colorWithWhite:0.5 alpha:1.0];
     self.paddle.layer.cornerRadius = 3;
-    //[paddle setImage:[UIImage imageNamed:@"Delete"] forState:];
     [self.view addSubview:self.paddle];
    
     
@@ -93,17 +144,48 @@
 
 -(void)createBricks
 {
+ 
+    int brickCols = 8; // setting number of bricks
     
+    float brickWidth = (SCREEN_WIDTH - (10 * (brickCols +1))) / brickCols;
     
+    for (int i = 0; i < brickCols; i++)
+    {
+        float brickX = ((brickWidth + 10) * i) + 10;
+        UIImageView * brick = [[UIImageView alloc] initWithFrame:CGRectMake(brickX, 10, brickWidth, 30)];
+        brick.layer.cornerRadius = 6;
+        brick.backgroundColor = [UIColor colorWithWhite:0.7 alpha:1.0];
+        brick.image = [UIImage imageNamed:@"beast"];
+
+        [self.view addSubview:brick];
+        [self.bricks addObject:brick];
+        
+    }
 }
 
 -(void)createBall
 {
     CGRect frame = self.paddle.frame;  //creating a frame based on the position of the paddle
     
-    UIView * ball = [[UIView alloc] initWithFrame:CGRectMake(0,frame.origin.y - 12,10,10)];
+    UIImageView * ball = [[UIImageView alloc] initWithFrame:CGRectMake(frame.origin.x,frame.origin.y - 12,10,10)];
+    ball.backgroundColor = [UIColor whiteColor];
+    ball.image = [UIImage imageNamed:@"grenade"];
+    ball.layer.cornerRadius = 5;
+    [self.view addSubview:ball];
     
+    // add ball to balls array
+    [self.balls addObject:ball];
     
+    // start ball off with a push
+    self.pusher = [[UIPushBehavior alloc] initWithItems:self.balls mode:UIPushBehaviorModeInstantaneous];
+    
+    self.pusher.pushDirection = CGVectorMake(0.05, 0.05);  // two speeds x,y; altering speeds give different direc
+    
+    self.pusher.active = YES; // because push is instantaneous, it will only happ once
+    
+    [self.animator addBehavior:self.pusher]; // since animator controls it, have to add pusher to it
+    
+
     
     
 }
