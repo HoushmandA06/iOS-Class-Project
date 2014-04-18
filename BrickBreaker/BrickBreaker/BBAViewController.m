@@ -31,8 +31,6 @@
         self.view.backgroundColor = [UIColor blackColor];
         
         
-    
-    
     }
     return self;
 }
@@ -59,22 +57,22 @@
 -(void)goLevelScreen
 {
     level = [[BBALevelController alloc] initWithNibName:nil bundle:nil];
-    [self.view addSubview:level.view];
     level.delegate = self;
 
     level.view.frame = CGRectMake(0,40, SCREEN_WIDTH, SCREEN_HEIGHT-40);  // level frame
+    
     [self.view addSubview:level.view];
     
-    [level resetLevel];
     [start removeFromSuperview];
+    [level resetLevel];
     [self scoreCard];
 }
 
 
 -(void)scoreCard
 {
-    scoreCard = [[UILabel alloc] initWithFrame:CGRectMake(10,10,300,40)];
-    scoreCard.backgroundColor = [UIColor lightGrayColor];
+    scoreCard = [[UILabel alloc] initWithFrame:CGRectMake(0,0,100,40)];
+    scoreCard.backgroundColor = [UIColor blueColor];
     scoreCard.textColor = [UIColor orangeColor];
     [self.view addSubview:scoreCard];
     
@@ -83,7 +81,7 @@
 //below 2 are delegate methods
 -(void)addPoints:(int)points
 {
-    scoreCard.text = [NSString stringWithFormat:@"%d!",points];
+    scoreCard.text = [NSString stringWithFormat:@"Score %d",points];
 }
 
 -(void)gameDone

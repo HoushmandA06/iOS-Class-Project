@@ -137,14 +137,11 @@
         
         NSLog(@"Start Over");
         [ball removeFromSuperview];
-    //
         [self.balls removeObject:ball];
         [self.collider removeItem:ball];
 
         if ((self.balls.count == 0) && [self.delegate respondsToSelector:@selector(gameDone)]) [self.delegate gameDone];
         
-        [self.delegate gameDone];
-
         
         //need this for optional method in delegate protocol in .h
     //    if([self.delegate respondsToSelector:@selector(gameDone)]) [self.delegate gameDone];
@@ -184,8 +181,6 @@
            
             [self.delegate addPoints:points];
                 
-            
-
             NSLog(@"Total Points = %f",points);
             [brick removeFromSuperview];
             
