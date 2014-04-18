@@ -11,7 +11,7 @@
 #import "MOVE.h"
 
 
-@interface BBAViewController ()
+@interface BBAViewController () <BBALevelDelegate>
 
 @end
 
@@ -19,6 +19,7 @@
 {
     BBALevelController * level;
     UIButton * start;
+    UILabel * scoreCard;
     
 }
 
@@ -27,42 +28,69 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
       
-    
+        self.view.backgroundColor = [UIColor blackColor];
         
+        
+    
+    
     }
     return self;
 }
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    level = [[BBALevelController alloc] initWithNibName:nil bundle:nil];
-    [self.view addSubview:level.view];
-    
     start = [[UIButton alloc] initWithFrame:CGRectMake((SCREEN_WIDTH)/2 - 50,(SCREEN_HEIGHT)/2-50,100,100)];
     start.backgroundColor = [UIColor colorWithWhite:0.30 alpha:0.5];
-
-    self.view.backgroundColor = [UIColor whiteColor]; // why doesnt this change the background
     
     // UNDERSTAND HOW TO CHANGE BUTTON TEXT FONT, SIZE, STYLE
-    
-   
-    
-    
     
     [start setTitle:@"START" forState:UIControlStateNormal];
     start.layer.cornerRadius = 50;
     [start addTarget:self action:@selector(goLevelScreen) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:start];
-
+    
 }
+
 
 -(void)goLevelScreen
 {
+    level = [[BBALevelController alloc] initWithNibName:nil bundle:nil];
+    [self.view addSubview:level.view];
+    level.delegate = self;
+
+    level.view.frame = CGRectMake(0,40, SCREEN_WIDTH, SCREEN_HEIGHT-40);  // level frame
+    [self.view addSubview:level.view];
+    
     [level resetLevel];
     [start removeFromSuperview];
+    [self scoreCard];
+}
+
+
+-(void)scoreCard
+{
+    scoreCard = [[UILabel alloc] initWithFrame:CGRectMake(10,10,300,40)];
+    scoreCard.backgroundColor = [UIColor lightGrayColor];
+    scoreCard.textColor = [UIColor orangeColor];
+    [self.view addSubview:scoreCard];
+    
+}
+
+//below 2 are delegate methods
+-(void)addPoints:(int)points
+{
+    scoreCard.text = [NSString stringWithFormat:@"%d!",points];
+}
+
+-(void)gameDone
+{
+    [level.view removeFromSuperview];
+    [self.view addSubview:start];
+    [scoreCard removeFromSuperview];
 }
 
 

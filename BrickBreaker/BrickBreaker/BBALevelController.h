@@ -20,7 +20,7 @@
 
 @protocol BBALevelDelegate <NSObject>
 
-@optional
+@optional  //when you run optional methods in protocol, you need an if/then test where it's being called
 
 -(void) addPoints:(int)points;
 -(void) gameDone;

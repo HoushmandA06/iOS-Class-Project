@@ -60,11 +60,10 @@
         UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapScreen:)];
         [self.view addGestureRecognizer:tap];
         
-        score = [[UILabel alloc] initWithFrame:CGRectMake(400,250,300,100)];
-        score.backgroundColor = self.view.backgroundColor;
-        
-        score.textColor = [UIColor orangeColor];
-        [self.view addSubview:score];
+//        score = [[UILabel alloc] initWithFrame:CGRectMake(400,250,300,100)];
+//        score.backgroundColor = self.view.backgroundColor;
+//        score.textColor = [UIColor orangeColor];
+//        [self.view addSubview:score];
     
     }
     return self;
@@ -138,14 +137,22 @@
         
         NSLog(@"Start Over");
         [ball removeFromSuperview];
+    //
+        [self.balls removeObject:ball];
         [self.collider removeItem:ball];
+
+        if ((self.balls.count == 0) && [self.delegate respondsToSelector:@selector(gameDone)]) [self.delegate gameDone];
         
-//        if([self.delegate respondsToSelector:@selector(gameDone)])
-  //      [self.delegate gameDone];
+        [self.delegate gameDone];
+
         
+        //need this for optional method in delegate protocol in .h
+    //    if([self.delegate respondsToSelector:@selector(gameDone)]) [self.delegate gameDone];
     }
 
 }
+
+
 
 -(void)collisionBehavior:(UICollisionBehavior *)behavior beganContactForItem:(id<UIDynamicItem>)item1 withItem:(id<UIDynamicItem>)item2 atPoint:(CGPoint)p
 {
@@ -167,15 +174,18 @@
             [pointLabel setTextColor:[UIColor orangeColor]]; //can also say pointLabel.textColor = [UIColor color]
             pointLabel.textAlignment = NSTextAlignmentCenter;
             pointLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:12];
-                
             [self.view addSubview:pointLabel];
            
             [MOVE animateView:pointLabel properties:@{@"alpha":@0,@"duration":@0.6,@"delay":@0.0, @"remove":@YES}];
             points += brick.tag; //no point counter will be assigned to the brick.tag that is assigned to random #
             
+            
+            //we get to call a method that belongs to the delegate's class (also to a diff object, not the instance of the current class). Notice that the method is not global. its not in .h file    
+           
+            [self.delegate addPoints:points];
                 
-            score.text = [NSString stringWithFormat:@"%.f!",points];
-                
+            
+
             NSLog(@"Total Points = %f",points);
             [brick removeFromSuperview];
             
@@ -210,7 +220,7 @@
 
 -(void)createPaddle
 {
-    self.paddle = [[UIView alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - paddleWidth)/2, SCREEN_HEIGHT - 20, paddleWidth, 6)];
+    self.paddle = [[UIView alloc] initWithFrame:CGRectMake((SCREEN_WIDTH - paddleWidth)/2, SCREEN_HEIGHT - 60, paddleWidth, 6)]; // changed screen height for paddle by 40 because we lowered frame by 40 in level frame
     self.paddle.backgroundColor = [UIColor colorWithWhite:0.5 alpha:1.0];
     self.paddle.layer.cornerRadius = 3;
     [self.view addSubview:self.paddle];
@@ -224,7 +234,7 @@
 {
  
     int brickCols = 8; // setting number of bricks
-    int brickRows = 4;
+    int brickRows = 3;
     
     float brickWidth = (SCREEN_WIDTH - (10 * (brickCols +1))) / brickCols;
     float brickHeight = 30;
@@ -255,15 +265,12 @@
 {
     int multiBall = 5;
     
-    
-    
     for(int x = 0; x < multiBall; x++)
-        
     {
     
     CGRect frame = self.paddle.frame;  //creating a frame based on the position of the paddle
     
-    UIImageView * ball = [[UIImageView alloc] initWithFrame:CGRectMake(frame.origin.x,frame.origin.y - 12,20,20)];
+    UIImageView * ball = [[UIImageView alloc] initWithFrame:CGRectMake(frame.origin.x,frame.origin.y - 52,20,20)];
     ball.backgroundColor = [UIColor lightGrayColor];
     ball.image = [UIImage imageNamed:@"grenade"];
     ball.layer.cornerRadius = 10;
@@ -275,7 +282,7 @@
     // start ball off with a push
     self.pusher = [[UIPushBehavior alloc] initWithItems:self.balls mode:UIPushBehaviorModeInstantaneous];
     
-    self.pusher.pushDirection = CGVectorMake(0.07, 0.07);  // two speeds x,y; altering speeds give different direc
+    self.pusher.pushDirection = CGVectorMake(0.04, 0.04);  // two speeds x,y; altering speeds give different direc
     
     self.pusher.active = YES; // because push is instantaneous, it will only happ once
     
