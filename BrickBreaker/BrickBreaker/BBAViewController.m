@@ -27,6 +27,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
       
+    
+        
     }
     return self;
 }
@@ -42,7 +44,13 @@
     start = [[UIButton alloc] initWithFrame:CGRectMake((SCREEN_WIDTH)/2 - 50,(SCREEN_HEIGHT)/2-50,100,100)];
     start.backgroundColor = [UIColor colorWithWhite:0.30 alpha:0.5];
 
+    self.view.backgroundColor = [UIColor whiteColor]; // why doesnt this change the background
+    
     // UNDERSTAND HOW TO CHANGE BUTTON TEXT FONT, SIZE, STYLE
+    
+   
+    
+    
     
     [start setTitle:@"START" forState:UIControlStateNormal];
     start.layer.cornerRadius = 50;

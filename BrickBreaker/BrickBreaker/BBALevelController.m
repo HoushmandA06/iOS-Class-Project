@@ -42,7 +42,7 @@
 {
     float paddleWidth;
     float points;
-    
+    UILabel * score;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -57,9 +57,27 @@
         paddleWidth = 80;
         points = 0;
         
+        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapScreen:)];
+        [self.view addGestureRecognizer:tap];
+        
+        score = [[UILabel alloc] initWithFrame:CGRectMake(400,250,300,100)];
+        score.backgroundColor = self.view.backgroundColor;
+        
+        score.textColor = [UIColor orangeColor];
+        [self.view addSubview:score];
+    
     }
     return self;
 }
+
+
+-(void)tapScreen:(UITapGestureRecognizer *)gr  //gesture recognizer variable
+{
+    CGPoint location = [gr locationInView:self.view];
+    self.attacher.anchorPoint = CGPointMake(location.x, self.attacher.anchorPoint.y);
+
+}
+
 
 - (void)viewDidLoad
 {
@@ -85,10 +103,18 @@
     self.collider.collisionMode = UICollisionBehaviorModeEverything;
 
     //sets the walls as the boundaries
-    self.collider.translatesReferenceBoundsIntoBoundary = YES;
+   // self.collider.translatesReferenceBoundsIntoBoundary = YES;
     
+    // sets left,right,top as boundary, floor as out of bounds
+    int w = self.view.frame.size.width;
+    int h = self.view.frame.size.height;
+    
+    [self.collider addBoundaryWithIdentifier:@"ceiling" fromPoint:CGPointMake(0,0) toPoint:CGPointMake(w, 0)];
+    [self.collider addBoundaryWithIdentifier:@"leftWall" fromPoint:CGPointMake(0,0) toPoint:CGPointMake(0,h)];
+    [self.collider addBoundaryWithIdentifier:@"rightWall" fromPoint:CGPointMake(w,0) toPoint:CGPointMake(w,h)];
+    [self.collider addBoundaryWithIdentifier:@"floor" fromPoint:CGPointMake(0,h+10) toPoint:CGPointMake(w,h+10)];
     [self.animator addBehavior:self.collider];
-    
+
     /////////////////////////// initiating ball properties below
     
     self.ballsDynamicsProp = [self createPropertiesForItems:self.balls];
@@ -103,6 +129,24 @@
     self.ballsDynamicsProp.resistance = 0.0;
 }
 
+
+-(void)collisionBehavior:(UICollisionBehavior *)behavior beganContactForItem:(id<UIDynamicItem>)item withBoundaryIdentifier:(id<NSCopying>)identifier atPoint:(CGPoint)p
+{
+    if([(NSString *)identifier isEqualToString:@"floor"])
+    {
+        UIView * ball = (UIView *)item;
+        
+        NSLog(@"Start Over");
+        [ball removeFromSuperview];
+        [self.collider removeItem:ball];
+        
+//        if([self.delegate respondsToSelector:@selector(gameDone)])
+  //      [self.delegate gameDone];
+        
+    }
+
+}
+
 -(void)collisionBehavior:(UICollisionBehavior *)behavior beganContactForItem:(id<UIDynamicItem>)item1 withItem:(id<UIDynamicItem>)item2 atPoint:(CGPoint)p
 {
     UIView * tempBrick; // lets hold on to what the brick was, now that we found it, so we can do something with it
@@ -113,20 +157,28 @@
         {
             if (brick.alpha == 0.5)
             {
+            
             tempBrick = brick;
             [self.collider removeItem:brick]; //removing brick collision behavior dynamics
             
-            UILabel * pointLabel = [[UILabel alloc] initWithFrame:CGRectMake(tempBrick.frame.origin.x, 5, 50, 50)];
-            pointLabel.text = @"+100";
-            [pointLabel setTextColor:[UIColor orangeColor]];
-            [self.view addSubview:pointLabel];
-                
-            [MOVE animateView:pointLabel properties:@{@"alpha":@0,@"duration":@0.6,@"delay":@0.0, @"remove":@YES}];
-                
-            points += 100;
-            NSLog(@"Total Points = %f", points);
+            UILabel * pointLabel = [[UILabel alloc] initWithFrame:CGRectMake(tempBrick.frame.origin.x, tempBrick.frame.origin.y - 10, 50, 50)];
             
+            pointLabel.text = [NSString stringWithFormat:@"+%d",(int)brick.tag];
+            [pointLabel setTextColor:[UIColor orangeColor]]; //can also say pointLabel.textColor = [UIColor color]
+            pointLabel.textAlignment = NSTextAlignmentCenter;
+            pointLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:12];
+                
+            [self.view addSubview:pointLabel];
+           
+            [MOVE animateView:pointLabel properties:@{@"alpha":@0,@"duration":@0.6,@"delay":@0.0, @"remove":@YES}];
+            points += brick.tag; //no point counter will be assigned to the brick.tag that is assigned to random #
+            
+                
+            score.text = [NSString stringWithFormat:@"%.f!",points];
+                
+            NSLog(@"Total Points = %f",points);
             [brick removeFromSuperview];
+            
             }
             brick.alpha = 0.5;
        }
@@ -163,7 +215,8 @@
     self.paddle.layer.cornerRadius = 3;
     [self.view addSubview:self.paddle];
    
-
+    self.attacher = [[UIAttachmentBehavior alloc] initWithItem:self.paddle attachedToAnchor:CGPointMake(CGRectGetMidX(self.paddle.frame), CGRectGetMidY(self.paddle.frame))];
+    [self.animator addBehavior:self.attacher];
     
 }
 
@@ -171,31 +224,49 @@
 {
  
     int brickCols = 8; // setting number of bricks
+    int brickRows = 4;
     
     float brickWidth = (SCREEN_WIDTH - (10 * (brickCols +1))) / brickCols;
+    float brickHeight = 30;
     
-    for (int i = 0; i < brickCols; i++)
+    for (int c = 0; c < brickCols; c++)
     {
-        float brickX = ((brickWidth + 10) * i) + 10;
-        UIImageView * brick = [[UIImageView alloc] initWithFrame:CGRectMake(brickX, 10, brickWidth, 30)];
+        for (int r = 0; r < brickRows; r++)
+        {
+        float brickX = ((brickWidth + 10) * c) + 10;
+        float brickY = ((brickHeight + 10) * r) + 10;
+        
+        UIImageView * brick = [[UIImageView alloc] initWithFrame:CGRectMake(brickX, brickY, brickWidth, brickHeight)];
         brick.layer.cornerRadius = 6;
         brick.backgroundColor = [UIColor colorWithWhite:0.7 alpha:1.0];
         brick.image = [UIImage imageNamed:@"beast"];
 
+        int random = round(arc4random_uniform(5)) * 50;
+        brick.tag = random;
+            
+            
         [self.view addSubview:brick];
         [self.bricks addObject:brick];
-        
+        }
     }
 }
 
 -(void)createBall
 {
+    int multiBall = 5;
+    
+    
+    
+    for(int x = 0; x < multiBall; x++)
+        
+    {
+    
     CGRect frame = self.paddle.frame;  //creating a frame based on the position of the paddle
     
-    UIImageView * ball = [[UIImageView alloc] initWithFrame:CGRectMake(frame.origin.x,frame.origin.y - 12,10,10)];
-    ball.backgroundColor = [UIColor whiteColor];
+    UIImageView * ball = [[UIImageView alloc] initWithFrame:CGRectMake(frame.origin.x,frame.origin.y - 12,20,20)];
+    ball.backgroundColor = [UIColor lightGrayColor];
     ball.image = [UIImage imageNamed:@"grenade"];
-    ball.layer.cornerRadius = 5;
+    ball.layer.cornerRadius = 10;
     [self.view addSubview:ball];
     
     // add ball to balls array
@@ -204,14 +275,12 @@
     // start ball off with a push
     self.pusher = [[UIPushBehavior alloc] initWithItems:self.balls mode:UIPushBehaviorModeInstantaneous];
     
-    self.pusher.pushDirection = CGVectorMake(0.02, 0.02);  // two speeds x,y; altering speeds give different direc
+    self.pusher.pushDirection = CGVectorMake(0.07, 0.07);  // two speeds x,y; altering speeds give different direc
     
     self.pusher.active = YES; // because push is instantaneous, it will only happ once
     
     [self.animator addBehavior:self.pusher]; // since animator controls it, have to add pusher to it
-    
-
-    
+    }
     
 }
 
