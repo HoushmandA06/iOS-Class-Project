@@ -43,6 +43,9 @@
     float paddleWidth;
     float points;
     UILabel * score;
+    int lives;
+    int livesLost;
+    
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -57,13 +60,14 @@
         paddleWidth = 80;
         points = 0;
         
+        lives = 3;
+        livesLost = 0;
+        
+        /////////////////
+        
         UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapScreen:)];
         [self.view addGestureRecognizer:tap];
         
-//        score = [[UILabel alloc] initWithFrame:CGRectMake(400,250,300,100)];
-//        score.backgroundColor = self.view.backgroundColor;
-//        score.textColor = [UIColor orangeColor];
-//        [self.view addSubview:score];
     
     }
     return self;
@@ -83,8 +87,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
-
-
 
 
 -(void)resetLevel
@@ -131,24 +133,28 @@
 
 -(void)collisionBehavior:(UICollisionBehavior *)behavior beganContactForItem:(id<UIDynamicItem>)item withBoundaryIdentifier:(id<NSCopying>)identifier atPoint:(CGPoint)p
 {
+    
+    for (int y = livesLost; y < lives; y++)
+    {
+    
     if([(NSString *)identifier isEqualToString:@"floor"])
     {
         UIView * ball = (UIView *)item;
-        
-        NSLog(@"Start Over");
         [ball removeFromSuperview];
         [self.balls removeObject:ball];
         [self.collider removeItem:ball];
-
-        if ((self.balls.count == 0) && [self.delegate respondsToSelector:@selector(gameDone)]) [self.delegate gameDone];
+       // livesLost++;
+       // [self.delegate addLives:livesLost];
         
-        
-        //need this for optional method in delegate protocol in .h
-    //    if([self.delegate respondsToSelector:@selector(gameDone)]) [self.delegate gameDone];
+        if ((self.balls.count == 0) && [self.delegate respondsToSelector:@selector(gameDone)])
+            {
+            [self.delegate gameDone]; //need this for optional method in delegate protocol in .h
+            NSLog(@"Start Over");
+            }
     }
-
+        
+    }
 }
-
 
 
 -(void)collisionBehavior:(UICollisionBehavior *)behavior beganContactForItem:(id<UIDynamicItem>)item1 withItem:(id<UIDynamicItem>)item2 atPoint:(CGPoint)p
@@ -174,7 +180,7 @@
             [self.view addSubview:pointLabel];
            
             [MOVE animateView:pointLabel properties:@{@"alpha":@0,@"duration":@0.6,@"delay":@0.0, @"remove":@YES}];
-            points += brick.tag; //no point counter will be assigned to the brick.tag that is assigned to random #
+            points += brick.tag; // point counter will be assigned to the brick.tag that is assigned to random #
             
             
             //we get to call a method that belongs to the delegate's class (also to a diff object, not the instance of the current class). Notice that the method is not global. its not in .h file    
@@ -185,7 +191,8 @@
             [brick removeFromSuperview];
             
             }
-            brick.alpha = 0.5;
+            
+         brick.alpha = 0.5;
        }
     }
         if(tempBrick != nil) [self.bricks removeObjectIdenticalTo:tempBrick]; //removes brick from array
@@ -258,8 +265,8 @@
 
 -(void)createBall
 {
-    int multiBall = 5;
-    
+    int multiBall = 3;
+
     for(int x = 0; x < multiBall; x++)
     {
     

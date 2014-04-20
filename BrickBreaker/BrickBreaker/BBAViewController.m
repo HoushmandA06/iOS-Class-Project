@@ -20,6 +20,9 @@
     BBALevelController * level;
     UIButton * start;
     UILabel * scoreCard;
+    UILabel * livesCard;
+    UIButton * reset;
+    
     
 }
 
@@ -50,7 +53,6 @@
     start.layer.cornerRadius = 50;
     [start addTarget:self action:@selector(goLevelScreen) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:start];
-    
 }
 
 
@@ -59,6 +61,7 @@
     level = [[BBALevelController alloc] initWithNibName:nil bundle:nil];
     level.delegate = self;
 
+    
     level.view.frame = CGRectMake(0,40, SCREEN_WIDTH, SCREEN_HEIGHT-40);  // level frame
     
     [self.view addSubview:level.view];
@@ -66,29 +69,70 @@
     [start removeFromSuperview];
     [level resetLevel];
     [self scoreCard];
+    [self livesCard];
+    [self reset];
+    
 }
 
 
 -(void)scoreCard
 {
     scoreCard = [[UILabel alloc] initWithFrame:CGRectMake(0,0,100,40)];
-    scoreCard.backgroundColor = [UIColor blueColor];
+    scoreCard.backgroundColor = [UIColor darkGrayColor];
     scoreCard.textColor = [UIColor orangeColor];
     [self.view addSubview:scoreCard];
     
 }
 
-//below 2 are delegate methods
+-(void)livesCard
+{
+
+    livesCard = [[UILabel alloc] initWithFrame:CGRectMake(380, 0, 100, 40)];
+    livesCard.backgroundColor = [UIColor darkGrayColor];
+    [self.view addSubview:livesCard];
+    
+}
+
+-(void)reset
+{
+    reset = [[UIButton alloc] initWithFrame:CGRectMake(120,0,40,40)];
+    reset.backgroundColor = [UIColor clearColor];
+  //  [reset setTitle:@"reset" forState:UIControlStateNormal];
+    reset.layer.cornerRadius = 20;
+    [reset setImage:[UIImage imageNamed:@"home.png"] forState:UIControlStateNormal];
+    [reset addTarget:self action:@selector(gameDone) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:reset];
+    
+}
+
+
+
+
+//below are delegate methods
+
+
 -(void)addPoints:(int)points
 {
-    scoreCard.text = [NSString stringWithFormat:@"Score %d",points];
+    scoreCard.text = [NSString stringWithFormat:@"  Score %d",points];
 }
+
+-(void)addLives:(int)livesLost
+{
+    // potentially connect livesLost counter from LVC here then tie to gameDone below
+    
+}
+
 
 -(void)gameDone
 {
+    // need if statement here to say if livesLost = lives, then do the below, if not, goLevelScreen (resets the paddle and ball)
+    
     [level.view removeFromSuperview];
     [self.view addSubview:start];
     [scoreCard removeFromSuperview];
+    [livesCard removeFromSuperview];
+    [reset removeFromSuperview];
+
 }
 
 
