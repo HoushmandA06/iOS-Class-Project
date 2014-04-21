@@ -47,7 +47,11 @@
     start = [[UIButton alloc] initWithFrame:CGRectMake((SCREEN_WIDTH)/2 - 50,(SCREEN_HEIGHT)/2-50,100,100)];
     start.backgroundColor = [UIColor colorWithWhite:0.30 alpha:0.5];
     
-    // UNDERSTAND HOW TO CHANGE BUTTON TEXT FONT, SIZE, STYLE
+    // NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
+    // topScore = [[userDefaults objectForKey:@"topScore"] intValue];
+    //
+    
+    
     
     [start setTitle:@"START" forState:UIControlStateNormal];
     start.layer.cornerRadius = 50;
@@ -101,6 +105,34 @@
     [self.view addSubview:reset];
     
 }
+
+//-(void)updatePoints:(int)points
+//{
+//    header.currentScore = points;
+//    if (header.currentScore > topScore)
+//    {
+//        topScore = header.currentSCore;
+//        newHighScore = YES;
+
+        // update my default value
+
+//        NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
+//        [userDefaults setObject:@(topScore) forKey:@"topScore"];   //@(topscore) turns int into nsobject
+//        [userDefaults synchronize];
+//        
+//    }
+//}
+
+//-(int)loseLife
+//if(lives > 0) lives --;
+//header.livesLeft = lives;
+//if(lives == 0) [self gameLost];
+//return lives;
+
+
+
+
+
 
 
 //below are delegate methods
