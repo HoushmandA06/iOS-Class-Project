@@ -21,6 +21,7 @@
 		0FABCF9A1905560100B39854 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FABCF7C1905560100B39854 /* UIKit.framework */; };
 		0FABCFA21905560100B39854 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0FABCFA01905560100B39854 /* InfoPlist.strings */; };
 		0FABCFA41905560100B39854 /* TweetItTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FABCFA31905560100B39854 /* TweetItTests.m */; };
+		0FABCFAF190556F400B39854 /* TIATableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FABCFAE190556F400B39854 /* TIATableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,14 +46,16 @@
 		0FABCF871905560100B39854 /* TIAAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TIAAppDelegate.h; sourceTree = "<group>"; };
 		0FABCF881905560100B39854 /* TIAAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TIAAppDelegate.m; sourceTree = "<group>"; };
 		0FABCF8B1905560100B39854 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		0FABCF8D1905560100B39854 /* TIAViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TIAViewController.h; sourceTree = "<group>"; };
-		0FABCF8E1905560100B39854 /* TIAViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TIAViewController.m; sourceTree = "<group>"; };
+		0FABCF8D1905560100B39854 /* TIAViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TIAViewController.h; path = TweetIt/TIAViewController.h; sourceTree = "<group>"; };
+		0FABCF8E1905560100B39854 /* TIAViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = TIAViewController.m; path = TweetIt/TIAViewController.m; sourceTree = "<group>"; };
 		0FABCF901905560100B39854 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		0FABCF961905560100B39854 /* TweetItTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TweetItTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FABCF971905560100B39854 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		0FABCF9F1905560100B39854 /* TweetItTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TweetItTests-Info.plist"; sourceTree = "<group>"; };
 		0FABCFA11905560100B39854 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0FABCFA31905560100B39854 /* TweetItTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TweetItTests.m; sourceTree = "<group>"; };
+		0FABCFAD190556F400B39854 /* TIATableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TIATableViewController.h; path = TweetIt/TIATableViewController.h; sourceTree = "<group>"; };
+		0FABCFAE190556F400B39854 /* TIATableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TIATableViewController.m; path = TweetIt/TIATableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +85,11 @@
 		0FABCF6C1905560100B39854 = {
 			isa = PBXGroup;
 			children = (
+				0FABCF8D1905560100B39854 /* TIAViewController.h */,
+				0FABCF8E1905560100B39854 /* TIAViewController.m */,
+				0FABCFAD190556F400B39854 /* TIATableViewController.h */,
+				0FABCFAE190556F400B39854 /* TIATableViewController.m */,
+				0FABCF8A1905560100B39854 /* Main.storyboard */,
 				0FABCF7E1905560100B39854 /* TweetIt */,
 				0FABCF9D1905560100B39854 /* TweetItTests */,
 				0FABCF771905560100B39854 /* Frameworks */,
@@ -114,9 +122,6 @@
 			children = (
 				0FABCF871905560100B39854 /* TIAAppDelegate.h */,
 				0FABCF881905560100B39854 /* TIAAppDelegate.m */,
-				0FABCF8A1905560100B39854 /* Main.storyboard */,
-				0FABCF8D1905560100B39854 /* TIAViewController.h */,
-				0FABCF8E1905560100B39854 /* TIAViewController.m */,
 				0FABCF901905560100B39854 /* Images.xcassets */,
 				0FABCF7F1905560100B39854 /* Supporting Files */,
 			);
@@ -250,6 +255,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FABCFAF190556F400B39854 /* TIATableViewController.m in Sources */,
 				0FABCF851905560100B39854 /* main.m in Sources */,
 				0FABCF8F1905560100B39854 /* TIAViewController.m in Sources */,
 				0FABCF891905560100B39854 /* TIAAppDelegate.m in Sources */,
@@ -289,6 +295,7 @@
 				0FABCF8B1905560100B39854 /* Base */,
 			);
 			name = Main.storyboard;
+			path = TweetIt;
 			sourceTree = "<group>";
 		};
 		0FABCFA01905560100B39854 /* InfoPlist.strings */ = {
