@@ -31,7 +31,6 @@
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
-    self = [super initWithStyle:UITableViewStylePlain];
     if (self)
     {
         listItems = [@[] mutableCopy];

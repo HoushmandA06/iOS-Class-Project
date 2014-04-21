@@ -57,13 +57,6 @@
     if(githubProfile[@"html_url"] != nil) userInfo[@"github"] = githubProfile[@"html_url"];
     
 
-    
-    
-//        userInfo = @{@"name":githubProfile[@"name"],
-//                     @"image":githubProfile[@"avatar_url"],
-//                     @"github":githubProfile[@"html_url"]
-//                     };
-
     return userInfo;
     
 }

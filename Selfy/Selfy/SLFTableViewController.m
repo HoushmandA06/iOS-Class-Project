@@ -1,0 +1,185 @@
+//
+//  SLFTableViewController.m
+//  Selfy
+//
+//  Created by Ali Houshmand on 4/21/14.
+//  Copyright (c) 2014 Ali Houshmand. All rights reserved.
+//
+
+#import "SLFTableViewController.h"
+#import "SLFTableViewCell.h"
+
+@interface SLFTableViewController ()
+
+@end
+
+@implementation SLFTableViewController
+{
+    
+    NSMutableArray * listItems;
+    
+    
+}
+
+
+- (id)initWithStyle:(UITableViewStyle)style
+{
+    self = [super initWithStyle:UITableViewStylePlain];
+    if (self) {
+        // Custom initialization
+        
+        listItems = [@[
+                       @{
+                           @"image":@"https://fbcdn-sphotos-b-a.akamaihd.net/hphotos-ak-frc3/t1.0-9/1925270_10152455776049101_2087603519931381835_n.jpg",
+                           @"caption":@"caption",
+                           @"avatar":@"http://tpkblog.com/home/wp-content/uploads/2012/07/20091017163722Jakes_Avatar_with_gun.jpg",
+                           @"userid":@"ali",
+                           }
+                       
+                       ] mutableCopy];
+        
+        // [self loadListItems]; * will use this when we put in save/load methods
+        
+        
+        
+        self.tableView.backgroundColor = [UIColor clearColor];
+        
+        UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0,0,320,60)];
+        header.backgroundColor = [UIColor lightGrayColor];
+        self.tableView.tableHeaderView = header;
+        
+        UILabel * titleHeader = [[UILabel alloc] initWithFrame:CGRectMake(140,0,100,100)];
+        titleHeader.text = @"Selfy";
+        titleHeader.textColor = [UIColor blackColor];
+        titleHeader.font =[UIFont fontWithName:@"Helvetica" size:(20)];
+        [header addSubview:titleHeader];
+        
+        UIButton * submit = [[UIButton alloc] initWithFrame:CGRectMake(10, 30, 30, 30)];
+        [submit setImage:[UIImage imageNamed:@"image.png"] forState:UIControlStateNormal];
+        submit.backgroundColor = [UIColor clearColor];
+        submit.layer.cornerRadius = 15;
+        //[submit addTarget:self action:@selector(newUser) forControlEvents:UIControlEventTouchUpInside];
+        [header addSubview:submit];
+        
+        UIButton * settings = [[UIButton alloc] initWithFrame:CGRectMake(280, 30, 30, 30)];
+        [settings setImage:[UIImage imageNamed:@"gear.png"] forState:UIControlStateNormal];
+        settings.backgroundColor = [UIColor clearColor];
+        settings.layer.cornerRadius = 15;
+        //[settings addTarget:self action:@selector(newUser) forControlEvents:UIControlEventTouchUpInside];
+        [header addSubview:settings];
+    }
+    return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
+    
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Table view data source
+
+//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+//{
+//#warning Potentially incomplete method implementation.
+//    // Return the number of sections.
+//    return 0;
+//}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    // Return the number of rows in the section.
+    return [listItems count];
+    
+}
+
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    SLFTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"]; //this is a memory mgmt tool
+    
+    if (cell == nil)
+    {
+        cell = [[SLFTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+    }
+    
+    cell.profileInfo = [self getListItem:indexPath.row];
+    
+    // Configure the cell...
+    
+    return cell;
+}
+
+
+- (NSDictionary *)getListItem:(NSInteger)row
+{
+    NSArray * reverseArray = [[listItems reverseObjectEnumerator] allObjects];
+    return reverseArray[row];
+}
+
+
+/*
+ // Override to support conditional editing of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ // Return NO if you do not want the specified item to be editable.
+ return YES;
+ }
+ */
+
+/*
+ // Override to support editing the table view.
+ - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ if (editingStyle == UITableViewCellEditingStyleDelete) {
+ // Delete the row from the data source
+ [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+ } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+ // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+ }
+ }
+ */
+
+/*
+ // Override to support rearranging the table view.
+ - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+ {
+ }
+ */
+
+/*
+ // Override to support conditional rearranging of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ // Return NO if you do not want the item to be re-orderable.
+ return YES;
+ }
+ */
+
+/*
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+ {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
+
+@end
