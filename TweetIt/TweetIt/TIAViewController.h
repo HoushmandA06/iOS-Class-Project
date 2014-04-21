@@ -10,4 +10,10 @@
 
 @interface TIAViewController : UIViewController
 
+#define NAME_KEY tweet[@"name"]
+
+
+@property (nonatomic) NSDictionary * tweet;
+
+
 @end

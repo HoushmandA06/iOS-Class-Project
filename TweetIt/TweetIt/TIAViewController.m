@@ -10,6 +10,11 @@
 
 @interface TIAViewController ()
 
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel; //IBOutlet signifies connection with storyboard
+
+@property (weak, nonatomic) IBOutlet UILabel *tweetLabel;
+
+
 @end
 
 @implementation TIAViewController
@@ -17,6 +22,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.nameLabel.text = self.tweet[@"name"];
+    self.tweetLabel.text = self.tweet[@"text"];
+    
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
