@@ -61,7 +61,6 @@
     level = [[BBALevelController alloc] initWithNibName:nil bundle:nil];
     level.delegate = self;
 
-    
     level.view.frame = CGRectMake(0,40, SCREEN_WIDTH, SCREEN_HEIGHT-40);  // level frame
     
     [self.view addSubview:level.view];
@@ -71,7 +70,6 @@
     [self scoreCard];
     [self livesCard];
     [self reset];
-    
 }
 
 
@@ -81,7 +79,6 @@
     scoreCard.backgroundColor = [UIColor darkGrayColor];
     scoreCard.textColor = [UIColor orangeColor];
     [self.view addSubview:scoreCard];
-    
 }
 
 -(void)livesCard
@@ -90,7 +87,7 @@
     livesCard = [[UILabel alloc] initWithFrame:CGRectMake(380, 0, 100, 40)];
     livesCard.backgroundColor = [UIColor darkGrayColor];
     [self.view addSubview:livesCard];
-    
+
 }
 
 -(void)reset
@@ -106,10 +103,7 @@
 }
 
 
-
-
 //below are delegate methods
-
 
 -(void)addPoints:(int)points
 {
@@ -118,7 +112,8 @@
 
 -(void)addLives:(int)livesLost
 {
-    // potentially connect livesLost counter from LVC here then tie to gameDone below
+ // need to fix this
+    livesCard.text = [NSString stringWithFormat:@" Lives %d", livesLost];
     
 }
 

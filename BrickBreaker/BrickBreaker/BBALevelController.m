@@ -94,7 +94,6 @@
     self.animator  = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
     
     [self createPaddle];
-    [self createBall];
     [self createBricks];
 
     self.collider = [[UICollisionBehavior alloc] initWithItems:[self allItems]];
@@ -102,6 +101,8 @@
     
     //includes boundaries and items for collisions by using everything
     self.collider.collisionMode = UICollisionBehaviorModeEverything;
+
+   [self createBall];
 
     //sets the walls as the boundaries
    // self.collider.translatesReferenceBoundsIntoBoundary = YES;
@@ -134,8 +135,6 @@
 -(void)collisionBehavior:(UICollisionBehavior *)behavior beganContactForItem:(id<UIDynamicItem>)item withBoundaryIdentifier:(id<NSCopying>)identifier atPoint:(CGPoint)p
 {
     
-    for (int y = livesLost; y < lives; y++)
-    {
     
     if([(NSString *)identifier isEqualToString:@"floor"])
     {
@@ -143,16 +142,20 @@
         [ball removeFromSuperview];
         [self.balls removeObject:ball];
         [self.collider removeItem:ball];
-       // livesLost++;
-       // [self.delegate addLives:livesLost];
+       
+      if ((self.balls.count == 0) && [self.delegate respondsToSelector:@selector(gameDone)])
+      {
+          livesLost++;
+          [self createBall];
+          [self.delegate addLives:livesLost];
         
-        if ((self.balls.count == 0) && [self.delegate respondsToSelector:@selector(gameDone)])
-            {
+      }
+        
+        if (livesLost == lives)
+        {
             [self.delegate gameDone]; //need this for optional method in delegate protocol in .h
-            NSLog(@"Start Over");
-            }
-    }
-        
+             NSLog(@"Start Over");
+        }
     }
 }
 
@@ -214,7 +217,7 @@
 {
     NSMutableArray * items = [@[self.paddle] mutableCopy];
     
-    for (UIView*item in self.balls) [items addObject:item];
+//    for (UIView*item in self.balls) [items addObject:item];
     for (UIView*item in self.bricks) [items addObject:item];
     return items;
 }
@@ -250,12 +253,11 @@
         
         UIImageView * brick = [[UIImageView alloc] initWithFrame:CGRectMake(brickX, brickY, brickWidth, brickHeight)];
         brick.layer.cornerRadius = 6;
-        brick.backgroundColor = [UIColor colorWithWhite:0.7 alpha:1.0];
+        brick.backgroundColor = [UIColor clearColor];  //[UIColor colorWithWhite:0.7 alpha:1.0];
         brick.image = [UIImage imageNamed:@"beast"];
 
         int random = round(arc4random_uniform(5)) * 50;
         brick.tag = random;
-            
             
         [self.view addSubview:brick];
         [self.bricks addObject:brick];
@@ -265,7 +267,7 @@
 
 -(void)createBall
 {
-    int multiBall = 3;
+    int multiBall = 2;
 
     for(int x = 0; x < multiBall; x++)
     {
@@ -277,6 +279,9 @@
     ball.image = [UIImage imageNamed:@"grenade"];
     ball.layer.cornerRadius = 10;
     [self.view addSubview:ball];
+        
+        [self.collider addItem:ball]; //added these two to make createBall work when losing a life and respawning
+        [self.ballsDynamicsProp addItem:ball];
     
     // add ball to balls array
     [self.balls addObject:ball];
@@ -284,7 +289,7 @@
     // start ball off with a push
     self.pusher = [[UIPushBehavior alloc] initWithItems:self.balls mode:UIPushBehaviorModeInstantaneous];
     
-    self.pusher.pushDirection = CGVectorMake(0.04, 0.04);  // two speeds x,y; altering speeds give different direc
+    self.pusher.pushDirection = CGVectorMake(0.05, 0.05);  // two speeds x,y; altering speeds give different direc
     
     self.pusher.active = YES; // because push is instantaneous, it will only happ once
     
