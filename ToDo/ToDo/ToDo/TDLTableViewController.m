@@ -135,8 +135,6 @@
         nameField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0,0,10,30)]; // puts the cursor a set amt right of the textfield
         nameField.leftViewMode = UITextFieldViewModeAlways;
         nameField.placeholder = @"Enter name";
-        
-        
         [header addSubview:nameField];
         
         nameField.delegate = self;

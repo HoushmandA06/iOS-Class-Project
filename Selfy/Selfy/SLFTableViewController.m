@@ -8,6 +8,7 @@
 
 #import "SLFTableViewController.h"
 #import "SLFTableViewCell.h"
+#import <Parse/Parse.h>
 
 @interface SLFTableViewController ()
 
@@ -40,8 +41,6 @@
         
         // [self loadListItems]; * will use this when we put in save/load methods
         
-        
-        
         self.tableView.backgroundColor = [UIColor clearColor];
         
         UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0,0,320,60)];
@@ -55,7 +54,7 @@
         [header addSubview:titleHeader];
         
         UIButton * submit = [[UIButton alloc] initWithFrame:CGRectMake(10, 30, 30, 30)];
-        [submit setImage:[UIImage imageNamed:@"image.png"] forState:UIControlStateNormal];
+        [submit setImage:[UIImage imageNamed:@"newuser.png"] forState:UIControlStateNormal];
         submit.backgroundColor = [UIColor clearColor];
         submit.layer.cornerRadius = 15;
         //[submit addTarget:self action:@selector(newUser) forControlEvents:UIControlEventTouchUpInside];
@@ -67,6 +66,16 @@
         settings.layer.cornerRadius = 15;
         //[settings addTarget:self action:@selector(newUser) forControlEvents:UIControlEventTouchUpInside];
         [header addSubview:settings];
+        
+        PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
+        testObject[@"foo"] = @"bar";
+        testObject[@"name"] = @"Ali No WiFi";
+        [testObject saveInBackground];
+        
+        PFUser * user = [PFUser currentUser];
+        user.username = @"ali houshmand";
+        user.password = @"password";
+        [user saveInBackground];
         
         self.tableView.rowHeight = self.tableView.frame.size.width+60;
         

@@ -8,6 +8,7 @@
 
 #import "SLFAppDelegate.h"
 #import "SLFTableViewController.h"
+#import "SLFLoginVC.h"
 #import <Parse/Parse.h>
 
 
@@ -23,12 +24,15 @@
     [Parse setApplicationId:@"H1JHLiA7kFRmIWvtbkHDcnA1Caj4UofHxRx6UZAB"
                   clientKey:@"dKLyXccYHUy1MXNgrdR2Sq5b1fNQoTr4clSXVd3p"];
     
-    
+    [PFUser enableAutomaticUser];
+
     
     // Override point for customization after application launch.
 
     
-    self.window.rootViewController = [[SLFTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    //self.window.rootViewController = [[SLFTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    
+    self.window.rootViewController = [[SLFLoginVC alloc] initWithNibName:nil bundle:nil];
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
