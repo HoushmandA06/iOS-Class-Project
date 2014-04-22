@@ -42,7 +42,7 @@
         selfyUserId.font = [UIFont systemFontOfSize:16];
         [self.contentView addSubview:selfyUserId];
 
-        selfyCaption = [[UILabel alloc] initWithFrame:CGRectMake(100, 320, 200, 40)];
+        selfyCaption = [[UILabel alloc] initWithFrame:CGRectMake(90, 320, 200, 40)];
         selfyCaption.textColor = [UIColor blueColor];
         selfyCaption.font = [UIFont systemFontOfSize:16];
         [self.contentView addSubview:selfyCaption];
@@ -53,6 +53,7 @@
 - (void)setProfileInfo:(NSDictionary *)profileInfo; // THIS IS A SETTER
 {
     NSString *imageUrlString = profileInfo[@"image"];
+    //  NSURL *imageURL = [[NSURL alloc] URLWithString:profileInfo[@"image"]];  this way combines line 55 above and line 57 below
     NSURL *imageUrl = [[NSURL alloc] initWithString:imageUrlString];
     NSData *imageData = [NSData dataWithContentsOfURL:imageUrl];
     UIImage *image = [UIImage imageWithData:imageData];

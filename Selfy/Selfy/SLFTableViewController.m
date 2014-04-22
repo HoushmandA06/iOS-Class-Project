@@ -119,11 +119,11 @@
     
     if (cell == nil)
     {
-        cell = [[SLFTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        cell = [[SLFTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"]; //creates new cell if dequeued cell not available
     }
     
-    cell.profileInfo = [self getListItem:indexPath.row];
-    
+    cell.profileInfo = [self getListItem:indexPath.row]; // will require setter method in tableviewcell
+    // cell.profileInfo = listItems[indexPath.row]; same as above, but above uses method for reverse row
 
     self.tableView.separatorInset = UIEdgeInsetsZero;
     

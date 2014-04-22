@@ -23,6 +23,7 @@
 		0FABCFF019059A6000B39854 /* SLFTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FABCFEF19059A6000B39854 /* SLFTableViewCell.m */; };
 		0FABCFF31905AC9000B39854 /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FABCFF11905AC9000B39854 /* image.png */; };
 		0FABCFF41905AC9000B39854 /* gear.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FABCFF21905AC9000B39854 /* gear.png */; };
+		0FC92F831906B89300AC977E /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FC92F821906B89300AC977E /* Parse.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		0FABCFEF19059A6000B39854 /* SLFTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLFTableViewCell.m; sourceTree = "<group>"; };
 		0FABCFF11905AC9000B39854 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
 		0FABCFF21905AC9000B39854 /* gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gear.png; sourceTree = "<group>"; };
+		0FC92F821906B89300AC977E /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 			files = (
 				0FABCFBF190588E400B39854 /* CoreGraphics.framework in Frameworks */,
 				0FABCFC1190588E400B39854 /* UIKit.framework in Frameworks */,
+				0FC92F831906B89300AC977E /* Parse.framework in Frameworks */,
 				0FABCFBD190588E400B39854 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -106,6 +109,7 @@
 		0FABCFBB190588E400B39854 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0FC92F821906B89300AC977E /* Parse.framework */,
 				0FABCFBC190588E400B39854 /* Foundation.framework */,
 				0FABCFBE190588E400B39854 /* CoreGraphics.framework */,
 				0FABCFC0190588E400B39854 /* UIKit.framework */,
@@ -378,6 +382,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Selfy/Selfy-Prefix.pch";
 				INFOPLIST_FILE = "Selfy/Selfy-Info.plist";
@@ -391,6 +399,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Selfy/Selfy-Prefix.pch";
 				INFOPLIST_FILE = "Selfy/Selfy-Info.plist";
@@ -458,6 +470,7 @@
 				0FABCFE7190588E400B39854 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0FABCFE8190588E400B39854 /* Build configuration list for PBXNativeTarget "SelfyTests" */ = {
 			isa = XCConfigurationList;
@@ -466,6 +479,7 @@
 				0FABCFEA190588E400B39854 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

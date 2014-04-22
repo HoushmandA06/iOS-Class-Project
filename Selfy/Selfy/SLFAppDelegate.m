@@ -8,12 +8,23 @@
 
 #import "SLFAppDelegate.h"
 #import "SLFTableViewController.h"
+#import <Parse/Parse.h>
+
 
 @implementation SLFAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+   
+    
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    [Parse setApplicationId:@"H1JHLiA7kFRmIWvtbkHDcnA1Caj4UofHxRx6UZAB"
+                  clientKey:@"dKLyXccYHUy1MXNgrdR2Sq5b1fNQoTr4clSXVd3p"];
+    
+    
+    
     // Override point for customization after application launch.
 
     
