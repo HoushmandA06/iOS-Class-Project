@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SLFNewSelfyVC : UIViewController
+@interface SLFNewSelfyVC : UIViewController <UITextViewDelegate>
 
 @end

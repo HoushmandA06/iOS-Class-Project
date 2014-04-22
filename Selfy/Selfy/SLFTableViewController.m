@@ -67,9 +67,9 @@
         //[settings addTarget:self action:@selector(newUser) forControlEvents:UIControlEventTouchUpInside];
         [header addSubview:settings];
         
-        PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
-        testObject[@"foo"] = @"bar";
-        testObject[@"name"] = @"Ali No WiFi";
+        PFObject *testObject = [PFObject objectWithClassName:@"UserSelfy"];
+        testObject[@"image"] = @"";
+        testObject[@"caption"] = @"";
         [testObject saveInBackground];
         
         PFUser * user = [PFUser currentUser];

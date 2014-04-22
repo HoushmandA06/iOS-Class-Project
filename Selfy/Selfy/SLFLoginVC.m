@@ -51,10 +51,10 @@
         
         //will need to resign first reponder for keyboard to go away, DO THIS LATER
         
-        UIButton * submit = [[UIButton alloc] initWithFrame:CGRectMake(40, 210, 40, 40)];
+        UIButton * submit = [[UIButton alloc] initWithFrame:CGRectMake((SCREEN_WIDTH/2)-40, 210, 80, 80)];
         [submit setImage:[UIImage imageNamed:@"newuser.png"] forState:UIControlStateNormal];
         submit.backgroundColor = [UIColor clearColor];
-        submit.layer.cornerRadius = 20;
+        submit.layer.cornerRadius = 40;
         [submit addTarget:self action:@selector(newUser) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:submit];
   

@@ -9,6 +9,7 @@
 #import "SLFAppDelegate.h"
 #import "SLFTableViewController.h"
 #import "SLFLoginVC.h"
+#import "SLFNewSelfyVC.h"
 #import <Parse/Parse.h>
 
 
@@ -30,9 +31,12 @@
     // Override point for customization after application launch.
 
     
-    //self.window.rootViewController = [[SLFTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    // self.window.rootViewController = [[SLFTableViewController alloc] initWithStyle:UITableViewStylePlain];
     
-    self.window.rootViewController = [[SLFLoginVC alloc] initWithNibName:nil bundle:nil];
+    // self.window.rootViewController = [[SLFLoginVC alloc] initWithNibName:nil bundle:nil];
+    
+    self.window.rootViewController = [[SLFNewSelfyVC alloc] initWithNibName:nil bundle:nil];
+    
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
