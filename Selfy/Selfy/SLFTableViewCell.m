@@ -27,22 +27,22 @@
 
 //        self.backgroundColor = [UIColor blackColor];
         
-        profileImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 300, 300)];
+        profileImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 10, 300, 300)];
         profileImage.layer.cornerRadius = 30;
         profileImage.layer.masksToBounds = YES;
         [self.contentView addSubview:profileImage];
         
-        profileAvatar = [[UIImageView alloc] initWithFrame:CGRectMake(0, 320, 30, 30)];
-        profileAvatar.layer.cornerRadius = 15;
+        profileAvatar = [[UIImageView alloc] initWithFrame:CGRectMake(35, 320, 40, 40)];
+        profileAvatar.layer.cornerRadius = 20;
         profileAvatar.layer.masksToBounds = YES;
         [self.contentView addSubview:profileAvatar];
         
-        profileUserId = [[UILabel alloc] initWithFrame:CGRectMake(50, 50, 200, 30)];
-        profileUserId.textColor = [UIColor blueColor];
+        profileUserId = [[UILabel alloc] initWithFrame:CGRectMake(10, 320, 40, 40)];
+        profileUserId.textColor = [UIColor blackColor];
         profileUserId.font = [UIFont systemFontOfSize:16];
         [self.contentView addSubview:profileUserId];
 
-        profileCaption = [[UILabel alloc] initWithFrame:CGRectMake(100, 100, 200, 30)];
+        profileCaption = [[UILabel alloc] initWithFrame:CGRectMake(100, 320, 200, 40)];
         profileCaption.textColor = [UIColor blueColor];
         profileCaption.font = [UIFont systemFontOfSize:16];
         [self.contentView addSubview:profileCaption];

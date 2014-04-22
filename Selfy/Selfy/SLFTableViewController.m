@@ -32,7 +32,7 @@
                        @{
                            @"image":@"https://fbcdn-sphotos-b-a.akamaihd.net/hphotos-ak-frc3/t1.0-9/1925270_10152455776049101_2087603519931381835_n.jpg",
                            @"caption":@"caption",
-                           @"avatar":@"http://tpkblog.com/home/wp-content/uploads/2012/07/20091017163722Jakes_Avatar_with_gun.jpg",
+                           @"avatar":@"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-frc3/t1.0-1/p160x160/1912422_10203278436345152_1248645625_n.jpg",
                            @"userid":@"ali",
                            }
                        
@@ -48,7 +48,7 @@
         header.backgroundColor = [UIColor lightGrayColor];
         self.tableView.tableHeaderView = header;
         
-        UILabel * titleHeader = [[UILabel alloc] initWithFrame:CGRectMake(140,0,100,100)];
+        UILabel * titleHeader = [[UILabel alloc] initWithFrame:CGRectMake(135,0,100,95)];
         titleHeader.text = @"Selfy";
         titleHeader.textColor = [UIColor blackColor];
         titleHeader.font =[UIFont fontWithName:@"Helvetica" size:(20)];
@@ -67,6 +67,9 @@
         settings.layer.cornerRadius = 15;
         //[settings addTarget:self action:@selector(newUser) forControlEvents:UIControlEventTouchUpInside];
         [header addSubview:settings];
+        
+        self.tableView.rowHeight = 380;
+        
     }
     return self;
 }
@@ -75,7 +78,7 @@
 {
     [super viewDidLoad];
     
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    // self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -119,6 +122,9 @@
     }
     
     cell.profileInfo = [self getListItem:indexPath.row];
+    
+
+    self.tableView.separatorInset = UIEdgeInsetsZero;
     
     // Configure the cell...
     
