@@ -34,6 +34,7 @@
         nameField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0,0,10,30)]; // puts the cursor a set amt right of the textfield
         nameField.leftViewMode = UITextFieldViewModeAlways;
         nameField.placeholder = @"Enter username";
+        
         [self.view addSubview:nameField];
         [nameField resignFirstResponder]; //this is what makes keyboard go away
         nameField.delegate = self;
@@ -45,6 +46,7 @@
         pwField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0,0,10,30)]; // puts the cursor a set amt right of the textfield
         pwField.leftViewMode = UITextFieldViewModeAlways;
         pwField.placeholder = @"Enter password";
+        
         [self.view addSubview:pwField];
         [pwField resignFirstResponder];
         pwField.delegate = self;

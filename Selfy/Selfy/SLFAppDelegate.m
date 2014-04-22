@@ -35,7 +35,7 @@
     
     // self.window.rootViewController = [[SLFLoginVC alloc] initWithNibName:nil bundle:nil];
     
-    self.window.rootViewController = [[SLFNewSelfyVC alloc] initWithNibName:nil bundle:nil];
+       self.window.rootViewController = [[SLFNewSelfyVC alloc] initWithNibName:nil bundle:nil];
     
     
     self.window.backgroundColor = [UIColor whiteColor];
