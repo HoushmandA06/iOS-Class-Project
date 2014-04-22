@@ -34,8 +34,8 @@
                            @"caption":@"caption",
                            @"avatar":@"https://fbcdn-profile-a.akamaihd.net/hprofile-ak-frc3/t1.0-1/p160x160/1912422_10203278436345152_1248645625_n.jpg",
                            @"userid":@"ali",
+                           @"selfy_id" : @""
                            }
-                       
                        ] mutableCopy];
         
         // [self loadListItems]; * will use this when we put in save/load methods
@@ -68,7 +68,8 @@
         //[settings addTarget:self action:@selector(newUser) forControlEvents:UIControlEventTouchUpInside];
         [header addSubview:settings];
         
-        self.tableView.rowHeight = 380;
+        self.tableView.rowHeight = self.tableView.frame.size.width+60;
+        
         
     }
     return self;

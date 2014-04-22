@@ -11,10 +11,10 @@
 @implementation SLFTableViewCell
 
 {
-    UIImageView *profileImage; // frame for the image
-    UIImageView *profileAvatar; // frame for the avatar
-    UILabel *profileUserId; // label for UserId
-    UILabel *profileCaption; // label for caption
+    UIImageView *selfyView; // frame for the image
+    UIImageView *selfyAvatar; // frame for the avatar
+    UILabel *selfyUserId; // label for UserId
+    UILabel *selfyCaption; // label for caption
     
 }
 
@@ -25,27 +25,27 @@
         // Initialization code
        
 
-//        self.backgroundColor = [UIColor blackColor];
+//      self.backgroundColor = [UIColor blackColor];
         
-        profileImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 10, 300, 300)];
-        profileImage.layer.cornerRadius = 30;
-        profileImage.layer.masksToBounds = YES;
-        [self.contentView addSubview:profileImage];
+        selfyView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 300, 300)];
+        selfyView.backgroundColor = [UIColor lightGrayColor];
+        selfyView.layer.masksToBounds = YES;
+        [self.contentView addSubview:selfyView];
         
-        profileAvatar = [[UIImageView alloc] initWithFrame:CGRectMake(35, 320, 40, 40)];
-        profileAvatar.layer.cornerRadius = 20;
-        profileAvatar.layer.masksToBounds = YES;
-        [self.contentView addSubview:profileAvatar];
+        selfyAvatar = [[UIImageView alloc] initWithFrame:CGRectMake(35, 320, 40, 40)];
+        selfyAvatar.layer.cornerRadius = 20;
+        selfyAvatar.layer.masksToBounds = YES;
+        [self.contentView addSubview:selfyAvatar];
         
-        profileUserId = [[UILabel alloc] initWithFrame:CGRectMake(10, 320, 40, 40)];
-        profileUserId.textColor = [UIColor blackColor];
-        profileUserId.font = [UIFont systemFontOfSize:16];
-        [self.contentView addSubview:profileUserId];
+        selfyUserId = [[UILabel alloc] initWithFrame:CGRectMake(10, 320, 40, 40)];
+        selfyUserId.textColor = [UIColor blackColor];
+        selfyUserId.font = [UIFont systemFontOfSize:16];
+        [self.contentView addSubview:selfyUserId];
 
-        profileCaption = [[UILabel alloc] initWithFrame:CGRectMake(100, 320, 200, 40)];
-        profileCaption.textColor = [UIColor blueColor];
-        profileCaption.font = [UIFont systemFontOfSize:16];
-        [self.contentView addSubview:profileCaption];
+        selfyCaption = [[UILabel alloc] initWithFrame:CGRectMake(100, 320, 200, 40)];
+        selfyCaption.textColor = [UIColor blueColor];
+        selfyCaption.font = [UIFont systemFontOfSize:16];
+        [self.contentView addSubview:selfyCaption];
     }
     return self;
 }
@@ -56,19 +56,19 @@
     NSURL *imageUrl = [[NSURL alloc] initWithString:imageUrlString];
     NSData *imageData = [NSData dataWithContentsOfURL:imageUrl];
     UIImage *image = [UIImage imageWithData:imageData];
-    profileImage.image = image;
-    profileImage.contentMode = UIViewContentModeScaleAspectFit;
+    selfyView.image = image;
+    selfyView.contentMode = UIViewContentModeScaleAspectFit;
     
     NSString *avatarUrlString = profileInfo[@"avatar"];
     NSURL *avatarUrl = [[NSURL alloc] initWithString:avatarUrlString];
     NSData *avatarData = [NSData dataWithContentsOfURL:avatarUrl];
     UIImage *avatarImage = [UIImage imageWithData:avatarData];
-    profileAvatar.image = avatarImage;
-    profileAvatar.contentMode = UIViewContentModeScaleAspectFit;
+    selfyAvatar.image = avatarImage;
+    selfyAvatar.contentMode = UIViewContentModeScaleAspectFit;
 
-    profileCaption.text = profileInfo[@"caption"];
+    selfyCaption.text = profileInfo[@"caption"];
     
-    profileUserId.text = profileInfo[@"userid"];
+    selfyUserId.text = profileInfo[@"userid"];
     
     _profileInfo = profileInfo;
     
