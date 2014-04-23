@@ -29,9 +29,9 @@
     newForm = [[UIView alloc] initWithFrame:self.view.frame];
     [self.view addSubview:newForm];
     
-    self.view.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1.0];
+    self.view.backgroundColor = [UIColor colorWithWhite:.95 alpha:1.0];
         
-    newCaption = [[UITextView alloc] initWithFrame:CGRectMake(40,260,240,80)];
+    newCaption = [[UITextView alloc] initWithFrame:CGRectMake(40,270,240,80)];
     newCaption.backgroundColor = [UIColor colorWithWhite:0.90 alpha:1.0];
     newCaption.layer.cornerRadius = 6;
     newCaption.delegate = self;
@@ -40,23 +40,26 @@
     [newCaption.layer setBorderWidth: 2.0];
     [newForm addSubview:newCaption];
         
+    //colorWithRed:0.137f green:0.682f blue:1.000f alpha:1.0f
+    //colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0
+        
     UIButton * submitNew = [[UIButton alloc] initWithFrame:CGRectMake(40, 360, 100, 40)];
-    submitNew.backgroundColor = [UIColor colorWithRed:0.137f green:0.682f blue:1.000f alpha:1.0f];
-    [submitNew setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    submitNew.backgroundColor = [UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0];
+    [submitNew setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [submitNew setTitle:@"Submit" forState:UIControlStateNormal];
     submitNew.layer.cornerRadius = 6;
     //[newImage addTarget:self action:@selector(newSelfy) forControlEvents:UIControlEventTouchUpInside];
     [newForm addSubview:submitNew];
         
     UIButton * cancelNew = [[UIButton alloc] initWithFrame:CGRectMake(180, 360, 100, 40)];
-    cancelNew.backgroundColor = [UIColor colorWithRed:1.000f green:0.486f blue:0.486f alpha:1.0f];
+    cancelNew.backgroundColor = [UIColor redColor];
     [cancelNew setTitle:@"Cancel" forState:UIControlStateNormal];
-    [cancelNew setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [cancelNew setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     cancelNew.layer.cornerRadius = 6;
     //[newImage addTarget:self action:@selector(newSelfy) forControlEvents:UIControlEventTouchUpInside];
     [newForm addSubview:cancelNew];
                 
-    UIImageView * newImageFrame = [[UIImageView alloc] initWithFrame:CGRectMake(60,40,200,200)];
+    UIImageView * newImageFrame = [[UIImageView alloc] initWithFrame:CGRectMake(60,60,200,200)];
     newImageFrame.layer.cornerRadius = 6;
     newImageFrame.contentMode = UIViewContentModeCenter;
     newImageFrame.backgroundColor = [UIColor colorWithWhite:0.90 alpha:1.0];
