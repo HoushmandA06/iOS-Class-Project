@@ -8,6 +8,7 @@
 
 #import "TLAAppDelegate.h"
 #import "TLATableViewController.h"
+#import "TLANavController.h"
 
 @implementation TLAAppDelegate
 
@@ -17,8 +18,7 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     
-    self.window.rootViewController = [[TLATableViewController alloc] initWithStyle:UITableViewStylePlain];
-
+    self.window.rootViewController = [[TLANavController alloc] initWithRootViewController:[[TLATableViewController alloc] initWithStyle:UITableViewStylePlain]];
     
     [self.window makeKeyAndVisible];
     return YES;

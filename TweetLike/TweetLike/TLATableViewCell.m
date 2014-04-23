@@ -10,6 +10,8 @@
 
 @implementation TLATableViewCell
 {
+    UILabel * likesLabel;
+    UILabel * textLabel;
     
 }
 
@@ -24,12 +26,33 @@
     // heart.layer.masksToBounds = YES;
     [self.contentView addSubview:heart];
         
-    
+    likesLabel = [[UILabel alloc] initWithFrame:CGRectMake(60,30,30,20)];
+    likesLabel.text = @"55";
+    likesLabel.textAlignment = NSTextAlignmentCenter;
+    likesLabel.textColor = [UIColor blueColor];
+    [self.contentView addSubview:likesLabel];
         
+    textLabel = [[UILabel alloc] initWithFrame:CGRectMake(100,0,200,80)];
+    textLabel.text = @"blah blah blah blah blaaaaaaaaaaaaaaaaaaaaaaaah";
+    textLabel.font = [UIFont systemFontOfSize:13];
+    textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    textLabel.numberOfLines = 0; //allows as many lines as u need for the text, but row height/width need to work
+    [self.contentView addSubview:textLabel];
         
     }
     return self;
 }
+
+- (void)setTweet:(NSDictionary *)tweet;
+{
+    _tweet = tweet;
+   
+    likesLabel.text = [tweet[@"likes"] stringValue];
+    textLabel.text = tweet[@"text"];
+
+    
+}
+
 
 - (void)awakeFromNib
 {

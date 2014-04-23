@@ -22,6 +22,7 @@
 		0FA7FF031907F68700CC0A8C /* TLATableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA7FF021907F68700CC0A8C /* TLATableViewController.m */; };
 		0FA7FF071907F89E00CC0A8C /* heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FA7FF061907F89E00CC0A8C /* heart.png */; };
 		0FA7FF0A1907F9D000CC0A8C /* TLATableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA7FF091907F9D000CC0A8C /* TLATableViewCell.m */; };
+		0FA7FF101908187300CC0A8C /* TLANavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA7FF0F1908187300CC0A8C /* TLANavController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,8 @@
 		0FA7FF061907F89E00CC0A8C /* heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = heart.png; path = ../../../../../Desktop/heart.png; sourceTree = "<group>"; };
 		0FA7FF081907F9D000CC0A8C /* TLATableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLATableViewCell.h; sourceTree = "<group>"; };
 		0FA7FF091907F9D000CC0A8C /* TLATableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLATableViewCell.m; sourceTree = "<group>"; };
+		0FA7FF0E1908187300CC0A8C /* TLANavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLANavController.h; sourceTree = "<group>"; };
+		0FA7FF0F1908187300CC0A8C /* TLANavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLANavController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +121,8 @@
 				0FA7FEE11907F64700CC0A8C /* TLAAppDelegate.h */,
 				0FA7FEE21907F64700CC0A8C /* TLAAppDelegate.m */,
 				0FA7FEE41907F64700CC0A8C /* Images.xcassets */,
+				0FA7FF0E1908187300CC0A8C /* TLANavController.h */,
+				0FA7FF0F1908187300CC0A8C /* TLANavController.m */,
 				0FA7FED91907F64700CC0A8C /* Supporting Files */,
 				0FA7FF011907F68700CC0A8C /* TLATableViewController.h */,
 				0FA7FF021907F68700CC0A8C /* TLATableViewController.m */,
@@ -256,6 +261,7 @@
 			files = (
 				0FA7FEE31907F64700CC0A8C /* TLAAppDelegate.m in Sources */,
 				0FA7FF0A1907F9D000CC0A8C /* TLATableViewCell.m in Sources */,
+				0FA7FF101908187300CC0A8C /* TLANavController.m in Sources */,
 				0FA7FEDF1907F64700CC0A8C /* main.m in Sources */,
 				0FA7FF031907F68700CC0A8C /* TLATableViewController.m in Sources */,
 			);

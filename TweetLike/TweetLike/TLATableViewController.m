@@ -39,13 +39,13 @@
                        ] mutableCopy];
         
     UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0,0,320,60)];
-    header.backgroundColor = [UIColor blueColor];
+    header.backgroundColor = [UIColor blackColor];
     self.tableView.tableHeaderView = header;
         
     UILabel * titleHeader = [[UILabel alloc] initWithFrame:CGRectMake(120,0,100,95)];
-   // titleHeader.text = @"TweetLike";
-   // titleHeader.textColor = [UIColor whiteColor];
-   // titleHeader.font =[UIFont fontWithName:@"Helvetica" size:(20)];
+//      titleHeader.text = @"TweetLike";
+//   titleHeader.textColor = [UIColor whiteColor];
+//    titleHeader.font =[UIFont fontWithName:@"Helvetica" size:(20)];
     [header addSubview:titleHeader];
         
     tweetField = [[UITextField alloc] initWithFrame:CGRectMake(110,20,100,30)];
