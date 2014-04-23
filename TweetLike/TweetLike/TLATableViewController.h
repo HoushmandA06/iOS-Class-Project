@@ -10,4 +10,6 @@
 
 @interface TLATableViewController : UITableViewController 
 
+@property (nonatomic) NSMutableArray * tweetItems;
+
 @end
