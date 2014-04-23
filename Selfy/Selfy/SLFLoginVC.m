@@ -60,11 +60,10 @@
         [submit addTarget:self action:@selector(newUser) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:submit];
   
+        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapScreen)]; //added this to get rid of keyboard with a touch on frame outside of the above items
+        [self.view addGestureRecognizer:tap];
 
-//        PFUser * user = [PFUser currentUser];
-//        user.username = @"ali houshmand";
-//        user.password = @"password";
-//        [user saveInBackground];
+    
         
     }
     return self;
@@ -83,13 +82,21 @@
     
     [nameField resignFirstResponder];
     [pwField resignFirstResponder];
-    
-
 }
 
 
+-(void)tapScreen // removes keyboard when clicking outside of fields or buttons
+{
+    [pwField resignFirstResponder];
+    [nameField resignFirstResponder];
+    
+//    [UIView animateWithDuration:0.2 animations:^{
+//        newForm.frame = CGRectMake(0,0, 320, self.view.frame.size.height);
+//        
+//    }];
+}
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
+- (BOOL)textFieldShouldReturn:(UITextField *)textField   //now any textField will allow resign keyboard
 {
     [textField resignFirstResponder];
     return YES;

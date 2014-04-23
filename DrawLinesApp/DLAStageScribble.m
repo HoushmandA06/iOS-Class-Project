@@ -79,7 +79,6 @@
     CGContextFillEllipseInRect(context, CGRectMake(75, 75, 50, 50)); //makes a filled circle
     CGContextStrokePath(context);
     CGContextFillRect (context, CGRectMake (50, 150, 100, 200));
-
     
     
     

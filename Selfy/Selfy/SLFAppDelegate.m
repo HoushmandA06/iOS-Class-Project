@@ -28,7 +28,7 @@
     [PFUser enableAutomaticUser];
 
     
-    // Override point for customization after application launch.
+    //Override point for customization after application launch.
 
     
     // self.window.rootViewController = [[SLFTableViewController alloc] initWithStyle:UITableViewStylePlain];

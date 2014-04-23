@@ -32,10 +32,12 @@
     self.view.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1.0];
         
     newCaption = [[UITextView alloc] initWithFrame:CGRectMake(40,260,240,80)];
-    newCaption.backgroundColor = [UIColor lightGrayColor];
+    newCaption.backgroundColor = [UIColor colorWithWhite:0.90 alpha:1.0];
     newCaption.layer.cornerRadius = 6;
     newCaption.delegate = self;
     newCaption.keyboardType = UIKeyboardTypeTwitter;
+    [newCaption.layer setBorderColor: [[UIColor lightGrayColor] CGColor]];
+    [newCaption.layer setBorderWidth: 2.0];
     [newForm addSubview:newCaption];
         
     UIButton * submitNew = [[UIButton alloc] initWithFrame:CGRectMake(40, 360, 100, 40)];
@@ -46,7 +48,6 @@
     //[newImage addTarget:self action:@selector(newSelfy) forControlEvents:UIControlEventTouchUpInside];
     [newForm addSubview:submitNew];
         
-        
     UIButton * cancelNew = [[UIButton alloc] initWithFrame:CGRectMake(180, 360, 100, 40)];
     cancelNew.backgroundColor = [UIColor colorWithRed:1.000f green:0.486f blue:0.486f alpha:1.0f];
     [cancelNew setTitle:@"Cancel" forState:UIControlStateNormal];
@@ -54,13 +55,14 @@
     cancelNew.layer.cornerRadius = 6;
     //[newImage addTarget:self action:@selector(newSelfy) forControlEvents:UIControlEventTouchUpInside];
     [newForm addSubview:cancelNew];
-        
-        
+                
     UIImageView * newImageFrame = [[UIImageView alloc] initWithFrame:CGRectMake(60,40,200,200)];
     newImageFrame.layer.cornerRadius = 6;
     newImageFrame.contentMode = UIViewContentModeCenter;
-    newImageFrame.backgroundColor = [UIColor lightGrayColor];
+    newImageFrame.backgroundColor = [UIColor colorWithWhite:0.90 alpha:1.0];
     newImageFrame.image = [UIImage imageNamed:@"image"];
+    [newImageFrame.layer setBorderColor: [[UIColor lightGrayColor] CGColor]];
+    [newImageFrame.layer setBorderWidth: 2.0];
     [newForm addSubview:newImageFrame];
 
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapScreen)]; //added this to get rid of keyboard with a touch on frame outside of the above items
@@ -81,7 +83,7 @@
 
 
 
--(void)tapScreen
+-(void)tapScreen // moves frame back down, removes keyboard
 {
     [newCaption resignFirstResponder];
     
@@ -98,7 +100,7 @@
 }
 
 
--(void)textViewDidBeginEditing:(UITextView *)textView
+-(void)textViewDidBeginEditing:(UITextView *)textView  //moves new frame up as keyboard appears.
 {
     [UIView animateWithDuration:0.2 animations:^{
         newForm.frame = CGRectMake(0,-KB_HEIGHT, 320, self.view.frame.size.height);
