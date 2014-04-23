@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TLANavController : UINavigationController
+@interface TLANavController : UINavigationController <UITextViewDelegate>
 
 @end

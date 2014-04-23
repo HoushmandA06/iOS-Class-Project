@@ -38,24 +38,24 @@
     
                        ] mutableCopy];
         
-    UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0,0,320,60)];
-    header.backgroundColor = [UIColor blackColor];
-    self.tableView.tableHeaderView = header;
+//    UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0,0,320,60)];
+//    header.backgroundColor = [UIColor blackColor];
+//    self.tableView.tableHeaderView = header;
         
-    UILabel * titleHeader = [[UILabel alloc] initWithFrame:CGRectMake(120,0,100,95)];
+//    UILabel * titleHeader = [[UILabel alloc] initWithFrame:CGRectMake(120,0,100,95)];
 //      titleHeader.text = @"TweetLike";
 //   titleHeader.textColor = [UIColor whiteColor];
 //    titleHeader.font =[UIFont fontWithName:@"Helvetica" size:(20)];
-    [header addSubview:titleHeader];
+//    [header addSubview:titleHeader];
         
-    tweetField = [[UITextField alloc] initWithFrame:CGRectMake(110,20,100,30)];
-    tweetField.backgroundColor = [UIColor colorWithWhite:0.90 alpha:1.0];
-    tweetField.layer.cornerRadius = 10;
-    tweetField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0,0,10,30)]; // puts the cursor a set amt right of the textfield
-    tweetField.leftViewMode = UITextFieldViewModeAlways;
-    tweetField.placeholder = @"Add New!";
-    [header addSubview:tweetField];
-    tweetField.delegate = self;
+//    tweetField = [[UITextField alloc] initWithFrame:CGRectMake(110,20,100,30)];
+//    tweetField.backgroundColor = [UIColor colorWithWhite:0.90 alpha:1.0];
+//    tweetField.layer.cornerRadius = 10;
+//    tweetField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0,0,10,30)]; // puts the cursor a set amt right of the textfield
+//    tweetField.leftViewMode = UITextFieldViewModeAlways;
+//    tweetField.placeholder = @"Add New!";
+//    [header addSubview:tweetField];
+//    tweetField.delegate = self;
         
     self.tableView.rowHeight = 80;  //self.tableView.frame.size.width;
     self.tableView.separatorInset = UIEdgeInsetsZero;

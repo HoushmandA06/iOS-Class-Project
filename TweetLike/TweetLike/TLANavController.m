@@ -18,6 +18,9 @@
     
     UIView * blueBox;
     
+    UITextView * newCaption;
+    UIButton * submit;
+    UIButton * cancel;
     
 }
 
@@ -42,8 +45,7 @@
     [addNewItem setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     [self.navigationBar addSubview:addNewItem];
     NSLog(@"clicked");
-        
-       
+    
         
     }
     return self;
@@ -57,7 +59,42 @@
         blueBox.frame = self.view.frame;
     }];
   
-    //  addNewItem.alpha = 0.0;
+    addNewItem.alpha = 0.0;
+    
+    UIImageView * logo = [[UIImageView alloc] initWithFrame:CGRectMake(100,120,110,40)];
+    logo.image = [UIImage imageNamed:@"logo"];
+    [blueBox addSubview:logo];
+    
+    
+    newCaption = [[UITextView alloc] initWithFrame:CGRectMake(40,170,240,100)];
+    newCaption.backgroundColor = [UIColor colorWithWhite:0.90 alpha:1.0];
+    newCaption.layer.cornerRadius = 6;
+    newCaption.keyboardType = UIKeyboardTypeTwitter;
+    [newCaption.layer setBorderColor: [[UIColor lightGrayColor] CGColor]];
+    [newCaption.layer setBorderWidth: 2.0];
+    [blueBox addSubview:newCaption];
+    newCaption.delegate = self;
+    
+    submit = [[UIButton alloc] initWithFrame:CGRectMake(40, 280, 100, 40)];
+    submit.backgroundColor = [UIColor greenColor];
+    [submit setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [submit setTitle:@"Submit" forState:UIControlStateNormal];
+    submit.layer.cornerRadius = 6;
+    //[newImage addTarget:self action:@selector(newSelfy) forControlEvents:UIControlEventTouchUpInside];
+    [blueBox addSubview:submit];
+    
+    cancel = [[UIButton alloc] initWithFrame:CGRectMake(180, 280, 100, 40)];
+    cancel.backgroundColor = [UIColor redColor];
+    [cancel setTitle:@"Cancel" forState:UIControlStateNormal];
+    [cancel setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    cancel.layer.cornerRadius = 6;
+    //[newImage addTarget:self action:@selector(newSelfy) forControlEvents:UIControlEventTouchUpInside];
+    [blueBox addSubview:cancel];
+
+    
+    
+    
+    
     
     
 }
