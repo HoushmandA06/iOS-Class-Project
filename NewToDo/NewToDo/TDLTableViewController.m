@@ -202,11 +202,8 @@
     }
     
     [self.tableView reloadData];
-    
+
     NSLog(@"%@", sender);
-    
-    
-    
 }
 
 - (void)viewDidLoad
