@@ -106,8 +106,13 @@
                                    @"text":tweet
                                    } atIndex:0];
     [self.tableView reloadData];
-    
 }
+
+-(BOOL)isTweetItemsEmpty
+{
+    return ([self.tweetItems count] == 0);  // if count is equal to zero, return yes
+}
+
 
 
 -(BOOL)prefersStatusBarHidden

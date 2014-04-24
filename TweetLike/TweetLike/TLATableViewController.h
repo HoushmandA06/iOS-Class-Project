@@ -12,6 +12,8 @@
 
 @property (nonatomic) NSMutableArray * tweetItems;
 
+@property (nonatomic, getter = isTweetItemsEmpty,readonly) BOOL tweetItemsEmpty;
+
 -(void)createNewTweet:(NSString *)tweet;
 
 

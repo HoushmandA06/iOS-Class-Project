@@ -121,7 +121,7 @@
     addNewItem.layer.cornerRadius = 15;
     [addNewItem addTarget:self action:@selector(newItem:) forControlEvents:UIControlEventTouchUpInside];
     [addNewItem setTitle:@"Add New" forState:UIControlStateNormal];
-    [addNewItem setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [addNewItem setTitleColor:[UIColor colorWithRed:0.216f green:0.533f blue:0.984f alpha:1.0] forState:UIControlStateNormal];
     [addNewItem.layer setBorderColor: [[UIColor blueColor] CGColor]];
     [addNewItem.layer setBorderWidth: 1.0];
     [blueBox addSubview:addNewItem];
@@ -184,6 +184,12 @@
 {
     TVC = viewController;
     [self pushViewController:viewController animated:NO];
+    
+    if ([TVC isTweetItemsEmpty])
+    {
+        [self newItem:addNewItem];
+    
+    }
     
 }
 
