@@ -14,18 +14,23 @@
 @end
 
 @implementation TLATableViewController
+
 {
-    NSMutableArray * tweetItems;
+
+    //   NSMutableArray * tweetItems;
     UITextField * tweetField;
 
 }
+
+
+//we made tweetItems a property, so now when we need it, use self." "
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
 
-    tweetItems = [@[
+    self.tweetItems = [@[
                        // starts array
                        @{
                        //starts dictionary at index 0
@@ -71,7 +76,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 
-    return [tweetItems count];
+    return [self.tweetItems count];
 }
 
 
@@ -85,11 +90,23 @@
         cell = [[TLATableViewCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
     
-    cell.tweet = tweetItems[indexPath.row];
+    cell.tweet = self.tweetItems[indexPath.row];
     
     // Configure the cell...
     
     return cell;
+}
+
+-(void)createNewTweet:(NSString *)tweet
+{
+    if ([tweet isEqualToString:@""]) return;
+    
+    [self.tweetItems insertObject:@{
+                                   @"likes":@0,
+                                   @"text":tweet
+                                   } atIndex:0];
+    [self.tableView reloadData];
+    
 }
 
 

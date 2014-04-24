@@ -12,4 +12,7 @@
 
 @property (nonatomic) NSMutableArray * tweetItems;
 
+-(void)createNewTweet:(NSString *)tweet;
+
+
 @end

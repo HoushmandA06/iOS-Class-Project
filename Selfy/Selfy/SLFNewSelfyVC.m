@@ -75,11 +75,22 @@
     return self;
 }
 
+-(void)moveNewFormToOriginalPosition
+{
+    newForm.frame = CGRectMake(0,0, 320, self.view.frame.size.height);
+}
+
+
+-(void)moveNewFormToCaterForVirtualKeyboard
+{
+    newForm.frame = CGRectMake(0,-KB_HEIGHT, 320, self.view.frame.size.height);
+}
+
+
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
     [UIView animateWithDuration:0.2 animations:^{
-        newForm.frame = CGRectMake(0,-KB_HEIGHT, 320, self.view.frame.size.height);
-        
+        [self moveNewFormToCaterForVirtualKeyboard];
     }];
     return YES;
 }
@@ -91,10 +102,8 @@
     [newCaption resignFirstResponder];
     
     [UIView animateWithDuration:0.2 animations:^{
-        newForm.frame = CGRectMake(0,0, 320, self.view.frame.size.height);
-        
+        [self moveNewFormToOriginalPosition];
     }];
-    
 }
 
 -(void)newSelfy
