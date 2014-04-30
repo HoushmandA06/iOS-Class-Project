@@ -188,7 +188,6 @@
     if ([TVC isTweetItemsEmpty])
     {
         [self newItem:addNewItem];
-    
     }
     
 }
