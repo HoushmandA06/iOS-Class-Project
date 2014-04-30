@@ -9,13 +9,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DLAStageScribble.m"
-            timestampString = "419432551.67784"
+            filePath = "PullPicLibrary/PPLViewController.m"
+            timestampString = "420577834.786267"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "113"
-            endingLineNumber = "113"
-            landmarkName = "-touchesBegan:withEvent:"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
+            landmarkName = "-getPhoto:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
