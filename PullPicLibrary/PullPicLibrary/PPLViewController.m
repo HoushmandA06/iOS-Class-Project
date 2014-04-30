@@ -14,7 +14,10 @@
 
 @implementation PPLViewController
 {
-    UIButton * pullPic; //comment
+    UIButton * pullPic;
+    UIButton * squares;
+    CGFloat gap;
+    
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -49,7 +52,7 @@
     pullPic = [[UIButton alloc] initWithFrame:CGRectMake(100, 10, 120, 30)];
     pullPic.layer.cornerRadius = 15;
     pullPic.backgroundColor = BLUE_COLOR;
-    [pullPic setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+    [pullPic setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [pullPic setTitle: @"Pull Photo" forState: UIControlStateNormal];
     [pullPic addTarget:self action:@selector(getPhoto:) forControlEvents:UIControlEventTouchUpInside];
     [navBar addSubview:pullPic];
@@ -66,9 +69,7 @@
     [btnLayer setMasksToBounds:YES];
     [btnLayer setCornerRadius:5.0f];
     
- 
-    
-    
+
     UIView * viewAboveScroll = [[UIView alloc] initWithFrame:CGRectMake(0,SCREEN_HEIGHT-140, SCREEN_WIDTH, 40)];
     viewAboveScroll.backgroundColor = [UIColor clearColor];
     [self.view addSubview:viewAboveScroll];
@@ -79,15 +80,28 @@
     int squareCount = 20;
     for(int i = 0; i < squareCount; i++) {
         
-        CGFloat x = (80+10) * i;
-        UIButton * squares = [[UIButton alloc] initWithFrame:CGRectMake(x,10,80,80)];
+        gap = 10;
+        CGFloat x = (80+gap) * i;
+        squares = [[UIButton alloc] initWithFrame:CGRectMake(x,10,80,80)];
         squares.backgroundColor = [UIColor whiteColor];
+        NSString * squareNumber = [@(i+1)stringValue];
+        [squares setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+        [squares setTitle:squareNumber forState: UIControlStateNormal];
         [scrollview addSubview:squares];
     }
-    scrollview.contentSize = CGSizeMake(self.view.frame.size.width * squareCount, 100);
+    scrollview.contentSize = CGSizeMake(squares.frame.size.width*squareCount+squareCount*gap, 100);
     [self.view addSubview:scrollview];
-
+    
 }
+
+
+//CISoftLightBlendMode
+
+
+
+
+
+
 
 - (void)viewDidAppear:(BOOL)animated {
     
