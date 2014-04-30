@@ -32,40 +32,59 @@
     [super viewDidLoad];
 
     
-    self.picFrame = [[UIImageView alloc] initWithFrame:CGRectMake(20, 80, 280, 280)];
-    self.picFrame.backgroundColor = [UIColor colorWithWhite:.90 alpha:1.0];
-    self.picFrame.layer.cornerRadius =  10;
-    self.picFrame.contentMode = UIViewContentModeScaleToFill;
+    self.picFrame = [[UIImageView alloc] initWithFrame:CGRectMake(0, 55, SCREEN_WIDTH, 280)];
+    self.picFrame.backgroundColor = [UIColor colorWithWhite:.88 alpha:1.0];
+//  self.picFrame.layer.cornerRadius =  10;
+    self.picFrame.contentMode = UIViewContentModeScaleToFill;   //// **** SCALING *****
     self.picFrame.clipsToBounds = YES;
-    
-    [self.picFrame.layer setBorderColor:[[UIColor lightGrayColor] CGColor]];
-    [self.picFrame.layer setBorderWidth: 1.0];
+//  [self.picFrame.layer setBorderColor:[[UIColor blackColor] CGColor]];
+//  [self.picFrame.layer setBorderWidth: 1.0];
     [self.view addSubview:self.picFrame];
     
     UIView * navBar = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 50)];
-    navBar.backgroundColor = BLUE_COLOR;
+    navBar.backgroundColor = [UIColor blackColor];
     [self.view addSubview:navBar];
     
-    pullPic = [[UIButton alloc] initWithFrame:CGRectMake(50, 10, 220, 30)];
+    
+    pullPic = [[UIButton alloc] initWithFrame:CGRectMake(100, 10, 120, 30)];
     pullPic.layer.cornerRadius = 15;
-    pullPic.backgroundColor = [UIColor whiteColor];
-    [pullPic setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [pullPic setTitle: @"Pull Pic" forState: UIControlStateNormal];
+    pullPic.backgroundColor = BLUE_COLOR;
+    [pullPic setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+    [pullPic setTitle: @"Pull Photo" forState: UIControlStateNormal];
     [pullPic addTarget:self action:@selector(getPhoto:) forControlEvents:UIControlEventTouchUpInside];
     [navBar addSubview:pullPic];
+    
+    ///////// ***** gradient code for button ***** 102,102,102,51,51,51
+    CAGradientLayer *btnGradient = [CAGradientLayer layer];
+    btnGradient.frame = pullPic.bounds;
+    btnGradient.colors = [NSArray arrayWithObjects:
+                          (id)[[UIColor colorWithRed:125.0f / 255.0f green:189.0f / 255.0f blue:255.0f / 255.0f alpha:1.0f] CGColor],
+                          (id)[[UIColor colorWithRed:51.0f / 255.0f green:51.0f / 255.0f blue:51.0f / 255.0f alpha:1.0f] CGColor],
+                          nil];
+    [pullPic.layer insertSublayer:btnGradient atIndex:0];
+    CALayer *btnLayer = [pullPic layer];
+    [btnLayer setMasksToBounds:YES];
+    [btnLayer setCornerRadius:5.0f];
+    
+ 
+    
+    
+    UIView * viewAboveScroll = [[UIView alloc] initWithFrame:CGRectMake(0,SCREEN_HEIGHT-140, SCREEN_WIDTH, 40)];
+    viewAboveScroll.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:viewAboveScroll];
 
     UIScrollView *scrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-100, SCREEN_WIDTH, 100)];
     scrollview.backgroundColor = [UIColor darkGrayColor];
     
-    NSInteger squareCount = 20;
-    for(int i = 0; i< squareCount; i++) {
+    int squareCount = 20;
+    for(int i = 0; i < squareCount; i++) {
         
-        CGFloat x = i + 90;
+        CGFloat x = (80+10) * i;
         UIButton * squares = [[UIButton alloc] initWithFrame:CGRectMake(x,10,80,80)];
         squares.backgroundColor = [UIColor whiteColor];
         [scrollview addSubview:squares];
     }
-    scrollview.contentSize = CGSizeMake(self.view.frame.size.width * squareCount, self.view.frame.size.height);
+    scrollview.contentSize = CGSizeMake(self.view.frame.size.width * squareCount, 100);
     [self.view addSubview:scrollview];
 
 }
@@ -73,7 +92,6 @@
 - (void)viewDidAppear:(BOOL)animated {
     
     [super viewDidAppear:animated];
- 
 
 }
 
