@@ -14,7 +14,7 @@
 
 @implementation PPLViewController
 {
-    UIButton * pullPic;
+    UIButton * pullPic; //comment
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
