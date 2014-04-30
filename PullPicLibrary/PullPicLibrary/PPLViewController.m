@@ -22,7 +22,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
 
-        self.view.backgroundColor = [UIColor colorWithWhite:.95 alpha:1.0];
+        self.view.backgroundColor = [UIColor blackColor];
     }
     return self;
 }
@@ -31,28 +31,43 @@
 {
     [super viewDidLoad];
 
-    pullPic = [[UIButton alloc] initWithFrame:CGRectMake(50, 50, 220, 40)];
-    pullPic.layer.cornerRadius = 20;
-    pullPic.backgroundColor = BLUE_COLOR;
-    [pullPic setTitle: @"Pull Pic" forState: UIControlStateNormal];
-    [pullPic addTarget:self action:@selector(getPhoto:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:pullPic];
     
-    self.picFrame = [[UIImageView alloc] initWithFrame:CGRectMake(50, 125, 220, 220)];
+    self.picFrame = [[UIImageView alloc] initWithFrame:CGRectMake(20, 80, 280, 280)];
     self.picFrame.backgroundColor = [UIColor colorWithWhite:.90 alpha:1.0];
-    self.picFrame.layer.cornerRadius =  20;
+    self.picFrame.layer.cornerRadius =  10;
     self.picFrame.contentMode = UIViewContentModeScaleToFill;
     self.picFrame.clipsToBounds = YES;
     
     [self.picFrame.layer setBorderColor:[[UIColor lightGrayColor] CGColor]];
-    [self.picFrame.layer setBorderWidth: 2.0];
+    [self.picFrame.layer setBorderWidth: 1.0];
     [self.view addSubview:self.picFrame];
     
-//    UIView * navBar = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 50)];
-//    navBar.backgroundColor = BLUE_COLOR;
-//    [self.view addSubview:navBar];
+    UIView * navBar = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 50)];
+    navBar.backgroundColor = BLUE_COLOR;
+    [self.view addSubview:navBar];
     
+    pullPic = [[UIButton alloc] initWithFrame:CGRectMake(50, 10, 220, 30)];
+    pullPic.layer.cornerRadius = 15;
+    pullPic.backgroundColor = [UIColor whiteColor];
+    [pullPic setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [pullPic setTitle: @"Pull Pic" forState: UIControlStateNormal];
+    [pullPic addTarget:self action:@selector(getPhoto:) forControlEvents:UIControlEventTouchUpInside];
+    [navBar addSubview:pullPic];
+
+    UIScrollView *scrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-100, SCREEN_WIDTH, 100)];
+    scrollview.backgroundColor = [UIColor darkGrayColor];
     
+    NSInteger squareCount = 20;
+    for(int i = 0; i< squareCount; i++) {
+        
+        CGFloat x = i + 90;
+        UIButton * squares = [[UIButton alloc] initWithFrame:CGRectMake(x,10,80,80)];
+        squares.backgroundColor = [UIColor whiteColor];
+        [scrollview addSubview:squares];
+    }
+    scrollview.contentSize = CGSizeMake(self.view.frame.size.width * squareCount, self.view.frame.size.height);
+    [self.view addSubview:scrollview];
+
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -107,6 +122,11 @@
     
 }
 
+
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
 
 
 
