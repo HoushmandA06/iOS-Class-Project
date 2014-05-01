@@ -18,6 +18,10 @@
     UIButton * squares;
     CGFloat gap;
     
+    CIContext *context;
+    CIFilter *filter;
+    CIImage *beginImage;
+    
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -37,7 +41,6 @@
     
     self.picFrame = [[UIImageView alloc] initWithFrame:CGRectMake(0, 55, SCREEN_WIDTH, 280)];
     self.picFrame.backgroundColor = [UIColor colorWithWhite:.88 alpha:1.0];
-//  self.picFrame.layer.cornerRadius =  10;
     self.picFrame.contentMode = UIViewContentModeScaleToFill;   //// **** SCALING *****
     self.picFrame.clipsToBounds = YES;
 //  [self.picFrame.layer setBorderColor:[[UIColor blackColor] CGColor]];
@@ -86,24 +89,20 @@
         squares.backgroundColor = [UIColor whiteColor];
         NSString * squareNumber = [@(i+1)stringValue];
         [squares setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-        [squares setTitle:squareNumber forState: UIControlStateNormal];
+        [squares setTitle:squareNumber forState: UIControlStateNormal];  
         [scrollview addSubview:squares];
     }
     scrollview.contentSize = CGSizeMake(squares.frame.size.width*squareCount+squareCount*gap, 100);
     [self.view addSubview:scrollview];
     
+    
+    
+
 }
 
 
-//CISoftLightBlendMode
-
-
-
-
-
-
-
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated
+{
     
     [super viewDidAppear:animated];
 
@@ -133,19 +132,26 @@
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-
 {
     
     NSLog(@"%@", info[UIImagePickerControllerOriginalImage]);
     
-    //UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
-    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
-    self.picFrame.image = chosenImage;
-
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];  // requires the allowsEditing prop = yes on picker
+    
+    beginImage = [CIImage imageWithCGImage:chosenImage.CGImage];
+ // CIImage * beginImage = [[CIImage alloc] initWithCGImage:chosenImage.CGImage]; could do it this way if using local var
+    
+    filter = [CIFilter filterWithName:@"CISepiaTone"
+                       keysAndValues: kCIInputImageKey, beginImage,@"inputIntensity", @0.8, nil];
+    
+    CIImage *outputImage = [filter outputImage];
+    UIImage *newImage = [UIImage imageWithCIImage:outputImage];
+    self.picFrame.image = newImage;
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
 }
+
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
