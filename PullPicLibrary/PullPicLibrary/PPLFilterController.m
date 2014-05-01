@@ -51,8 +51,9 @@
                             @"CIPhotoEffectTonal",
                             @"CIPhotoEffectTransfer",
                             @"CISepiaTone",
-                            @"CIVignette",
+                            @"CIVignette"
                             ];
+        
         scrollview = [[UIScrollView alloc] init];
         [self.view addSubview:scrollview];
         
@@ -109,16 +110,17 @@
 -(UIImage *)filterImage:(UIImage *)image filterName:(NSString *)filterName  //takes an image, filters it, and spits it out
 {
     
-    CIImage * ciImage = [CIImage imageWithCGImage:image.CGImage];
+    CIImage * ciImage = [CIImage imageWithCGImage:image.CGImage];  //need a CIImage to work with filters, convert UIImage to CI
     
-    CIFilter * filter = [CIFilter filterWithName:filterName];
-    [filter setValue:ciImage forKeyPath:kCIInputImageKey];
+    CIFilter * filter = [CIFilter filterWithName:filterName];  // get filter from array
     
-    CIContext * ciContext = [CIContext contextWithOptions:nil];
+    [filter setValue:ciImage forKeyPath:kCIInputImageKey];  // apply filter to ciImage
     
-    CIImage * ciResult = [filter valueForKeyPath:kCIOutputImageKey];
+    CIContext * ciContext = [CIContext contextWithOptions:nil];  // create ciContext for optimization, rendering of CGImage from CI
     
-    return [UIImage imageWithCGImage:[ciContext createCGImage:ciResult fromRect:[ciImage extent]]];
+    CIImage * ciResult = [filter valueForKeyPath:kCIOutputImageKey];  // get the result of the filtered image
+
+    return [UIImage imageWithCGImage:[ciContext createCGImage:ciResult fromRect:[ciImage extent]]];  // convert back into UIImage
 }
 
 
@@ -130,6 +132,8 @@
     UIImage * image = [self filterImage:self.imageToFilter filterName:self.currentFilter];
     
     [self.delegate updateCurrentImageWithFilteredImage:image];
+    
+    
     
     
      
@@ -149,14 +153,27 @@
     {
         NSString * filterName = [filterNames objectAtIndex:filterButton.tag];
         
+    
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,(unsigned long)NULL), ^{
+        
         UIImage * smallImage = [self shrinkImage:imageToFilter maxWH:wh];
-        
         UIImage * image = [self filterImage:smallImage filterName:filterName];
+            
+        dispatch_async(dispatch_get_main_queue(), ^(void) {
+            
+            [filterButton setImage:image forState:UIControlStateNormal];
+            filterButton.imageView.contentMode = UIViewContentModeScaleAspectFill;
+            
+        });
+            
+        });
         
-        [filterButton setImage:image forState:UIControlStateNormal];
-        filterButton.imageView.contentMode = UIViewContentModeScaleAspectFill;
-    }
+//      UIImage * image = [self filterImage:smallImage filterName:filterName];
+//        [filterButton setImage:image forState:UIControlStateNormal];
+//        filterButton.imageView.contentMode = UIViewContentModeScaleAspectFill;
 
+    
+    }
 }
 
 -(UIImage *)shrinkImage:(UIImage *)image maxWH:(int)widthHeight
@@ -175,9 +192,6 @@
     UIGraphicsEndImageContext();
     
     return destImage;
-    
-    
-    
 }
 
 
