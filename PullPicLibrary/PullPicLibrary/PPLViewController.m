@@ -59,7 +59,7 @@
     navBar.backgroundColor = [UIColor blackColor];
     [self.view addSubview:navBar];
     
-    filterVC = [[PPLFilterController alloc] initWithNibName:nil bundle:nil];
+    filterVC = [[PPLFilterController alloc] initWithNibName:nil bundle:nil];  // *** filterViewController ***
     filterVC.delegate = self;
     filterVC.view.frame = CGRectMake(0, SCREEN_HEIGHT - 100, SCREEN_WIDTH, 100);
     [self.view addSubview:filterVC.view];
@@ -85,12 +85,19 @@
     [btnLayer setMasksToBounds:YES];
     [btnLayer setCornerRadius:5.0f];
     
-
     UIView * viewAboveScroll = [[UIView alloc] initWithFrame:CGRectMake(0,SCREEN_HEIGHT-140, SCREEN_WIDTH, 40)];
     viewAboveScroll.backgroundColor = [UIColor clearColor];
-    [self.view addSubview:viewAboveScroll];
+     [self.view addSubview:viewAboveScroll];
+
+    
+    UISlider * slider = [[UISlider alloc] initWithFrame:CGRectMake(0,15, SCREEN_WIDTH, 10)];
+    slider.backgroundColor = [UIColor clearColor];
+    slider.tintColor = [UIColor orangeColor];
+    [viewAboveScroll addSubview:slider];
+    
 
 }
+
 
 
 -(void)updateCurrentImageWithFilteredImage:(UIImage *)image

@@ -76,8 +76,12 @@
         int x = (wh + 10) * i + 10;
         
         UIButton * filterButton = [[UIButton alloc] initWithFrame:CGRectMake(x,10,wh,wh)];
+        filterButton.layer.cornerRadius = wh/8;
         filterButton.tag = i;
         filterButton.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.2];
+        [filterButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+        filterButton.titleLabel.font = [UIFont fontWithName:@"Helvetica" size:8];
+        [filterButton setTitle:filterName forState:UIControlStateNormal];
         [filterButton addTarget:self action:@selector(switchFilter:) forControlEvents:UIControlEventTouchUpInside];
         [filterButtons addObject:filterButton];
         
@@ -158,11 +162,12 @@
         
         UIImage * smallImage = [self shrinkImage:imageToFilter maxWH:wh];
         UIImage * image = [self filterImage:smallImage filterName:filterName];
-            
+        
         dispatch_async(dispatch_get_main_queue(), ^(void) {
             
             [filterButton setImage:image forState:UIControlStateNormal];
             filterButton.imageView.contentMode = UIViewContentModeScaleAspectFill;
+            filterButton.imageView.layer.cornerRadius = wh/8;
             
         });
             

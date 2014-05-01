@@ -21,6 +21,7 @@
 		0FA97AAF1911676D00C03C34 /* PullPicLibraryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA97AAE1911676D00C03C34 /* PullPicLibraryTests.m */; };
 		0FA97ABA1911678A00C03C34 /* PPLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA97AB91911678A00C03C34 /* PPLViewController.m */; };
 		0FA97ABD1912833A00C03C34 /* PPLFilterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA97ABC1912833A00C03C34 /* PPLFilterController.m */; };
+		0FA97AC01913027D00C03C34 /* PPLSuperFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA97ABF1913027D00C03C34 /* PPLSuperFilter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,8 @@
 		0FA97AB91911678A00C03C34 /* PPLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPLViewController.m; sourceTree = "<group>"; };
 		0FA97ABB1912833A00C03C34 /* PPLFilterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPLFilterController.h; sourceTree = "<group>"; };
 		0FA97ABC1912833A00C03C34 /* PPLFilterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPLFilterController.m; sourceTree = "<group>"; };
+		0FA97ABE1913027D00C03C34 /* PPLSuperFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPLSuperFilter.h; sourceTree = "<group>"; };
+		0FA97ABF1913027D00C03C34 /* PPLSuperFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPLSuperFilter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +116,8 @@
 		0FA97A8F1911676D00C03C34 /* PullPicLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				0FA97ABE1913027D00C03C34 /* PPLSuperFilter.h */,
+				0FA97ABF1913027D00C03C34 /* PPLSuperFilter.m */,
 				0FA97ABB1912833A00C03C34 /* PPLFilterController.h */,
 				0FA97ABC1912833A00C03C34 /* PPLFilterController.m */,
 				0FA97AB81911678A00C03C34 /* PPLViewController.h */,
@@ -252,6 +257,7 @@
 			files = (
 				0FA97A961911676D00C03C34 /* main.m in Sources */,
 				0FA97A9A1911676D00C03C34 /* PPLAppDelegate.m in Sources */,
+				0FA97AC01913027D00C03C34 /* PPLSuperFilter.m in Sources */,
 				0FA97ABD1912833A00C03C34 /* PPLFilterController.m in Sources */,
 				0FA97ABA1911678A00C03C34 /* PPLViewController.m in Sources */,
 			);
