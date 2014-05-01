@@ -7,29 +7,28 @@
 //
 
 #import "PPLViewController.h"
+#import "PPLFilterController.h"
 
-@interface PPLViewController ()
+
+@interface PPLViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate,PPLFilterControllerDelegate>
+
+
+@property (nonatomic) UIImage * originalImage;  // here so we can put setter / getter
 
 @end
 
 @implementation PPLViewController
 {
     UIButton * pullPic;
-    UIButton * squares;
-    CGFloat gap;
-    
-    UIScrollView * scrollview;
+ 
 
+    PPLFilterController * filterVC;
     
     CIContext *context;
     CIFilter *filterSepia;
     CIImage *beginImage;
     
-    NSArray * filterNames;
     NSMutableArray * filters;
-    
-
-    
     
 }
 
@@ -60,7 +59,12 @@
     navBar.backgroundColor = [UIColor blackColor];
     [self.view addSubview:navBar];
     
+    filterVC = [[PPLFilterController alloc] initWithNibName:nil bundle:nil];
+    filterVC.delegate = self;
+    filterVC.view.frame = CGRectMake(0, SCREEN_HEIGHT - 100, SCREEN_WIDTH, 100);
+    [self.view addSubview:filterVC.view];
     
+
     pullPic = [[UIButton alloc] initWithFrame:CGRectMake(100, 10, 120, 30)];
     pullPic.layer.cornerRadius = 15;
     pullPic.backgroundColor = BLUE_COLOR;
@@ -86,28 +90,16 @@
     viewAboveScroll.backgroundColor = [UIColor clearColor];
     [self.view addSubview:viewAboveScroll];
 
-    scrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-100, SCREEN_WIDTH, 100)];
-    scrollview.backgroundColor = [UIColor darkGrayColor];
-    
-    int squareCount = 20;
-    for(int i = 0; i < squareCount; i++) {
-        
-        gap = 10;
-        CGFloat x = (80+gap) * i;
-        squares = [[UIButton alloc] initWithFrame:CGRectMake(x,10,80,80)];
-        squares.backgroundColor = [UIColor whiteColor];
-        NSString * squareNumber = [@(i+1)stringValue];  //to turn number count into string to be used for labeling
-        [squares setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-        [squares setTitle:squareNumber forState: UIControlStateNormal];  
-        [scrollview addSubview:squares];
-    }
-    scrollview.contentSize = CGSizeMake(squares.frame.size.width*squareCount+squareCount*gap, 100);
-    [self.view addSubview:scrollview];
-    
-
 }
 
 
+-(void)updateCurrentImageWithFilteredImage:(UIImage *)image
+{
+
+    self.picFrame.image = image;
+    
+    
+}
 
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -142,23 +134,38 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     
-    NSLog(@"%@", info[UIImagePickerControllerOriginalImage]);
+//    NSLog(@"%@", info[UIImagePickerControllerOriginalImage]);
+//    
+//    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];  // requires the allowsEditing prop = yes on picker
+//    
+//    beginImage = [CIImage imageWithCGImage:chosenImage.CGImage];
+// // CIImage * beginImage = [[CIImage alloc] initWithCGImage:chosenImage.CGImage]; could do it this way if using local var
+//    
+//    filterSepia = [CIFilter filterWithName:@"CISepiaTone"
+//                       keysAndValues: kCIInputImageKey, beginImage,@"inputIntensity", @0.8, nil];
+//    
+//    CIImage *outputImage = [filterSepia outputImage];
+//    UIImage *newImage = [UIImage imageWithCIImage:outputImage];
+//    self.picFrame.image = newImage;
     
-    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];  // requires the allowsEditing prop = yes on picker
-    
-    beginImage = [CIImage imageWithCGImage:chosenImage.CGImage];
- // CIImage * beginImage = [[CIImage alloc] initWithCGImage:chosenImage.CGImage]; could do it this way if using local var
-    
-    filterSepia = [CIFilter filterWithName:@"CISepiaTone"
-                       keysAndValues: kCIInputImageKey, beginImage,@"inputIntensity", @0.8, nil];
-    
-    CIImage *outputImage = [filterSepia outputImage];
-    UIImage *newImage = [UIImage imageWithCIImage:outputImage];
-    self.picFrame.image = newImage;
+    self.originalImage = info[UIImagePickerControllerOriginalImage];
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
 }
+
+-(void)setOriginalImage:(UIImage *)originalImage
+{
+    
+    _originalImage = originalImage;
+    
+    filterVC.imageToFilter = originalImage;
+    self.picFrame.image = originalImage;
+    
+}
+
+
+
 
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
@@ -167,53 +174,6 @@
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
 }
-
-
-/*  for today
--(void)createButtons
-{
-    
-    filterNames = @[
-//                    @"CIColorCrossPolynomial",
-//                    @"CIColorCube",
-//                    @"CIColorCubeWithColorSpace",
-                    @"CIColorInvert",
-//                    @"CIColorMap",
-                    @"CIColorMonochrome",
-                    @"CIColorPosterize",
-                    @"CIFalseColor",
-//                    @"CIMaskToAlpha",
-                    @"CIMaximumComponent",
-                    @"CIMinimumComponent",
-                    @"CIPhotoEffectChrome",
-                    @"CIPhotoEffectFade",
-                    @"CIPhotoEffectInstant",
-                    @"CIPhotoEffectMono",
-                    @"CIPhotoEffectNoir",
-                    @"CIPhotoEffectProcess",
-                    @"CIPhotoEffectTonal",
-                    @"CIPhotoEffectTransfer",
-                    @"CISepiaTone",
-                    @"CIVignette",
-//                    @"CIVignetteEffect"
-                    ];
-    
-    filters = [@[]mutableCopy];
-    
-    for (NSString * name in filterNames)
-    {
-        NSInteger index = [filterNames indexOfObject:name];
-        UIButton * filterbuttons = [[UIButton alloc] initWithFrame:CGRectMake(index * 10,10,80,80)];
-        filterbuttons.backgroundColor = [UIColor whiteColor];
-        
-        [filters addObject:filterbuttons];
-        
-        [scrollview addSubview:filterbuttons];
-        
-    }
-    
-}
-*/
 
 
 - (BOOL)prefersStatusBarHidden

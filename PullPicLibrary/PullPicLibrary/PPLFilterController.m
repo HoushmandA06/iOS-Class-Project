@@ -1,0 +1,205 @@
+//
+//  PPLFilterController.m
+//  PullPicLibrary
+//
+//  Created by Ali Houshmand on 5/1/14.
+//  Copyright (c) 2014 Ali Houshmand. All rights reserved.
+//
+
+#import "PPLFilterController.h"
+
+@interface PPLFilterController ()
+
+@property (nonatomic) NSString * currentFilter;
+
+@end
+
+@implementation PPLFilterController
+{
+    UIButton * pullPic;
+    UIButton * squares;
+    CGFloat gap;
+    UIScrollView * scrollview;
+    NSArray * filterNames;
+    NSMutableArray * filterButtons;
+    
+    float wh;
+    
+}
+
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+       
+        
+            filterButtons = [@[] mutableCopy];
+            filterNames = @[
+                            @"CIColorInvert",
+                            @"CIColorMonochrome",
+                            @"CIColorPosterize",
+                            @"CIFalseColor",
+                            @"CIMaximumComponent",
+                            @"CIMinimumComponent",
+                            @"CIPhotoEffectChrome",
+                            @"CIPhotoEffectFade",
+                            @"CIPhotoEffectInstant",
+                            @"CIPhotoEffectMono",
+                            @"CIPhotoEffectNoir",
+                            @"CIPhotoEffectProcess",
+                            @"CIPhotoEffectTonal",
+                            @"CIPhotoEffectTransfer",
+                            @"CISepiaTone",
+                            @"CIVignette",
+                            ];
+        scrollview = [[UIScrollView alloc] init];
+        [self.view addSubview:scrollview];
+        
+    }
+    return self;
+}
+
+
+- (void)viewWillLayoutSubviews
+{
+    [super viewDidLoad];
+    
+    //scrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 100)];
+    
+     wh = self.view.frame.size.height - 20;
+    
+    for (NSString * filterName in filterNames)
+    {
+        int i = (int)[filterNames indexOfObject:filterName];
+        int x = (wh + 10) * i + 10;
+        
+        UIButton * filterButton = [[UIButton alloc] initWithFrame:CGRectMake(x,10,wh,wh)];
+        filterButton.tag = i;
+        filterButton.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.2];
+        [filterButton addTarget:self action:@selector(switchFilter:) forControlEvents:UIControlEventTouchUpInside];
+        [filterButtons addObject:filterButton];
+        
+        [scrollview addSubview:filterButton];
+    }
+    
+     scrollview.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+     scrollview.backgroundColor = [UIColor darkGrayColor];
+     
+//     int squareCount = 20;
+//     for(int i = 0; i < squareCount; i++) {
+//     
+//     gap = 10;
+//     CGFloat x = (80+gap) * i + 10;
+//     squares = [[UIButton alloc] initWithFrame:CGRectMake(x,10,80,80)];
+//     squares.backgroundColor = [UIColor whiteColor];
+//     NSString * squareNumber = [@(i+1)stringValue];  //to turn number count into string to be used for labeling
+//     [squares setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+//     [squares setTitle:squareNumber forState: UIControlStateNormal];
+//     [scrollview addSubview:squares];
+//     }
+    
+     scrollview.contentSize = CGSizeMake((wh+10)*[filterNames count] + 10, self.view.frame.size.height);
+     [self.view addSubview:scrollview];
+    
+    
+ }
+
+
+-(UIImage *)filterImage:(UIImage *)image filterName:(NSString *)filterName  //takes an image, filters it, and spits it out
+{
+    
+    CIImage * ciImage = [CIImage imageWithCGImage:image.CGImage];
+    
+    CIFilter * filter = [CIFilter filterWithName:filterName];
+    [filter setValue:ciImage forKeyPath:kCIInputImageKey];
+    
+    CIContext * ciContext = [CIContext contextWithOptions:nil];
+    
+    CIImage * ciResult = [filter valueForKeyPath:kCIOutputImageKey];
+    
+    return [UIImage imageWithCGImage:[ciContext createCGImage:ciResult fromRect:[ciImage extent]]];
+}
+
+
+
+-(void)switchFilter:(UIButton *)filterButton  // will update selected pic in ImageView to selected filter button's image
+{
+    self.currentFilter = [filterNames objectAtIndex:filterButton.tag];
+    
+    UIImage * image = [self filterImage:self.imageToFilter filterName:self.currentFilter];
+    
+    [self.delegate updateCurrentImageWithFilteredImage:image];
+    
+    
+     
+     //[UIImage imageWithCGImage:[self filterImage:[self shrinkImage:self.imageToFilter maxWH:SCREEN_WIDTH * 2] filterName:self.currentFilter]]];
+    
+  //  [self.delegate updateCurrentImageWithFilteredImage:self.currentImage];
+    
+}
+
+
+-(void)setImageToFilter:(UIImage *)imageToFilter  //sets the image of the all the filterbuttons to a "filtered" view
+{
+    
+    _imageToFilter = imageToFilter;
+    
+    for (UIButton * filterButton in filterButtons)
+    {
+        NSString * filterName = [filterNames objectAtIndex:filterButton.tag];
+        
+        UIImage * smallImage = [self shrinkImage:imageToFilter maxWH:wh];
+        
+        UIImage * image = [self filterImage:smallImage filterName:filterName];
+        
+        [filterButton setImage:image forState:UIControlStateNormal];
+        filterButton.imageView.contentMode = UIViewContentModeScaleAspectFill;
+    }
+
+}
+
+-(UIImage *)shrinkImage:(UIImage *)image maxWH:(int)widthHeight
+{
+    CGSize size = CGSizeMake(widthHeight, widthHeight / image.size.width * image.size.height);
+    
+    if(image.size.height < image.size.width)
+        size = CGSizeMake(widthHeight / image.size.height * image.size.width, widthHeight);
+    
+    UIGraphicsBeginImageContext(size);
+    
+    [image drawInRect:CGRectMake(0,0,size.width,size.height)];
+    
+    UIImage *destImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return destImage;
+    
+    
+    
+}
+
+
+
+
+
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+@end
