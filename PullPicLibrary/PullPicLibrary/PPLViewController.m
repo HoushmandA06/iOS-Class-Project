@@ -18,9 +18,18 @@
     UIButton * squares;
     CGFloat gap;
     
+    UIScrollView * scrollview;
+
+    
     CIContext *context;
-    CIFilter *filter;
+    CIFilter *filterSepia;
     CIImage *beginImage;
+    
+    NSArray * filterNames;
+    NSMutableArray * filters;
+    
+
+    
     
 }
 
@@ -77,7 +86,7 @@
     viewAboveScroll.backgroundColor = [UIColor clearColor];
     [self.view addSubview:viewAboveScroll];
 
-    UIScrollView *scrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-100, SCREEN_WIDTH, 100)];
+    scrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-100, SCREEN_WIDTH, 100)];
     scrollview.backgroundColor = [UIColor darkGrayColor];
     
     int squareCount = 20;
@@ -87,7 +96,7 @@
         CGFloat x = (80+gap) * i;
         squares = [[UIButton alloc] initWithFrame:CGRectMake(x,10,80,80)];
         squares.backgroundColor = [UIColor whiteColor];
-        NSString * squareNumber = [@(i+1)stringValue];
+        NSString * squareNumber = [@(i+1)stringValue];  //to turn number count into string to be used for labeling
         [squares setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
         [squares setTitle:squareNumber forState: UIControlStateNormal];  
         [scrollview addSubview:squares];
@@ -95,10 +104,9 @@
     scrollview.contentSize = CGSizeMake(squares.frame.size.width*squareCount+squareCount*gap, 100);
     [self.view addSubview:scrollview];
     
-    
-    
 
 }
+
 
 
 - (void)viewDidAppear:(BOOL)animated
@@ -141,10 +149,10 @@
     beginImage = [CIImage imageWithCGImage:chosenImage.CGImage];
  // CIImage * beginImage = [[CIImage alloc] initWithCGImage:chosenImage.CGImage]; could do it this way if using local var
     
-    filter = [CIFilter filterWithName:@"CISepiaTone"
+    filterSepia = [CIFilter filterWithName:@"CISepiaTone"
                        keysAndValues: kCIInputImageKey, beginImage,@"inputIntensity", @0.8, nil];
     
-    CIImage *outputImage = [filter outputImage];
+    CIImage *outputImage = [filterSepia outputImage];
     UIImage *newImage = [UIImage imageWithCIImage:outputImage];
     self.picFrame.image = newImage;
     
@@ -159,6 +167,53 @@
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
 }
+
+
+/*  for today
+-(void)createButtons
+{
+    
+    filterNames = @[
+                    @"CIColorCrossPolynomial",
+                    @"CIColorCube",
+                    @"CIColorCubeWithColorSpace",
+                    @"CIColorInvert",
+                    @"CIColorMap",
+                    @"CIColorMonochrome",
+                    @"CIColorPosterize",
+                    @"CIFalseColor",
+                    @"CIMaskToAlpha",
+                    @"CIMaximumComponent",
+                    @"CIMinimumComponent",
+                    @"CIPhotoEffectChrome",
+                    @"CIPhotoEffectFade",
+                    @"CIPhotoEffectInstant",
+                    @"CIPhotoEffectMono",
+                    @"CIPhotoEffectNoir",
+                    @"CIPhotoEffectProcess",
+                    @"CIPhotoEffectTonal",
+                    @"CIPhotoEffectTransfer",
+                    @"CISepiaTone",
+                    @"CIVignette",
+                    @"CIVignetteEffect"
+                    ];
+    
+    filters = [@[]mutableCopy];
+    
+    for (NSString * name in filterNames)
+    {
+        NSInteger index = [filterNames indexOfObject:name];
+        UIButton * filterbuttons = [[UIButton alloc] initWithFrame:CGRectMake(index * 10,10,80,80)];
+        filterbuttons.backgroundColor = [UIColor whiteColor];
+        
+        [filters addObject:filterbuttons];
+        
+        [scrollview addSubview:filterbuttons];
+        
+    }
+    
+}
+*/
 
 
 - (BOOL)prefersStatusBarHidden
