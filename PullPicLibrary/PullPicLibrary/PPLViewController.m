@@ -174,15 +174,15 @@
 {
     
     filterNames = @[
-                    @"CIColorCrossPolynomial",
-                    @"CIColorCube",
-                    @"CIColorCubeWithColorSpace",
+//                    @"CIColorCrossPolynomial",
+//                    @"CIColorCube",
+//                    @"CIColorCubeWithColorSpace",
                     @"CIColorInvert",
-                    @"CIColorMap",
+//                    @"CIColorMap",
                     @"CIColorMonochrome",
                     @"CIColorPosterize",
                     @"CIFalseColor",
-                    @"CIMaskToAlpha",
+//                    @"CIMaskToAlpha",
                     @"CIMaximumComponent",
                     @"CIMinimumComponent",
                     @"CIPhotoEffectChrome",
@@ -195,7 +195,7 @@
                     @"CIPhotoEffectTransfer",
                     @"CISepiaTone",
                     @"CIVignette",
-                    @"CIVignetteEffect"
+//                    @"CIVignetteEffect"
                     ];
     
     filters = [@[]mutableCopy];
