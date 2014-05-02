@@ -24,7 +24,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self)
     {
-        self.view.backgroundColor = [UIColor blackColor];
+        self.view.backgroundColor = [UIColor darkGrayColor];
     }
     return self;
 }
@@ -36,7 +36,7 @@
     saturationSlider = [[UISlider alloc] initWithFrame:CGRectMake(10, 10, SCREEN_WIDTH - 50, 20)];
     [saturationSlider addTarget:self action:@selector(applyFilter) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:saturationSlider];
-    
+    saturationSlider.tintColor = [UIColor orangeColor];
     saturationSlider.maximumValue = 2;
     saturationSlider.minimumValue = 0;
     saturationSlider.value = 1.0;
@@ -44,6 +44,7 @@
     
     brightnessSlider = [[UISlider alloc] initWithFrame:CGRectMake(10, 40, SCREEN_WIDTH - 50, 20)];
     [brightnessSlider addTarget:self action:@selector(applyFilter) forControlEvents:UIControlEventValueChanged];
+    
     [self.view addSubview:brightnessSlider];
     
     brightnessSlider.maximumValue = 1;

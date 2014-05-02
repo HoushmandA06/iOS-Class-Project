@@ -27,7 +27,9 @@
     if (self) {
 //        blurLevel = 10;
         
-        blurToggle = [[UISwitch alloc]initWithFrame:CGRectMake(260, 25, 20, 50)];
+        self.view.backgroundColor = [UIColor darkGrayColor];
+        
+        blurToggle = [[UISwitch alloc]initWithFrame:CGRectMake(260, 34, 20, 50)];
         blurToggle.on = YES;
         [blurToggle addTarget:self action:@selector(changeBlurType) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:blurToggle];

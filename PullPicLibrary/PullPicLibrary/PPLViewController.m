@@ -30,7 +30,6 @@
     
     UIView * viewAboveScroll;
     
-    
     CIContext *context;
     CIFilter *filterSepia;
     CIImage *beginImage;
