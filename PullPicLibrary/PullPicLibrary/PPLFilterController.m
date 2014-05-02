@@ -90,22 +90,21 @@
     
      scrollview.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
      scrollview.backgroundColor = [UIColor darkGrayColor];
-     
-//     int squareCount = 20;
-//     for(int i = 0; i < squareCount; i++) {
-//     
-//     gap = 10;
-//     CGFloat x = (80+gap) * i + 10;
-//     squares = [[UIButton alloc] initWithFrame:CGRectMake(x,10,80,80)];
-//     squares.backgroundColor = [UIColor whiteColor];
-//     NSString * squareNumber = [@(i+1)stringValue];  //to turn number count into string to be used for labeling
-//     [squares setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-//     [squares setTitle:squareNumber forState: UIControlStateNormal];
-//     [scrollview addSubview:squares];
-//     }
-    
      scrollview.contentSize = CGSizeMake((wh+10)*[filterNames count] + 10, self.view.frame.size.height);
      [self.view addSubview:scrollview];
+    
+    //     int squareCount = 20;
+    //     for(int i = 0; i < squareCount; i++) {
+    //
+    //     gap = 10;
+    //     CGFloat x = (80+gap) * i + 10;
+    //     squares = [[UIButton alloc] initWithFrame:CGRectMake(x,10,80,80)];
+    //     squares.backgroundColor = [UIColor whiteColor];
+    //     NSString * squareNumber = [@(i+1)stringValue];  //to turn number count into string to be used for labeling
+    //     [squares setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+    //     [squares setTitle:squareNumber forState: UIControlStateNormal];
+    //     [scrollview addSubview:squares];
+    //     }
     
     
  }

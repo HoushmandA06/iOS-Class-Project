@@ -19,6 +19,8 @@
 	<dict>
 		<key>30055E3E-FD96-44DD-90B3-13B3D406A9A6</key>
 		<string>../../..</string>
+		<key>AC6BCC7E-CED1-4FDD-9204-98A5B2AB303B</key>
+		<string>../../../../../../Downloads/HueSaturationBrightness</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/HoushmandA06/iOS-Class-Project.git</string>
@@ -28,6 +30,14 @@
 	<string>30055E3E-FD96-44DD-90B3-13B3D406A9A6</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>AC6BCC7E-CED1-4FDD-9204-98A5B2AB303B</string>
+			<key>IDESourceControlWCCName</key>
+			<string>HueSaturationBrightness</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>

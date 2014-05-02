@@ -8,9 +8,11 @@
 
 #import "PPLViewController.h"
 #import "PPLFilterController.h"
+#import "BlurViewController.h"
+#import "HSBColorControlVC.h"
+#import "ControlsViewController.h"
 
-
-@interface PPLViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate,PPLFilterControllerDelegate>
+@interface PPLViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate,PPLFilterControllerDelegate, HSBColorControlVCDelegate, ControlsViewControllerDelegate, BlurViewControllerDelegate>
 
 
 @property (nonatomic) UIImage * originalImage;  // here so we can put setter / getter
@@ -20,16 +22,20 @@
 @implementation PPLViewController
 {
     UIButton * pullPic;
- 
 
     PPLFilterController * filterVC;
+    BlurViewController * blurVC;
+    HSBColorControlVC * hsbVC;
+    ControlsViewController * controlsVC;
+    
+    UIView * viewAboveScroll;
+    
     
     CIContext *context;
     CIFilter *filterSepia;
     CIImage *beginImage;
     
     NSMutableArray * filters;
-    
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -46,7 +52,6 @@
 {
     [super viewDidLoad];
 
-    
     self.picFrame = [[UIImageView alloc] initWithFrame:CGRectMake(0, 55, SCREEN_WIDTH, 280)];
     self.picFrame.backgroundColor = [UIColor colorWithWhite:.88 alpha:1.0];
     self.picFrame.contentMode = UIViewContentModeScaleToFill;   //// **** SCALING *****
@@ -62,9 +67,27 @@
     filterVC = [[PPLFilterController alloc] initWithNibName:nil bundle:nil];  // *** filterViewController ***
     filterVC.delegate = self;
     filterVC.view.frame = CGRectMake(0, SCREEN_HEIGHT - 100, SCREEN_WIDTH, 100);
-    [self.view addSubview:filterVC.view];
+    // [self.view addSubview:filterVC.view]; //will need to put in button
     
+    hsbVC = [[HSBColorControlVC alloc] initWithNibName:nil bundle:nil];
+    hsbVC.delegate = self;
+    hsbVC.view.frame = CGRectMake(0,SCREEN_HEIGHT-100, SCREEN_WIDTH, 100);
+    
+    blurVC = [[BlurViewController alloc] initWithNibName:nil bundle:nil];
+    blurVC.delegate = self;
+    blurVC.view.frame = CGRectMake(0, SCREEN_HEIGHT-100, SCREEN_WIDTH, 100);
 
+    
+    viewAboveScroll = [[UIView alloc] initWithFrame:CGRectMake(0,SCREEN_HEIGHT-140, SCREEN_WIDTH, 40)];
+    viewAboveScroll.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:viewAboveScroll];
+    
+    controlsVC = [[ControlsViewController alloc] initWithNibName:nil bundle:nil];
+    controlsVC.delegate = self;
+    controlsVC.view.backgroundColor = [UIColor whiteColor];
+    [viewAboveScroll addSubview:controlsVC.view];
+    
+    
     pullPic = [[UIButton alloc] initWithFrame:CGRectMake(100, 10, 120, 30)];
     pullPic.layer.cornerRadius = 15;
     pullPic.backgroundColor = BLUE_COLOR;
@@ -85,28 +108,21 @@
     [btnLayer setMasksToBounds:YES];
     [btnLayer setCornerRadius:5.0f];
     
-    UIView * viewAboveScroll = [[UIView alloc] initWithFrame:CGRectMake(0,SCREEN_HEIGHT-140, SCREEN_WIDTH, 40)];
-    viewAboveScroll.backgroundColor = [UIColor clearColor];
-     [self.view addSubview:viewAboveScroll];
-
     
-    UISlider * slider = [[UISlider alloc] initWithFrame:CGRectMake(0,15, SCREEN_WIDTH, 10)];
-    slider.backgroundColor = [UIColor clearColor];
-    slider.tintColor = [UIColor orangeColor];
-    [viewAboveScroll addSubview:slider];
     
-
+ 
+    
 }
 
 
 
 -(void)updateCurrentImageWithFilteredImage:(UIImage *)image
 {
-
     self.picFrame.image = image;
-    
-    
+    blurVC.imageToFilter = image;
+    hsbVC.currentImage = image;
 }
+
 
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -142,18 +158,15 @@
 {
     
 //    NSLog(@"%@", info[UIImagePickerControllerOriginalImage]);
-//    
 //    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];  // requires the allowsEditing prop = yes on picker
-//    
 //    beginImage = [CIImage imageWithCGImage:chosenImage.CGImage];
-// // CIImage * beginImage = [[CIImage alloc] initWithCGImage:chosenImage.CGImage]; could do it this way if using local var
-//    
+// CIImage * beginImage = [[CIImage alloc] initWithCGImage:chosenImage.CGImage]; could do it this way if using local var
 //    filterSepia = [CIFilter filterWithName:@"CISepiaTone"
 //                       keysAndValues: kCIInputImageKey, beginImage,@"inputIntensity", @0.8, nil];
-//    
 //    CIImage *outputImage = [filterSepia outputImage];
 //    UIImage *newImage = [UIImage imageWithCIImage:outputImage];
 //    self.picFrame.image = newImage;
+    
     
     self.originalImage = info[UIImagePickerControllerOriginalImage];
     
@@ -167,12 +180,37 @@
     _originalImage = originalImage;
     
     filterVC.imageToFilter = originalImage;
+    
+    blurVC.imageToFilter = originalImage;
+    
+    hsbVC.currentImage = originalImage;
+    
     self.picFrame.image = originalImage;
     
 }
 
+-(void) selectFilter;
+{
+    
+    [blurVC.view removeFromSuperview];
+    [hsbVC.view removeFromSuperview];
+    [self.view addSubview:filterVC.view];
+}
 
+-(void) selectHsb;
+{
+    [blurVC.view removeFromSuperview];
+    [filterVC.view removeFromSuperview];
+    [self.view addSubview:hsbVC.view];
+    
+}
 
+-(void) selectBlur;
+{
+    [hsbVC.view removeFromSuperview];
+    [filterVC.view removeFromSuperview];
+    [self.view addSubview:blurVC.view];
+}
 
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker

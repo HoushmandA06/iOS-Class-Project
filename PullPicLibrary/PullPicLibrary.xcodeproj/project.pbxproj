@@ -22,6 +22,12 @@
 		0FA97ABA1911678A00C03C34 /* PPLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA97AB91911678A00C03C34 /* PPLViewController.m */; };
 		0FA97ABD1912833A00C03C34 /* PPLFilterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA97ABC1912833A00C03C34 /* PPLFilterController.m */; };
 		0FA97AC01913027D00C03C34 /* PPLSuperFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA97ABF1913027D00C03C34 /* PPLSuperFilter.m */; };
+		0FA97B0D191420BE00C03C34 /* HSB.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FA97B0C191420BE00C03C34 /* HSB.png */; };
+		0FA97B0F191420CE00C03C34 /* filter.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FA97B0E191420CE00C03C34 /* filter.png */; };
+		0FA97B11191420DC00C03C34 /* blur.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FA97B10191420DC00C03C34 /* blur.png */; };
+		0FA97B20191425F200C03C34 /* BlurViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA97B1F191425F200C03C34 /* BlurViewController.m */; };
+		0FA97B2319142A3300C03C34 /* HSBColorControlVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA97B2219142A3300C03C34 /* HSBColorControlVC.m */; };
+		0FA97B2619142BA900C03C34 /* ControlsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA97B2519142BA900C03C34 /* ControlsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +63,15 @@
 		0FA97ABC1912833A00C03C34 /* PPLFilterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPLFilterController.m; sourceTree = "<group>"; };
 		0FA97ABE1913027D00C03C34 /* PPLSuperFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPLSuperFilter.h; sourceTree = "<group>"; };
 		0FA97ABF1913027D00C03C34 /* PPLSuperFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPLSuperFilter.m; sourceTree = "<group>"; };
+		0FA97B0C191420BE00C03C34 /* HSB.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HSB.png; path = ../../../../../Downloads/HSB.png; sourceTree = "<group>"; };
+		0FA97B0E191420CE00C03C34 /* filter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = filter.png; path = ../../../../../Downloads/filter.png; sourceTree = "<group>"; };
+		0FA97B10191420DC00C03C34 /* blur.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blur.png; path = ../../../../../Downloads/blur.png; sourceTree = "<group>"; };
+		0FA97B1E191425F200C03C34 /* BlurViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlurViewController.h; sourceTree = "<group>"; };
+		0FA97B1F191425F200C03C34 /* BlurViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlurViewController.m; sourceTree = "<group>"; };
+		0FA97B2119142A3300C03C34 /* HSBColorControlVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSBColorControlVC.h; sourceTree = "<group>"; };
+		0FA97B2219142A3300C03C34 /* HSBColorControlVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSBColorControlVC.m; sourceTree = "<group>"; };
+		0FA97B2419142B9900C03C34 /* ControlsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControlsViewController.h; sourceTree = "<group>"; };
+		0FA97B2519142BA900C03C34 /* ControlsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControlsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,10 +148,19 @@
 		0FA97A901911676D00C03C34 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0FA97B2119142A3300C03C34 /* HSBColorControlVC.h */,
+				0FA97B2219142A3300C03C34 /* HSBColorControlVC.m */,
+				0FA97B2419142B9900C03C34 /* ControlsViewController.h */,
+				0FA97B2519142BA900C03C34 /* ControlsViewController.m */,
+				0FA97B1E191425F200C03C34 /* BlurViewController.h */,
+				0FA97B1F191425F200C03C34 /* BlurViewController.m */,
 				0FA97A911911676D00C03C34 /* PullPicLibrary-Info.plist */,
 				0FA97A921911676D00C03C34 /* InfoPlist.strings */,
 				0FA97A951911676D00C03C34 /* main.m */,
 				0FA97A971911676D00C03C34 /* PullPicLibrary-Prefix.pch */,
+				0FA97B10191420DC00C03C34 /* blur.png */,
+				0FA97B0E191420CE00C03C34 /* filter.png */,
+				0FA97B0C191420BE00C03C34 /* HSB.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -235,8 +259,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FA97B0D191420BE00C03C34 /* HSB.png in Resources */,
+				0FA97B11191420DC00C03C34 /* blur.png in Resources */,
 				0FA97A941911676D00C03C34 /* InfoPlist.strings in Resources */,
 				0FA97A9C1911676D00C03C34 /* Images.xcassets in Resources */,
+				0FA97B0F191420CE00C03C34 /* filter.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,9 +283,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0FA97A961911676D00C03C34 /* main.m in Sources */,
+				0FA97B2319142A3300C03C34 /* HSBColorControlVC.m in Sources */,
+				0FA97B20191425F200C03C34 /* BlurViewController.m in Sources */,
 				0FA97A9A1911676D00C03C34 /* PPLAppDelegate.m in Sources */,
 				0FA97AC01913027D00C03C34 /* PPLSuperFilter.m in Sources */,
 				0FA97ABD1912833A00C03C34 /* PPLFilterController.m in Sources */,
+				0FA97B2619142BA900C03C34 /* ControlsViewController.m in Sources */,
 				0FA97ABA1911678A00C03C34 /* PPLViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -456,6 +486,7 @@
 				0FA97AB41911676D00C03C34 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0FA97AB51911676D00C03C34 /* Build configuration list for PBXNativeTarget "PullPicLibraryTests" */ = {
 			isa = XCConfigurationList;
@@ -464,6 +495,7 @@
 				0FA97AB71911676D00C03C34 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
