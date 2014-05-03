@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PPLViewController : UIViewController <UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+@interface PPLViewController : UIViewController <UINavigationControllerDelegate,UIImagePickerControllerDelegate>  
 
 @property (strong, nonatomic) IBOutlet UIImageView *picFrame;
 

@@ -133,8 +133,6 @@
 			children = (
 				0FA97ABE1913027D00C03C34 /* PPLSuperFilter.h */,
 				0FA97ABF1913027D00C03C34 /* PPLSuperFilter.m */,
-				0FA97ABB1912833A00C03C34 /* PPLFilterController.h */,
-				0FA97ABC1912833A00C03C34 /* PPLFilterController.m */,
 				0FA97AB81911678A00C03C34 /* PPLViewController.h */,
 				0FA97AB91911678A00C03C34 /* PPLViewController.m */,
 				0FA97A981911676D00C03C34 /* PPLAppDelegate.h */,
@@ -148,6 +146,8 @@
 		0FA97A901911676D00C03C34 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0FA97ABB1912833A00C03C34 /* PPLFilterController.h */,
+				0FA97ABC1912833A00C03C34 /* PPLFilterController.m */,
 				0FA97B2119142A3300C03C34 /* HSBColorControlVC.h */,
 				0FA97B2219142A3300C03C34 /* HSBColorControlVC.m */,
 				0FA97B2419142B9900C03C34 /* ControlsViewController.h */,

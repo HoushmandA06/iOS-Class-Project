@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol PPLFilterControllerDelegate;
+@protocol PPLFilterControllerDelegate; // what is difference between line 11 and 21
 
 @interface PPLFilterController : UIViewController
 

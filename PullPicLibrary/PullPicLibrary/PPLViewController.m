@@ -12,7 +12,7 @@
 #import "HSBColorControlVC.h"
 #import "ControlsViewController.h"
 
-@interface PPLViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate,PPLFilterControllerDelegate, HSBColorControlVCDelegate, ControlsViewControllerDelegate, BlurViewControllerDelegate>
+@interface PPLViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate,PPLFilterControllerDelegate, HSBColorControlVCDelegate, ControlsViewControllerDelegate, BlurViewControllerDelegate>  // why are these in .m v. .h
 
 
 @property (nonatomic) UIImage * originalImage;  // here so we can put setter / getter
@@ -43,28 +43,29 @@
     if (self) {
 
         self.view.backgroundColor = [UIColor blackColor];
+        
+        self.picFrame = [[UIImageView alloc] initWithFrame:CGRectMake(0, 55, SCREEN_WIDTH, 280)];
+        self.picFrame.backgroundColor = [UIColor colorWithWhite:.88 alpha:1.0];
+        self.picFrame.contentMode = UIViewContentModeScaleToFill;   //// **** SCALING *****
+        self.picFrame.clipsToBounds = YES;
+        //  [self.picFrame.layer setBorderColor:[[UIColor blackColor] CGColor]];
+        //  [self.picFrame.layer setBorderWidth: 1.0];
+        [self.view addSubview:self.picFrame];
+        
     }
     return self;
 }
 
-- (void)viewDidLoad
+- (void)viewDidLoad  
 {
     [super viewDidLoad];
 
-    self.picFrame = [[UIImageView alloc] initWithFrame:CGRectMake(0, 55, SCREEN_WIDTH, 280)];
-    self.picFrame.backgroundColor = [UIColor colorWithWhite:.88 alpha:1.0];
-    self.picFrame.contentMode = UIViewContentModeScaleToFill;   //// **** SCALING *****
-    self.picFrame.clipsToBounds = YES;
-//  [self.picFrame.layer setBorderColor:[[UIColor blackColor] CGColor]];
-//  [self.picFrame.layer setBorderWidth: 1.0];
-    [self.view addSubview:self.picFrame];
-    
     UIView * navBar = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 50)];
     navBar.backgroundColor = [UIColor blackColor];
     [self.view addSubview:navBar];
     
     filterVC = [[PPLFilterController alloc] initWithNibName:nil bundle:nil];  // *** filterViewController ***
-    filterVC.delegate = self;
+    filterVC.delegate = self;  // who is making who the delegate
     filterVC.view.frame = CGRectMake(0, SCREEN_HEIGHT - 100, SCREEN_WIDTH, 100);
     // [self.view addSubview:filterVC.view]; //will need to put in button
     
@@ -76,7 +77,6 @@
     blurVC.delegate = self;
     blurVC.view.frame = CGRectMake(0, SCREEN_HEIGHT-100, SCREEN_WIDTH, 100);
 
-    
     viewAboveScroll = [[UIView alloc] initWithFrame:CGRectMake(0,SCREEN_HEIGHT-140, SCREEN_WIDTH, 40)];
     viewAboveScroll.backgroundColor = [UIColor clearColor];
     [self.view addSubview:viewAboveScroll];
@@ -85,7 +85,6 @@
     controlsVC.delegate = self;
     controlsVC.view.backgroundColor = [UIColor whiteColor];
     [viewAboveScroll addSubview:controlsVC.view];
-    
     
     pullPic = [[UIButton alloc] initWithFrame:CGRectMake(100, 10, 120, 30)];
     pullPic.layer.cornerRadius = 15;
@@ -106,28 +105,23 @@
     CALayer *btnLayer = [pullPic layer];
     [btnLayer setMasksToBounds:YES];
     [btnLayer setCornerRadius:5.0f];
-    
-    
-    
- 
-    
 }
 
 
 
--(void)updateCurrentImageWithFilteredImage:(UIImage *)image
+-(void)updateCurrentImageWithFilteredImage:(UIImage *)image  
 {
     self.picFrame.image = image;
     blurVC.imageToFilter = image;
     hsbVC.currentImage = image;
+    filterVC.imageToFilter = image;
+    
 }
 
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    
     [super viewDidAppear:animated];
-
 }
 
 
@@ -138,7 +132,7 @@
     UIImagePickerController * picker = [[UIImagePickerController alloc] init];
     
     picker.delegate = self;
-    picker.allowsEditing = YES;
+    picker.allowsEditing = YES; // gives you preview of chosen photo
     
     
     if((UIButton *) sender == pullPic) {
@@ -155,6 +149,9 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
+   // delegate method of UIImagePickerController 
+   // using this method to change self.originalImage to the photo chosen in the library
+    
     
 //    NSLog(@"%@", info[UIImagePickerControllerOriginalImage]);
 //    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];  // requires the allowsEditing prop = yes on picker
@@ -173,7 +170,7 @@
     
 }
 
--(void)setOriginalImage:(UIImage *)originalImage
+-(void)setOriginalImage:(UIImage *)originalImage   //setter method  
 {
     
     _originalImage = originalImage;
@@ -188,7 +185,7 @@
     
 }
 
--(void) selectFilter;
+-(void) selectFilter;  // protocol method for ControlsViewController
 {
     
     [blurVC.view removeFromSuperview];
@@ -196,7 +193,7 @@
     [self.view addSubview:filterVC.view];
 }
 
--(void) selectHsb;
+-(void) selectHsb;   // protocol method for ControlsViewController
 {
     [blurVC.view removeFromSuperview];
     [filterVC.view removeFromSuperview];
@@ -204,7 +201,7 @@
     
 }
 
--(void) selectBlur;
+-(void) selectBlur;   // protocol method for ControlsViewController
 {
     [hsbVC.view removeFromSuperview];
     [filterVC.view removeFromSuperview];
@@ -212,7 +209,7 @@
 }
 
 
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker  // ASK JO IF I NEED THIS 
 {
     
     [picker dismissViewControllerAnimated:YES completion:NULL];

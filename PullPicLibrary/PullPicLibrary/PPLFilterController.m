@@ -136,14 +136,6 @@
     
     [self.delegate updateCurrentImageWithFilteredImage:image];
     
-    
-    
-    
-     
-     //[UIImage imageWithCGImage:[self filterImage:[self shrinkImage:self.imageToFilter maxWH:SCREEN_WIDTH * 2] filterName:self.currentFilter]]];
-    
-  //  [self.delegate updateCurrentImageWithFilteredImage:self.currentImage];
-    
 }
 
 
@@ -156,7 +148,6 @@
     {
         NSString * filterName = [filterNames objectAtIndex:filterButton.tag];
         
-    
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,(unsigned long)NULL), ^{
         
         UIImage * smallImage = [self shrinkImage:imageToFilter maxWH:wh];
@@ -171,12 +162,7 @@
         });
             
         });
-        
-//      UIImage * image = [self filterImage:smallImage filterName:filterName];
-//        [filterButton setImage:image forState:UIControlStateNormal];
-//        filterButton.imageView.contentMode = UIViewContentModeScaleAspectFill;
 
-    
     }
 }
 
