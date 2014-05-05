@@ -69,11 +69,8 @@
         livesLost = 0;
         
         /////////////////
-        
-        
         UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapScreen:)];
         [self.view addGestureRecognizer:tap];
-        
     
     }
     return self;
@@ -84,7 +81,6 @@
 {
     CGPoint location = [gr locationInView:self.view];
     self.attacher.anchorPoint = CGPointMake(location.x, self.attacher.anchorPoint.y);
-
 }
 
 
@@ -124,9 +120,9 @@
    [self createBall];
 
     //sets the walls as the boundaries
-   // self.collider.translatesReferenceBoundsIntoBoundary = YES;
-    
+    //self.collider.translatesReferenceBoundsIntoBoundary = YES;
     // sets left,right,top as boundary, floor as out of bounds
+
     int w = self.view.frame.size.width;
     int h = self.view.frame.size.height;
     
@@ -136,7 +132,7 @@
     [self.collider addBoundaryWithIdentifier:@"floor" fromPoint:CGPointMake(0,h+10) toPoint:CGPointMake(w,h+10)];
     [self.animator addBehavior:self.collider];
 
-    /////////////////////////// initiating ball properties below
+/////////////////////////// initiating ball properties below
     
     self.ballsDynamicsProp = [self createPropertiesForItems:self.balls];
     self.bricksDynamicsProp = [self createPropertiesForItems:self.bricks];
@@ -183,12 +179,10 @@
 -(void)collisionBehavior:(UICollisionBehavior *)behavior beganContactForItem:(id<UIDynamicItem>)item1 withItem:(id<UIDynamicItem>)item2 atPoint:(CGPoint)p
 {
    
-    
     if([item1 isEqual:self.paddle] || [item2 isEqual:self.paddle])
     {
         [self playSoundWithName:@"retro_affirm"];
     }
-    
     
     UIView * tempBrick; // lets hold on to what the brick was, now that we found it, so we can do something with it
     
@@ -201,8 +195,6 @@
             {
             
             tempBrick = brick;
-                
-                
                 
             [self.collider removeItem:brick]; //removing brick collision behavior dynamics
             
@@ -242,7 +234,6 @@
 
 -(UIDynamicItemBehavior *)createPropertiesForItems:(NSArray *)items
 {
-    
     UIDynamicItemBehavior * properties = [[UIDynamicItemBehavior alloc] initWithItems:items];
     properties.allowsRotation = NO;
     properties.friction = 0.0;
@@ -254,8 +245,6 @@
 -(NSArray *)allItems
 {
     NSMutableArray * items = [@[self.paddle] mutableCopy];
-    
-//    for (UIView*item in self.balls) [items addObject:item];
     for (UIView*item in self.bricks) [items addObject:item];
     return items;
 }

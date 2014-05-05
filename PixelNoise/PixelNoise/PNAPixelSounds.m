@@ -11,18 +11,19 @@
 @implementation PNAPixelSounds
 
 
-//worldviewcontroller - will have UIKitDynamics collision behavior(sound when hits the bottom), an animator, gravity behavior, on touches began create block (UIViews) where u touch
-
 
 -(id)init
 {
     self = [super init];
+    
+    if(self){
+        
+    }
+    
     return self;
-//    if(self)
-//    {
-//        //self.players = mut
-//        
-//    }
+
+    //need a mutabe array of players in order to make sound work for each object added
+
 }
 
 
@@ -34,19 +35,15 @@
     
     self.player = [[AVAudioPlayer alloc] initWithData:fileData error:nil];
     
-    //instant avplayer player
-//    self.player.numberOfLoops = 0;  will play only once
-    
-    //self.players addobject:player
-    
-    
+    // instant avplayer player
+    // self.player.numberOfLoops = 0;  will play only once
+    // self.players addobject:player
     
     [self.player play];
-    
 }
 
 
-//-void audioplyaer didfinish playing
+//-void audioplayer didfinish playing
 
 
 @end

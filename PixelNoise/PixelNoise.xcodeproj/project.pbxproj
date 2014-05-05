@@ -30,6 +30,7 @@
 		0FA97B791917CD4000C03C34 /* techy_affirm.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0FA97B711917CD4000C03C34 /* techy_affirm.wav */; };
 		0FA97B7A1917CD4000C03C34 /* techy_affirm1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0FA97B721917CD4000C03C34 /* techy_affirm1.wav */; };
 		0FA97B7C1917CD5300C03C34 /* click_alert.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0FA97B7B1917CD5300C03C34 /* click_alert.wav */; };
+		0FA97B851917EA7600C03C34 /* PNAWorldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA97B841917EA7600C03C34 /* PNAWorldViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,8 @@
 		0FA97B711917CD4000C03C34 /* techy_affirm.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = techy_affirm.wav; sourceTree = "<group>"; };
 		0FA97B721917CD4000C03C34 /* techy_affirm1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = techy_affirm1.wav; sourceTree = "<group>"; };
 		0FA97B7B1917CD5300C03C34 /* click_alert.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = click_alert.wav; sourceTree = "<group>"; };
+		0FA97B831917EA7600C03C34 /* PNAWorldViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNAWorldViewController.h; sourceTree = "<group>"; };
+		0FA97B841917EA7600C03C34 /* PNAWorldViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNAWorldViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +108,8 @@
 				0FA97B661917C75E00C03C34 /* PNAViewController.m */,
 				0FA97B681917C89300C03C34 /* PNAPixelSounds.h */,
 				0FA97B691917C89300C03C34 /* PNAPixelSounds.m */,
+				0FA97B831917EA7600C03C34 /* PNAWorldViewController.h */,
+				0FA97B841917EA7600C03C34 /* PNAWorldViewController.m */,
 				0FA97B3C1917C6ED00C03C34 /* PixelNoise */,
 				0FA97B551917C6ED00C03C34 /* PixelNoiseTests */,
 				0FA97B351917C6ED00C03C34 /* Frameworks */,
@@ -290,6 +295,7 @@
 				0FA97B471917C6ED00C03C34 /* PNAAppDelegate.m in Sources */,
 				0FA97B671917C75E00C03C34 /* PNAViewController.m in Sources */,
 				0FA97B431917C6ED00C03C34 /* main.m in Sources */,
+				0FA97B851917EA7600C03C34 /* PNAWorldViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
