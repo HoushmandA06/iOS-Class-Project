@@ -31,6 +31,9 @@
 		0F9A754C19007D730069EF84 /* MOVE.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9A754B19007D730069EF84 /* MOVE.m */; };
 		0F9A754E190485FA0069EF84 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F9A754D190485FA0069EF84 /* home.png */; };
 		0F9A7550190488D30069EF84 /* goldenlion.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F9A754F190488D30069EF84 /* goldenlion.png */; };
+		0FA97B7F1917D5F500C03C34 /* melodic5_affirm.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0FA97B7D1917D5F500C03C34 /* melodic5_affirm.wav */; };
+		0FA97B801917D5F500C03C34 /* retro_affirm.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0FA97B7E1917D5F500C03C34 /* retro_affirm.wav */; };
+		0FA97B821917DEDD00C03C34 /* Zoom Down FX 001.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0FA97B811917DEDD00C03C34 /* Zoom Down FX 001.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +78,9 @@
 		0F9A754B19007D730069EF84 /* MOVE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOVE.m; sourceTree = "<group>"; };
 		0F9A754D190485FA0069EF84 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
 		0F9A754F190488D30069EF84 /* goldenlion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = goldenlion.png; sourceTree = "<group>"; };
+		0FA97B7D1917D5F500C03C34 /* melodic5_affirm.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = melodic5_affirm.wav; sourceTree = "<group>"; };
+		0FA97B7E1917D5F500C03C34 /* retro_affirm.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = retro_affirm.wav; sourceTree = "<group>"; };
+		0FA97B811917DEDD00C03C34 /* Zoom Down FX 001.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Zoom Down FX 001.wav"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +164,9 @@
 				0F9A754F190488D30069EF84 /* goldenlion.png */,
 				0F9A754D190485FA0069EF84 /* home.png */,
 				0F9A7513190019C10069EF84 /* BrickBreaker-Prefix.pch */,
+				0FA97B811917DEDD00C03C34 /* Zoom Down FX 001.wav */,
+				0FA97B7D1917D5F500C03C34 /* melodic5_affirm.wav */,
+				0FA97B7E1917D5F500C03C34 /* retro_affirm.wav */,
 				0F9A754419004D4A0069EF84 /* beast.png */,
 				0F9A754219004C2C0069EF84 /* greenmonster.png */,
 				0F9A753C190047A80069EF84 /* knife.png */,
@@ -263,9 +272,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0F9A753F1900482A0069EF84 /* grenade.png in Resources */,
+				0FA97B7F1917D5F500C03C34 /* melodic5_affirm.wav in Resources */,
 				0F9A754319004C2C0069EF84 /* greenmonster.png in Resources */,
+				0FA97B801917D5F500C03C34 /* retro_affirm.wav in Resources */,
 				0F9A754E190485FA0069EF84 /* home.png in Resources */,
 				0F9A753B19002CEC0069EF84 /* Delete.png in Resources */,
+				0FA97B821917DEDD00C03C34 /* Zoom Down FX 001.wav in Resources */,
 				0F9A754519004D4A0069EF84 /* beast.png in Resources */,
 				0F9A753D190047A80069EF84 /* knife.png in Resources */,
 				0F9A7541190048BF0069EF84 /* holyhandgrenade.png in Resources */,

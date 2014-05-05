@@ -153,17 +153,6 @@
    // using this method to change self.originalImage to the photo chosen in the library
     
     
-//    NSLog(@"%@", info[UIImagePickerControllerOriginalImage]);
-//    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];  // requires the allowsEditing prop = yes on picker
-//    beginImage = [CIImage imageWithCGImage:chosenImage.CGImage];
-// CIImage * beginImage = [[CIImage alloc] initWithCGImage:chosenImage.CGImage]; could do it this way if using local var
-//    filterSepia = [CIFilter filterWithName:@"CISepiaTone"
-//                       keysAndValues: kCIInputImageKey, beginImage,@"inputIntensity", @0.8, nil];
-//    CIImage *outputImage = [filterSepia outputImage];
-//    UIImage *newImage = [UIImage imageWithCIImage:outputImage];
-//    self.picFrame.image = newImage;
-    
-    
     self.originalImage = info[UIImagePickerControllerOriginalImage];
     
     [picker dismissViewControllerAnimated:YES completion:NULL];

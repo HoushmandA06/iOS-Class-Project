@@ -8,8 +8,13 @@
 
 #import "BBALevelController.h"
 #import "MOVE.h"
+#import <AVFoundation/AVFoundation.h>
+
 
 @interface BBALevelController () <UICollisionBehaviorDelegate>
+
+@property (nonatomic) AVAudioPlayer * player;
+
 
 @property (nonatomic)  UIView * paddle;
 @property (nonatomic)  NSMutableArray * balls;
@@ -65,6 +70,7 @@
         
         /////////////////
         
+        
         UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapScreen:)];
         [self.view addGestureRecognizer:tap];
         
@@ -82,10 +88,23 @@
 }
 
 
+-(void)playSoundWithName:(NSString *)soundName
+{
+    NSString * file = [[NSBundle mainBundle] pathForResource:soundName ofType:@"wav"];
+    
+    NSURL * url = [[NSURL alloc] initFileURLWithPath:file];
+
+    self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
+    
+    [self.player play];
+    
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+  
 }
 
 
@@ -123,7 +142,7 @@
     self.bricksDynamicsProp = [self createPropertiesForItems:self.bricks];
     self.paddleDynamicsProp = [self createPropertiesForItems:@[self.paddle]];
 
-    self.ballsDynamicsProp.allowsRotation = YES;
+    self.ballsDynamicsProp.allowsRotation = NO;
     self.paddleDynamicsProp.density = 100000;
     self.bricksDynamicsProp.density = 100000;
     
@@ -134,8 +153,7 @@
 
 -(void)collisionBehavior:(UICollisionBehavior *)behavior beganContactForItem:(id<UIDynamicItem>)item withBoundaryIdentifier:(id<NSCopying>)identifier atPoint:(CGPoint)p
 {
-    
-    
+
     if([(NSString *)identifier isEqualToString:@"floor"])
     {
         UIView * ball = (UIView *)item;
@@ -154,7 +172,9 @@
         if (livesLost == lives)
         {
             [self.delegate gameDone]; //need this for optional method in delegate protocol in .h
-             NSLog(@"Start Over");
+            
+            
+            NSLog(@"Start Over");
         }
     }
 }
@@ -162,16 +182,28 @@
 
 -(void)collisionBehavior:(UICollisionBehavior *)behavior beganContactForItem:(id<UIDynamicItem>)item1 withItem:(id<UIDynamicItem>)item2 atPoint:(CGPoint)p
 {
+   
+    
+    if([item1 isEqual:self.paddle] || [item2 isEqual:self.paddle])
+    {
+        [self playSoundWithName:@"retro_affirm"];
+    }
+    
+    
     UIView * tempBrick; // lets hold on to what the brick was, now that we found it, so we can do something with it
     
     for (UIView * brick in self.bricks)
     {
         if([item1 isEqual:brick] || [item2 isEqual:brick]) //isEqual more specific than ==
         {
+            
             if (brick.alpha == 0.5)
             {
             
             tempBrick = brick;
+                
+                
+                
             [self.collider removeItem:brick]; //removing brick collision behavior dynamics
             
             UILabel * pointLabel = [[UILabel alloc] initWithFrame:CGRectMake(tempBrick.frame.origin.x, tempBrick.frame.origin.y - 10, 50, 50)];
@@ -198,7 +230,13 @@
          brick.alpha = 0.5;
        }
     }
-        if(tempBrick != nil) [self.bricks removeObjectIdenticalTo:tempBrick]; //removes brick from array
+        if(tempBrick != nil)
+    {
+        [self.bricks removeObjectIdenticalTo:tempBrick];
+            [self playSoundWithName:@"melodic5_affirm"];
+    }
+    
+    //removes brick from array
 }
 
 
