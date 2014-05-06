@@ -104,6 +104,8 @@
     
     self.bricksDynamicsProp = [self createPropertiesForItems:self.bricks];
     self.bricksDynamicsProp.density = 100000;
+    //self.bricksDynamicsProp.allowsRotation = YES;
+    
 
 }
 
@@ -111,7 +113,7 @@
 {
 
     //[self.collider removeItem:brick];
-    //=[self.bricks removeObjectIdenticalTo:brick];
+    //[self.bricks removeObjectIdenticalTo:brick];
     [sounds playSoundWithName:@"melodic4_affirm"];
 
 }

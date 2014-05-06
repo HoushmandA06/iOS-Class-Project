@@ -9,6 +9,7 @@
 #import "PNAAppDelegate.h"
 #import "PNAViewController.h"
 #import "PNAWorldViewController.h"
+#import "PNAWorldTwoViewController.h"
 
 @implementation PNAAppDelegate
 
@@ -18,8 +19,9 @@
     
 //    self.window.rootViewController = [[PNAViewController alloc] initWithNibName:nil bundle:nil];
     
-    self.window.rootViewController = [[PNAWorldViewController alloc] initWithNibName:nil bundle:nil];
+//    self.window.rootViewController = [[PNAWorldViewController alloc] initWithNibName:nil bundle:nil];
 
+    self.window.rootViewController = [[PNAWorldTwoViewController alloc] initWithNibName:nil bundle:nil];
     
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
