@@ -32,6 +32,7 @@
 		0FA97B7C1917CD5300C03C34 /* click_alert.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0FA97B7B1917CD5300C03C34 /* click_alert.wav */; };
 		0FA97B851917EA7600C03C34 /* PNAWorldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA97B841917EA7600C03C34 /* PNAWorldViewController.m */; };
 		0FA97B881919154100C03C34 /* PNAWorldTwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA97B871919154100C03C34 /* PNAWorldTwoViewController.m */; };
+		0FA97B8A1919207C00C03C34 /* drip.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0FA97B891919207C00C03C34 /* drip.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,7 @@
 		0FA97B841917EA7600C03C34 /* PNAWorldViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNAWorldViewController.m; sourceTree = "<group>"; };
 		0FA97B861919154100C03C34 /* PNAWorldTwoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNAWorldTwoViewController.h; sourceTree = "<group>"; };
 		0FA97B871919154100C03C34 /* PNAWorldTwoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNAWorldTwoViewController.m; sourceTree = "<group>"; };
+		0FA97B891919207C00C03C34 /* drip.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = drip.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				0FA97B7B1917CD5300C03C34 /* click_alert.wav */,
+				0FA97B891919207C00C03C34 /* drip.wav */,
 				0FA97B6B1917CD4000C03C34 /* melodic1_affirm.wav */,
 				0FA97B6C1917CD4000C03C34 /* melodic2_affirm.wav */,
 				0FA97B6D1917CD4000C03C34 /* melodic3_affirm.wav */,
@@ -270,6 +273,7 @@
 				0FA97B411917C6ED00C03C34 /* InfoPlist.strings in Resources */,
 				0FA97B7C1917CD5300C03C34 /* click_alert.wav in Resources */,
 				0FA97B491917C6ED00C03C34 /* Images.xcassets in Resources */,
+				0FA97B8A1919207C00C03C34 /* drip.wav in Resources */,
 				0FA97B771917CD4000C03C34 /* melodic5_affirm.wav in Resources */,
 				0FA97B7A1917CD4000C03C34 /* techy_affirm1.wav in Resources */,
 				0FA97B761917CD4000C03C34 /* melodic4_affirm.wav in Resources */,
