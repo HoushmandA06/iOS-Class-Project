@@ -14,6 +14,7 @@
 @property (nonatomic) UIDynamicAnimator * animator;
 @property (nonatomic) UIGravityBehavior * gravity;
 @property (nonatomic) UICollisionBehavior * collision;
+@property (nonatomic) UIDynamicItemBehavior * blockBehavior;
 
 //shards
 @property (nonatomic) UIDynamicItemBehavior * shardBehavior;
@@ -45,6 +46,10 @@
         self.collision.translatesReferenceBoundsIntoBoundary = YES;
         [self.animator addBehavior:self.collision];  // all behaviors need to be added to animator
         self.collision.collisionDelegate = self;
+        
+        self.blockBehavior = [[UIDynamicItemBehavior alloc] init];
+        self.blockBehavior.elasticity = 1.0;
+        [self.animator addBehavior:self.blockBehavior];
         
         self.shardBehavior = [[UIDynamicItemBehavior alloc] init];
         self.shardBehavior.density = 10;
@@ -98,6 +103,8 @@
     block.layer.cornerRadius = 2;
     [self.view addSubview:block];
     [self.gravity addItem:block];
+    [self.blockBehavior addItem:block];
+    
     [self.collision addItem:block];
 }
 
