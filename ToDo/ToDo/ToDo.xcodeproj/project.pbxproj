@@ -20,6 +20,7 @@
 		0F3D7E1E18EC4AEC0097CA4E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0F3D7E1C18EC4AEC0097CA4E /* InfoPlist.strings */; };
 		0F3D7E2018EC4AEC0097CA4E /* ToDoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F3D7E1F18EC4AEC0097CA4E /* ToDoTests.m */; };
 		0F3D7E2B18EC4C770097CA4E /* TDLTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F3D7E2A18EC4C770097CA4E /* TDLTableViewController.m */; };
+		0FA97BD1191959F900C03C34 /* TDLSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA97BD0191959F900C03C34 /* TDLSingleton.m */; };
 		0FAB21AF18EDA78C00136587 /* TDLTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FAB21AE18EDA78C00136587 /* TDLTableViewCell.m */; };
 		0FAB21B318EF332300136587 /* GitHubFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FAB21B218EF332300136587 /* GitHubFlow.storyboard */; };
 		0FAB21B718F2F45300136587 /* TDLGitHubRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FAB21B618F2F45300136587 /* TDLGitHubRequest.m */; };
@@ -54,6 +55,8 @@
 		0F3D7E1F18EC4AEC0097CA4E /* ToDoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToDoTests.m; sourceTree = "<group>"; };
 		0F3D7E2918EC4C770097CA4E /* TDLTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDLTableViewController.h; sourceTree = "<group>"; };
 		0F3D7E2A18EC4C770097CA4E /* TDLTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDLTableViewController.m; sourceTree = "<group>"; };
+		0FA97BCF191959F900C03C34 /* TDLSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDLSingleton.h; sourceTree = "<group>"; };
+		0FA97BD0191959F900C03C34 /* TDLSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDLSingleton.m; sourceTree = "<group>"; };
 		0FAB21AD18EDA78C00136587 /* TDLTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDLTableViewCell.h; sourceTree = "<group>"; };
 		0FAB21AE18EDA78C00136587 /* TDLTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDLTableViewCell.m; sourceTree = "<group>"; };
 		0FAB21B218EF332300136587 /* GitHubFlow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = GitHubFlow.storyboard; sourceTree = "<group>"; };
@@ -163,6 +166,8 @@
 			children = (
 				0F3D7E2918EC4C770097CA4E /* TDLTableViewController.h */,
 				0F3D7E2A18EC4C770097CA4E /* TDLTableViewController.m */,
+				0FA97BCF191959F900C03C34 /* TDLSingleton.h */,
+				0FA97BD0191959F900C03C34 /* TDLSingleton.m */,
 				0FAB21B118EDA7B900136587 /* TableView */,
 			);
 			name = Controllers;
@@ -286,6 +291,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0FAB21AF18EDA78C00136587 /* TDLTableViewCell.m in Sources */,
+				0FA97BD1191959F900C03C34 /* TDLSingleton.m in Sources */,
 				0F3D7E2B18EC4C770097CA4E /* TDLTableViewController.m in Sources */,
 				0FAB21B718F2F45300136587 /* TDLGitHubRequest.m in Sources */,
 				0F3D7E0718EC4AEC0097CA4E /* main.m in Sources */,

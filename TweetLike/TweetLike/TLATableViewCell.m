@@ -22,7 +22,8 @@
     if (self) {
 
     UIImageView * heart = [[UIImageView alloc] initWithFrame:CGRectMake(20,30,20,20)];
-    heart.image = [UIImage imageNamed:@"heart"];
+    heart.image = [UIImage imageNamed:@"grenade"];
+        
     // heart.layer.masksToBounds = YES;
     [self.contentView addSubview:heart];
         

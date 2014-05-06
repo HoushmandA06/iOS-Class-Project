@@ -7,6 +7,7 @@
 //
 
 #import "TDLTableViewCell.h"
+#import "TDLSingleton.h"
 
 @implementation TDLTableViewCell
 
@@ -43,22 +44,12 @@
     return self;
 }
 
-/*- (NSDictionary *)profileInfo    THIS IS A GETTER, WE ARE NOT USING IT ANYMORE
+-(void)setIndex:(NSInteger)index
 {
-    if (_profileInfo == nil)
-    {
-        _profileInfo = @{@"name":@"Default Name",@"image":[UIImage imageNamed:@"default"]};
-    }
     
-    return _profileInfo;
+    _index = index;
+    NSDictionary * profileInfo = [[TDLSingleton sharedCollection] allListItems][index];
     
-    //@property does the above for you, in this case, we are overwriting with a specific case for the property "profile" which we defined in the .h
-    
-    
-}*/
-
-- (void)setProfileInfo:(NSDictionary *)profileInfo; // THIS IS A SETTER
-{
     NSString *imageUrlString = profileInfo[@"image"];
     
     NSURL *imageUrl = [[NSURL alloc] initWithString:imageUrlString];
@@ -69,17 +60,10 @@
     
     profileName.text = profileInfo[@"name"];
     profileURL.text = profileInfo[@"github"];
-    _profileInfo = profileInfo;
-    
-    
+
 }
 
 
-
-- (void)awakeFromNib
-{
-    // Initialization code
-}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {

@@ -20,10 +20,10 @@
 		0FA7FEF61907F64700CC0A8C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0FA7FEF41907F64700CC0A8C /* InfoPlist.strings */; };
 		0FA7FEF81907F64700CC0A8C /* TweetLikeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA7FEF71907F64700CC0A8C /* TweetLikeTests.m */; };
 		0FA7FF031907F68700CC0A8C /* TLATableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA7FF021907F68700CC0A8C /* TLATableViewController.m */; };
-		0FA7FF071907F89E00CC0A8C /* heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FA7FF061907F89E00CC0A8C /* heart.png */; };
 		0FA7FF0A1907F9D000CC0A8C /* TLATableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA7FF091907F9D000CC0A8C /* TLATableViewCell.m */; };
 		0FA7FF101908187300CC0A8C /* TLANavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA7FF0F1908187300CC0A8C /* TLANavController.m */; };
 		0FA7FF1219083A8E00CC0A8C /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FA7FF1119083A8E00CC0A8C /* logo.png */; };
+		0FA97BD3191979A900C03C34 /* grenade.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FA97BD2191979A900C03C34 /* grenade.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,12 +55,12 @@
 		0FA7FEF71907F64700CC0A8C /* TweetLikeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TweetLikeTests.m; sourceTree = "<group>"; };
 		0FA7FF011907F68700CC0A8C /* TLATableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLATableViewController.h; sourceTree = "<group>"; };
 		0FA7FF021907F68700CC0A8C /* TLATableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLATableViewController.m; sourceTree = "<group>"; };
-		0FA7FF061907F89E00CC0A8C /* heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = heart.png; path = ../../../../../Desktop/heart.png; sourceTree = "<group>"; };
 		0FA7FF081907F9D000CC0A8C /* TLATableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLATableViewCell.h; sourceTree = "<group>"; };
 		0FA7FF091907F9D000CC0A8C /* TLATableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLATableViewCell.m; sourceTree = "<group>"; };
 		0FA7FF0E1908187300CC0A8C /* TLANavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLANavController.h; sourceTree = "<group>"; };
 		0FA7FF0F1908187300CC0A8C /* TLANavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLANavController.m; sourceTree = "<group>"; };
 		0FA7FF1119083A8E00CC0A8C /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = ../../../../../Downloads/logo.png; sourceTree = "<group>"; };
+		0FA97BD2191979A900C03C34 /* grenade.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grenade.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,7 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				0FA7FF1119083A8E00CC0A8C /* logo.png */,
-				0FA7FF061907F89E00CC0A8C /* heart.png */,
+				0FA97BD2191979A900C03C34 /* grenade.png */,
 				0FA7FEDA1907F64700CC0A8C /* TweetLike-Info.plist */,
 				0FA7FEDB1907F64700CC0A8C /* InfoPlist.strings */,
 				0FA7FEDE1907F64700CC0A8C /* main.m */,
@@ -241,9 +241,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FA97BD3191979A900C03C34 /* grenade.png in Resources */,
 				0FA7FF1219083A8E00CC0A8C /* logo.png in Resources */,
 				0FA7FEDD1907F64700CC0A8C /* InfoPlist.strings in Resources */,
-				0FA7FF071907F89E00CC0A8C /* heart.png in Resources */,
 				0FA7FEE51907F64700CC0A8C /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -464,6 +464,7 @@
 				0FA7FEFD1907F64700CC0A8C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0FA7FEFE1907F64700CC0A8C /* Build configuration list for PBXNativeTarget "TweetLikeTests" */ = {
 			isa = XCConfigurationList;
@@ -472,6 +473,7 @@
 				0FA7FF001907F64700CC0A8C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

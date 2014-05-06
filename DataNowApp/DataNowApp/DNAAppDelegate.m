@@ -27,12 +27,10 @@
                                                    @"section4":@[@"row1"],
                                                    };
     
-    
-    
-    
-    
     [self.window makeKeyAndVisible];
     return YES;
+    
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
