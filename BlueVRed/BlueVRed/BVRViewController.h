@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BVRBlueVC.h"
 
-@interface BVRViewController : UIViewController
+@interface BVRViewController : UIViewController <BVRBlueVCDelegate>
+
+
 
 @end

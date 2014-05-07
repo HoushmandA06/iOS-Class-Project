@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0FA7FF051907F7E100CC0A8C /* heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FA7FF041907F7E100CC0A8C /* heart.png */; };
+		0F211BAD191AD8B200730F8C /* spacesfighter.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F211BAC191AD8B200730F8C /* spacesfighter.png */; };
 		0FAB21C518F44AAB00136587 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FAB21C418F44AAB00136587 /* Foundation.framework */; };
 		0FAB21C718F44AAB00136587 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FAB21C618F44AAB00136587 /* CoreGraphics.framework */; };
 		0FAB21C918F44AAB00136587 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FAB21C818F44AAB00136587 /* UIKit.framework */; };
@@ -36,7 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0FA7FF041907F7E100CC0A8C /* heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = heart.png; path = ../../../../../../Desktop/heart.png; sourceTree = "<group>"; };
+		0F211BAC191AD8B200730F8C /* spacesfighter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spacesfighter.png; sourceTree = "<group>"; };
 		0FAB21C118F44AAB00136587 /* NewToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FAB21C418F44AAB00136587 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0FAB21C618F44AAB00136587 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -132,7 +132,7 @@
 		0FAB21CB18F44AAB00136587 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				0FA7FF041907F7E100CC0A8C /* heart.png */,
+				0F211BAC191AD8B200730F8C /* spacesfighter.png */,
 				0FAB21CD18F44AAB00136587 /* InfoPlist.strings */,
 				0FAB21CC18F44AAB00136587 /* NewToDo-Info.plist */,
 				0FAB21D018F44AAB00136587 /* main.m */,
@@ -254,8 +254,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F211BAD191AD8B200730F8C /* spacesfighter.png in Resources */,
 				0FAB21CF18F44AAB00136587 /* InfoPlist.strings in Resources */,
-				0FA7FF051907F7E100CC0A8C /* heart.png in Resources */,
 				0FAB21D718F44AAB00136587 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

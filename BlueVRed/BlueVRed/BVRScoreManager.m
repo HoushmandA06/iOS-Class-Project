@@ -26,27 +26,10 @@
     self = [super init];
     if(self)
     {
-        self.scoreCountBlue = 0;
-        self.scoreCountRed = 0;
-        self.scoreTotal = 0;
     }
     return self;
 }
 
--(NSInteger)scoreCountBlue
-{
-    return _scoreCountBlue;
-}
-
--(NSInteger)scoreCountRed
-{
-    return _scoreCountRed;
-}
-
--(NSInteger)scoreTotal
-{
-    return _scoreTotal;
-}
 
 
 

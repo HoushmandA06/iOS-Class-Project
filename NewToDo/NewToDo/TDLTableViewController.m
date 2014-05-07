@@ -43,8 +43,6 @@
         self.tableView.backgroundColor = [UIColor clearColor];
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         
-        
-        
         self.tableView.contentInset = UIEdgeInsetsMake(10,0,0,0);
         self.tableView.rowHeight = 50;
         self.tableView.separatorInset = UIEdgeInsetsMake(0,20,0,20);
@@ -62,6 +60,7 @@
         nameField.placeholder = @"Enter ToDo Here";
         
         nameField.delegate  = self;
+        
         
         
         [header addSubview:nameField];

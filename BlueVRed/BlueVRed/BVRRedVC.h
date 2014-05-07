@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BVRBlueVC.h"
 
-@interface BVRRedVC : UIViewController
+@interface BVRRedVC : BVRBlueVC
 
 @end

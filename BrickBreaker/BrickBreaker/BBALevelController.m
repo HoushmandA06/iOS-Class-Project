@@ -115,6 +115,7 @@
 
 
 -(void)resetLevel
+
 {
     self.animator  = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
     

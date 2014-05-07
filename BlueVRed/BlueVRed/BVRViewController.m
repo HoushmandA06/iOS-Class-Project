@@ -18,8 +18,11 @@
 
 @implementation BVRViewController
 {
-    UIViewController * blueVC;
-    UIViewController * redVC;
+    BVRBlueVC * blueVC;
+    BVRRedVC * redVC;
+    
+    UILabel * blueScoreCard;
+    UILabel * redScoreCard;
 
 }
 
@@ -29,11 +32,27 @@
     if (self) {
  
         blueVC = [[BVRBlueVC alloc] initWithNibName:nil bundle:nil];
+        blueVC.delegate = self;
         [self.view addSubview:blueVC.view];
         
+        blueScoreCard = [[UILabel alloc] initWithFrame:CGRectMake(110, 70, 100, 100)];
+        blueScoreCard.backgroundColor = [UIColor clearColor];
+        blueScoreCard.textColor = [UIColor whiteColor];
+        blueScoreCard.font = [UIFont fontWithName:@"Helvetica" size:70];
+        blueScoreCard.textAlignment = NSTextAlignmentCenter;
+        [self.view addSubview:blueScoreCard];
+
         redVC = [[BVRRedVC alloc] initWithNibName:nil bundle:nil];
+        redVC.delegate = self;
         [self.view addSubview:redVC.view];
-    
+        
+        redScoreCard = [[UILabel alloc] initWithFrame:CGRectMake(110, 310, 100, 100)];
+        redScoreCard.backgroundColor = [UIColor clearColor];
+        redScoreCard.textColor = [UIColor whiteColor];
+        redScoreCard.font = [UIFont fontWithName:@"Helvetica" size:70];
+        redScoreCard.textAlignment = NSTextAlignmentCenter;
+        [self.view addSubview:redScoreCard];
+        
     }
     return self;
 }
@@ -41,23 +60,26 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view.
 }
+
+-(void)setBlueScore:(NSInteger)scoreCountBlue
+{
+    blueScoreCard.text = [NSString stringWithFormat:@"%d",scoreCountBlue];
+}
+
+-(void)setRedScore:(NSInteger)scoreCountRed
+{
+    redScoreCard.text = [NSString stringWithFormat:@"%d",scoreCountRed];
+}
+
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
-//-(void)totalScore
-//{
-//    NSInteger scoreTotal = [BVRScoreManager mainData].scoreCountBlue + [BVRScoreManager mainData].scoreCountRed;
-//    [BVRScoreManager mainData].scoreTotal = scoreTotal;
-//    NSLog(@"%d",scoreTotal);
-//    
-//}
 
 
 

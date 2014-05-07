@@ -42,7 +42,8 @@
     NSLog(@"Tapped Red");
 
     [BVRScoreManager mainData].scoreCountRed += 1;
-    
+    [self.delegate setRedScore:[BVRScoreManager mainData].scoreCountRed];
+
     NSLog(@"Red Score: %d",[BVRScoreManager mainData].scoreCountRed);
     
     NSInteger scoreTotal = [BVRScoreManager mainData].scoreCountBlue + [BVRScoreManager mainData].scoreCountRed;

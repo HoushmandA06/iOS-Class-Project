@@ -15,6 +15,11 @@
 @end
 
 @implementation BVRBlueVC
+{
+//    UILabel * blueScoreCard;
+
+
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,6 +31,12 @@
         
         UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapScreen:)];
         [self.view addGestureRecognizer:tap];
+        
+//        blueScoreCard = [[UILabel alloc] initWithFrame:CGRectMake(110, 70, 100, 100)];
+//        blueScoreCard.backgroundColor = [UIColor clearColor];
+//        blueScoreCard.tintColor = [UIColor whiteColor];
+//        blueScoreCard.textAlignment = NSTextAlignmentCenter;
+//        [self.view addSubview:blueScoreCard];
         
     }
     return self;
@@ -42,10 +53,20 @@
 {
     NSLog(@"Tapped Blue");
     [BVRScoreManager mainData].scoreCountBlue += 1;
+   
+//    blueScoreCard.font = [UIFont fontWithName:@"HelveticaNeue" size:50];
+//    blueScoreCard.textColor = [UIColor whiteColor];
+//    blueScoreCard.text = [NSString stringWithFormat:@"%d",[BVRScoreManager mainData].scoreCountBlue];
+ 
+    [self.delegate setBlueScore:[BVRScoreManager mainData].scoreCountBlue];
+    
+    
     NSLog(@"Blue Score : %d",[BVRScoreManager mainData].scoreCountBlue);
     
     NSInteger scoreTotal = [BVRScoreManager mainData].scoreCountBlue + [BVRScoreManager mainData].scoreCountRed;
     [BVRScoreManager mainData].scoreTotal = scoreTotal;
+    
+    
     NSLog(@"totalscore : %d",scoreTotal);
 }
 
@@ -54,7 +75,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
 
 @end
