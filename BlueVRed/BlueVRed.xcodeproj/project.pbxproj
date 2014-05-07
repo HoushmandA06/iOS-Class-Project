@@ -19,6 +19,10 @@
 		0F211B8D191AA59E00730F8C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F211B75191AA59E00730F8C /* UIKit.framework */; };
 		0F211B95191AA59E00730F8C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0F211B93191AA59E00730F8C /* InfoPlist.strings */; };
 		0F211B97191AA59E00730F8C /* BlueVRedTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F211B96191AA59E00730F8C /* BlueVRedTests.m */; };
+		0F211BA2191AA60000730F8C /* BVRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F211BA1191AA60000730F8C /* BVRViewController.m */; };
+		0F211BA5191AA65B00730F8C /* BVRBlueVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F211BA4191AA65B00730F8C /* BVRBlueVC.m */; };
+		0F211BA8191AA66C00730F8C /* BVRRedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F211BA7191AA66C00730F8C /* BVRRedVC.m */; };
+		0F211BAB191AA84300730F8C /* BVRScoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F211BAA191AA84300730F8C /* BVRScoreManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +52,14 @@
 		0F211B92191AA59E00730F8C /* BlueVRedTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BlueVRedTests-Info.plist"; sourceTree = "<group>"; };
 		0F211B94191AA59E00730F8C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0F211B96191AA59E00730F8C /* BlueVRedTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlueVRedTests.m; sourceTree = "<group>"; };
+		0F211BA0191AA60000730F8C /* BVRViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BVRViewController.h; sourceTree = "<group>"; };
+		0F211BA1191AA60000730F8C /* BVRViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BVRViewController.m; sourceTree = "<group>"; };
+		0F211BA3191AA65B00730F8C /* BVRBlueVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BVRBlueVC.h; sourceTree = "<group>"; };
+		0F211BA4191AA65B00730F8C /* BVRBlueVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BVRBlueVC.m; sourceTree = "<group>"; };
+		0F211BA6191AA66C00730F8C /* BVRRedVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BVRRedVC.h; sourceTree = "<group>"; };
+		0F211BA7191AA66C00730F8C /* BVRRedVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BVRRedVC.m; sourceTree = "<group>"; };
+		0F211BA9191AA84300730F8C /* BVRScoreManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BVRScoreManager.h; sourceTree = "<group>"; };
+		0F211BAA191AA84300730F8C /* BVRScoreManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BVRScoreManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +121,14 @@
 			children = (
 				0F211B80191AA59E00730F8C /* BVRAppDelegate.h */,
 				0F211B81191AA59E00730F8C /* BVRAppDelegate.m */,
+				0F211BA0191AA60000730F8C /* BVRViewController.h */,
+				0F211BA1191AA60000730F8C /* BVRViewController.m */,
+				0F211BA3191AA65B00730F8C /* BVRBlueVC.h */,
+				0F211BA4191AA65B00730F8C /* BVRBlueVC.m */,
+				0F211BA6191AA66C00730F8C /* BVRRedVC.h */,
+				0F211BA7191AA66C00730F8C /* BVRRedVC.m */,
+				0F211BA9191AA84300730F8C /* BVRScoreManager.h */,
+				0F211BAA191AA84300730F8C /* BVRScoreManager.m */,
 				0F211B83191AA59E00730F8C /* Images.xcassets */,
 				0F211B78191AA59E00730F8C /* Supporting Files */,
 			);
@@ -240,8 +260,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F211BA8191AA66C00730F8C /* BVRRedVC.m in Sources */,
+				0F211BAB191AA84300730F8C /* BVRScoreManager.m in Sources */,
 				0F211B7E191AA59E00730F8C /* main.m in Sources */,
+				0F211BA2191AA60000730F8C /* BVRViewController.m in Sources */,
 				0F211B82191AA59E00730F8C /* BVRAppDelegate.m in Sources */,
+				0F211BA5191AA65B00730F8C /* BVRBlueVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
