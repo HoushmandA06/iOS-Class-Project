@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F211B1D191A691500730F8C /* BBAGameData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F211B1C191A691500730F8C /* BBAGameData.m */; };
 		0F9A7506190019C10069EF84 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F9A7505190019C10069EF84 /* Foundation.framework */; };
 		0F9A7508190019C10069EF84 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F9A7507190019C10069EF84 /* CoreGraphics.framework */; };
 		0F9A750A190019C10069EF84 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F9A7509190019C10069EF84 /* UIKit.framework */; };
@@ -48,6 +49,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0F211B1B191A691500730F8C /* BBAGameData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBAGameData.h; sourceTree = "<group>"; };
+		0F211B1C191A691500730F8C /* BBAGameData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBAGameData.m; sourceTree = "<group>"; };
 		0F9A7502190019C10069EF84 /* BrickBreaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BrickBreaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F9A7505190019C10069EF84 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0F9A7507190019C10069EF84 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -149,6 +152,8 @@
 				0F9A753519001BC20069EF84 /* BBAViewController.m */,
 				0F9A753719001D2D0069EF84 /* BBALevelController.h */,
 				0F9A753819001D2D0069EF84 /* BBALevelController.m */,
+				0F211B1B191A691500730F8C /* BBAGameData.h */,
+				0F211B1C191A691500730F8C /* BBAGameData.m */,
 				0F9A7514190019C10069EF84 /* BBAAppDelegate.h */,
 				0F9A7515190019C10069EF84 /* BBAAppDelegate.m */,
 				0FA97BCC1919596300C03C34 /* BBASingleton.h */,
@@ -312,6 +317,7 @@
 				0FA97BCE1919596300C03C34 /* BBASingleton.m in Sources */,
 				0F9A753919001D2D0069EF84 /* BBALevelController.m in Sources */,
 				0F9A753619001BC20069EF84 /* BBAViewController.m in Sources */,
+				0F211B1D191A691500730F8C /* BBAGameData.m in Sources */,
 				0F9A7516190019C10069EF84 /* BBAAppDelegate.m in Sources */,
 				0F9A7512190019C10069EF84 /* main.m in Sources */,
 			);

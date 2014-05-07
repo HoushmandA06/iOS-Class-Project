@@ -98,7 +98,7 @@
 {
     reset = [[UIButton alloc] initWithFrame:CGRectMake(120,0,40,40)];
     reset.backgroundColor = [UIColor clearColor];
-  //  [reset setTitle:@"reset" forState:UIControlStateNormal];
+  // [reset setTitle:@"reset" forState:UIControlStateNormal];
     reset.layer.cornerRadius = 20;
     [reset setImage:[UIImage imageNamed:@"home.png"] forState:UIControlStateNormal];
     [reset addTarget:self action:@selector(gameDone) forControlEvents:UIControlEventTouchUpInside];

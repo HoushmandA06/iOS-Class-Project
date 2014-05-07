@@ -22,7 +22,6 @@
 		0F3D7E2B18EC4C770097CA4E /* TDLTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F3D7E2A18EC4C770097CA4E /* TDLTableViewController.m */; };
 		0FA97BD1191959F900C03C34 /* TDLSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA97BD0191959F900C03C34 /* TDLSingleton.m */; };
 		0FAB21AF18EDA78C00136587 /* TDLTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FAB21AE18EDA78C00136587 /* TDLTableViewCell.m */; };
-		0FAB21B318EF332300136587 /* GitHubFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FAB21B218EF332300136587 /* GitHubFlow.storyboard */; };
 		0FAB21B718F2F45300136587 /* TDLGitHubRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FAB21B618F2F45300136587 /* TDLGitHubRequest.m */; };
 /* End PBXBuildFile section */
 
@@ -59,7 +58,6 @@
 		0FA97BD0191959F900C03C34 /* TDLSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDLSingleton.m; sourceTree = "<group>"; };
 		0FAB21AD18EDA78C00136587 /* TDLTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDLTableViewCell.h; sourceTree = "<group>"; };
 		0FAB21AE18EDA78C00136587 /* TDLTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDLTableViewCell.m; sourceTree = "<group>"; };
-		0FAB21B218EF332300136587 /* GitHubFlow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = GitHubFlow.storyboard; sourceTree = "<group>"; };
 		0FAB21B518F2F45300136587 /* TDLGitHubRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDLGitHubRequest.h; sourceTree = "<group>"; };
 		0FAB21B618F2F45300136587 /* TDLGitHubRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDLGitHubRequest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -91,7 +89,6 @@
 		0F3D7DEE18EC4AEC0097CA4E = {
 			isa = PBXGroup;
 			children = (
-				0FAB21B218EF332300136587 /* GitHubFlow.storyboard */,
 				0FAB21B418F2F3CB00136587 /* Random */,
 				0FAB21B018EDA7A700136587 /* Controllers */,
 				0F3D7E0018EC4AEC0097CA4E /* ToDo */,
@@ -270,7 +267,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0F3D7E0518EC4AEC0097CA4E /* InfoPlist.strings in Resources */,
-				0FAB21B318EF332300136587 /* GitHubFlow.storyboard in Resources */,
 				0F3D7E0D18EC4AEC0097CA4E /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

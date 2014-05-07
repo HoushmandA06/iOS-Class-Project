@@ -8,13 +8,14 @@
 
 #import "BBALevelController.h"
 #import "MOVE.h"
+#import "BBAGameData.h"
 #import <AVFoundation/AVFoundation.h>
 
 
-@interface BBALevelController () <UICollisionBehaviorDelegate>
+@interface BBALevelController () <UICollisionBehaviorDelegate, AVAudioPlayerDelegate>
 
-@property (nonatomic) AVAudioPlayer * player;
-
+//@property (nonatomic) AVAudioPlayer * player;
+@property (nonatomic) NSMutableArray * players;
 
 @property (nonatomic)  UIView * paddle;
 @property (nonatomic)  NSMutableArray * balls;
@@ -61,6 +62,8 @@
         self.bricks = [@ []mutableCopy];
         self.balls = [@ []mutableCopy];
         self.view.backgroundColor = [UIColor colorWithWhite:0.1 alpha:1.0];
+        self.players = [@ [] mutableCopy];
+        
         
         paddleWidth = 80;
         points = 0;
@@ -87,12 +90,19 @@
 -(void)playSoundWithName:(NSString *)soundName
 {
     NSString * file = [[NSBundle mainBundle] pathForResource:soundName ofType:@"wav"];
-    
     NSURL * url = [[NSURL alloc] initFileURLWithPath:file];
-
-    self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
     
-    [self.player play];
+    AVAudioPlayer * player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
+    player.delegate = self;
+    [self.players addObject:player];
+    [player play];
+}
+
+
+-(void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
+{
+    [self.players removeObjectIdenticalTo:player];
+    
     
 }
 
@@ -107,6 +117,9 @@
 -(void)resetLevel
 {
     self.animator  = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
+    
+    [BBAGameData mainData].currentScore = 0;
+    
     
     [self createPaddle];
     [self createBricks];
@@ -201,14 +214,22 @@
             UILabel * pointLabel = [[UILabel alloc] initWithFrame:CGRectMake(tempBrick.frame.origin.x, tempBrick.frame.origin.y - 10, 50, 50)];
             
             pointLabel.text = [NSString stringWithFormat:@"+%d",(int)brick.tag];
+            
+           // pointLabel.text = [NSString stringWithFormat:@"%d", [BBAGameData mainData].topScore];
+                
             [pointLabel setTextColor:[UIColor orangeColor]]; //can also say pointLabel.textColor = [UIColor color]
             pointLabel.textAlignment = NSTextAlignmentCenter;
             pointLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:12];
+                
             [self.view addSubview:pointLabel];
            
             [MOVE animateView:pointLabel properties:@{@"alpha":@0,@"duration":@0.6,@"delay":@0.0, @"remove":@YES}];
             points += brick.tag; // point counter will be assigned to the brick.tag that is assigned to random #
             
+                NSInteger currentScore = [BBAGameData mainData].currentScore;  //getter
+                
+                [BBAGameData mainData].currentScore = currentScore + brick.tag;  //setter
+                
             
             //we get to call a method that belongs to the delegate's class (also to a diff object, not the instance of the current class). Notice that the method is not global. its not in .h file    
            
