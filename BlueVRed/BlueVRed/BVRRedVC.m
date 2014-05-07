@@ -37,20 +37,18 @@
     // Do any additional setup after loading the view.
 }
 
-
-
 -(void)tapScreen:(UITapGestureRecognizer *)redScored
 {
     NSLog(@"Tapped Red");
 
-    NSInteger scoreCountRed = [BVRScoreManager mainData].scoreCountRed;
     [BVRScoreManager mainData].scoreCountRed += 1;
     
-    NSLog(@"%d",scoreCountRed);
+    NSLog(@"Red Score: %d",[BVRScoreManager mainData].scoreCountRed);
     
+    NSInteger scoreTotal = [BVRScoreManager mainData].scoreCountBlue + [BVRScoreManager mainData].scoreCountRed;
+    [BVRScoreManager mainData].scoreTotal = scoreTotal;
+    NSLog(@"totalscore : %d",scoreTotal);
 }
-
-
 
 - (void)didReceiveMemoryWarning
 {
@@ -58,15 +56,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

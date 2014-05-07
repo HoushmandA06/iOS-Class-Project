@@ -51,6 +51,16 @@
 }
 
 
+//-(void)totalScore
+//{
+//    NSInteger scoreTotal = [BVRScoreManager mainData].scoreCountBlue + [BVRScoreManager mainData].scoreCountRed;
+//    [BVRScoreManager mainData].scoreTotal = scoreTotal;
+//    NSLog(@"%d",scoreTotal);
+//    
+//}
+
+
+
 -(BOOL)prefersStatusBarHidden { return YES;}
 
 
