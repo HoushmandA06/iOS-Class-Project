@@ -20,10 +20,8 @@
 {
     BVRBlueVC * blueVC;
     BVRRedVC * redVC;
-    
     UILabel * blueScoreCard;
     UILabel * redScoreCard;
-
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -52,7 +50,6 @@
         redScoreCard.font = [UIFont fontWithName:@"Helvetica" size:70];
         redScoreCard.textAlignment = NSTextAlignmentCenter;
         [self.view addSubview:redScoreCard];
-        
     }
     return self;
 }

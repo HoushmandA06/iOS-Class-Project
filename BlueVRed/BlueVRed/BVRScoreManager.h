@@ -12,7 +12,7 @@
 
 +(BVRScoreManager *)mainData;
 
-@property (nonatomic) NSInteger scoreCountBlue;
+@property (nonatomic) NSInteger scoreCountBlue;  //have getters/setters, by default = nill, which for NSInt = 0
 @property (nonatomic) NSInteger scoreCountRed;
 @property (nonatomic) NSInteger scoreTotal;
 

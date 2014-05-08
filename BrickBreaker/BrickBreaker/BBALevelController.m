@@ -171,21 +171,25 @@
         [self.balls removeObject:ball];
         [self.collider removeItem:ball];
        
-      if ((self.balls.count == 0) && [self.delegate respondsToSelector:@selector(gameDone)])
+      if ((self.balls.count == 0))
       {
+          
           livesLost++;
-          [self createBall];
-          [self.delegate addLives:livesLost];
+          
+          if([self.delegate respondsToSelector:@selector(gameDone)] && livesLost == 4)
+          {
+              [self.delegate gameDone]; //need this for optional method in delegate protocol in .h
+              
+              
+              NSLog(@"Start Over");
+          } else {
+              
+              [self createBall];
+              [self.delegate addLives:livesLost];
+          }
         
       }
         
-        if (livesLost == lives)
-        {
-            [self.delegate gameDone]; //need this for optional method in delegate protocol in .h
-            
-            
-            NSLog(@"Start Over");
-        }
     }
 }
 

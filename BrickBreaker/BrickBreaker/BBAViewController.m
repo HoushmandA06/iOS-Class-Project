@@ -152,13 +152,13 @@
 
 -(void)gameDone
 {
-    // need if statement here to say if livesLost = lives, then do the below, if not, goLevelScreen (resets the paddle and ball)
     
     [level.view removeFromSuperview];
     [self.view addSubview:start];
     [scoreCard removeFromSuperview];
     [livesCard removeFromSuperview];
     [reset removeFromSuperview];
+ 
 
 }
 
