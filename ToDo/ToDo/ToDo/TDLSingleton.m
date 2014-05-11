@@ -20,7 +20,6 @@
 +(TDLSingleton *)sharedCollection;
 
 {
-    
     static dispatch_once_t create;
     static TDLSingleton * singleton = nil;
     
@@ -46,13 +45,10 @@
 {
     if(_listItems == nil)
     {
-        _listItems = [@[] mutableCopy];
-        
+        _listItems = [@[] mutableCopy];        
     }
     return _listItems;
 }
-
-
 
 
 -(void)addListItem:(NSDictionary *)listItem

@@ -20,43 +20,16 @@
     
     NSURLRequest * request = [NSURLRequest requestWithURL:url];
     
-//    NSOperationQueue * queue = [[NSOperationQueue alloc] init];
-    
-/*    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError)
-    {
-        if (connectionError == nil)
-        {
-            
-        } else
-        {
-            NSlog(@"%@",connectionError);
-        }
-        
-        
-    }]; */
-    
     NSURLResponse * response = nil;
     NSError * error = nil;
     NSData * responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
     NSError * jsonError = nil;
     NSDictionary * githubProfile = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&jsonError];
     
- //   for (NSString * key in [githubProfile allKeys]) {
- //
- //
- //   }
-    
-
-//    if(githubProfile[@"name"] != nil) [userInfo setObject:githubProfile[@"name"] forKey:@"name"];
-//    if(githubProfile[@"image"] != nil) [userInfo setObject:githubProfile[@"avatar_url"] forKey:@"image"];
-//    if(githubProfile[@"github"] != nil) [userInfo setObject:githubProfile[@"html_url"] forKey:@"github"];
-//  above does same as the literals below
-    
     if(githubProfile[@"name"] != nil) userInfo[@"name"] = githubProfile[@"name"];
     if(githubProfile[@"avatar_url"] != nil) userInfo[@"image"] = githubProfile[@"avatar_url"];
     if(githubProfile[@"html_url"] != nil) userInfo[@"github"] = githubProfile[@"html_url"];
     
-
     return userInfo;
     
 }
