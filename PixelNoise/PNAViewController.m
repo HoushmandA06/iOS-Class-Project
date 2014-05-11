@@ -57,9 +57,9 @@
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    NSLog(@"playsound");
     [sounds playSoundWithName:@"melodic5_affirm"];
-    
+    NSLog(@"playsound");
+
 }
 
 

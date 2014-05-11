@@ -29,6 +29,9 @@
     
     NSArray * splatterDirections;
     
+    int w;
+    int h;
+    
 }
 
 
@@ -44,8 +47,15 @@
         
         self.collision = [[UICollisionBehavior alloc] init];
         self.collision.translatesReferenceBoundsIntoBoundary = YES;
+        w = self.view.frame.size.width;
+        h = self.view.frame.size.height;
+        [self.collision addBoundaryWithIdentifier:@"floor" fromPoint:CGPointMake(0,h-1) toPoint:CGPointMake(w,h-1)];
         [self.animator addBehavior:self.collision];  // all behaviors need to be added to animator
         self.collision.collisionDelegate = self;
+    
+//        [self.collision addBoundaryWithIdentifier:@"ceiling" fromPoint:CGPointMake(0,0) toPoint:CGPointMake(w, 0)];
+//        [self.collision addBoundaryWithIdentifier:@"leftWall" fromPoint:CGPointMake(0,0) toPoint:CGPointMake(0,h)];
+//        [self.collision addBoundaryWithIdentifier:@"rightWall" fromPoint:CGPointMake(w,0) toPoint:CGPointMake(w,h)];
         
         self.blockBehavior = [[UIDynamicItemBehavior alloc] init];
         self.blockBehavior.elasticity = 1.0;
@@ -62,12 +72,19 @@
         self.shardCollision.collisionDelegate = self;
         
         splatterDirections = @[
-                               [NSValue valueWithCGPoint:CGPointMake(-1.0, -1.0)],
-                               [NSValue valueWithCGPoint:CGPointMake(-0.5, -1.0)],
-                               [NSValue valueWithCGPoint:CGPointMake(0.0, -1.0)],
-                               [NSValue valueWithCGPoint:CGPointMake(0.5, -1.0)],
-                               [NSValue valueWithCGPoint:CGPointMake(1.0, -1.0)]
+                               [NSValue valueWithCGPoint:CGPointMake(-.15, -.15)],
+                               [NSValue valueWithCGPoint:CGPointMake(-0.05, -.20)],
+                               [NSValue valueWithCGPoint:CGPointMake(0.00, -.25)],
+                               [NSValue valueWithCGPoint:CGPointMake(0.05, -.20)],
+                               [NSValue valueWithCGPoint:CGPointMake(.15, -.15)]
                                ];
+        
+        // to use for continuous mode
+//        [NSValue valueWithCGPoint:CGPointMake(-1.0, -1.0)],
+//        [NSValue valueWithCGPoint:CGPointMake(-0.5, -1.0)],
+//        [NSValue valueWithCGPoint:CGPointMake(0.0, -1.0)],
+//        [NSValue valueWithCGPoint:CGPointMake(0.5, -1.0)],
+//        [NSValue valueWithCGPoint:CGPointMake(1.0, -1.0)]
         
         sounds = [[PNAPixelSounds alloc] init];
     
@@ -123,6 +140,17 @@
         [self.collision removeItem:collidedblock];
         [collidedblock removeFromSuperview];
         
+        static int x = 10;
+        x++;
+    
+        UIView * sparkPuddle = [[UIView alloc] initWithFrame:CGRectMake(0,479,320,5-x)];
+        sparkPuddle.backgroundColor = [UIColor orangeColor];
+        [self.view addSubview:sparkPuddle];
+
+        [self.collision addBoundaryWithIdentifier:@"floor" fromPoint:CGPointMake(0,h-1-x) toPoint:CGPointMake(w,h-1-x)];
+
+        
+        
     }
     
 if([behavior isEqual:self.shardCollision])
@@ -142,7 +170,7 @@ if([behavior isEqual:self.shardCollision])
     for(NSValue * pointValue in splatterDirections) {
         CGPoint direction = [pointValue CGPointValue];
        
-        UIView * shard = [[UIView alloc] initWithFrame:CGRectMake(location.x + (direction.x * 10),location.y-50, 8, 8)];
+        UIView * shard = [[UIView alloc] initWithFrame:CGRectMake(location.x + (direction.x * 10),location.y-20, 8, 8)];
         shard.backgroundColor = [UIColor orangeColor];
         shard.layer.cornerRadius = 6;
         [self.view addSubview:shard];
@@ -150,7 +178,8 @@ if([behavior isEqual:self.shardCollision])
         [self.shardCollision addItem:shard];
         [self.shardBehavior addItem:shard];
         
-        UIPushBehavior * pusher = [[UIPushBehavior alloc] initWithItems:@[shard] mode:UIPushBehaviorModeContinuous];
+        UIPushBehavior * pusher = [[UIPushBehavior alloc] initWithItems:@[shard] mode:UIPushBehaviorModeInstantaneous];
+        //UIPushBehaviorModeContinuous
 
 //        [pusher addItem:shard]; dont need this now since initWithitems
   

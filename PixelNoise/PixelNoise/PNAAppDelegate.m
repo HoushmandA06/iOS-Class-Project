@@ -17,11 +17,11 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-//    self.window.rootViewController = [[PNAViewController alloc] initWithNibName:nil bundle:nil];
+//   self.window.rootViewController = [[PNAViewController alloc] initWithNibName:nil bundle:nil];
     
 //    self.window.rootViewController = [[PNAWorldViewController alloc] initWithNibName:nil bundle:nil];
 
-    self.window.rootViewController = [[PNAWorldTwoViewController alloc] initWithNibName:nil bundle:nil];
+      self.window.rootViewController = [[PNAWorldTwoViewController alloc] initWithNibName:nil bundle:nil];
     
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];

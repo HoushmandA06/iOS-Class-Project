@@ -111,12 +111,12 @@
 			children = (
 				0FA97B651917C75E00C03C34 /* PNAViewController.h */,
 				0FA97B661917C75E00C03C34 /* PNAViewController.m */,
-				0FA97B681917C89300C03C34 /* PNAPixelSounds.h */,
-				0FA97B691917C89300C03C34 /* PNAPixelSounds.m */,
 				0FA97B831917EA7600C03C34 /* PNAWorldViewController.h */,
 				0FA97B841917EA7600C03C34 /* PNAWorldViewController.m */,
 				0FA97B861919154100C03C34 /* PNAWorldTwoViewController.h */,
 				0FA97B871919154100C03C34 /* PNAWorldTwoViewController.m */,
+				0FA97B681917C89300C03C34 /* PNAPixelSounds.h */,
+				0FA97B691917C89300C03C34 /* PNAPixelSounds.m */,
 				0FA97B3C1917C6ED00C03C34 /* PixelNoise */,
 				0FA97B551917C6ED00C03C34 /* PixelNoiseTests */,
 				0FA97B351917C6ED00C03C34 /* Frameworks */,
@@ -502,6 +502,7 @@
 				0FA97B611917C6ED00C03C34 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0FA97B621917C6ED00C03C34 /* Build configuration list for PBXNativeTarget "PixelNoiseTests" */ = {
 			isa = XCConfigurationList;
@@ -510,6 +511,7 @@
 				0FA97B641917C6ED00C03C34 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
