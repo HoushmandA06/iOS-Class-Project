@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BVRBlueVC.h"
 
-@interface BVRViewController : UIViewController <BVRBlueVCDelegate>
+@interface BVRViewController : UIViewController <BVRBlueVCDelegate>  //BVRBlueVCDelegate to use protocol dels in Blue for score
 
 
 

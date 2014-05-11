@@ -33,7 +33,7 @@
         blueVC.delegate = self;
         [self.view addSubview:blueVC.view];
         
-        blueScoreCard = [[UILabel alloc] initWithFrame:CGRectMake(110, 70, 100, 100)];
+        blueScoreCard = [[UILabel alloc] initWithFrame:CGRectMake(0, 70, SCREEN_WIDTH, 100)];
         blueScoreCard.backgroundColor = [UIColor clearColor];
         blueScoreCard.textColor = [UIColor whiteColor];
         blueScoreCard.font = [UIFont fontWithName:@"Helvetica" size:70];
@@ -44,7 +44,7 @@
         redVC.delegate = self;
         [self.view addSubview:redVC.view];
         
-        redScoreCard = [[UILabel alloc] initWithFrame:CGRectMake(110, 310, 100, 100)];
+        redScoreCard = [[UILabel alloc] initWithFrame:CGRectMake(0, 310, SCREEN_WIDTH, 100)];
         redScoreCard.backgroundColor = [UIColor clearColor];
         redScoreCard.textColor = [UIColor whiteColor];
         redScoreCard.font = [UIFont fontWithName:@"Helvetica" size:70];
@@ -68,7 +68,8 @@
     blueVC.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT/2+[BVRScoreManager mainData].scoreCountBlue-[BVRScoreManager mainData].scoreCountRed);
     
     redVC.view.frame = CGRectMake(0, SCREEN_HEIGHT/2-[BVRScoreManager mainData].scoreCountRed+[BVRScoreManager mainData].scoreCountBlue, SCREEN_WIDTH, SCREEN_HEIGHT/2+([BVRScoreManager mainData].scoreCountRed-[BVRScoreManager mainData].scoreCountBlue));
-    
+
+    [self declareWinner];
     
 }
 
@@ -77,8 +78,78 @@
     redScoreCard.text = [NSString stringWithFormat:@"%d",scoreCountRed];
     
     redVC.view.frame = CGRectMake(0, SCREEN_HEIGHT/2-[BVRScoreManager mainData].scoreCountRed+[BVRScoreManager mainData].scoreCountBlue, SCREEN_WIDTH, SCREEN_HEIGHT/2+([BVRScoreManager mainData].scoreCountRed-[BVRScoreManager mainData].scoreCountBlue));
+ 
+    [self declareWinner];
+}
+
+-(void)declareWinner
+{
+    if(([BVRScoreManager mainData].scoreCountBlue - [BVRScoreManager mainData].scoreCountRed) > 20)
+    {
+        NSLog(@"Blue wins");
+
+        UILabel * blueWins = [[UILabel alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT/2-25, SCREEN_WIDTH, 50)];
+        blueWins.backgroundColor = [UIColor lightGrayColor];
+        blueWins.textColor = [UIColor blueColor];
+        blueWins.font = [UIFont fontWithName:@"Helvetica" size:35];
+        blueWins.textAlignment = NSTextAlignmentCenter;
+        blueWins.text = @"Blue Wins";  // how can i add score to this and have it read from BVR
+
+        // FADE IN ANIMATION
+        [UIView animateWithDuration:0.75 delay:0 options:UIViewAnimationOptionCurveEaseOut
+                         animations:^{
+                             blueWins.alpha = 0;
+                             [UIView animateWithDuration:0.75 delay:0 options:UIViewAnimationOptionCurveEaseIn
+                                              animations:^{ blueWins.alpha = 1;}
+                                              completion:nil];
+                         } completion:nil];
+        
+        // SHAKE ANIMATION
+        CAKeyframeAnimation *animation = [CAKeyframeAnimation animation];
+        animation.keyPath = @"position.x";
+        animation.values = @[ @0, @10, @-10, @10, @0 ];
+        animation.keyTimes = @[ @0, @(1 / 6.0), @(3 / 6.0), @(5 / 6.0), @1 ];
+        animation.duration = 0.4;
+        animation.additive = YES;
+        [blueWins.layer addAnimation:animation forKey:@"shake"];
+        
+        [self.view addSubview:blueWins];
+    }
+    
+    if(([BVRScoreManager mainData].scoreCountRed - [BVRScoreManager mainData].scoreCountBlue) > 20)
+    {
+        NSLog(@"Red wins");
+        
+        UILabel * redWins = [[UILabel alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT/2-25, SCREEN_WIDTH, 50)];
+        redWins.backgroundColor = [UIColor lightGrayColor];
+        redWins.textColor = [UIColor redColor];
+        redWins.font = [UIFont fontWithName:@"Helvetica" size:35];
+        redWins.textAlignment = NSTextAlignmentCenter;
+        redWins.text = @"Red Wins";  // how can i add score to this and have it read from BVR
+        
+        // FADE IN ANIMATION
+        [UIView animateWithDuration:0.75 delay:0 options:UIViewAnimationOptionCurveEaseOut
+                         animations:^{
+                             redWins.alpha = 0;
+                             [UIView animateWithDuration:0.75 delay:0 options:UIViewAnimationOptionCurveEaseIn
+                                              animations:^{ redWins.alpha = 1;}
+                                              completion:nil];
+                         } completion:nil];
+        
+        // SHAKE ANIMATION
+        CAKeyframeAnimation *animation = [CAKeyframeAnimation animation];
+        animation.keyPath = @"position.x";
+        animation.values = @[ @0, @10, @-10, @10, @0 ];
+        animation.keyTimes = @[ @0, @(1 / 6.0), @(3 / 6.0), @(5 / 6.0), @1 ];
+        animation.duration = 0.4;
+        animation.additive = YES;
+        [redWins.layer addAnimation:animation forKey:@"shake"];
+        
+        [self.view addSubview:redWins];
+    }
     
 }
+
 
 
 - (void)didReceiveMemoryWarning
@@ -92,15 +163,5 @@
 -(BOOL)prefersStatusBarHidden { return YES;}
 
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
