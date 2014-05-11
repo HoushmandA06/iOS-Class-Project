@@ -20,8 +20,14 @@
 {
     BVRBlueVC * blueVC;
     BVRRedVC * redVC;
+    
     UILabel * blueScoreCard;
     UILabel * redScoreCard;
+   
+    UILabel * blueWins;
+    UILabel * redWins;
+    
+    UIButton * start;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -29,6 +35,11 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
  
+        self.view.backgroundColor = [UIColor blackColor];
+
+        
+        
+        /*
         blueVC = [[BVRBlueVC alloc] initWithNibName:nil bundle:nil];
         blueVC.delegate = self;
         [self.view addSubview:blueVC.view];
@@ -50,6 +61,8 @@
         redScoreCard.font = [UIFont fontWithName:@"Helvetica" size:70];
         redScoreCard.textAlignment = NSTextAlignmentCenter;
         [self.view addSubview:redScoreCard];
+        */
+        
     }
     return self;
 }
@@ -58,8 +71,68 @@
 {
     [super viewDidLoad];
     
-    // Do any additional setup after loading the view.
+    start = [[UIButton alloc] initWithFrame:CGRectMake((SCREEN_WIDTH)/2 - 50,(SCREEN_HEIGHT)/2-50,100,100)];
+    start.backgroundColor = [UIColor colorWithWhite:0.30 alpha:0.5];
+    
+    [start setTitle:@"START" forState:UIControlStateNormal];
+    start.layer.cornerRadius = 50;
+    [start addTarget:self action:@selector(goLevelScreen) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:start];
+    
 }
+
+-(void)goLevelScreen
+{
+    
+    [start removeFromSuperview];
+
+    blueVC = [[BVRBlueVC alloc] initWithNibName:nil bundle:nil];
+    blueVC.delegate = self;
+    [self.view addSubview:blueVC.view];
+    
+    blueScoreCard = [[UILabel alloc] initWithFrame:CGRectMake(0, 70, SCREEN_WIDTH, 100)];
+    blueScoreCard.backgroundColor = [UIColor clearColor];
+    blueScoreCard.textColor = [UIColor whiteColor];
+    blueScoreCard.font = [UIFont fontWithName:@"Helvetica" size:70];
+    blueScoreCard.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:blueScoreCard];
+    
+    redVC = [[BVRRedVC alloc] initWithNibName:nil bundle:nil];
+    redVC.delegate = self;
+    [self.view addSubview:redVC.view];
+    
+    redScoreCard = [[UILabel alloc] initWithFrame:CGRectMake(0, 310, SCREEN_WIDTH, 100)];
+    redScoreCard.backgroundColor = [UIColor clearColor];
+    redScoreCard.textColor = [UIColor whiteColor];
+    redScoreCard.font = [UIFont fontWithName:@"Helvetica" size:70];
+    redScoreCard.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:redScoreCard];
+}
+
+-(void)gameDone
+{
+ 
+    // HOW TO DELAY GAME DONE TO GIVE TIME FOR ANIMATION OF blueWins || redWins
+    
+    [UIView animateWithDuration:5.0 delay:5.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        
+    } completion:^(BOOL finished) {
+        [blueWins removeFromSuperview];
+        [redWins removeFromSuperview];
+        [redVC.view removeFromSuperview];
+        [blueVC.view removeFromSuperview];
+        [blueScoreCard removeFromSuperview];
+        [redScoreCard removeFromSuperview];
+        
+        [BVRScoreManager mainData].scoreCountBlue = 0;  // WHY IS THIS OK?
+        [BVRScoreManager mainData].scoreCountRed = 0;
+        
+        [self.view addSubview:start];
+    }];
+
+    
+}
+
 
 -(void)setBlueScore:(NSInteger)scoreCountBlue
 {
@@ -88,7 +161,7 @@
     {
         NSLog(@"Blue wins");
 
-        UILabel * blueWins = [[UILabel alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT/2-25, SCREEN_WIDTH, 50)];
+        blueWins = [[UILabel alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT/2-25, SCREEN_WIDTH, 50)];
         blueWins.backgroundColor = [UIColor lightGrayColor];
         blueWins.textColor = [UIColor blueColor];
         blueWins.font = [UIFont fontWithName:@"Helvetica" size:35];
@@ -114,13 +187,15 @@
         [blueWins.layer addAnimation:animation forKey:@"shake"];
         
         [self.view addSubview:blueWins];
+
+        [self gameDone];
     }
     
     if(([BVRScoreManager mainData].scoreCountRed - [BVRScoreManager mainData].scoreCountBlue) > 20)
     {
         NSLog(@"Red wins");
         
-        UILabel * redWins = [[UILabel alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT/2-25, SCREEN_WIDTH, 50)];
+        redWins = [[UILabel alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT/2-25, SCREEN_WIDTH, 50)];
         redWins.backgroundColor = [UIColor lightGrayColor];
         redWins.textColor = [UIColor redColor];
         redWins.font = [UIFont fontWithName:@"Helvetica" size:35];
@@ -146,6 +221,8 @@
         [redWins.layer addAnimation:animation forKey:@"shake"];
         
         [self.view addSubview:redWins];
+        
+        [self gameDone];
     }
     
 }
