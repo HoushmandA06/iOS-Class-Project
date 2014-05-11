@@ -147,9 +147,6 @@
         [self.view addSubview:sparkPuddle];
 
         [self.collision addBoundaryWithIdentifier:@"floor" fromPoint:CGPointMake(0,h-1-x) toPoint:CGPointMake(w,h-1-x)];
-
-        
-        
     }
     
 if([behavior isEqual:self.shardCollision])
@@ -183,6 +180,7 @@ if([behavior isEqual:self.shardCollision])
 //        [pusher addItem:shard]; dont need this now since initWithitems
   
         [self.animator addBehavior:pusher];
+        
         pusher.pushDirection = CGVectorMake(direction.x, direction.y);
         
     }

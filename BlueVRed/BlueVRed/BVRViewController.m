@@ -113,10 +113,7 @@
 {
  
     // HOW TO DELAY GAME DONE TO GIVE TIME FOR ANIMATION OF blueWins || redWins
-    
-    [UIView animateWithDuration:5.0 delay:5.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-        
-    } completion:^(BOOL finished) {
+
         [blueWins removeFromSuperview];
         [redWins removeFromSuperview];
         [redVC.view removeFromSuperview];
@@ -128,9 +125,6 @@
         [BVRScoreManager mainData].scoreCountRed = 0;
         
         [self.view addSubview:start];
-    }];
-
-    
 }
 
 
@@ -157,7 +151,7 @@
 
 -(void)declareWinner
 {
-    if(([BVRScoreManager mainData].scoreCountBlue - [BVRScoreManager mainData].scoreCountRed) > 20)
+    if(([BVRScoreManager mainData].scoreCountBlue - [BVRScoreManager mainData].scoreCountRed) > 5)
     {
         NSLog(@"Blue wins");
 
@@ -188,10 +182,10 @@
         
         [self.view addSubview:blueWins];
 
-        [self gameDone];
+      //  [self gameDone];
     }
     
-    if(([BVRScoreManager mainData].scoreCountRed - [BVRScoreManager mainData].scoreCountBlue) > 20)
+    if(([BVRScoreManager mainData].scoreCountRed - [BVRScoreManager mainData].scoreCountBlue) > 5)
     {
         NSLog(@"Red wins");
         
@@ -222,7 +216,7 @@
         
         [self.view addSubview:redWins];
         
-        [self gameDone];
+      //  [self gameDone];
     }
     
 }

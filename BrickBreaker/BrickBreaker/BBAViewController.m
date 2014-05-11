@@ -152,14 +152,11 @@
 
 -(void)gameDone
 {
-    
     [level.view removeFromSuperview];
     [self.view addSubview:start];
     [scoreCard removeFromSuperview];
     [livesCard removeFromSuperview];
     [reset removeFromSuperview];
- 
-
 }
 
 
