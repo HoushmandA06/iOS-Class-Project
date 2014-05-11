@@ -65,7 +65,6 @@
         self.shardBehavior.density = 10;
         [self.animator addBehavior:self.shardBehavior];
         
-    
         self.shardCollision = [[UICollisionBehavior alloc] init];
         self.shardCollision.translatesReferenceBoundsIntoBoundary = YES;
         [self.animator addBehavior:self.shardCollision];  // all behaviors need to be added to animator

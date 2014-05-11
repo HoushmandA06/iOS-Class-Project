@@ -38,13 +38,13 @@
 }
 
 -(void)tapScreen:(UITapGestureRecognizer *)redScored
-{
-    NSLog(@"Tapped Red");
+{    NSLog(@"Tapped Red");
 
     [BVRScoreManager mainData].scoreCountRed += 1;
     [self.delegate setRedScore:[BVRScoreManager mainData].scoreCountRed];
-
     NSLog(@"Red Score: %d",[BVRScoreManager mainData].scoreCountRed);
+    
+//    self.view.frame = CGRectMake(0, SCREEN_HEIGHT/2-[BVRScoreManager mainData].scoreCountRed, SCREEN_WIDTH, SCREEN_HEIGHT/2+[BVRScoreManager mainData].scoreCountRed);
     
     NSInteger scoreTotal = [BVRScoreManager mainData].scoreCountBlue + [BVRScoreManager mainData].scoreCountRed;
     [BVRScoreManager mainData].scoreTotal = scoreTotal;

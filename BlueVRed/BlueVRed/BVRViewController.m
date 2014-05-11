@@ -64,11 +64,20 @@
 -(void)setBlueScore:(NSInteger)scoreCountBlue
 {
     blueScoreCard.text = [NSString stringWithFormat:@"%d",scoreCountBlue];
+    
+    blueVC.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT/2+[BVRScoreManager mainData].scoreCountBlue-[BVRScoreManager mainData].scoreCountRed);
+    
+    redVC.view.frame = CGRectMake(0, SCREEN_HEIGHT/2-[BVRScoreManager mainData].scoreCountRed+[BVRScoreManager mainData].scoreCountBlue, SCREEN_WIDTH, SCREEN_HEIGHT/2+([BVRScoreManager mainData].scoreCountRed-[BVRScoreManager mainData].scoreCountBlue));
+    
+    
 }
 
 -(void)setRedScore:(NSInteger)scoreCountRed
 {
     redScoreCard.text = [NSString stringWithFormat:@"%d",scoreCountRed];
+    
+    redVC.view.frame = CGRectMake(0, SCREEN_HEIGHT/2-[BVRScoreManager mainData].scoreCountRed+[BVRScoreManager mainData].scoreCountBlue, SCREEN_WIDTH, SCREEN_HEIGHT/2+([BVRScoreManager mainData].scoreCountRed-[BVRScoreManager mainData].scoreCountBlue));
+    
 }
 
 

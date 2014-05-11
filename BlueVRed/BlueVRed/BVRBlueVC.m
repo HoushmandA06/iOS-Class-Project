@@ -59,10 +59,9 @@
 //    blueScoreCard.text = [NSString stringWithFormat:@"%d",[BVRScoreManager mainData].scoreCountBlue];
  
     [self.delegate setBlueScore:[BVRScoreManager mainData].scoreCountBlue];
-    
-    
     NSLog(@"Blue Score : %d",[BVRScoreManager mainData].scoreCountBlue);
-    
+
+        
     NSInteger scoreTotal = [BVRScoreManager mainData].scoreCountBlue + [BVRScoreManager mainData].scoreCountRed;
     [BVRScoreManager mainData].scoreTotal = scoreTotal;
     
