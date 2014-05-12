@@ -112,8 +112,6 @@
 -(void)gameDone
 {
  
-    // HOW TO DELAY GAME DONE TO GIVE TIME FOR ANIMATION OF blueWins || redWins
-
         [blueWins removeFromSuperview];
         [redWins removeFromSuperview];
         [redVC.view removeFromSuperview];
@@ -151,7 +149,7 @@
 
 -(void)declareWinner
 {
-    if(([BVRScoreManager mainData].scoreCountBlue - [BVRScoreManager mainData].scoreCountRed) > 5)
+    if(([BVRScoreManager mainData].scoreCountBlue - [BVRScoreManager mainData].scoreCountRed) > 10)
     {
         NSLog(@"Blue wins");
 
@@ -163,12 +161,14 @@
         blueWins.text = @"Blue Wins";  // how can i add score to this and have it read from BVR
 
         // FADE IN ANIMATION
-        [UIView animateWithDuration:0.75 delay:0 options:UIViewAnimationOptionCurveEaseOut
+        [UIView animateWithDuration:1.5 delay:0 options:UIViewAnimationOptionCurveEaseOut
                          animations:^{
                              blueWins.alpha = 0;
-                             [UIView animateWithDuration:0.75 delay:0 options:UIViewAnimationOptionCurveEaseIn
+                             [UIView animateWithDuration:2.0 delay:0 options:UIViewAnimationOptionCurveEaseIn
                                               animations:^{ blueWins.alpha = 1;}
-                                              completion:nil];
+                                              completion:^(BOOL finished) {
+                                                  [self gameDone];
+                                              }];
                          } completion:nil];
         
         // SHAKE ANIMATION
@@ -182,10 +182,10 @@
         
         [self.view addSubview:blueWins];
 
-      //  [self gameDone];
+        
     }
     
-    if(([BVRScoreManager mainData].scoreCountRed - [BVRScoreManager mainData].scoreCountBlue) > 5)
+    if(([BVRScoreManager mainData].scoreCountRed - [BVRScoreManager mainData].scoreCountBlue) > 10)
     {
         NSLog(@"Red wins");
         
@@ -197,12 +197,14 @@
         redWins.text = @"Red Wins";  // how can i add score to this and have it read from BVR
         
         // FADE IN ANIMATION
-        [UIView animateWithDuration:0.75 delay:0 options:UIViewAnimationOptionCurveEaseOut
+        [UIView animateWithDuration:1.50 delay:0 options:UIViewAnimationOptionCurveEaseOut
                          animations:^{
                              redWins.alpha = 0;
-                             [UIView animateWithDuration:0.75 delay:0 options:UIViewAnimationOptionCurveEaseIn
+                             [UIView animateWithDuration:2.0 delay:0 options:UIViewAnimationOptionCurveEaseIn
                                               animations:^{ redWins.alpha = 1;}
-                                              completion:nil];
+                                              completion:^(BOOL finished) {
+                                                  [self gameDone];
+                                              }];
                          } completion:nil];
         
         // SHAKE ANIMATION
@@ -216,8 +218,7 @@
         
         [self.view addSubview:redWins];
         
-      //  [self gameDone];
-    }
+     }
     
 }
 
