@@ -20,7 +20,8 @@
     UIButton * playButton;
     UIButton * stopButton;
     UIView * progressBar;
-
+    UISlider * volume;
+    
     
     float oldX, oldY;
     BOOL dragging;
@@ -63,6 +64,15 @@
         seekButton.layer.cornerRadius = 5;
         [self.view addSubview:seekButton];
         
+        volume = [[UISlider alloc] initWithFrame:CGRectMake(85, 325, 150, 4)];
+        volume.layer.cornerRadius = 2;
+        [volume addTarget:self action:@selector(setVolume:) forControlEvents:UIControlEventTouchUpInside];
+        volume.tintColor = [UIColor blueColor];
+        [self.view addSubview:volume];
+        
+        [stopButton addTarget:self action:@selector(stop) forControlEvents:UIControlEventTouchUpInside];
+        [playButton addTarget:self action:@selector(play:) forControlEvents:UIControlEventTouchUpInside];
+        
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, (unsigned long)NULL), ^{
             
         NSURL * url = [NSURL URLWithString:@"https://api.soundcloud.com/tracks/147445565/download?client_id=2d87025c8392069f828c446b965862e3"];
@@ -72,10 +82,6 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             
             player = [[AVAudioPlayer alloc] initWithData:data error:nil];
-        
-            [stopButton addTarget:self action:@selector(stop) forControlEvents:UIControlEventTouchUpInside];
-            [playButton addTarget:self action:@selector(play:) forControlEvents:UIControlEventTouchUpInside];
-            [playButton addTarget:self action:@selector(pause:) forControlEvents:UIControlEventTouchUpInside];
             NSLog(@"player ready");
             });
         });
@@ -88,19 +94,28 @@
     return self;
 }
 
+-(void)setVolume:(UISlider *)slider
+{
+    player.volume = slider.value;
+    
+}
+
+
 -(void)play:(UIButton *)sender
 {
-    if(sender.selected == NO)
+    if([player isPlaying])
     {
-        sender.selected = YES;
-        
-    } else
-        
-    sender.selected = NO;
-   [player play];
-    
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateProgressBar:) userInfo:nil repeats:YES];
+        [player pause];
+        [self.timer invalidate];
+        playButton.selected = NO;
 
+    } else {
+ 
+        playButton.selected = YES;
+        [player play];
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateProgressBar:) userInfo:nil repeats:YES];
+    }
+    
 }
 
 -(void)pause:(UIButton *)sender
@@ -124,8 +139,10 @@
     
     [self.timer invalidate];
     self.timer = nil;
-    
 }
+
+
+
 
 -(void)updateProgressBar:(NSTimer *)timer
 {
@@ -135,9 +152,6 @@
     NSLog(@"%f",progress);
     
     float xPosition = progressBar.frame.origin.x + progress * progressBar.frame.size.width;
-    
-//    int min =
-//    int sec =
     
     seekButton.frame = CGRectMake(xPosition, 247, 10, 10);
     
@@ -155,9 +169,6 @@
     
     currentTimeLabel.text = [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:current]];
     
-    
-  //  currentTimeLabel.text = [NSString stringWithFormat:@"%.01f",current];
-    
     [self.view addSubview:currentTimeLabel];
 }
 
@@ -167,6 +178,13 @@
     
     UITouch *aTouch = [touches anyObject];
     CGPoint location = [aTouch locationInView:seekButton];
+    
+    BOOL isInsideSeek = CGRectContainsPoint(seekButton.frame, [aTouch locationInView:self.view]);
+    
+    NSLog(@"Is Inside Seek %u",isInsideSeek);
+    
+    if(!isInsideSeek) return;
+    
     CGPoint previousLocation = [aTouch previousLocationInView:seekButton];
     seekButton.frame = CGRectOffset(seekButton.frame, (location.x - previousLocation.x), 0);
 }
@@ -175,7 +193,6 @@
 {
     UITouch * aTouch = [touches anyObject];
     
-   // CGPoint touchLocation = [aTouch locationInView:seekButton];
     if ([[aTouch.view class] isSubclassOfClass:[UIView class]]) {
         dragging = YES;
         
