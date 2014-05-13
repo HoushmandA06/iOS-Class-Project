@@ -22,10 +22,8 @@
     UIView * progressBar;
     UISlider * volume;
     
-    
     float oldX, oldY;
     BOOL dragging;
-    
 }
 
 @end
@@ -158,18 +156,22 @@
     UILabel * currentTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(seekButton.frame.origin.x, 260, 50, 30)];
     currentTimeLabel.backgroundColor = [UIColor lightGrayColor];
     currentTimeLabel.textColor = [UIColor orangeColor];
-    currentTimeLabel.font = [UIFont fontWithName:@"Helvetica" size:14];
-    //currentTimeLabel.textAlignment = NSTextAlignmentCenter;
-    
+ 
     static NSDateFormatter *dateFormatter;
     if (!dateFormatter) {
         dateFormatter = [[NSDateFormatter alloc] init];
         dateFormatter.dateFormat = @"mm:ss";
     }
-    
+   
     currentTimeLabel.text = [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:current]];
-    
     [self.view addSubview:currentTimeLabel];
+    
+    UILabel * songLengthLabel = [[UILabel alloc] initWithFrame:CGRectMake(250, 270, 50, 30)];
+    songLengthLabel.backgroundColor = [UIColor lightGrayColor];
+    songLengthLabel.textColor = [UIColor orangeColor];
+    songLengthLabel.text = [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:length]];
+    [self.view addSubview:songLengthLabel];
+    
 }
 
 - (void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
@@ -178,6 +180,7 @@
     
     UITouch *aTouch = [touches anyObject];
     CGPoint location = [aTouch locationInView:seekButton];
+    CGPoint previousLocation = [aTouch previousLocationInView:seekButton];
     
     BOOL isInsideSeek = CGRectContainsPoint(seekButton.frame, [aTouch locationInView:self.view]);
     
@@ -185,7 +188,8 @@
     
     if(!isInsideSeek) return;
     
-    CGPoint previousLocation = [aTouch previousLocationInView:seekButton];
+    // write an if/else here to test location / previousLocation
+
     seekButton.frame = CGRectOffset(seekButton.frame, (location.x - previousLocation.x), 0);
 }
 
