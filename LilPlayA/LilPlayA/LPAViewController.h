@@ -12,4 +12,8 @@
 
 @interface LPAViewController : UIViewController
 
+@property (nonatomic) NSTimer * timer;
+
+
+
 @end
