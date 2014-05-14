@@ -201,6 +201,16 @@
 
     player.currentTime = player.duration * ((seekButton.frame.origin.x - progressBar.frame.origin.x)/progressBar.frame.size.width);
     
+    currentTimeLabel.frame = CGRectOffset(currentTimeLabel.frame, (location.x - previousLocation.x), 0);
+    
+    static NSDateFormatter *dateFormatter;
+    if (!dateFormatter) {
+            dateFormatter = [[NSDateFormatter alloc] init];
+            dateFormatter.dateFormat = @"mm:ss";
+    }
+        
+    currentTimeLabel.text = [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:player.currentTime]];
+    
     }
 }
 
@@ -224,8 +234,7 @@
     CGPoint location = [aTouch locationInView:seekButton];
     seekButton.frame = CGRectOffset(seekButton.frame, (location.x), 0);
     
-        
-        
+
     }
 
 }
