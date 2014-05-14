@@ -202,7 +202,12 @@
     player.currentTime = player.duration * ((seekButton.frame.origin.x - progressBar.frame.origin.x)/progressBar.frame.size.width);
     
     currentTimeLabel.frame = CGRectOffset(currentTimeLabel.frame, (location.x - previousLocation.x), 0);
-    
+
+                
+//        float totalMin = floor(duration/60);
+//        float totalSec = round(duration - totalMin * 60);
+//        totalTimeLabel.text = [NSString stringWithFormat:@"%02d:%02d", (int)totalMin, (int)totalSec];
+
     static NSDateFormatter *dateFormatter;
     if (!dateFormatter) {
             dateFormatter = [[NSDateFormatter alloc] init];
