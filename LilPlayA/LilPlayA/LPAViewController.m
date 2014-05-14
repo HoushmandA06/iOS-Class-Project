@@ -21,6 +21,7 @@
     UIButton * stopButton;
     UIView * progressBar;
     UISlider * volume;
+    UILabel * currentTimeLabel;
     
     float oldX, oldY;
     BOOL dragging;
@@ -133,6 +134,8 @@
     player.currentTime = 0;
     playButton.selected = NO;
     
+    
+    
     [self updateProgressBar:self.timer];
     
     [self.timer invalidate];
@@ -153,7 +156,9 @@
     
     seekButton.frame = CGRectMake(xPosition, 247, 10, 10);
     
-    UILabel * currentTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(seekButton.frame.origin.x, 260, 50, 30)];
+    [currentTimeLabel removeFromSuperview];
+    
+    currentTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(seekButton.frame.origin.x, 260, 50, 30)];
     currentTimeLabel.backgroundColor = [UIColor lightGrayColor];
     currentTimeLabel.textColor = [UIColor orangeColor];
  
@@ -189,8 +194,14 @@
     if(!isInsideSeek) return;
     
     // write an if/else here to test location / previousLocation
-
+  
+    if(seekButton.frame.origin.x >= progressBar.frame.origin.x && seekButton.frame.origin.x <= progressBar.frame.size.width)
+    {
     seekButton.frame = CGRectOffset(seekButton.frame, (location.x - previousLocation.x), 0);
+
+    player.currentTime = player.duration * ((seekButton.frame.origin.x - progressBar.frame.origin.x)/progressBar.frame.size.width);
+    
+    }
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -207,8 +218,16 @@
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    dragging = NO;
+    dragging = YES;
     
+    for (UITouch * aTouch in touches) {
+    CGPoint location = [aTouch locationInView:seekButton];
+    seekButton.frame = CGRectOffset(seekButton.frame, (location.x), 0);
+    
+        
+        
+    }
+
 }
 
 
