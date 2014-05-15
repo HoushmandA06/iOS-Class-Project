@@ -142,17 +142,16 @@
     for (UITouch * touch in touches) {
         
         int random = arc4random_uniform((int)[otherColors count]);
+        int random2 = arc4random_uniform((int)[otherColors count]);
         
         CGPoint location = [touch locationInView:self.view];
         
         DPARipple * ripple = [[DPARipple alloc] initWithFrame:CGRectMake(location.x, location.y, 0, 0)];
         
-        UIColor * rippleBorderColor = [[UIColor alloc] init];
-        rippleBorderColor = otherColors[random];
-        ripple.layer.borderColor = rippleBorderColor.CGColor;
-
+        ripple.layer.borderColor = ((UIColor *)otherColors[random2]).CGColor;
+        
         ripple.tintColor = otherColors[random];
-    
+        
         ripple.rippleCount = 3;
         ripple.rippleLifeTime = 2;
         

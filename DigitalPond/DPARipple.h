@@ -13,5 +13,4 @@
 @property (nonatomic) float rippleCount;
 @property (nonatomic) float rippleLifeTime;
 
-
 @end

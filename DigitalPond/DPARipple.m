@@ -10,19 +10,13 @@
 
 @implementation DPARipple
 {
-    
     NSArray * colors;
-    
-    
 }
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
- 
-
-    
     
     }
     return self;
@@ -43,32 +37,12 @@
 {
     UIView * rippleLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
     rippleLine.backgroundColor = self.tintColor;
+    rippleLine.layer.borderColor = self.layer.borderColor;
     
     rippleLine.layer.borderWidth = 3;
-    
-    
-    colors = @[
-               [UIColor colorWithRed:0.349f green:0.894f blue:0.553f alpha:1.0f],
-               [UIColor colorWithRed:0.945f green:0.337f blue:0.149f alpha:1.0f],
-               [UIColor colorWithRed:0.914f green:0.090f blue:0.420f alpha:1.0f],
-               [UIColor colorWithRed:0.255f green:0.075f blue:0.780f alpha:1.0f],
-               [UIColor colorWithRed:0.298f green:0.729f blue:0.867f alpha:1.0f]
-               ];
-    
-    NSMutableArray * otherColors = [colors mutableCopy];
-    int random = arc4random_uniform((int)[otherColors count]);
-    UIColor * rippleBorderColor = [[UIColor alloc] init];
-    rippleBorderColor = otherColors[random];
-    
-    
-    
-    rippleLine.layer.borderColor = rippleBorderColor.CGColor;
-
     rippleLine.layer.cornerRadius = 40;
 
-    
     [self addSubview:rippleLine];
-    
     
     [UIView animateWithDuration:self.rippleLifeTime delay:delay options:UIViewAnimationOptionCurveEaseInOut animations:^{
         rippleLine.frame = CGRectMake(-40, -40, 80, 80);
