@@ -11,9 +11,19 @@
 #import "LPAViewController.h"
 
 
+///////// ISSUES TO FIX
+
+// 1. songLengthLabel is being added to subview continuously (can only tell if background color clear)
+// 2. touched moved does not work well, especially scrubbing left
+// 3. stop button does not always stop updateProgress loop
+// 4. volume button sometimes causes seekButton to jump
+// 5. player takes long time to load
+
+
 @interface LPAViewController ()
 {
 
+    
     AVAudioPlayer * player;
     
     UIView * seekButton;
@@ -95,6 +105,8 @@
 
 -(void)setVolume:(UISlider *)slider
 {
+    player.volume = 0;
+    
     player.volume = slider.value;
     
 }
@@ -134,13 +146,13 @@
     player.currentTime = 0;
     playButton.selected = NO;
     
-    
-    
-    [self updateProgressBar:self.timer];
+   [self updateProgressBar:self.timer];
     
     [self.timer invalidate];
     self.timer = nil;
 }
+
+
 
 
 
@@ -159,7 +171,7 @@
     [currentTimeLabel removeFromSuperview];
     
     currentTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(seekButton.frame.origin.x, 260, 50, 30)];
-    currentTimeLabel.backgroundColor = [UIColor lightGrayColor];
+    currentTimeLabel.backgroundColor = [UIColor clearColor];
     currentTimeLabel.textColor = [UIColor orangeColor];
  
     static NSDateFormatter *dateFormatter;
@@ -171,10 +183,10 @@
     currentTimeLabel.text = [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:current]];
     [self.view addSubview:currentTimeLabel];
     
-    UILabel * songLengthLabel = [[UILabel alloc] initWithFrame:CGRectMake(250, 270, 50, 30)];
-    songLengthLabel.backgroundColor = [UIColor lightGrayColor];
+    UILabel * songLengthLabel = [[UILabel alloc] initWithFrame:CGRectMake(250, 260, 50, 30)];
+    songLengthLabel.backgroundColor = [UIColor clearColor];
     songLengthLabel.textColor = [UIColor orangeColor];
-    songLengthLabel.text = [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:length]];
+    songLengthLabel.text = [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:(length-current)]];
     [self.view addSubview:songLengthLabel];
     
 }
@@ -203,10 +215,9 @@
     
     currentTimeLabel.frame = CGRectOffset(currentTimeLabel.frame, (location.x - previousLocation.x), 0);
 
-                
-//        float totalMin = floor(duration/60);
-//        float totalSec = round(duration - totalMin * 60);
-//        totalTimeLabel.text = [NSString stringWithFormat:@"%02d:%02d", (int)totalMin, (int)totalSec];
+//  float totalMin = floor(duration/60);
+//  float totalSec = round(duration - totalMin * 60);
+//  totalTimeLabel.text = [NSString stringWithFormat:@"%02d:%02d", (int)totalMin, (int)totalSec];
 
     static NSDateFormatter *dateFormatter;
     if (!dateFormatter) {
@@ -239,7 +250,13 @@
     CGPoint location = [aTouch locationInView:seekButton];
     seekButton.frame = CGRectOffset(seekButton.frame, (location.x), 0);
     
+    currentTimeLabel.frame = CGRectOffset(currentTimeLabel.frame, (location.x), 0);
+    
+    player.currentTime = player.duration * ((seekButton.frame.origin.x - progressBar.frame.origin.x)/progressBar.frame.size.width);
 
+       self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateProgressBar:) userInfo:nil repeats:YES];
+
+        
     }
 
 }
