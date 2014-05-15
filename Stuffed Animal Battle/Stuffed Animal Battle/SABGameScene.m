@@ -36,6 +36,10 @@
         floor.position = CGPointMake(SCREEN_WIDTH/2.0,15);
         [self addChild:floor];
         
+        SKPhysicsBody * floorPhysics =  [SKPhysicsBody bodyWithRectangleOfSize:floor.size];
+        floorPhysics.affectedByGravity = NO;
+        floorPhysics.dynamic = NO;
+        floor.physicsBody = floorPhysics;
         
         
         timerLabel = [SKLabelNode node];
@@ -82,7 +86,7 @@
         player1.position = CGPointMake(SCREEN_WIDTH/2.0, 80);
         [self addChild:player1];
         
-        SKPhysicsBody * playerPhysics = [SKPhysicsBody bodyWithRectangleOfSize:player1.size center:player1.position];
+        SKPhysicsBody * playerPhysics = [SKPhysicsBody bodyWithRectangleOfSize:player1.size];
         
         player1.physicsBody = playerPhysics;
         
@@ -124,31 +128,32 @@
                     break;
                     
                 case 2: // dpadUp
-                {     NSLog(@"Jump");
-                    SKAction * moveUp = [SKAction moveToY:(player1.position.y+100) duration:0.1];
-                    [player1 runAction:moveUp];
-                }
+                     NSLog(@"Jump");
+
+                    [player1.physicsBody applyImpulse:CGVectorMake(5.0,100.0)];
+                 
                     break;
                     
                 case 3: // dpadDown
                 {   NSLog(@"Duck");
+                  
                     SKAction * moveDown = [SKAction moveToY:(player1.position.y-50) duration:0.1];
                     [player1 runAction:moveDown];
                 }
                     break;
                     
                 case 4: // dpadLeft
-                {   NSLog(@"Left");
-                    SKAction * moveLeft = [SKAction moveToX:(player1.position.x-5) duration:0.1];
-                    [player1 runAction:moveLeft];
-                }
+                   NSLog(@"Left");
+            
+                    [player1.physicsBody applyImpulse:CGVectorMake(-20, 0.0)];
+//                    SKAction * moveLeft = [SKAction moveToX:(player1.position.x-5) duration:0.1];
+//                    [player1 runAction:moveLeft];
+            
                     break;
                     
                 case 5: // dpadRight
-                {   NSLog(@"Right");
-                    SKAction * moveRight = [SKAction moveToX:(player1.position.x+5) duration:0.1];
-                    [player1 runAction:moveRight];
-                }
+                   NSLog(@"Right");
+                    [player1.physicsBody applyImpulse:CGVectorMake(20.0, 0.0)];
                     break;
                     
                 default:break;
