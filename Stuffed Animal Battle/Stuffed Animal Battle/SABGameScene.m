@@ -17,8 +17,6 @@ const float HealthBarHeight = 4.0f;
 // HP bars represent HP pool
 // Make fireball remove HP points
 // landing after jumping
-// Research Sprite Characters, how designed
-// Find random pics online for your sprite characters (PNG)
 ////////
 
 @interface SABGameScene () <SKPhysicsContactDelegate>
@@ -44,9 +42,10 @@ const float HealthBarHeight = 4.0f;
     SKSpriteNode * player1;
     SKSpriteNode * player2;
     
+    SKTextureAtlas * charAtlas;
+    SKTextureAtlas * danceAtlas;
+    
     int impulsemod;
-    
-    
 }
 
 
@@ -58,7 +57,9 @@ const float HealthBarHeight = 4.0f;
         
     {
         
-        impulsemod = 20;  // to increase action impulses for larger png's
+        self.backgroundColor = [UIColor cyanColor];
+        
+        impulsemod = 1;  // to increase action impulses for larger png's
         
         
         SKPhysicsBody * scenePhysics = [SKPhysicsBody bodyWithEdgeLoopFromRect:CGRectMake(0, 0, size.width, size.height)];
@@ -128,30 +129,52 @@ const float HealthBarHeight = 4.0f;
         dpadJumpBack.position = CGPointMake(60,120);
         [self addChild:dpadJumpBack];
     
-//        player1 = [SKSpriteNode spriteNodeWithColor:[SKColor whiteColor] size:CGSizeMake(40, 100)];
+        //   player1 = [SKSpriteNode spriteNodeWithColor:[SKColor whiteColor] size:CGSizeMake(40, 100)];
         
-        player1 = [SKSpriteNode spriteNodeWithImageNamed:@"godzilla.png"];
+        charAtlas = [SKTextureAtlas atlasNamed:@"char"];
+        danceAtlas = [SKTextureAtlas atlasNamed:@"dance"];
         
-        [player1 setXScale:0.3];
-        [player1 setYScale:0.3];
         
+        player1 = [SKSpriteNode spriteNodeWithImageNamed:@"charframe1"];
+        
+        [player1 setXScale:1.05];
+        [player1 setYScale:1.05];
         player1.position = CGPointMake(SCREEN_WIDTH/2.0 - 250, 80);
         [self addChild:player1];
         SKPhysicsBody * playerPhysics = [SKPhysicsBody bodyWithRectangleOfSize:player1.size];
         player1.physicsBody = playerPhysics;
         
+        NSMutableArray * textures= [@[]mutableCopy];
+        
+        //// dance animation
+        for(int i = 1; i< danceAtlas.textureNames.count+1; i++)
+        {
+            [textures addObject:[danceAtlas textureNamed:[NSString stringWithFormat:@"dance%d",i]]];
+        }
+        
+        SKAction * dance = [SKAction animateWithTextures:textures timePerFrame:0.2];
 
-        player2 = [SKSpriteNode spriteNodeWithColor:[SKColor cyanColor] size:CGSizeMake(40, 100)];
+        SKAction * danceAllNight = [SKAction repeatActionForever:dance];
+        
+        [player1 runAction:danceAllNight];
+        
+        
+        
+        //    player2 = [SKSpriteNode spriteNodeWithColor:[SKColor cyanColor] size:CGSizeMake(40, 100)];
+        
+        player2 = [SKSpriteNode spriteNodeWithImageNamed:@"babycat.png"];
+        
+        [player2 setXScale:0.3];
+        [player2 setYScale:0.3];
+
         player2.position = CGPointMake(SCREEN_WIDTH/2.0 + 250,80);
         [self addChild:player2];
-        SKPhysicsBody * player2Physics = [SKPhysicsBody bodyWithRectangleOfSize:player2.size];
+        SKPhysicsBody * player2Physics = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(60, 120)];  // instead of player2.size
         player2.physicsBody = player2Physics;
         
         player2.userData = [@{@"type":@"player2"} mutableCopy];
         
         player2.physicsBody.contactTestBitMask = 1; //listening for collisions of the same category
-        
-
     }
     return self;
 }
@@ -159,7 +182,6 @@ const float HealthBarHeight = 4.0f;
 
 -(void)update:(NSTimeInterval)currentTime
 {
-    
     
 }
 
@@ -188,16 +210,15 @@ const float HealthBarHeight = 4.0f;
          
          explosion.position = contact.contactPoint;
          explosion.numParticlesToEmit = 200;
-         [self addChild:explosion];
          
+         [self runAction:[SKAction playSoundFileNamed:@"catmeow.wav" waitForCompletion:NO]];
+         [self addChild:explosion];
      }
      
      if([node.userData[@"type"] isEqualToString:@"floor"])
      {
          [self runAction:[SKAction playSoundFileNamed:@"thump.wav" waitForCompletion:NO]];
-         
      }
-        
         
     }
 }
@@ -205,10 +226,10 @@ const float HealthBarHeight = 4.0f;
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-   // UITouch * touch = [touches anyObject];
+//UITouch * touch = [touches anyObject];
     
     CGPoint location = [[touches anyObject] locationInNode:self];
-
+  
 
     
     [self testButtonsWithLocation:location];
@@ -274,9 +295,28 @@ const float HealthBarHeight = 4.0f;
                     
                 case 2: // dpadUp
                      NSLog(@"Jump");
+                {
+//                    for (NSString *textureName in charAtlas.textureNames) {
+//                        NSLog(@"%@", textureName);
+//                    }
+                    
+                    NSMutableArray * textures= [@[]mutableCopy];
 
+                    for(int i = 1; i< charAtlas.textureNames.count+1; i++)
+                    {
+                        NSLog(@"charframe%d",i);
+                        [textures addObject:[charAtlas textureNamed:[NSString stringWithFormat:@"charframe%d",i]]];
+                        // adding textures to NSMutable using the atlas files
+                    }
+                    
+                    SKAction * setFrame2 = [SKAction animateWithTextures:textures timePerFrame:0.2];
+                    
+                    [player1 runAction:setFrame2];  //nodes can always run actions
+                    
                     [player1.physicsBody applyImpulse:CGVectorMake(impulsemod*5.0,impulsemod*100.0)];
                  
+                }
+
                     break;
                     
                 case 3: // dpadDown
@@ -284,19 +324,29 @@ const float HealthBarHeight = 4.0f;
                   
                     SKAction * moveDown = [SKAction moveToY:(player1.position.y-50) duration:0.1];
                     
-                    [self runAction:[SKAction playSoundFileNamed:@"godzilla.wav" waitForCompletion:NO]];
+                    NSString * myParticlePath = [[NSBundle mainBundle] pathForResource:@"spark" ofType:@"sks"];
+                    SKEmitterNode * spark = [NSKeyedUnarchiver unarchiveObjectWithFile:myParticlePath];
+                    spark.position = CGPointMake(player1.position.x+10 , player1.position.y+50);
+                    [self addChild:spark];
+                    spark.numParticlesToEmit = 3800;
+                    
 
+                    [self runAction:[SKAction playSoundFileNamed:@"godzilla.wav" waitForCompletion:NO]];
                     [player1 runAction:moveDown];
+                    
                 }
                     break;
                     
                 case 4: // dpadLeft
                    NSLog(@"Left");
-            
+                {
                     [player1.physicsBody applyImpulse:CGVectorMake(impulsemod * -20, 0.0)];
 //                    SKAction * moveLeft = [SKAction moveToX:(player1.position.x-5) duration:0.1];
 //                    [player1 runAction:moveLeft];
-            
+                    
+ 
+                    
+                }
                     break;
                     
                 case 5: // dpadRight

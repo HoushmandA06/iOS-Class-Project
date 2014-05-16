@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F5C9A57192658DD00FD9656 /* char.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 0F5C9A56192658DD00FD9656 /* char.atlas */; };
+		0F5C9A59192665E200FD9656 /* dance.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 0F5C9A58192665E200FD9656 /* dance.atlas */; };
 		0FB61C8D19254257006F7AB4 /* explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0FB61C8C19254257006F7AB4 /* explosion.sks */; };
 		0FB61C8F19258B10006F7AB4 /* explosion.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0FB61C8E19258B10006F7AB4 /* explosion.wav */; };
 		0FB61C9119258CB5006F7AB4 /* thump.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0FB61C9019258CB5006F7AB4 /* thump.wav */; };
@@ -16,6 +18,10 @@
 		0FB61C9B1925A3E5006F7AB4 /* flyingwolf.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FB61C9A1925A3E5006F7AB4 /* flyingwolf.png */; };
 		0FB61C9D1925A4DD006F7AB4 /* godzilla.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FB61C9C1925A4DD006F7AB4 /* godzilla.png */; };
 		0FB61C9F1925A59D006F7AB4 /* robot.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FB61C9E1925A59D006F7AB4 /* robot.png */; };
+		0FB61CA119262F79006F7AB4 /* babycat.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FB61CA019262F79006F7AB4 /* babycat.png */; };
+		0FB61CA91926326B006F7AB4 /* spark.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0FB61CA81926326B006F7AB4 /* spark.sks */; };
+		0FB61CAB19263ACC006F7AB4 /* catmeow.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0FB61CAA19263ACC006F7AB4 /* catmeow.wav */; };
+		0FB61CAD19263C38006F7AB4 /* MyParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0FB61CAC19263C38006F7AB4 /* MyParticle.sks */; };
 		0FB65C6D1924F66B00980253 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FB65C6C1924F66B00980253 /* Foundation.framework */; };
 		0FB65C6F1924F66B00980253 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FB65C6E1924F66B00980253 /* CoreGraphics.framework */; };
 		0FB65C711924F66B00980253 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FB65C701924F66B00980253 /* UIKit.framework */; };
@@ -45,6 +51,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0F5C9A56192658DD00FD9656 /* char.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = char.atlas; sourceTree = "<group>"; };
+		0F5C9A58192665E200FD9656 /* dance.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = dance.atlas; sourceTree = "<group>"; };
 		0FB61C8C19254257006F7AB4 /* explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = explosion.sks; sourceTree = "<group>"; };
 		0FB61C8E19258B10006F7AB4 /* explosion.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = explosion.wav; sourceTree = "<group>"; };
 		0FB61C9019258CB5006F7AB4 /* thump.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = thump.wav; path = "Stuffed Animal Battle/thump.wav"; sourceTree = "<group>"; };
@@ -54,6 +62,10 @@
 		0FB61C9A1925A3E5006F7AB4 /* flyingwolf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flyingwolf.png; sourceTree = "<group>"; };
 		0FB61C9C1925A4DD006F7AB4 /* godzilla.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = godzilla.png; sourceTree = "<group>"; };
 		0FB61C9E1925A59D006F7AB4 /* robot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = robot.png; sourceTree = "<group>"; };
+		0FB61CA019262F79006F7AB4 /* babycat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babycat.png; sourceTree = "<group>"; };
+		0FB61CA81926326B006F7AB4 /* spark.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = spark.sks; sourceTree = "<group>"; };
+		0FB61CAA19263ACC006F7AB4 /* catmeow.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = catmeow.wav; sourceTree = "<group>"; };
+		0FB61CAC19263C38006F7AB4 /* MyParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyParticle.sks; sourceTree = "<group>"; };
 		0FB65C691924F66B00980253 /* Stuffed Animal Battle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Stuffed Animal Battle.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FB65C6C1924F66B00980253 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0FB65C6E1924F66B00980253 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -102,20 +114,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0FB65C601924F66B00980253 = {
+		0F5C9A5A192665F200FD9656 /* wavs */ = {
 			isa = PBXGroup;
 			children = (
-				0FB65CA91925404F00980253 /* blueflame.sks */,
-				0FB61C8C19254257006F7AB4 /* explosion.sks */,
-				0FB65CA619253F8F00980253 /* spark.png */,
+				0FB61CAA19263ACC006F7AB4 /* catmeow.wav */,
 				0FB61C8E19258B10006F7AB4 /* explosion.wav */,
 				0FB61C9019258CB5006F7AB4 /* thump.wav */,
 				0FB61C9219258D57006F7AB4 /* misslelaunch.wav */,
 				0FB61C9419258E17006F7AB4 /* godzilla.wav */,
 				0FB61C9619258E8A006F7AB4 /* cannon.wav */,
+			);
+			name = wavs;
+			sourceTree = "<group>";
+		};
+		0F5C9A5B1926660A00FD9656 /* importedpngs */ = {
+			isa = PBXGroup;
+			children = (
 				0FB61C9A1925A3E5006F7AB4 /* flyingwolf.png */,
-				0FB61C9C1925A4DD006F7AB4 /* godzilla.png */,
 				0FB61C9E1925A59D006F7AB4 /* robot.png */,
+				0FB61CA019262F79006F7AB4 /* babycat.png */,
+				0FB61C9C1925A4DD006F7AB4 /* godzilla.png */,
+			);
+			name = importedpngs;
+			sourceTree = "<group>";
+		};
+		0FB65C601924F66B00980253 = {
+			isa = PBXGroup;
+			children = (
+				0FB61CA81926326B006F7AB4 /* spark.sks */,
+				0FB61CAC19263C38006F7AB4 /* MyParticle.sks */,
+				0FB65CA91925404F00980253 /* blueflame.sks */,
+				0FB61C8C19254257006F7AB4 /* explosion.sks */,
+				0FB65CA619253F8F00980253 /* spark.png */,
+				0F5C9A5A192665F200FD9656 /* wavs */,
+				0F5C9A5B1926660A00FD9656 /* importedpngs */,
+				0F5C9A58192665E200FD9656 /* dance.atlas */,
+				0F5C9A56192658DD00FD9656 /* char.atlas */,
 				0FB65C721924F66B00980253 /* Stuffed Animal Battle */,
 				0FB65C8B1924F66B00980253 /* Stuffed Animal BattleTests */,
 				0FB65C6B1924F66B00980253 /* Frameworks */,
@@ -267,9 +301,15 @@
 				0FB65C771924F66B00980253 /* InfoPlist.strings in Resources */,
 				0FB65CA819253F8F00980253 /* spark.png in Resources */,
 				0FB61C9719258E8A006F7AB4 /* cannon.wav in Resources */,
+				0FB61CA91926326B006F7AB4 /* spark.sks in Resources */,
+				0F5C9A57192658DD00FD9656 /* char.atlas in Resources */,
 				0FB61C9319258D57006F7AB4 /* misslelaunch.wav in Resources */,
 				0FB65C7F1924F66B00980253 /* Images.xcassets in Resources */,
+				0FB61CA119262F79006F7AB4 /* babycat.png in Resources */,
 				0FB65CAA1925404F00980253 /* blueflame.sks in Resources */,
+				0FB61CAB19263ACC006F7AB4 /* catmeow.wav in Resources */,
+				0F5C9A59192665E200FD9656 /* dance.atlas in Resources */,
+				0FB61CAD19263C38006F7AB4 /* MyParticle.sks in Resources */,
 				0FB61C9F1925A59D006F7AB4 /* robot.png in Resources */,
 				0FB61C9B1925A3E5006F7AB4 /* flyingwolf.png in Resources */,
 				0FB61C8D19254257006F7AB4 /* explosion.sks in Resources */,
@@ -374,6 +414,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 			};
 			name = Debug;
 		};
@@ -405,6 +446,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				SDKROOT = iphoneos;
+				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
