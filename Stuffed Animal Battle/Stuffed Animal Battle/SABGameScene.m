@@ -8,11 +8,15 @@
 
 #import "SABGameScene.h"
 
+const int MaxHP = 100;
+const float HealthBarWidth = 40.0f;
+const float HealthBarHeight = 4.0f;
+
 ////////
 // HP for players
 // HP bars represent HP pool
 // Make fireball remove HP points
-// Sound Effects (w/in spritekit) on explosion, landing after jumping
+// landing after jumping
 // Research Sprite Characters, how designed
 // Find random pics online for your sprite characters (PNG)
 ////////
@@ -39,6 +43,10 @@
     
     SKSpriteNode * player1;
     SKSpriteNode * player2;
+    
+    int impulsemod;
+    
+    
 }
 
 
@@ -49,11 +57,13 @@
     if(self)
         
     {
-       
+        
+        impulsemod = 20;  // to increase action impulses for larger png's
+        
+        
         SKPhysicsBody * scenePhysics = [SKPhysicsBody bodyWithEdgeLoopFromRect:CGRectMake(0, 0, size.width, size.height)];
         
         self.physicsBody = scenePhysics;
-    
         self.physicsWorld.contactDelegate = self;
         
         SKEffectNode *container = [SKEffectNode node];
@@ -117,8 +127,14 @@
         dpadJumpBack = [SKSpriteNode spriteNodeWithColor:[SKColor lightGrayColor] size:CGSizeMake(30, 30)];
         dpadJumpBack.position = CGPointMake(60,120);
         [self addChild:dpadJumpBack];
+    
+//        player1 = [SKSpriteNode spriteNodeWithColor:[SKColor whiteColor] size:CGSizeMake(40, 100)];
         
-        player1 = [SKSpriteNode spriteNodeWithColor:[SKColor whiteColor] size:CGSizeMake(40, 100)];
+        player1 = [SKSpriteNode spriteNodeWithImageNamed:@"godzilla.png"];
+        
+        [player1 setXScale:0.3];
+        [player1 setYScale:0.3];
+        
         player1.position = CGPointMake(SCREEN_WIDTH/2.0 - 250, 80);
         [self addChild:player1];
         SKPhysicsBody * playerPhysics = [SKPhysicsBody bodyWithRectangleOfSize:player1.size];
@@ -165,20 +181,24 @@
      if([node.userData[@"type"] isEqualToString:@"fireball"])
      {
          
-         
          [node removeFromParent];
-         
          NSString * myParticlePath = [[NSBundle mainBundle] pathForResource:@"explosion" ofType:@"sks"];
-         
          SKEmitterNode * explosion = [NSKeyedUnarchiver unarchiveObjectWithFile:myParticlePath];
+        [self runAction:[SKAction playSoundFileNamed:@"explosion.wav" waitForCompletion:NO]];
          
          explosion.position = contact.contactPoint;
-         
          explosion.numParticlesToEmit = 200;
-         
          [self addChild:explosion];
          
      }
+     
+     if([node.userData[@"type"] isEqualToString:@"floor"])
+     {
+         [self runAction:[SKAction playSoundFileNamed:@"thump.wav" waitForCompletion:NO]];
+         
+     }
+        
+        
     }
 }
 
@@ -189,8 +209,21 @@
     
     CGPoint location = [[touches anyObject] locationInNode:self];
 
+
+    
     [self testButtonsWithLocation:location];
 }
+
+
+//-(void)adjustShipHealthBy:(CGFloat)healthAdjustment {
+//    //1
+//    self.shipHealth = MAX(self.shipHealth + healthAdjustment, 0);
+//    
+//    SKLabelNode* health = (SKLabelNode*)[self childNodeWithName:kHealthHudName];
+//    health.text = [NSString stringWithFormat:@"Health: %.1f%%", self.shipHealth * 100];
+//}
+
+
 
 -(void)testButtonsWithLocation:(CGPoint)location
 {
@@ -208,12 +241,13 @@
                     
 //                    SKSpriteNode * fireball = [SKSpriteNode spriteNodeWithColor:[SKColor redColor] size:CGSizeMake(10,10)];
                    
+                    [self runAction:[SKAction playSoundFileNamed:@"cannon.wav" waitForCompletion:NO]];
                     
                     NSString * myParticlePath = [[NSBundle mainBundle] pathForResource:@"blueflame" ofType:@"sks"];
                     
                     SKEmitterNode * fireball = [NSKeyedUnarchiver unarchiveObjectWithFile:myParticlePath];
                     
-                    fireball.position = CGPointMake(player1.position.x + 26, player1.position.y);
+                    fireball.position = CGPointMake(player1.position.x + 160, player1.position.y+80);
                     
                     SKPhysicsBody * fireballPhysics = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(10, 10)];
                     
@@ -226,7 +260,10 @@
                     fireball.userData = [@{@"type":@"fireball"} mutableCopy];
                     
                     [self addChild:fireball];
-                    [fireballPhysics applyImpulse:CGVectorMake(6.0, 0.0)];
+                    
+    
+ 
+                    [fireballPhysics applyImpulse:CGVectorMake(5.0, -1.5)];
 
                 }
                     break;
@@ -238,7 +275,7 @@
                 case 2: // dpadUp
                      NSLog(@"Jump");
 
-                    [player1.physicsBody applyImpulse:CGVectorMake(5.0,100.0)];
+                    [player1.physicsBody applyImpulse:CGVectorMake(impulsemod*5.0,impulsemod*100.0)];
                  
                     break;
                     
@@ -246,6 +283,9 @@
                 {   NSLog(@"Duck");
                   
                     SKAction * moveDown = [SKAction moveToY:(player1.position.y-50) duration:0.1];
+                    
+                    [self runAction:[SKAction playSoundFileNamed:@"godzilla.wav" waitForCompletion:NO]];
+
                     [player1 runAction:moveDown];
                 }
                     break;
@@ -253,7 +293,7 @@
                 case 4: // dpadLeft
                    NSLog(@"Left");
             
-                    [player1.physicsBody applyImpulse:CGVectorMake(-20, 0.0)];
+                    [player1.physicsBody applyImpulse:CGVectorMake(impulsemod * -20, 0.0)];
 //                    SKAction * moveLeft = [SKAction moveToX:(player1.position.x-5) duration:0.1];
 //                    [player1 runAction:moveLeft];
             
@@ -261,12 +301,12 @@
                     
                 case 5: // dpadRight
                    NSLog(@"Right");
-                    [player1.physicsBody applyImpulse:CGVectorMake(20.0, 0.0)];
+                    [player1.physicsBody applyImpulse:CGVectorMake(impulsemod * 20.0, 0.0)];
                     break;
                     
                 case 6: // dpadJumpBack
                     NSLog(@"Jumped Back");
-                    [player1.physicsBody applyImpulse:CGVectorMake(-5, 100)];
+                    [player1.physicsBody applyImpulse:CGVectorMake(impulsemod * -5, impulsemod * 100)];
                     
                     
                 default:break;
