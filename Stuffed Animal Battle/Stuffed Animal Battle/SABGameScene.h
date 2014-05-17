@@ -10,5 +10,7 @@
 
 @interface SABGameScene : SKScene
 
+-(void)buttonClick:(UIButton *)sender;
+
 
 @end

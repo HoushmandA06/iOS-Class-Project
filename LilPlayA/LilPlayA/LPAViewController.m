@@ -184,7 +184,7 @@
     [self.view addSubview:currentTimeLabel];
     
     UILabel * songLengthLabel = [[UILabel alloc] initWithFrame:CGRectMake(250, 260, 50, 30)];
-    songLengthLabel.backgroundColor = [UIColor clearColor];
+    songLengthLabel.backgroundColor = [UIColor lightGrayColor];
     songLengthLabel.textColor = [UIColor orangeColor];
     songLengthLabel.text = [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:(length-current)]];
     [self.view addSubview:songLengthLabel];

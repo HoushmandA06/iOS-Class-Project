@@ -33,8 +33,15 @@
         skView.showsFPS = YES;
         skView.showsNodeCount = YES;
         
+        UIButton * buttonA = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 120, SCREEN_HEIGHT - 120, 40, 40)];
         
-    
+        [buttonA addTarget:skScene action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+        [buttonA setTitle:@"A" forState:UIControlStateNormal];
+        buttonA.backgroundColor = [UIColor lightGrayColor];
+        buttonA.layer.cornerRadius = 20;
+        
+        [self.view addSubview:buttonA];
+
     }
     return self;
 }

@@ -10,4 +10,13 @@
 
 @interface SABViewController : UIViewController
 
+////
+// create a singleton for player health
+// -track wins per player
+// move buttons and bars outside of scene
+// when a player is hit update singleton and also update health bar
+// - notification or singleton delegate 
+
+
+
 @end

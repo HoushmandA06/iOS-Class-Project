@@ -153,7 +153,7 @@
         ripple.tintColor = otherColors[random];
         
         ripple.rippleCount = 3;
-        ripple.rippleLifeTime = 2;
+        ripple.rippleLifeTime = 5;
         
         [self.view addSubview:ripple];
     }

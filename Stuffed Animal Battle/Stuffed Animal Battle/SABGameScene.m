@@ -245,6 +245,13 @@ const float HealthBarHeight = 4.0f;
 //}
 
 
+-(void)buttonClick:(UIButton *)sender;
+{
+    
+    NSLog(@"%@", sender);
+
+}
+
 
 -(void)testButtonsWithLocation:(CGPoint)location
 {
