@@ -9,12 +9,24 @@
 #import "NPAStartingVC.h"
 #import "NPATableVC.h"
 #import "NPANavVC.h"
+#import "NPAColorsTVC.h"
+#import "NPANumbersTVC.h"
+
+
 
 @interface NPAStartingVC ()
 
 @end
 
 @implementation NPAStartingVC
+{
+    NPAColorsTVC * colorsTVC;
+    NPANumbersTVC * numbersTVC;
+    UITabBarController * tabBar;
+    
+    
+    
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -40,17 +52,13 @@
 {
     NSLog(@"selected");
     
+
     NPATableVC * tableVC = [[NPATableVC alloc] initWithStyle:UITableViewStylePlain];
     
     NPANavVC * newNavVC = [[NPANavVC alloc] initWithRootViewController:tableVC];
     
-    
     [self.navigationController presentViewController:newNavVC animated:YES completion:^{
     }];
-    
-    
-    //self.navigationController.viewControllers = newNavVC;
-    
     
 }
 

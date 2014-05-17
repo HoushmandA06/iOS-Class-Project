@@ -1,34 +1,24 @@
 //
-//  NPATableViewController.m
+//  NPANumbersTVC.m
 //  NavPracticeApp
 //
 //  Created by Ali Houshmand on 5/17/14.
 //  Copyright (c) 2014 Ali Houshmand. All rights reserved.
 //
 
-#import "NPATableVC.h"
-#import "NPAColorsTVC.h"
 #import "NPANumbersTVC.h"
-#import "NPAStartingVC.h"
 
-@interface NPATableVC () <UITabBarControllerDelegate>
+@interface NPANumbersTVC ()
 
 @end
 
-@implementation NPATableVC
-{
- 
- 
-}
+@implementation NPANumbersTVC
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
- 
-        
-    
-        
+        // Custom initialization
     }
     return self;
 }
@@ -37,48 +27,12 @@
 {
     [super viewDidLoad];
     
-    
-    
-    UIBarButtonItem * buttonOne = [[UIBarButtonItem alloc] initWithTitle:@"Colors" style:UIBarButtonItemStylePlain target:nil action:nil];
-    
-    UIBarButtonItem * buttonTwo = [[UIBarButtonItem alloc] initWithTitle:@"Numbers" style:UIBarButtonItemStylePlain target:nil action:nil];
-    
-    UIBarButtonItem * flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    
-//    [self.navigationController.toolbar setItems:@[flexible, buttonOne, flexible, buttonTwo, flexible] animated:YES];
-    
-    [self setToolbarItems:@[flexible, buttonOne, flexible, buttonTwo, flexible]];
-    
-    self.navigationController.toolbarHidden = NO;
-    
-    UIBarButtonItem * backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(backToStartingVC)];
-    
-    self.navigationItem.rightBarButtonItem = backButton;
-    
-    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
-
--(void)viewDidLayoutSubviews
-{
-    
-    
-}
-
-
-
--(void)backToStartingVC
-{
-    
-    [self.navigationController dismissViewControllerAnimated:YES completion:^{
-    }];  //dismisses TableVC
-
-}
-
 
 - (void)didReceiveMemoryWarning
 {
@@ -88,34 +42,28 @@
 
 #pragma mark - Table view data source
 
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-//{
-// 
-//    // Return the number of sections.
-//    return 0;
-//}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
- 
-    // Return the number of rows in the section.
+     // Return the number of sections.
     return 1;
 }
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+     // Return the number of rows in the section.
+    return 1;
+}
 
+/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    if(cell == nil)
-    {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-    }
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
     // Configure the cell...
     
     return cell;
 }
-
+*/
 
 /*
 // Override to support conditional editing of the table view.
