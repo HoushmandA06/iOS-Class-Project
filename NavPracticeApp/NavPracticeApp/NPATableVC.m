@@ -7,9 +7,7 @@
 //
 
 #import "NPATableVC.h"
-#import "NPAColorsTVC.h"
-#import "NPANumbersTVC.h"
-#import "NPAStartingVC.h"
+
 
 @interface NPATableVC () <UITabBarControllerDelegate>
 
@@ -44,9 +42,7 @@
     UIBarButtonItem * buttonTwo = [[UIBarButtonItem alloc] initWithTitle:@"Numbers" style:UIBarButtonItemStylePlain target:nil action:nil];
     
     UIBarButtonItem * flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    
-//    [self.navigationController.toolbar setItems:@[flexible, buttonOne, flexible, buttonTwo, flexible] animated:YES];
-    
+        
     [self setToolbarItems:@[flexible, buttonOne, flexible, buttonTwo, flexible]];
     
     self.navigationController.toolbarHidden = NO;

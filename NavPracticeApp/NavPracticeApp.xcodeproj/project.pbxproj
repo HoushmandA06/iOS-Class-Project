@@ -22,8 +22,6 @@
 		0F5C9A991927BFE600FD9656 /* NPAStartingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5C9A981927BFE600FD9656 /* NPAStartingVC.m */; };
 		0F5C9A9C1927BFFA00FD9656 /* NPATableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5C9A9B1927BFFA00FD9656 /* NPATableVC.m */; };
 		0F5C9A9F1927C01B00FD9656 /* NPANavVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5C9A9E1927C01B00FD9656 /* NPANavVC.m */; };
-		0F5C9AA81927DD4B00FD9656 /* NPAColorsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5C9AA71927DD4B00FD9656 /* NPAColorsTVC.m */; };
-		0F5C9AAB1927DD5E00FD9656 /* NPANumbersTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F5C9AAA1927DD5E00FD9656 /* NPANumbersTVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,10 +57,6 @@
 		0F5C9A9B1927BFFA00FD9656 /* NPATableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPATableVC.m; sourceTree = "<group>"; };
 		0F5C9A9D1927C01B00FD9656 /* NPANavVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPANavVC.h; sourceTree = "<group>"; };
 		0F5C9A9E1927C01B00FD9656 /* NPANavVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPANavVC.m; sourceTree = "<group>"; };
-		0F5C9AA61927DD4B00FD9656 /* NPAColorsTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPAColorsTVC.h; sourceTree = "<group>"; };
-		0F5C9AA71927DD4B00FD9656 /* NPAColorsTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPAColorsTVC.m; sourceTree = "<group>"; };
-		0F5C9AA91927DD5E00FD9656 /* NPANumbersTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPANumbersTVC.h; sourceTree = "<group>"; };
-		0F5C9AAA1927DD5E00FD9656 /* NPANumbersTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPANumbersTVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,10 +122,6 @@
 				0F5C9A981927BFE600FD9656 /* NPAStartingVC.m */,
 				0F5C9A9A1927BFFA00FD9656 /* NPATableVC.h */,
 				0F5C9A9B1927BFFA00FD9656 /* NPATableVC.m */,
-				0F5C9AA61927DD4B00FD9656 /* NPAColorsTVC.h */,
-				0F5C9AA71927DD4B00FD9656 /* NPAColorsTVC.m */,
-				0F5C9AA91927DD5E00FD9656 /* NPANumbersTVC.h */,
-				0F5C9AAA1927DD5E00FD9656 /* NPANumbersTVC.m */,
 				0F5C9A9D1927C01B00FD9656 /* NPANavVC.h */,
 				0F5C9A9E1927C01B00FD9656 /* NPANavVC.m */,
 				0F5C9A7A1927BF6A00FD9656 /* Images.xcassets */,
@@ -266,10 +256,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0F5C9A9F1927C01B00FD9656 /* NPANavVC.m in Sources */,
-				0F5C9AA81927DD4B00FD9656 /* NPAColorsTVC.m in Sources */,
 				0F5C9A991927BFE600FD9656 /* NPAStartingVC.m in Sources */,
 				0F5C9A9C1927BFFA00FD9656 /* NPATableVC.m in Sources */,
-				0F5C9AAB1927DD5E00FD9656 /* NPANumbersTVC.m in Sources */,
 				0F5C9A791927BF6A00FD9656 /* NPAAppDelegate.m in Sources */,
 				0F5C9A751927BF6A00FD9656 /* main.m in Sources */,
 			);
@@ -468,6 +456,7 @@
 				0F5C9A931927BF6A00FD9656 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0F5C9A941927BF6A00FD9656 /* Build configuration list for PBXNativeTarget "NavPracticeAppTests" */ = {
 			isa = XCConfigurationList;
@@ -476,6 +465,7 @@
 				0F5C9A961927BF6A00FD9656 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

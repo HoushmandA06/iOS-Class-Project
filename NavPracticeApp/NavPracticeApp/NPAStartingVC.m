@@ -9,8 +9,7 @@
 #import "NPAStartingVC.h"
 #import "NPATableVC.h"
 #import "NPANavVC.h"
-#import "NPAColorsTVC.h"
-#import "NPANumbersTVC.h"
+
 
 
 
@@ -20,12 +19,8 @@
 
 @implementation NPAStartingVC
 {
-    NPAColorsTVC * colorsTVC;
-    NPANumbersTVC * numbersTVC;
-    UITabBarController * tabBar;
-    
-    
-    
+
+
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
