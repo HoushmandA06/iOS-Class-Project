@@ -13,8 +13,8 @@
 
 ///////// ISSUES TO FIX
 
-// 1. songLengthLabel is being added to subview continuously (can only tell if background color clear)
-// 2. touched moved does not work well, especially scrubbing left
+// 1. songLengthLabel is being added to subview continuously (can only tell if background color clear) - make global , just update time
+// 2. touched moved does not work well, especially scrubbing left SEE ACTIONS REQUIRED IN TOUCHES MOVED
 // 3. stop button does not always stop updateProgress loop
 // 4. volume button sometimes causes seekButton to jump
 // 5. player takes long time to load
@@ -124,6 +124,8 @@
  
         playButton.selected = YES;
         [player play];
+        
+        [self.timer invalidate];
         self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateProgressBar:) userInfo:nil repeats:YES];
     }
     
@@ -183,11 +185,15 @@
     currentTimeLabel.text = [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:current]];
     [self.view addSubview:currentTimeLabel];
     
+    // move this to init
     UILabel * songLengthLabel = [[UILabel alloc] initWithFrame:CGRectMake(250, 260, 50, 30)];
-    songLengthLabel.backgroundColor = [UIColor lightGrayColor];
+    songLengthLabel.backgroundColor = [UIColor clearColor];
     songLengthLabel.textColor = [UIColor orangeColor];
-    songLengthLabel.text = [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:(length-current)]];
     [self.view addSubview:songLengthLabel];
+    
+    /// leave this line here to update
+    songLengthLabel.text = [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:(length-current)]];
+
     
 }
 
@@ -196,19 +202,23 @@
     [self pause:nil];
     
     UITouch *aTouch = [touches anyObject];
-    CGPoint location = [aTouch locationInView:seekButton];
+    CGPoint location = [aTouch locationInView:seekButton];   //
     CGPoint previousLocation = [aTouch previousLocationInView:seekButton];
     
+    //// if touch is inside seek button (replace seekButton.frame with larger CGRectMake)
     BOOL isInsideSeek = CGRectContainsPoint(seekButton.frame, [aTouch locationInView:self.view]);
     
     NSLog(@"Is Inside Seek %u",isInsideSeek);
     
+    //// stop if not inside seek button
     if(!isInsideSeek) return;
     
     // write an if/else here to test location / previousLocation
   
     if(seekButton.frame.origin.x >= progressBar.frame.origin.x && seekButton.frame.origin.x <= progressBar.frame.size.width)
     {
+        
+        // make seek button position center of location.x
     seekButton.frame = CGRectOffset(seekButton.frame, (location.x - previousLocation.x), 0);
 
     player.currentTime = player.duration * ((seekButton.frame.origin.x - progressBar.frame.origin.x)/progressBar.frame.size.width);
@@ -248,12 +258,18 @@
     
     for (UITouch * aTouch in touches) {
     CGPoint location = [aTouch locationInView:seekButton];
+        
+        
+        ///// whatever you do in the touches moved to only listen for touches in fake rect ... do here as well
+        ///// need != here too 
+        
     seekButton.frame = CGRectOffset(seekButton.frame, (location.x), 0);
     
     currentTimeLabel.frame = CGRectOffset(currentTimeLabel.frame, (location.x), 0);
     
     player.currentTime = player.duration * ((seekButton.frame.origin.x - progressBar.frame.origin.x)/progressBar.frame.size.width);
 
+        [self.timer invalidate];
        self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateProgressBar:) userInfo:nil repeats:YES];
 
         

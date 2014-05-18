@@ -135,7 +135,7 @@
     submitButtonHigh.backgroundColor = RED_COLOR;
     submitButtonHigh.layer.cornerRadius = submitButtonHigh.frame.size.width / 2.0;
     
-    [submitButtonHigh addTarget:self action:@selector(pressDeleteButton) forControlEvents:UIControlEventTouchUpInside];
+    [submitButtonHigh addTarget:self action:@selector(pressDeleteButton) forControlEvents:UIControlEventTouchUpInside];  
     
     [self.contentView addSubview:submitButtonHigh];
     [MOVE animateView:submitButtonHigh properties:@{@"alpha":@1,@"duration":@0.2,@"delay":@0.3}];

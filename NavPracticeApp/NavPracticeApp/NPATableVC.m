@@ -15,7 +15,14 @@
 
 @implementation NPATableVC
 {
- 
+    UIBarButtonItem * colorButton;
+    UIBarButtonItem * numberButton;
+    
+    NSArray * colors;
+    NSArray * numbers;
+    
+    BOOL colorsIsSelected;
+    NSString * listType;
  
 }
 
@@ -24,8 +31,12 @@
     self = [super initWithStyle:style];
     if (self) {
  
-        
+        colors = @[@"red",@"blue",@"black"];
     
+        numbers = @[@"1",@"2", @"3",@"4"];
+        
+        colorsIsSelected = YES;
+        listType = @"colors";
         
     }
     return self;
@@ -35,15 +46,13 @@
 {
     [super viewDidLoad];
     
+    colorButton = [[UIBarButtonItem alloc] initWithTitle:@"Colors" style:UIBarButtonItemStylePlain target:self action:@selector(tabSelected:)];
     
-    
-    UIBarButtonItem * buttonOne = [[UIBarButtonItem alloc] initWithTitle:@"Colors" style:UIBarButtonItemStylePlain target:nil action:nil];
-    
-    UIBarButtonItem * buttonTwo = [[UIBarButtonItem alloc] initWithTitle:@"Numbers" style:UIBarButtonItemStylePlain target:nil action:nil];
+    numberButton = [[UIBarButtonItem alloc] initWithTitle:@"Numbers" style:UIBarButtonItemStylePlain target:self action:@selector(tabSelected:)];
     
     UIBarButtonItem * flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
         
-    [self setToolbarItems:@[flexible, buttonOne, flexible, buttonTwo, flexible]];
+    [self setToolbarItems:@[flexible, colorButton, flexible, numberButton, flexible]];
     
     self.navigationController.toolbarHidden = NO;
     
@@ -59,10 +68,10 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
--(void)viewDidLayoutSubviews
+-(void)tabSelected:(UIBarButtonItem *)sender
 {
-    
-    
+    colorsIsSelected = [sender.title isEqualToString:@"Colors"];
+    [self.tableView reloadData];
 }
 
 
@@ -93,10 +102,13 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
- 
-    // Return the number of rows in the section.
-    return 1;
+    if(colorsIsSelected) return [colors count];
+    else return [numbers count];
+    
+        
+    // return [numbers count];
 }
+
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -106,6 +118,9 @@
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
+    
+    if(colorsIsSelected) cell.textLabel.text = colors[indexPath.row];
+    else cell.textLabel.text = numbers[indexPath.row];
     
     // Configure the cell...
     
