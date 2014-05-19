@@ -20,6 +20,9 @@
     UIButton * thirdCheck;
     UIImageView * bigSmile;
     
+    UIButton * facebook;
+    UIButton * googleplus;
+    UIButton * twitter;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -30,6 +33,19 @@
         bigSmile = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-(72+176),SCREEN_HEIGHT-(192+176),176,176)];
         bigSmile.backgroundColor = [UIColor lightGrayColor];
         [self.view addSubview:bigSmile];
+        
+        twitter = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-(72+176), SCREEN_HEIGHT-(292+176), 48,48)];
+        [twitter setImage:[UIImage imageNamed:@"sm_twitter"] forState:UIControlStateNormal];
+        [self.view addSubview:twitter];
+        
+        googleplus = [[UIButton alloc] initWithFrame:CGRectMake(twitter.frame.origin.x +48+16, SCREEN_HEIGHT-(292+176), 48,48)];
+        [googleplus setImage:[UIImage imageNamed:@"sm_google"] forState:UIControlStateNormal];
+        [self.view addSubview:googleplus];
+        
+        facebook = [[UIButton alloc] initWithFrame:CGRectMake(googleplus.frame.origin.x +48+16, SCREEN_HEIGHT-(292+176), 48,48)];
+        [facebook setImage:[UIImage imageNamed:@"sm_facebook"] forState:UIControlStateNormal];
+        [self.view addSubview:facebook];
+        
         
     
     }
