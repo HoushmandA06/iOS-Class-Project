@@ -66,7 +66,7 @@
     
     STSScreenTwoVC * screenTwoVC = [[STSScreenTwoVC alloc] initWithNibName:nil bundle:nil];
     
-    screenTwoVC.colorTag = self.colorTag;
+    screenTwoVC.colorTagScreenOne = self.colorTagScreenOne;
     
     [self.navigationController pushViewController:screenTwoVC animated:NO];
 
@@ -101,7 +101,6 @@
    
         color.tag = r*3+c;
     
-         NSLog(@"colorTag: %f",self.colorTag);
             
         [color addTarget:self action:@selector(showSquare:) forControlEvents:UIControlEventTouchUpInside];
          
@@ -111,7 +110,7 @@
             
         //[frame addSubview:color];
     
-        NSLog(@"%ld",(long)color.tag);
+   //    NSLog(@"%ld",(long)color.tag);
          }
     }
  }
@@ -119,8 +118,10 @@
 -(void)showSquare:(UIButton *)sender
 {
  
-    self.colorTag = sender.tag;
-    
+    self.colorTagScreenOne = sender.tag;
+
+    NSLog(@"colorScreenOneTag: %ld",(long)self.colorTagScreenOne);
+
     [sender insertSubview:squaresFrame atIndex:0];
         
     

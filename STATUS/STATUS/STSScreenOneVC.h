@@ -10,7 +10,8 @@
 
 @interface STSScreenOneVC : UIViewController
 
-@property (nonatomic) float colorTag;
+@property (nonatomic) NSInteger colorTagScreenOne; // used to get ScreenOneColor tag on sender selection
+
 
 
 @end

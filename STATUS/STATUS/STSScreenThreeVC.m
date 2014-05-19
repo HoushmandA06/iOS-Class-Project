@@ -16,13 +16,14 @@
 
 @implementation STSScreenThreeVC
 {
-    
     UIButton * thirdCheck;
     UIImageView * bigSmile;
-    
     UIButton * facebook;
     UIButton * googleplus;
     UIButton * twitter;
+    
+    NSArray * bigYellowSmiles;
+    
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -30,6 +31,10 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
    
+        
+
+        bigYellowSmiles = @[@"yellow_1",@"yellow_2",@"yellow_3",@"yellow_4",@"yellow_5",@"yellow_6",@"yellow_7",@"yellow_8",@"yellow_9"];
+        
         bigSmile = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-(72+176),SCREEN_HEIGHT-(192+176),176,176)];
         bigSmile.backgroundColor = [UIColor lightGrayColor];
         [self.view addSubview:bigSmile];
@@ -54,9 +59,7 @@
         [facebook addTarget:self action:@selector(buttonSelected:) forControlEvents:UIControlEventTouchUpInside];
         [facebook setTag:3];
         [self.view addSubview:facebook];
-        
-        
-    
+
     }
     return self;
 }
@@ -74,12 +77,18 @@
                 button.selected = YES;
         }
     }
+
+    
+//    if(sender.tag == 1)
+//    {
+//       if(twitter.selected == YES)
+//       {
+//        [twitter setSelected:NO];
+//       } else
+//           twitter.selected = YES;
+//    }
+
 }
-
-
-
-
-
 
 - (void)viewDidLoad
 {
@@ -90,12 +99,26 @@
  //   [thirdCheck addTarget:self action:@selector(goToScreenThree) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:thirdCheck];
     
-    
-    
-    
- 
 }
 
+-(void)viewWillLayoutSubviews
+{
+    
+    NSLog(@"%ld",(long)self.colorTagScreenOne);
+    NSLog(@"%ld",(long)self.colorTagScreenTwo);
+    
+    if(self.colorTagScreenOne == 0)
+    {
+      //  bigSmile.image = [UIImage imageNamed:bigYellowSmiles[self.colorTagScreenTwo]];
+        
+        
+        [bigSmile setImage:[UIImage imageNamed:bigYellowSmiles[self.colorTagScreenTwo]]];
+         
+    }
+    
+    
+    
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

@@ -10,5 +10,7 @@
 
 @interface STSScreenThreeVC : UIViewController
 
+@property (nonatomic) NSInteger colorTagScreenOne;
+@property (nonatomic) NSInteger colorTagScreenTwo;
 
 @end

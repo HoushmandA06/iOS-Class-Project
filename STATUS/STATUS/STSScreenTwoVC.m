@@ -82,12 +82,12 @@
             
             color = [[UIButton alloc] initWithFrame:CGRectMake(colorX, colorY, colorWidth, colorHeight)];
             
-            if(self.colorTag == 0)
+            if(self.colorTagScreenOne == 0)
             {
             [color setImage:[UIImage imageNamed:yellowSmiles[r*3+c]] forState:UIControlStateNormal];
             }
             
-            if(self.colorTag == 1)
+            if(self.colorTagScreenOne == 1)
             {
             [color setImage:[UIImage imageNamed:redSmiles[r*3+c]] forState:UIControlStateNormal];
             }
@@ -102,7 +102,7 @@
             
             //[frame addSubview:color];
             
-            NSLog(@"%ld",(long)color.tag);
+    //        NSLog(@"%ld",(long)color.tag);
     
         }
   
@@ -113,13 +113,12 @@
 -(void)showSquare:(UIButton *)sender
 {
     
-    NSLog(@"%ld",(long)sender.tag);
-    
+     
     [sender insertSubview:squaresFrame atIndex:0];
     
-    color.tag = sender.tag;
+    self.colorTagScreenTwo = sender.tag;
     
-    NSLog(@"%ld",(long)color.tag);
+ //   NSLog(@"%ld",(long)color.tag);
     
 }
 
@@ -131,11 +130,16 @@
     
     STSScreenThreeVC * screenThreeVC = [[STSScreenThreeVC alloc] initWithNibName:nil bundle:nil];
     
+    screenThreeVC.colorTagScreenOne = self.colorTagScreenOne;
+    screenThreeVC.colorTagScreenTwo = self.colorTagScreenTwo;
+    
+    
     [self.navigationController pushViewController:screenThreeVC animated:NO];
         
     
 }
-        
+
+
         
 
 

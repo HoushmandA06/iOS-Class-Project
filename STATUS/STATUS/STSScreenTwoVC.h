@@ -10,6 +10,8 @@
 
 @interface STSScreenTwoVC : UIViewController
 
-@property (nonatomic) float colorTag;
+@property (nonatomic) NSInteger colorTagScreenOne;  // used to get ScreenOneColorTag
+@property (nonatomic) NSInteger colorTagScreenTwo;  // used to get SreenTwoColorTag on sender selection
+
 
 @end
