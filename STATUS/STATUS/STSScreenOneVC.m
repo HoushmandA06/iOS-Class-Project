@@ -19,7 +19,7 @@
 @implementation STSScreenOneVC
 {
 
-     UIButton * firstCheck;
+    UIButton * firstCheck;
 
     UIButton * color;
     
@@ -65,6 +65,9 @@
 {
     
     STSScreenTwoVC * screenTwoVC = [[STSScreenTwoVC alloc] initWithNibName:nil bundle:nil];
+    
+    screenTwoVC.colorTag = self.colorTag;
+    
     [self.navigationController pushViewController:screenTwoVC animated:NO];
 
 }
@@ -97,6 +100,9 @@
         [color setImage:[UIImage imageNamed:colors[r*3+c]] forState:UIControlStateNormal];
    
         color.tag = r*3+c;
+    
+         NSLog(@"colorTag: %f",self.colorTag);
+            
         [color addTarget:self action:@selector(showSquare:) forControlEvents:UIControlEventTouchUpInside];
          
         [frame insertSubview:color atIndex:0];
@@ -113,14 +119,10 @@
 -(void)showSquare:(UIButton *)sender
 {
  
-    NSLog(@"%ld",(long)sender.tag);
+    self.colorTag = sender.tag;
     
     [sender insertSubview:squaresFrame atIndex:0];
-    
-    color.tag = sender.tag;
-    
-    NSLog(@"%ld",(long)color.tag);
-    
+        
     
 //    CGPoint location = CGPointMake(sender.frame.origin.x, sender.frame.origin.y);
 //    squaresFrame.frame = CGRectMake(location.x-8, location.y-8, 64, 64);

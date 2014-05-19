@@ -10,4 +10,6 @@
 
 @interface STSScreenTwoVC : UIViewController
 
+@property (nonatomic) float colorTag;
+
 @end

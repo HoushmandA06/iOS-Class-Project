@@ -10,4 +10,7 @@
 
 @interface STSScreenOneVC : UIViewController
 
+@property (nonatomic) float colorTag;
+
+
 @end

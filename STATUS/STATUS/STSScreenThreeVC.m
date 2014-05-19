@@ -7,6 +7,8 @@
 //
 
 #import "STSScreenThreeVC.h"
+#import "STSScreenOneVC.h"
+#import "STSScreenTwoVC.h"
 
 @interface STSScreenThreeVC ()
 
@@ -16,7 +18,7 @@
 {
     
     UIButton * thirdCheck;
-
+    UIImageView * bigSmile;
     
 }
 
@@ -24,7 +26,12 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+   
+        bigSmile = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-(72+176),SCREEN_HEIGHT-(192+176),176,176)];
+        bigSmile.backgroundColor = [UIColor lightGrayColor];
+        [self.view addSubview:bigSmile];
+        
+    
     }
     return self;
 }
@@ -37,10 +44,11 @@
     [thirdCheck setImage:[UIImage imageNamed:@"check.png"] forState:UIControlStateNormal];
  //   [thirdCheck addTarget:self action:@selector(goToScreenThree) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:thirdCheck];
-    [self.navigationController setNavigationBarHidden:NO];
-
-
-
+    
+    
+    
+    
+ 
 }
 
 - (void)didReceiveMemoryWarning

@@ -8,6 +8,8 @@
 
 #import "STSScreenTwoVC.h"
 #import "STSScreenThreeVC.h"
+#import "STSScreenOneVC.h"
+
 
 @interface STSScreenTwoVC ()
 
@@ -19,15 +21,15 @@
     
     UIButton * color;
     
-    NSMutableArray * colorObjects;
-    
-    NSArray * colors;
+    NSMutableArray * smilyObjects;
+   
+    NSArray * redSmiles;
+    NSArray * yellowSmiles;
     
     UIImageView * squaresFrame;
     
     UIView * frame;
 
-    
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -35,8 +37,13 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
      
-        colorObjects = [@[]mutableCopy];  // this is an array of UIButtons with images from colors
+        smilyObjects = [@[]mutableCopy];  // this is an array of UIButtons with images from colors
       
+        redSmiles = @[@"angry_1",@"angry_2",@"angry_3",@"angry_4",@"angry_5",@"angry_6",@"angry_7",@"angry_8",@"angry_9"];
+        
+        yellowSmiles = @[@"smilies_1",@"smilies_2",@"smilies_3",@"smilies_4",@"smilies_5",@"smilies_6",@"smilies_7",@"smilies_8",@"smilies_9"];
+        
+        
         squaresFrame = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"squares.png"]];
         squaresFrame.frame = CGRectMake(-8, -8, 64, 64);
  
@@ -75,14 +82,23 @@
             
             color = [[UIButton alloc] initWithFrame:CGRectMake(colorX, colorY, colorWidth, colorHeight)];
             
-            [color setImage:[UIImage imageNamed:colors[r*3+c]] forState:UIControlStateNormal];
+            if(self.colorTag == 0)
+            {
+            [color setImage:[UIImage imageNamed:yellowSmiles[r*3+c]] forState:UIControlStateNormal];
+            }
             
+            if(self.colorTag == 1)
+            {
+            [color setImage:[UIImage imageNamed:redSmiles[r*3+c]] forState:UIControlStateNormal];
+            }
+                
             color.tag = r*3+c;
+            
             [color addTarget:self action:@selector(showSquare:) forControlEvents:UIControlEventTouchUpInside];
             
             [frame insertSubview:color atIndex:0];
             
-            [colorObjects addObject:color];
+            [smilyObjects addObject:color];
             
             //[frame addSubview:color];
             
@@ -92,28 +108,23 @@
   
 }
     
-    
--(void)showSquare:(UIButton *)sender
-        
-{
-            
-            NSLog(@"%ld",(long)sender.tag);
-            
-            [sender insertSubview:squaresFrame atIndex:0];
-            
-            color.tag = sender.tag;
-            
-            NSLog(@"%ld",(long)color.tag);
-            
-            
-            //    CGPoint location = CGPointMake(sender.frame.origin.x, sender.frame.origin.y);
-            //    squaresFrame.frame = CGRectMake(location.x-8, location.y-8, 64, 64);
-            //    [frame insertSubview:squaresFrame atIndex:0];
-            
 }
-        
-        
-        
+
+-(void)showSquare:(UIButton *)sender
+{
+    
+    NSLog(@"%ld",(long)sender.tag);
+    
+    [sender insertSubview:squaresFrame atIndex:0];
+    
+    color.tag = sender.tag;
+    
+    NSLog(@"%ld",(long)color.tag);
+    
+}
+
+
+
 
 -(void)goToScreenThree
 {
@@ -150,5 +161,5 @@
     // Pass the selected object to the new view controller.
 }
 */
-
 @end
+    
