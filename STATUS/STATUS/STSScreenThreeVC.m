@@ -35,15 +35,24 @@
         [self.view addSubview:bigSmile];
         
         twitter = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-(72+176), SCREEN_HEIGHT-(292+176), 48,48)];
-        [twitter setImage:[UIImage imageNamed:@"sm_twitter"] forState:UIControlStateNormal];
+        [twitter setImage:[UIImage imageNamed:@"sm_twitter_g"] forState:UIControlStateNormal];
+        [twitter setImage:[UIImage imageNamed:@"sm_twitter"] forState:UIControlStateSelected];
+        [twitter addTarget:self action:@selector(buttonSelected:) forControlEvents:UIControlEventTouchUpInside];
+        [twitter setTag:1];
         [self.view addSubview:twitter];
         
         googleplus = [[UIButton alloc] initWithFrame:CGRectMake(twitter.frame.origin.x +48+16, SCREEN_HEIGHT-(292+176), 48,48)];
-        [googleplus setImage:[UIImage imageNamed:@"sm_google"] forState:UIControlStateNormal];
+        [googleplus setImage:[UIImage imageNamed:@"sm_google_g"] forState:UIControlStateNormal];
+        [googleplus setImage:[UIImage imageNamed:@"sm_google"] forState:UIControlStateSelected];
+        [googleplus addTarget:self action:@selector(buttonSelected:) forControlEvents:UIControlEventTouchUpInside];
+        [googleplus setTag:2];
         [self.view addSubview:googleplus];
         
         facebook = [[UIButton alloc] initWithFrame:CGRectMake(googleplus.frame.origin.x +48+16, SCREEN_HEIGHT-(292+176), 48,48)];
-        [facebook setImage:[UIImage imageNamed:@"sm_facebook"] forState:UIControlStateNormal];
+        [facebook setImage:[UIImage imageNamed:@"sm_facebook_g"] forState:UIControlStateNormal];
+        [facebook setImage:[UIImage imageNamed:@"sm_facebook"] forState:UIControlStateSelected];
+        [facebook addTarget:self action:@selector(buttonSelected:) forControlEvents:UIControlEventTouchUpInside];
+        [facebook setTag:3];
         [self.view addSubview:facebook];
         
         
@@ -51,6 +60,26 @@
     }
     return self;
 }
+
+-(void)buttonSelected:(UIButton *)sender
+{
+    
+    NSArray* buttons = [NSArray arrayWithObjects:twitter,googleplus,facebook, nil];
+    for (UIButton* button in buttons) {
+        if (button.tag == sender.tag)
+        {
+            if(button.selected == YES)
+            { [button setSelected:NO];
+            } else
+                button.selected = YES;
+        }
+    }
+}
+
+
+
+
+
 
 - (void)viewDidLoad
 {
