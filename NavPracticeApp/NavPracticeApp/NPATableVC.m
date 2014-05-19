@@ -7,6 +7,7 @@
 //
 
 #import "NPATableVC.h"
+#import "NPANavVC.h"
 
 
 @interface NPATableVC () <UITabBarControllerDelegate>
@@ -53,7 +54,8 @@
     UIBarButtonItem * flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
         
     [self setToolbarItems:@[flexible, colorButton, flexible, numberButton, flexible]];
-    
+
+    [self.navigationController setNavigationBarHidden:NO];
     self.navigationController.toolbarHidden = NO;
     
     UIBarButtonItem * backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(backToStartingVC)];
@@ -67,6 +69,9 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
+
+
+
 
 -(void)tabSelected:(UIBarButtonItem *)sender
 {
@@ -127,6 +132,32 @@
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    if(colorsIsSelected)
+    {
+    
+    UIViewController * colorsVC = [[UIViewController alloc] initWithNibName:nil bundle:nil];
+    [self.navigationController pushViewController:colorsVC animated:NO];
+        
+        UILabel * sample = [[UILabel alloc] initWithFrame:CGRectMake(100,100,200,50)];
+        sample.text = @"you are in Colors VC";
+        [colorsVC.view addSubview:sample];
+        
+    } else
+        
+    {
+        UIViewController * numbersVC = [[UIViewController alloc] initWithNibName:nil bundle:nil];
+        [self.navigationController pushViewController:numbersVC animated:NO];
+        
+        UILabel * sample = [[UILabel alloc] initWithFrame:CGRectMake(100,100,200,50)];
+        sample.text = @"you are in Numbers VC";
+        [numbersVC.view addSubview:sample];
+        
+    }
+    
+}
+ 
 
 /*
 // Override to support conditional editing of the table view.

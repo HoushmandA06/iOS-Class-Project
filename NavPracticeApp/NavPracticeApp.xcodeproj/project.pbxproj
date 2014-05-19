@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F1DFA4A192A23C600B7ED86 /* NPASingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1DFA49192A23C600B7ED86 /* NPASingleton.m */; };
 		0F5C9A691927BF6A00FD9656 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F5C9A681927BF6A00FD9656 /* Foundation.framework */; };
 		0F5C9A6B1927BF6A00FD9656 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F5C9A6A1927BF6A00FD9656 /* CoreGraphics.framework */; };
 		0F5C9A6D1927BF6A00FD9656 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F5C9A6C1927BF6A00FD9656 /* UIKit.framework */; };
@@ -35,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0F1DFA48192A23C600B7ED86 /* NPASingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPASingleton.h; sourceTree = "<group>"; };
+		0F1DFA49192A23C600B7ED86 /* NPASingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NPASingleton.m; sourceTree = "<group>"; };
 		0F5C9A651927BF6A00FD9656 /* NavPracticeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NavPracticeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F5C9A681927BF6A00FD9656 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0F5C9A6A1927BF6A00FD9656 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -122,6 +125,8 @@
 				0F5C9A981927BFE600FD9656 /* NPAStartingVC.m */,
 				0F5C9A9A1927BFFA00FD9656 /* NPATableVC.h */,
 				0F5C9A9B1927BFFA00FD9656 /* NPATableVC.m */,
+				0F1DFA48192A23C600B7ED86 /* NPASingleton.h */,
+				0F1DFA49192A23C600B7ED86 /* NPASingleton.m */,
 				0F5C9A9D1927C01B00FD9656 /* NPANavVC.h */,
 				0F5C9A9E1927C01B00FD9656 /* NPANavVC.m */,
 				0F5C9A7A1927BF6A00FD9656 /* Images.xcassets */,
@@ -260,6 +265,7 @@
 				0F5C9A9C1927BFFA00FD9656 /* NPATableVC.m in Sources */,
 				0F5C9A791927BF6A00FD9656 /* NPAAppDelegate.m in Sources */,
 				0F5C9A751927BF6A00FD9656 /* main.m in Sources */,
+				0F1DFA4A192A23C600B7ED86 /* NPASingleton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
