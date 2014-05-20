@@ -110,15 +110,10 @@
     if(self.colorTagScreenOne == 0)
     {
       //  bigSmile.image = [UIImage imageNamed:bigYellowSmiles[self.colorTagScreenTwo]];
-        
-        
         [bigSmile setImage:[UIImage imageNamed:bigYellowSmiles[self.colorTagScreenTwo]]];
-         
     }
-    
-    
-    
 }
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

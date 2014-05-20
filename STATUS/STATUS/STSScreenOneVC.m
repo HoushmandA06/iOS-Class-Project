@@ -40,8 +40,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
       
-        
- 
+
         colorObjects = [@[]mutableCopy];  // this is an array of UIButtons with images from colors
         
         colors = @[@"colors_1",@"colors_2",@"colors_3",@"colors_4",@"colors_5",@"colors_6",@"colors_6",@"colors_7",@"colors_8",@"colors_9"];
@@ -99,7 +98,7 @@
     
         [color setImage:[UIImage imageNamed:colors[r*3+c]] forState:UIControlStateNormal];
    
-        color.tag = r*3+c;
+        color.tag = r*3+c; // not using this anywhere
     
             
         [color addTarget:self action:@selector(showSquare:) forControlEvents:UIControlEventTouchUpInside];
@@ -135,12 +134,15 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     self.navigationController.navigationBarHidden = YES;
+  //  self.view.backgroundColor = BLUE_COLOR;
+    
 }
 
 -(void)viewDidLayoutSubviews
 {
     
 //    self.navigationController.navigationBarHidden = YES;
+    
     
 }
 
