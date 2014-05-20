@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface STSScreenThreeVC : UIViewController
+@interface STSScreenThreeVC : UIViewController <UITextFieldDelegate>
 
 @property (nonatomic) NSInteger colorTagScreenOne;
 @property (nonatomic) NSInteger colorTagScreenTwo;

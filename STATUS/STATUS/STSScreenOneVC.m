@@ -68,7 +68,7 @@
     screenTwoVC.colorTagScreenOne = self.colorTagScreenOne;
     
     [self.navigationController pushViewController:screenTwoVC animated:NO];
-
+    //[self.navigationController popViewControllerAnimated:NO] does the opposite of above
 }
 
 

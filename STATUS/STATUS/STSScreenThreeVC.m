@@ -9,8 +9,9 @@
 #import "STSScreenThreeVC.h"
 #import "STSScreenOneVC.h"
 #import "STSScreenTwoVC.h"
+#import "STTwitter.h"
 
-@interface STSScreenThreeVC ()
+@interface STSScreenThreeVC () 
 
 @end
 
@@ -22,7 +23,10 @@
     UIButton * googleplus;
     UIButton * twitter;
     
+    UITextField * tweetField;
+    
     NSArray * bigYellowSmiles;
+    STTwitterAPI * twitterAPI;
     
 }
 
@@ -31,8 +35,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
    
-        
-
         bigYellowSmiles = @[@"yellow_1",@"yellow_2",@"yellow_3",@"yellow_4",@"yellow_5",@"yellow_6",@"yellow_7",@"yellow_8",@"yellow_9"];
         
         bigSmile = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-(72+176),SCREEN_HEIGHT-(192+176),176,176)];
@@ -64,31 +66,6 @@
     return self;
 }
 
--(void)buttonSelected:(UIButton *)sender
-{
-    
-    NSArray* buttons = [NSArray arrayWithObjects:twitter,googleplus,facebook, nil];
-    for (UIButton* button in buttons) {
-        if (button.tag == sender.tag)
-        {
-            if(button.selected == YES)
-            { [button setSelected:NO];
-            } else
-                button.selected = YES;
-        }
-    }
-
-    
-//    if(sender.tag == 1)
-//    {
-//       if(twitter.selected == YES)
-//       {
-//        [twitter setSelected:NO];
-//       } else
-//           twitter.selected = YES;
-//    }
-
-}
 
 - (void)viewDidLoad
 {
@@ -96,10 +73,39 @@
     
     thirdCheck = [[UIButton alloc] initWithFrame:CGRectMake((SCREEN_WIDTH/2)-32, SCREEN_HEIGHT-80, 64, 40)];
     [thirdCheck setImage:[UIImage imageNamed:@"check.png"] forState:UIControlStateNormal];
- //   [thirdCheck addTarget:self action:@selector(goToScreenThree) forControlEvents:UIControlEventTouchUpInside];
+    [thirdCheck addTarget:self action:@selector(buttonSelected:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:thirdCheck];
     
+    tweetField = [[UITextField alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-(72+176),bigSmile.frame.origin.y-30,176,20)];
+    tweetField.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1.0];
+    
+    
+   // [tweetField resignFirstResponder];
+    tweetField.delegate = self;
+    [self.view addSubview:tweetField];
+    
+    
+    twitterAPI = [STTwitterAPI twitterAPIOSWithFirstAccount];
+    
+    [twitterAPI verifyCredentialsWithSuccessBlock:^(NSString *username) {
+        
+        NSLog(@"%@",username);
+        
+    } errorBlock:^(NSError *error) {
+        
+        NSLog(@"%@",error.userInfo);
+        
+    }];
+    
 }
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField   //now any textField will allow resign keyboard
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+
 
 -(void)viewWillLayoutSubviews
 {
@@ -109,10 +115,56 @@
     
     if(self.colorTagScreenOne == 0)
     {
-      //  bigSmile.image = [UIImage imageNamed:bigYellowSmiles[self.colorTagScreenTwo]];
+        //  bigSmile.image = [UIImage imageNamed:bigYellowSmiles[self.colorTagScreenTwo]];
         [bigSmile setImage:[UIImage imageNamed:bigYellowSmiles[self.colorTagScreenTwo]]];
     }
 }
+
+-(void)buttonSelected:(UIButton *)sender
+{
+    
+    [sender setSelected:!sender.selected];
+    
+    if(twitter.selected && thirdCheck.selected)
+    {
+        
+        NSLog(@"twitter submited");
+        
+        NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString * documentPath = paths[0];
+        
+        NSData * imageData = UIImagePNGRepresentation(bigSmile.image);
+        
+        [imageData writeToFile:[documentPath stringByAppendingPathComponent:@"image.png"] atomically:YES];
+        
+        NSURL * url = [NSURL fileURLWithPath:[documentPath stringByAppendingPathComponent:@"image.png"]];
+        
+        [twitterAPI postStatusUpdate:tweetField.text inReplyToStatusID:nil mediaURL:url placeID:nil latitude:nil longitude:nil uploadProgressBlock:^(NSInteger bytesWritten, NSInteger totalBytesWritten, NSInteger totalBytesExpectedToWrite) {
+                
+            } successBlock:^(NSDictionary *status) {
+                NSLog(@"%@", status);
+            } errorBlock:^(NSError *error) {
+                NSLog(@"%@",error.userInfo);
+        }];
+        
+    }
+            
+    
+//    NSArray* buttons = [NSArray arrayWithObjects:twitter,googleplus,facebook, nil];
+//    for (UIButton* button in buttons) {
+//        if (button.tag == sender.tag)
+//        {
+//            if(button.selected == YES)
+//            { [button setSelected:NO];
+//            } else
+//                button.selected = YES;
+//        }
+//    }
+
+
+}
+
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -120,15 +172,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

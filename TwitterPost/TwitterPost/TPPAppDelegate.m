@@ -1,31 +1,23 @@
 //
-//  STSAppDelegate.m
-//  STATUS
+//  TPPAppDelegate.m
+//  TwitterPost
 //
-//  Created by Ali Houshmand on 5/19/14.
+//  Created by Ali Houshmand on 5/20/14.
 //  Copyright (c) 2014 Ali Houshmand. All rights reserved.
 //
 
-#import "STSAppDelegate.h"
-#import "STSScreenOneVC.h"
-#import "STTwitter.h"
+#import "TPPAppDelegate.h"
+#import "TPPViewController.h"
 
-@implementation STSAppDelegate
+@implementation TPPAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    STSScreenOneVC * screenOne = [[STSScreenOneVC alloc] initWithNibName:nil bundle:nil];
+    self.window.rootViewController = [[TPPViewController alloc] initWithNibName:nil bundle:nil];
     
-    UINavigationController * nc = [[UINavigationController alloc] initWithRootViewController:screenOne];
     
-    nc.navigationBarHidden = YES;
-    
-    self.window.rootViewController = nc;
-
-   
-
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
