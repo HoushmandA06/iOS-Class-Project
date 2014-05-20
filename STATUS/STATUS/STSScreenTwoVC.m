@@ -18,6 +18,9 @@
 @implementation STSScreenTwoVC
 {
     UIButton * secondCheck;
+    UIButton * secondCheckBack;
+
+    
     
     UIButton * color;
     
@@ -56,11 +59,17 @@
     [super viewDidLoad];
     
     
-    secondCheck = [[UIButton alloc] initWithFrame:CGRectMake((SCREEN_WIDTH/2)-16, SCREEN_HEIGHT-(80), 32, 40)];
+    secondCheck = [[UIButton alloc] initWithFrame:CGRectMake((SCREEN_WIDTH/2)+40, SCREEN_HEIGHT-(80), 32, 40)];
     [secondCheck setImage:[UIImage imageNamed:@"arrow.png"] forState:UIControlStateNormal];
     [secondCheck addTarget:self action:@selector(goToScreenThree) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:secondCheck];
-    [self.navigationController setNavigationBarHidden:NO];
+    
+    secondCheckBack = [[UIButton alloc] initWithFrame:CGRectMake((SCREEN_WIDTH/2)-64, SCREEN_HEIGHT-(80), 32, 40)];
+    [secondCheckBack setImage:[UIImage imageNamed:@"arrow.png"] forState:UIControlStateNormal];
+    [secondCheckBack addTarget:self action:@selector(goToScreenOne) forControlEvents:UIControlEventTouchUpInside];
+    secondCheckBack.transform = CGAffineTransformMakeScale(-1.0, 1.0);
+    [self.view addSubview:secondCheckBack];
+    [self.navigationController setNavigationBarHidden:YES];
     
     
     frame = [[UIView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-(72+176),SCREEN_HEIGHT-(192+176),176,176)];
@@ -107,6 +116,15 @@
         }
   
 }
+    
+}
+
+
+-(void)goToScreenOne
+{
+    
+    [self.navigationController popViewControllerAnimated:NO];
+
     
 }
 

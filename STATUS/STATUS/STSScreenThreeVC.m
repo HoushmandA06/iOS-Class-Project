@@ -23,6 +23,9 @@
     UIButton * googleplus;
     UIButton * twitter;
     
+    UIButton * back;
+    
+    
     UITextField * tweetField;
     
     NSArray * bigYellowSmiles;
@@ -71,18 +74,23 @@
 {
     [super viewDidLoad];
     
-    thirdCheck = [[UIButton alloc] initWithFrame:CGRectMake((SCREEN_WIDTH/2)-32, SCREEN_HEIGHT-80, 64, 40)];
+    thirdCheck = [[UIButton alloc] initWithFrame:CGRectMake((SCREEN_WIDTH/2)+24, SCREEN_HEIGHT-80, 56, 32)];
     [thirdCheck setImage:[UIImage imageNamed:@"check.png"] forState:UIControlStateNormal];
     [thirdCheck addTarget:self action:@selector(buttonSelected:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:thirdCheck];
     
     tweetField = [[UITextField alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-(72+176),bigSmile.frame.origin.y-30,176,20)];
     tweetField.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1.0];
-    
-    
-   // [tweetField resignFirstResponder];
     tweetField.delegate = self;
     [self.view addSubview:tweetField];
+    
+    back = [[UIButton alloc] initWithFrame:CGRectMake((SCREEN_WIDTH/2)-64, SCREEN_HEIGHT-(80), 32, 40)];
+    [back setImage:[UIImage imageNamed:@"arrow.png"] forState:UIControlStateNormal];
+    [back addTarget:self action:@selector(goToScreenTwo) forControlEvents:UIControlEventTouchUpInside];
+    back.transform = CGAffineTransformMakeScale(-1.0, 1.0);
+    [self.view addSubview:back];
+    [self.navigationController setNavigationBarHidden:YES];
+    
     
     
     twitterAPI = [STTwitterAPI twitterAPIOSWithFirstAccount];
@@ -98,6 +106,17 @@
     }];
     
 }
+
+-(void)goToScreenTwo
+{
+    
+    [self.navigationController popViewControllerAnimated:NO];
+    
+    
+}
+
+
+
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField   //now any textField will allow resign keyboard
 {
