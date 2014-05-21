@@ -24,6 +24,9 @@
 		0F0D58B8192BAA1F002443F8 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F0D58B7192BAA1F002443F8 /* Social.framework */; };
 		0F0D58BA192BAA25002443F8 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F0D58B9192BAA25002443F8 /* Twitter.framework */; };
 		0F0D592E192CC436002443F8 /* STSSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F0D592D192CC436002443F8 /* STSSingleton.m */; };
+		0F0D5977192D1FA4002443F8 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F0D5976192D1FA4002443F8 /* MapKit.framework */; };
+		0F0D597D192D23F7002443F8 /* MAPAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F0D597B192D23F7002443F8 /* MAPAnnotation.m */; };
+		0F0D597F192D242A002443F8 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F0D597E192D242A002443F8 /* CoreLocation.framework */; };
 		0F1DFA58192A397200B7ED86 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F1DFA57192A397200B7ED86 /* Foundation.framework */; };
 		0F1DFA5A192A397200B7ED86 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F1DFA59192A397200B7ED86 /* CoreGraphics.framework */; };
 		0F1DFA5C192A397200B7ED86 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F1DFA5B192A397200B7ED86 /* UIKit.framework */; };
@@ -131,6 +134,10 @@
 		0F0D58B9192BAA25002443F8 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		0F0D592C192CC436002443F8 /* STSSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STSSingleton.h; sourceTree = "<group>"; };
 		0F0D592D192CC436002443F8 /* STSSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STSSingleton.m; sourceTree = "<group>"; };
+		0F0D5976192D1FA4002443F8 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		0F0D597A192D23F7002443F8 /* MAPAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAPAnnotation.h; sourceTree = "<group>"; };
+		0F0D597B192D23F7002443F8 /* MAPAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAPAnnotation.m; sourceTree = "<group>"; };
+		0F0D597E192D242A002443F8 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		0F1DFA54192A397200B7ED86 /* STATUS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = STATUS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F1DFA57192A397200B7ED86 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0F1DFA59192A397200B7ED86 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -206,6 +213,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F0D597F192D242A002443F8 /* CoreLocation.framework in Frameworks */,
+				0F0D5977192D1FA4002443F8 /* MapKit.framework in Frameworks */,
 				0F0D58BA192BAA25002443F8 /* Twitter.framework in Frameworks */,
 				0F0D58B8192BAA1F002443F8 /* Social.framework in Frameworks */,
 				0F0D58B6192BAA14002443F8 /* Accounts.framework in Frameworks */,
@@ -293,6 +302,8 @@
 		0F1DFA56192A397200B7ED86 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0F0D597E192D242A002443F8 /* CoreLocation.framework */,
+				0F0D5976192D1FA4002443F8 /* MapKit.framework */,
 				0F0D58B9192BAA25002443F8 /* Twitter.framework */,
 				0F0D58B7192BAA1F002443F8 /* Social.framework */,
 				0F0D58B5192BAA14002443F8 /* Accounts.framework */,
@@ -317,6 +328,8 @@
 				0F1DFAC7192A4CED00B7ED86 /* STSScreenThreeVC.m */,
 				0F0D592C192CC436002443F8 /* STSSingleton.h */,
 				0F0D592D192CC436002443F8 /* STSSingleton.m */,
+				0F0D597A192D23F7002443F8 /* MAPAnnotation.h */,
+				0F0D597B192D23F7002443F8 /* MAPAnnotation.m */,
 				0F1DFA69192A397200B7ED86 /* Images.xcassets */,
 				0F0D588A192BA9BD002443F8 /* STTwitter */,
 				0F1DFABF192A3B6B00B7ED86 /* New Group */,
@@ -573,6 +586,7 @@
 				0F0D58AA192BA9BD002443F8 /* NSString+STTwitter.m in Sources */,
 				0F0D58AB192BA9BD002443F8 /* STHTTPRequest+STTwitter.m in Sources */,
 				0F1DFA64192A397200B7ED86 /* main.m in Sources */,
+				0F0D597D192D23F7002443F8 /* MAPAnnotation.m in Sources */,
 				0F0D58B4192BA9BD002443F8 /* STHTTPRequest.m in Sources */,
 				0F0D58AE192BA9BD002443F8 /* STTwitterHTML.m in Sources */,
 				0F0D58AF192BA9BD002443F8 /* STTwitterOAuth.m in Sources */,

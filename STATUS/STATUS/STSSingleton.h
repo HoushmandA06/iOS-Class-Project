@@ -15,6 +15,9 @@
 
 @property (nonatomic) NSInteger color;
 @property (nonatomic) NSInteger smiley;
+@property (nonatomic) NSString * cityState;
+@property (nonatomic) float latitude;
+@property (nonatomic) float longitude;
 
 
 @end

@@ -12,7 +12,15 @@
 #import "STTwitter.h"
 #import "STSSingleton.h"
 
-@interface STSScreenThreeVC () 
+
+////
+#import <MapKit/MapKit.h>
+#import <CoreLocation/CoreLocation.h>
+#import "MAPAnnotation.h"
+
+
+
+@interface STSScreenThreeVC () <CLLocationManagerDelegate, MKMapViewDelegate>
 
 @end
 
@@ -31,6 +39,11 @@
     
     NSArray * bigYellowSmiles;
     STTwitterAPI * twitterAPI;
+    
+    ///// MAP STUFF
+    
+    CLLocationManager * lManager; // has an array of locations
+    MKMapView * myMapView;
     
 }
 
@@ -65,6 +78,16 @@
         [facebook addTarget:self action:@selector(buttonSelected:) forControlEvents:UIControlEventTouchUpInside];
         [facebook setTag:3];
         [self.view addSubview:facebook];
+        
+        //// LOCATION MANAGER
+        lManager = [[CLLocationManager alloc] init];
+        lManager.delegate = self;
+        lManager.distanceFilter = 20;
+        lManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+        
+        [lManager startUpdatingLocation];
+
+        
 
     }
     return self;
@@ -92,8 +115,7 @@
     [self.view addSubview:back];
     [self.navigationController setNavigationBarHidden:YES];
     
-    
-    
+
     twitterAPI = [STTwitterAPI twitterAPIOSWithFirstAccount];
     
     [twitterAPI verifyCredentialsWithSuccessBlock:^(NSString *username) {
@@ -105,27 +127,19 @@
         NSLog(@"%@",error.userInfo);
         
     }];
-    
 }
+
 
 -(void)goToScreenTwo
 {
-    
     [self.navigationController popViewControllerAnimated:NO];
-    
-    
 }
-
-
-
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField   //now any textField will allow resign keyboard
 {
     [textField resignFirstResponder];
     return YES;
 }
-
-
 
 -(void)viewWillLayoutSubviews
 {
@@ -147,18 +161,18 @@
     }
     
     
-    
 }
 
 -(void)buttonSelected:(UIButton *)sender
 {
-    
+
     [sender setSelected:!sender.selected];
     
     if(twitter.selected && thirdCheck.selected)
     {
         
         NSLog(@"twitter submited");
+
         
         NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString * documentPath = paths[0];
@@ -169,7 +183,11 @@
         
         NSURL * url = [NSURL fileURLWithPath:[documentPath stringByAppendingPathComponent:@"image.png"]];
         
-        [twitterAPI postStatusUpdate:tweetField.text inReplyToStatusID:nil mediaURL:url placeID:nil latitude:nil longitude:nil uploadProgressBlock:^(NSInteger bytesWritten, NSInteger totalBytesWritten, NSInteger totalBytesExpectedToWrite) {
+        
+        NSString * latitude = [NSString stringWithFormat:@"%f", ([STSSingleton data].latitude)];
+        NSString * longitude = [NSString stringWithFormat:@"%f", ([STSSingleton data].longitude)];
+        
+        [twitterAPI postStatusUpdate:tweetField.text inReplyToStatusID:nil mediaURL:url placeID:nil latitude:latitude longitude:longitude uploadProgressBlock:^(NSInteger bytesWritten, NSInteger totalBytesWritten, NSInteger totalBytesExpectedToWrite) {
                 
             } successBlock:^(NSDictionary *status) {
                 
@@ -182,9 +200,7 @@
             } errorBlock:^(NSError *error) {
                 NSLog(@"%@",error.userInfo);
         }];
-        
     }
-            
     
 //    NSArray* buttons = [NSArray arrayWithObjects:twitter,googleplus,facebook, nil];
 //    for (UIButton* button in buttons) {
@@ -198,6 +214,57 @@
 //    }
 
 
+}
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    
+    [myMapView removeAnnotations:myMapView.annotations];
+    
+    for (CLLocation * location in locations)
+    {
+        
+        MAPAnnotation * annotation = [[MAPAnnotation alloc] initWithCoordinate:location.coordinate];
+        NSLog(@"%@", location);
+        [myMapView addAnnotation:annotation];
+        
+        //   [mapView setCenterCoordinate:location.coordinate animated:YES];
+        //coordinate has lat and long
+        
+        MKCoordinateRegion region = MKCoordinateRegionMake(location.coordinate, MKCoordinateSpanMake(1.0,1.0));  //sets center AND zooms (MKCoordinateRegion)
+        
+        [myMapView setRegion:region animated:YES];
+        
+        annotation.title = @"Marker";
+        annotation.subtitle = @"This is a marker";
+        
+        CLGeocoder * geoCoder = [[CLGeocoder alloc] init];
+        [geoCoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
+            NSLog(@"%@", placemarks);
+            
+            
+        for (CLPlacemark * placemark in placemarks) {
+            NSLog(@"%@", placemark);
+            NSString * cityState = [NSString stringWithFormat:@"%@,%@",placemark.addressDictionary[@"City"],placemark.addressDictionary[@"State"]];
+            
+            [STSSingleton data].latitude = location.coordinate.latitude;
+            NSLog(@"this is latitude from singleton : %f",[STSSingleton data].latitude);
+            
+            [STSSingleton data].longitude = location.coordinate.longitude;
+            [STSSingleton data].cityState = cityState;
+            NSLog(@"from the singleton : %@",[STSSingleton data].cityState);
+                
+            [annotation setTitle:cityState];
+            [annotation setSubtitle:placemark.country];
+                
+            }
+            
+        }];
+        //  [mapView selectAnnotation:annotation animated:YES];  // makes annotation pop up auto
+        
+    }
+    // [lManager stopUpdatingLocation];
+    
 }
 
 

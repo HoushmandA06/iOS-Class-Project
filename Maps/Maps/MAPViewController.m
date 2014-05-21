@@ -40,6 +40,7 @@
         
         [lManager startUpdatingLocation];
         
+        
     }
     return self;
 }
@@ -74,6 +75,7 @@
             
             for (CLPlacemark * placemark in placemarks) {
                 NSLog(@"%@", placemark);
+               
                 NSString * cityState = [NSString stringWithFormat:@"%@,%@",placemark.addressDictionary[@"City"],placemark.addressDictionary[@"State"]];
                 
                 [annotation setTitle:cityState];
