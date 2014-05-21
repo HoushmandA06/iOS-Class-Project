@@ -385,7 +385,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BlueVRed/BlueVRed-Prefix.pch";
 				INFOPLIST_FILE = "BlueVRed/BlueVRed-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -398,7 +400,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BlueVRed/BlueVRed-Prefix.pch";
 				INFOPLIST_FILE = "BlueVRed/BlueVRed-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -462,6 +466,7 @@
 				0F211B9C191AA59E00730F8C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0F211B9D191AA59E00730F8C /* Build configuration list for PBXNativeTarget "BlueVRedTests" */ = {
 			isa = XCConfigurationList;
@@ -470,6 +475,7 @@
 				0F211B9F191AA59E00730F8C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

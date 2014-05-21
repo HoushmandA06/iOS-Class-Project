@@ -112,22 +112,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
 }
 
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    
     UIView * bgView = [[UIView alloc] initWithFrame:self.view.frame];
     bgView.backgroundColor = colors[currentBackground];
 
-    
     [self.view insertSubview:bgView atIndex:0];
     [backgrounds addObject:bgView];
-    
-    
-    
 }
 
 
@@ -138,7 +132,6 @@
     NSMutableArray * otherColors = [colors mutableCopy];
     [otherColors removeObjectAtIndex:currentBackground];
     
-        
     for (UITouch * touch in touches) {
         
         int random = arc4random_uniform((int)[otherColors count]);

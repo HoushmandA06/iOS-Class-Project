@@ -161,6 +161,13 @@
         [twitterAPI postStatusUpdate:tweetField.text inReplyToStatusID:nil mediaURL:url placeID:nil latitude:nil longitude:nil uploadProgressBlock:^(NSInteger bytesWritten, NSInteger totalBytesWritten, NSInteger totalBytesExpectedToWrite) {
                 
             } successBlock:^(NSDictionary *status) {
+                
+                UIAlertView * alertView = [[UIAlertView alloc]
+                                           initWithTitle: @"Success" message:@"Saved Successfully!" delegate: self
+                                           cancelButtonTitle: @"Done" otherButtonTitles:nil];
+                
+                [alertView dismissWithClickedButtonIndex:0 animated:TRUE];
+                
                 NSLog(@"%@", status);
             } errorBlock:^(NSError *error) {
                 NSLog(@"%@",error.userInfo);

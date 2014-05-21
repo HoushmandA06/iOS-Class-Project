@@ -63,22 +63,22 @@
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef context = UIGraphicsGetCurrentContext();  //addellipseinrect, fill path ---> play with CGContext Reference
-    CGContextSetLineCap(context, kCGLineCapRound);
-    CGContextSetLineJoin(context, kCGLineJoinRound);
-    CGContextSetLineWidth(context, self.lineWidth);
-
-    [[UIColor redColor] set]; // sequence matters with set
+//    CGContextSetLineCap(context, kCGLineCapRound);
+//    CGContextSetLineJoin(context, kCGLineJoinRound);
+//    CGContextSetLineWidth(context, self.lineWidth);
+//
+//    [[UIColor redColor] set]; // sequence matters with set
     
 //    CGContextSetFillColor(context, CGColorGetComponents([UIColor redColor].CGColor));
     
-    CGContextMoveToPoint(context, 50, 50);
-    CGContextAddCurveToPoint(context, 270, 50, 270, 400, 50, 400);
-    CGContextStrokePath(context);
-    
-    CGContextMoveToPoint(context, 100, 100);
-    CGContextFillEllipseInRect(context, CGRectMake(75, 75, 50, 50)); //makes a filled circle
-    CGContextStrokePath(context);
-    CGContextFillRect (context, CGRectMake (50, 150, 100, 200));
+//    CGContextMoveToPoint(context, 50, 50);
+//    CGContextAddCurveToPoint(context, 270, 50, 270, 400, 50, 400);
+//    CGContextStrokePath(context);
+//    
+//    CGContextMoveToPoint(context, 100, 100);
+//    CGContextFillEllipseInRect(context, CGRectMake(75, 75, 50, 50)); //makes a filled circle
+//    CGContextStrokePath(context);
+//    CGContextFillRect (context, CGRectMake (50, 150, 100, 200));
     
     
     
