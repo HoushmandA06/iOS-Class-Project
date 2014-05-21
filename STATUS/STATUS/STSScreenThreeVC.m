@@ -10,6 +10,7 @@
 #import "STSScreenOneVC.h"
 #import "STSScreenTwoVC.h"
 #import "STTwitter.h"
+#import "STSSingleton.h"
 
 @interface STSScreenThreeVC () 
 
@@ -131,12 +132,22 @@
     
     NSLog(@"%ld",(long)self.colorTagScreenOne);
     NSLog(@"%ld",(long)self.colorTagScreenTwo);
+
+    ///// using PARENT to CHILD properties
+//    if(self.colorTagScreenOne == 0)
+//    {
+//        //  bigSmile.image = [UIImage imageNamed:bigYellowSmiles[self.colorTagScreenTwo]];
+//        [bigSmile setImage:[UIImage imageNamed:bigYellowSmiles[self.colorTagScreenTwo]]];
+//    }
     
-    if(self.colorTagScreenOne == 0)
+    ///// if using singleton
+    if([STSSingleton data].color == 0)
     {
-        //  bigSmile.image = [UIImage imageNamed:bigYellowSmiles[self.colorTagScreenTwo]];
-        [bigSmile setImage:[UIImage imageNamed:bigYellowSmiles[self.colorTagScreenTwo]]];
+        [bigSmile setImage:[UIImage imageNamed:bigYellowSmiles[[STSSingleton data].smiley]]];
     }
+    
+    
+    
 }
 
 -(void)buttonSelected:(UIButton *)sender
@@ -163,10 +174,9 @@
             } successBlock:^(NSDictionary *status) {
                 
                 UIAlertView * alertView = [[UIAlertView alloc]
-                                           initWithTitle: @"Success" message:@"Saved Successfully!" delegate: self
+                                           initWithTitle: @"Success" message:@"Tweet Sent Successfully!" delegate: self
                                            cancelButtonTitle: @"Done" otherButtonTitles:nil];
-                
-                [alertView dismissWithClickedButtonIndex:0 animated:TRUE];
+                 [alertView show];
                 
                 NSLog(@"%@", status);
             } errorBlock:^(NSError *error) {

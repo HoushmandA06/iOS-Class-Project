@@ -9,6 +9,7 @@
 #import "STSScreenTwoVC.h"
 #import "STSScreenThreeVC.h"
 #import "STSScreenOneVC.h"
+#import "STSSingleton.h"
 
 
 @interface STSScreenTwoVC ()
@@ -91,6 +92,9 @@
             
             color = [[UIButton alloc] initWithFrame:CGRectMake(colorX, colorY, colorWidth, colorHeight)];
             
+            //// if wanted to use singleton, would replace IF conditions with:
+            //// ([STSSingleton data].color == 0], etc.
+            
             if(self.colorTagScreenOne == 0)
             {
             [color setImage:[UIImage imageNamed:yellowSmiles[r*3+c]] forState:UIControlStateNormal];
@@ -109,8 +113,7 @@
             
             [smilyObjects addObject:color];
             
-            //[frame addSubview:color];
-            
+             
     //        NSLog(@"%ld",(long)color.tag);
     
         }
@@ -136,7 +139,10 @@
     
     self.colorTagScreenTwo = sender.tag;
     
- //   NSLog(@"%ld",(long)color.tag);
+    //// if wanted to use singleton, would replace above with:
+    [STSSingleton data].smiley = sender.tag;
+    
+    
     
 }
 
@@ -151,6 +157,7 @@
     screenThreeVC.colorTagScreenOne = self.colorTagScreenOne;
     screenThreeVC.colorTagScreenTwo = self.colorTagScreenTwo;
     
+    //// if wanted to use singleton, i would not need above
     
     [self.navigationController pushViewController:screenThreeVC animated:NO];
         

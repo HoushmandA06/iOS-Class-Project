@@ -11,6 +11,7 @@
 
 #import "STSScreenOneVC.h"
 #import "STSScreenTwoVC.h"
+#import "STSSingleton.h"
 
 @interface STSScreenOneVC ()
 
@@ -65,7 +66,12 @@
     
     STSScreenTwoVC * screenTwoVC = [[STSScreenTwoVC alloc] initWithNibName:nil bundle:nil];
     
+    ///// USING PROPERTIES TO PASS DATA FROM PARENT TO CHILD
     screenTwoVC.colorTagScreenOne = self.colorTagScreenOne;
+    
+    ///// USING SINGLETON
+    
+    
     
     [self.navigationController pushViewController:screenTwoVC animated:NO];
     //[self.navigationController popViewControllerAnimated:NO] does the opposite of above
@@ -117,12 +123,15 @@
 -(void)showSquare:(UIButton *)sender
 {
  
+    ///// USING PROPERTIES TO PASS DATA FROM PARENT TO CHILD
     self.colorTagScreenOne = sender.tag;
-
     NSLog(@"colorScreenOneTag: %ld",(long)self.colorTagScreenOne);
-
+    
+    ///// USING SINGLETON
+    [STSSingleton data].color = sender.tag;
+    NSLog(@"singleton tag = %ld",(long)[STSSingleton data].color);
+    
     [sender insertSubview:squaresFrame atIndex:0];
-        
     
 //    CGPoint location = CGPointMake(sender.frame.origin.x, sender.frame.origin.y);
 //    squaresFrame.frame = CGRectMake(location.x-8, location.y-8, 64, 64);
