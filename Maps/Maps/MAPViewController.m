@@ -39,17 +39,74 @@
         
         
         [lManager startUpdatingLocation];
-        
-        
+    
     }
     return self;
 }
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    myMapView = [[MKMapView alloc] initWithFrame:self.view.frame];
+    
+    myMapView.delegate = self;
+    
+    [self.view addSubview:myMapView];
+    
+    UITapGestureRecognizer *singleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addPinToMap:)];
+    singleTapRecognizer.numberOfTapsRequired = 1;
+    
+    [myMapView addGestureRecognizer:singleTapRecognizer];
+    
+}
+
+- (void)addPinToMap:(UIGestureRecognizer *)gestureRecognizer
+{
+    
+    CGPoint touchPoint = [gestureRecognizer locationInView:myMapView];
+    CLLocationCoordinate2D touchMapCoordinate = [myMapView convertPoint:touchPoint toCoordinateFromView:myMapView];
+    
+    MAPAnnotation * toAdd = [[MAPAnnotation alloc]init];
+    
+    
+    toAdd.coordinate = touchMapCoordinate;
+
+    toAdd.subtitle = @"Subtitle";
+    toAdd.title = @"Title";
+    
+    CLLocation * location = [[CLLocation alloc] initWithLatitude:touchMapCoordinate.latitude longitude:touchMapCoordinate.longitude];
+    
+
+    CLGeocoder * geoCoder = [[CLGeocoder alloc] init];
+    [geoCoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
+        NSLog(@"%@", placemarks);
+        
+        for (CLPlacemark * placemark in placemarks) {
+            NSLog(@"%@", placemark);
+            
+            NSString * cityState = [NSString stringWithFormat:@"%@,%@",placemark.addressDictionary[@"City"],placemark.addressDictionary[@"State"]];
+            
+            [toAdd setTitle:cityState];
+            [toAdd setSubtitle:placemark.country];
+        }
+        
+    }];
+    
+    
+    
+    [myMapView addAnnotation:toAdd];
+    
+    
+}
+
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
     
     [myMapView removeAnnotations:myMapView.annotations];
 
+    
     
     
     for (CLLocation * location in locations)
@@ -93,17 +150,6 @@
 
 
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-    myMapView = [[MKMapView alloc] initWithFrame:self.view.frame];
-    
-    myMapView.delegate = self;
-    
-    [self.view addSubview:myMapView];
-
-}
 
 
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
@@ -174,6 +220,8 @@
     }
 
 }
+
+
 
 
 -(void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view
