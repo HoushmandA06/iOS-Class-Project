@@ -16,7 +16,7 @@
 @property (nonatomic, readonly, copy) NSString * title;
 @property (nonatomic, readonly, copy) NSString * subtitle;
 
--(id)initWithCoordinate:(CLLocationCoordinate2D)coordinate;  // how are these used in MAPVc
+-(id)initWithCoordinate:(CLLocationCoordinate2D)coordinate;
 -(void)setCoordinate:(CLLocationCoordinate2D)newCoordinate;
 
 -(void)setTitle:(NSString *)title;

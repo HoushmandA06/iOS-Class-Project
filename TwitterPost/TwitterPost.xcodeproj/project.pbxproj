@@ -37,6 +37,8 @@
 		0F0D5926192BB016002443F8 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F0D5925192BB016002443F8 /* Twitter.framework */; };
 		0F0D5929192BB031002443F8 /* TPPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F0D5928192BB031002443F8 /* TPPViewController.m */; };
 		0F0D592B192BB046002443F8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F0D592A192BB046002443F8 /* Security.framework */; };
+		0F0D5982192D549F002443F8 /* MAPAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F0D5981192D549F002443F8 /* MAPAnnotation.m */; };
+		0F0D5984192D550F002443F8 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F0D5983192D550F002443F8 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +102,9 @@
 		0F0D5927192BB031002443F8 /* TPPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPPViewController.h; sourceTree = "<group>"; };
 		0F0D5928192BB031002443F8 /* TPPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPPViewController.m; sourceTree = "<group>"; };
 		0F0D592A192BB046002443F8 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		0F0D5980192D549F002443F8 /* MAPAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAPAnnotation.h; sourceTree = "<group>"; };
+		0F0D5981192D549F002443F8 /* MAPAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAPAnnotation.m; sourceTree = "<group>"; };
+		0F0D5983192D550F002443F8 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +112,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F0D5984192D550F002443F8 /* CoreLocation.framework in Frameworks */,
 				0F0D592B192BB046002443F8 /* Security.framework in Frameworks */,
 				0F0D5926192BB016002443F8 /* Twitter.framework in Frameworks */,
 				0F0D5924192BB011002443F8 /* Accounts.framework in Frameworks */,
@@ -152,6 +158,7 @@
 		0F0D58C6192BAFE7002443F8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0F0D5983192D550F002443F8 /* CoreLocation.framework */,
 				0F0D592A192BB046002443F8 /* Security.framework */,
 				0F0D5925192BB016002443F8 /* Twitter.framework */,
 				0F0D5923192BB011002443F8 /* Accounts.framework */,
@@ -171,6 +178,8 @@
 				0F0D58D7192BAFE8002443F8 /* TPPAppDelegate.m */,
 				0F0D5927192BB031002443F8 /* TPPViewController.h */,
 				0F0D5928192BB031002443F8 /* TPPViewController.m */,
+				0F0D5980192D549F002443F8 /* MAPAnnotation.h */,
+				0F0D5981192D549F002443F8 /* MAPAnnotation.m */,
 				0F0D58D9192BAFE8002443F8 /* Images.xcassets */,
 				0F0D58F6192BAFF9002443F8 /* STTwitter */,
 				0F0D58CE192BAFE8002443F8 /* Supporting Files */,
@@ -362,6 +371,7 @@
 				0F0D591A192BAFF9002443F8 /* STTwitterHTML.m in Sources */,
 				0F0D5917192BAFF9002443F8 /* STHTTPRequest+STTwitter.m in Sources */,
 				0F0D591E192BAFF9002443F8 /* BAVPlistNode.m in Sources */,
+				0F0D5982192D549F002443F8 /* MAPAnnotation.m in Sources */,
 				0F0D5918192BAFF9002443F8 /* STTwitterAPI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -559,6 +569,7 @@
 				0F0D58F2192BAFE8002443F8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0F0D58F3192BAFE8002443F8 /* Build configuration list for PBXNativeTarget "TwitterPostTests" */ = {
 			isa = XCConfigurationList;
@@ -567,6 +578,7 @@
 				0F0D58F5192BAFE8002443F8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

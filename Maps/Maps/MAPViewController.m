@@ -65,10 +65,11 @@
 {
     
     CGPoint touchPoint = [gestureRecognizer locationInView:myMapView];
+    
+    
     CLLocationCoordinate2D touchMapCoordinate = [myMapView convertPoint:touchPoint toCoordinateFromView:myMapView];
     
     MAPAnnotation * toAdd = [[MAPAnnotation alloc]init];
-    
     
     toAdd.coordinate = touchMapCoordinate;
 
@@ -76,7 +77,6 @@
     toAdd.title = @"Title";
     
     CLLocation * location = [[CLLocation alloc] initWithLatitude:touchMapCoordinate.latitude longitude:touchMapCoordinate.longitude];
-    
 
     CLGeocoder * geoCoder = [[CLGeocoder alloc] init];
     [geoCoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
@@ -93,10 +93,7 @@
         
     }];
     
-    
-    
     [myMapView addAnnotation:toAdd];
-    
     
 }
 

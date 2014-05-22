@@ -9,10 +9,23 @@
 #import "TPPViewController.h"
 #import "STTwitter.h"
 
-@interface TPPViewController ()
+//// MAP STUFF
+#import "MAPAnnotation.h"
+#import <CoreLocation/CoreLocation.h>
+
+
+@interface TPPViewController () <CLLocationManagerDelegate>
 {
     STTwitterAPI * twitter;
     UITextField * twitterPost;
+    
+    float lat;
+    float longt;
+    
+    //// Location
+    CLLocationManager * lManager;
+
+    
 }
 
 @end
@@ -24,6 +37,17 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
  
+        
+        //// LOCATION MANAGER
+        lManager = [[CLLocationManager alloc] init];
+        lManager.delegate = self;
+        lManager.distanceFilter = 20;
+        lManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+        
+        [lManager startUpdatingLocation];
+        
+        
+        
       twitter = [STTwitterAPI twitterAPIOSWithFirstAccount];  // gets first twitter account
         
         //verifies creds
@@ -48,28 +72,80 @@
     int w = [UIScreen mainScreen].bounds.size.width;
     int h = [UIScreen mainScreen].bounds.size.height;
     
-    twitterPost = [[UITextField alloc] initWithFrame:CGRectMake(20, 40, w-40,h-320)];
+    
+//    UITextView * textView = [[UITextView alloc] initWithFrame:CGRectMake(20, 200, 100, 100)];
+//    textView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
+    
+    twitterPost = [[UITextField alloc] initWithFrame:CGRectMake(20, 40, w-40,40)];
     twitterPost.backgroundColor = [UIColor colorWithWhite:.95 alpha:1.0];
     twitterPost.layer.cornerRadius = 10;
+    twitterPost.placeholder = @"enter Tweet";
+    
     twitterPost.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;
-
-    twitterPost.layer.borderWidth = 2;
+     twitterPost.textColor = [UIColor blueColor];
+  
+    UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, h-320)];
+    twitterPost.leftView = paddingView;
+    twitterPost.leftViewMode = UITextFieldViewModeAlways;
+    
+    twitterPost.delegate = self;
+    twitterPost.layer.borderWidth = 1;
     twitterPost.layer.borderColor = [UIColor lightGrayColor].CGColor;
     [self.view addSubview:twitterPost];
     
-    UIButton * tweetButton = [[UIButton alloc] initWithFrame:CGRectMake(20, h-240, w-40, 40)];
+    UIButton * tweetButton = [[UIButton alloc] initWithFrame:CGRectMake(20, 100, w-40, 40)];
     tweetButton.backgroundColor = [UIColor colorWithRed:0.208f green:0.710f blue:0.843f alpha:1.0f];
     tweetButton.layer.cornerRadius = 20;
     [tweetButton addTarget:self action:@selector(postTweet) forControlEvents:UIControlEventTouchUpInside];
     [tweetButton setTitle:@"Tweet" forState:UIControlStateNormal];
     [self.view addSubview:tweetButton];
     
-    // Do any additional setup after loading the view.
+ }
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    for (CLLocation * location in locations)
+    {
+        
+        NSLog(@"%@", location);
+ 
+        CLGeocoder * geoCoder = [[CLGeocoder alloc] init];
+        [geoCoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
+            NSLog(@"%@", placemarks);
+            
+            lat = location.coordinate.latitude;
+            longt = location.coordinate.longitude;
+            
+//            
+//            for (CLPlacemark * placemark in placemarks) {
+//                NSLog(@"%@", placemark);
+//                NSString * cityState = [NSString stringWithFormat:@"%@,%@",placemark.addressDictionary[@"City"],placemark.addressDictionary[@"State"]];
+//                
+//                
+//                
+//                [annotation setTitle:cityState];
+//                [annotation setSubtitle:placemark.country];
+//            }
+        }];
+        //  [mapView selectAnnotation:annotation animated:YES];  // makes annotation pop up auto
+    }
+    // [lManager stopUpdatingLocation];
 }
+
 
 -(void)postTweet
 {
-    [twitter postStatusUpdate:twitterPost.text inReplyToStatusID:nil latitude:nil longitude:nil placeID:nil displayCoordinates:nil trimUser:nil successBlock:^(NSDictionary *status) {
+ 
+    NSString * latitude = [NSString stringWithFormat:@"%f",lat];
+    NSString * longitude = [NSString stringWithFormat:@"%f",longt];
+    
+    [twitter postStatusUpdate:twitterPost.text inReplyToStatusID:nil latitude:latitude longitude:longitude placeID:nil displayCoordinates:nil trimUser:nil successBlock:^(NSDictionary *status) {
+        
+        UIAlertView * alertView = [[UIAlertView alloc]
+                                   initWithTitle: @"Success" message:@"Tweet Sent Successfully!" delegate: self
+                                   cancelButtonTitle: @"Done" otherButtonTitles:nil];
+        [alertView show];
+        
         NSLog(@"%@", status);
     } errorBlock:^(NSError *error) {
         NSLog(@"%@",error.userInfo);
@@ -77,6 +153,13 @@
     }];
     
 }
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField   //now any textField will allow resign keyboard
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+
 
 - (void)didReceiveMemoryWarning
 {
