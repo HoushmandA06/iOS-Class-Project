@@ -24,6 +24,9 @@
 		0F0D5A07192E4676002443F8 /* egg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F0D5A04192E4676002443F8 /* egg.png */; };
 		0F0D5A08192E4676002443F8 /* grass.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F0D5A05192E4676002443F8 /* grass.png */; };
 		0F0D5A09192E4676002443F8 /* spoon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F0D5A06192E4676002443F8 /* spoon.png */; };
+		0F0D5A0D192E70AB002443F8 /* PNAPixelSounds.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F0D5A0C192E70AB002443F8 /* PNAPixelSounds.m */; };
+		0F0D5A0F192E7256002443F8 /* fallandsplat.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0F0D5A0E192E7256002443F8 /* fallandsplat.wav */; };
+		0F0D5A13192E832F002443F8 /* babychick3.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F0D5A12192E832F002443F8 /* babychick3.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +62,10 @@
 		0F0D5A04192E4676002443F8 /* egg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = egg.png; path = ../../../../../Downloads/Archive/egg.png; sourceTree = "<group>"; };
 		0F0D5A05192E4676002443F8 /* grass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = grass.png; path = ../../../../../Downloads/Archive/grass.png; sourceTree = "<group>"; };
 		0F0D5A06192E4676002443F8 /* spoon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spoon.png; path = ../../../../../Downloads/Archive/spoon.png; sourceTree = "<group>"; };
+		0F0D5A0B192E70AB002443F8 /* PNAPixelSounds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNAPixelSounds.h; sourceTree = "<group>"; };
+		0F0D5A0C192E70AB002443F8 /* PNAPixelSounds.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNAPixelSounds.m; sourceTree = "<group>"; };
+		0F0D5A0E192E7256002443F8 /* fallandsplat.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = fallandsplat.wav; sourceTree = "<group>"; };
+		0F0D5A12192E832F002443F8 /* babychick3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babychick3.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +130,8 @@
 				0F0D59E1192E43CB002443F8 /* Main.storyboard */,
 				0F0D59E4192E43CB002443F8 /* EDAViewController.h */,
 				0F0D59E5192E43CB002443F8 /* EDAViewController.m */,
+				0F0D5A0B192E70AB002443F8 /* PNAPixelSounds.h */,
+				0F0D5A0C192E70AB002443F8 /* PNAPixelSounds.m */,
 				0F0D5A0A192E4683002443F8 /* images */,
 				0F0D59E7192E43CB002443F8 /* Images.xcassets */,
 				0F0D59D6192E43CA002443F8 /* Supporting Files */,
@@ -165,6 +174,8 @@
 				0F0D5A05192E4676002443F8 /* grass.png */,
 				0F0D5A06192E4676002443F8 /* spoon.png */,
 				0F0D5A04192E4676002443F8 /* egg.png */,
+				0F0D5A0E192E7256002443F8 /* fallandsplat.wav */,
+				0F0D5A12192E832F002443F8 /* babychick3.png */,
 			);
 			name = images;
 			sourceTree = "<group>";
@@ -246,9 +257,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F0D5A0F192E7256002443F8 /* fallandsplat.wav in Resources */,
 				0F0D59E8192E43CB002443F8 /* Images.xcassets in Resources */,
 				0F0D5A09192E4676002443F8 /* spoon.png in Resources */,
 				0F0D5A07192E4676002443F8 /* egg.png in Resources */,
+				0F0D5A13192E832F002443F8 /* babychick3.png in Resources */,
 				0F0D5A08192E4676002443F8 /* grass.png in Resources */,
 				0F0D59DA192E43CA002443F8 /* InfoPlist.strings in Resources */,
 				0F0D59E3192E43CB002443F8 /* Main.storyboard in Resources */,
@@ -270,6 +283,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F0D5A0D192E70AB002443F8 /* PNAPixelSounds.m in Sources */,
 				0F0D59E6192E43CB002443F8 /* EDAViewController.m in Sources */,
 				0F0D59DC192E43CA002443F8 /* main.m in Sources */,
 				0F0D59E0192E43CB002443F8 /* EDAAppDelegate.m in Sources */,

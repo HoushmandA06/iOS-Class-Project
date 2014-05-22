@@ -14,7 +14,7 @@
 #import <CoreLocation/CoreLocation.h>
 
 
-@interface TPPViewController () <CLLocationManagerDelegate>
+@interface TPPViewController () <CLLocationManagerDelegate,UITextFieldDelegate>
 {
     STTwitterAPI * twitter;
     UITextField * twitterPost;

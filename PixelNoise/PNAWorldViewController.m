@@ -12,7 +12,7 @@
 
 @interface PNAWorldViewController () <UICollisionBehaviorDelegate>
 
-@property (nonatomic)  NSMutableArray * bricks;
+@property (nonatomic) NSMutableArray * bricks;
 
 // dynamics animator
 @property (nonatomic) UIDynamicAnimator * animator;

@@ -12,5 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *egg;
 @property (weak, nonatomic) IBOutlet UIImageView *spoon;
+@property (weak, nonatomic) IBOutlet UIButton *resetButton;
 
+ 
 @end

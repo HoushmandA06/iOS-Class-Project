@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TPPViewController : UIViewController <UITextFieldDelegate>
+@interface TPPViewController : UIViewController 
 
 @end
