@@ -15,7 +15,10 @@
 // Make your egg more sensitive // DONE
 // egg to roll off of the edge (fall outside ofspoon) // DONE
 // add splatter sound // DONE
-// change egg image to cracked egg
+// change egg image to cracked egg // DONE
+// add timer  // DONE
+// add increasing roll sensitivity
+// add distance walked feature track steps
 
 
 @interface EDAViewController ()
@@ -32,7 +35,7 @@
     CGRect originalSpoon;
     CGRect originalEgg;
     
-    UIImageView * chicky;
+    int i;
     
     UILabel * timer;
     
@@ -40,14 +43,16 @@
 
     NSTimer * gameClock;
     
-
+    float roll;
+    float mult;
 }
+
 
 - (void)viewDidLoad
 {
     
- 
-    gameClock = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
+    
+    gameClock = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
     
     
     [self.resetButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -59,10 +64,8 @@
     timer.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:timer];
     
-
     originalSpoon = self.spoon.frame;
     originalEgg = self.egg.frame;
-    
     
     [super viewDidLoad];
   
@@ -72,7 +75,14 @@
     
     [mManager startDeviceMotionUpdatesToQueue:[NSOperationQueue mainQueue] withHandler:^(CMDeviceMotion *motion, NSError *error) {
         
-    float roll = motion.attitude.roll * 12;  //CMAcceleration
+        
+    mult = 12;
+
+    roll = motion.attitude.roll * mult;
+  
+        NSLog(@"%f",roll);
+        
+    //CMAcceleration
     if(!eggIsFalling) self.egg.frame = CGRectOffset(self.egg.frame, roll, 0);
         
     float eggMidX = CGRectGetMidX(self.egg.frame);
@@ -135,18 +145,19 @@
 - (IBAction)restart:(id)sender {
     
     [gameClock invalidate];
-    
-    gameClock = nil;
-    
-    [self updateTimer];
-   
-    [chicky removeFromSuperview];
-    [self.egg setImage:[UIImage imageNamed:@"egg.png"]];
+    timer.text = 0;
+    i = 0;
     
     eggIsFalling = NO;
-
+    
+    [self.egg setImage:[UIImage imageNamed:@"egg.png"]];
+    
     self.egg.frame = originalEgg;
     self.spoon.frame = originalSpoon;
+    
+    gameClock = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateTimer) userInfo:nil repeats:YES];
+
+  //  [gameClock fire];
     
     NSLog(@"selected");
 }
@@ -156,27 +167,33 @@
 -(void)updateTimer
 {
   
-    static int i = 1;
-    
+    if(eggIsFalling == NO)
+    {
+    i+=1;
     timer.text = [NSString stringWithFormat:@"%.01d",i];
+     
+    }
     
-    i++;
+    if(eggIsFalling == YES)
+    {
+    [gameClock invalidate];
+    }
 
-    
 }
 
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    
     UITouch *aTouch = [touches anyObject];
     CGPoint location = [aTouch locationInView:self.spoon];   //
     CGPoint previousLocation = [aTouch previousLocationInView:self.spoon];
     
-  //  BOOL isInsideSpoon = CGRectContainsPoint(self.spoon.frame, [aTouch locationInView:self.view]);
+//  BOOL isInsideSpoon = CGRectContainsPoint(self.spoon.frame, [aTouch locationInView:self.view]);
     
     BOOL isInsideSpoon = CGRectContainsPoint(CGRectMake(self.spoon.frame.origin.x, self.spoon.frame.origin.y+230, self.spoon.frame.size.width, self.spoon.frame.size.height), [aTouch locationInView:self.view]);
     
-    NSLog(@"Is Inside Seek %u",isInsideSpoon);
+    NSLog(@"Is Inside Spoon %u",isInsideSpoon);
     
     if(!isInsideSpoon) return;
 
