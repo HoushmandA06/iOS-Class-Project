@@ -22,8 +22,6 @@
     
     
     
-
-    
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -31,7 +29,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
       
- 
+    self.view.backgroundColor = BLUE_COLOR;
+
     back = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(backToWelcome)];
  
     self.navigationItem.leftBarButtonItem = back;
@@ -60,8 +59,7 @@
 {
     [super viewDidLoad];
     
-    ///// ADMIN SECTION  // What is the KB height in portrait on iPad?
-    
+    ///// ADMIN SECTION       
   
     
 
@@ -80,9 +78,7 @@
     [moveOut setImage:[UIImage imageNamed:@"moveout"] forState:UIControlStateNormal];
     [moveOut addTarget:self action:@selector(moveOut) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:moveOut];
-    
-    
-    
+
  }
 
 

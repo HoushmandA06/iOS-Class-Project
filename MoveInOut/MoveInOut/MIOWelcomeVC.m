@@ -17,11 +17,9 @@
 @implementation MIOWelcomeVC
 {
 
-   
-    
     UIButton * startNew;
     UIButton * editSaved;
-    
+    UIBarButtonItem * back;
     
 }
 
@@ -39,10 +37,21 @@
         welcomeTitle.textColor = [UIColor colorWithWhite:0.95 alpha:1.0];
         [self.view addSubview:welcomeTitle];
         
+        back = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(backToLogIn)];
         
+        self.navigationItem.leftBarButtonItem = back;
     
     }
     return self;
+}
+
+
+-(void)backToLogIn
+{
+    
+    [self.navigationController dismissViewControllerAnimated:NO completion:^{
+    }];
+    
 }
 
 - (void)viewDidLoad

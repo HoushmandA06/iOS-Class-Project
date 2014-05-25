@@ -7,6 +7,7 @@
 //
 
 #import "MIOAppDelegate.h"
+#import "MIOLoginVC.h"
 #import "MIOWelcomeVC.h"
 
 @implementation MIOAppDelegate
@@ -15,7 +16,7 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    self.window.rootViewController = [[MIOWelcomeVC alloc] initWithNibName:nil bundle:nil];
+    self.window.rootViewController = [[MIOLoginVC alloc] initWithNibName:nil bundle:nil];
     
     
     // Override point for customization after application launch.
