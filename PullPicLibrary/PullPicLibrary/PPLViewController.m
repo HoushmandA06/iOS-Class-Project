@@ -12,7 +12,7 @@
 #import "HSBColorControlVC.h"
 #import "ControlsViewController.h"
 
-@interface PPLViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate,PPLFilterControllerDelegate, HSBColorControlVCDelegate, ControlsViewControllerDelegate, BlurViewControllerDelegate>  // why are these in .m v. .h
+@interface PPLViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate,PPLFilterControllerDelegate, HSBColorControlVCDelegate, ControlsViewControllerDelegate, BlurViewControllerDelegate>  
 
 
 @property (nonatomic) UIImage * originalImage;  // here so we can put setter / getter

@@ -48,7 +48,7 @@
     
   //  scribbleView = [[DLAStageLines alloc] initWithFrame:self.view.frame];
     
-    lineColor = [UIColor purpleColor];
+    lineColor = BLUE_COLOR;
     lineWidth = 5.0;
     
     [self toggleStage];
@@ -80,7 +80,7 @@
     [self.view addSubview:widthSlider];
     
     //color frame
-    colorsDrawer = [[UIView alloc] initWithFrame:CGRectMake(0,0,SCREEN_WIDTH, 40)];
+    colorsDrawer = [[UIView alloc] initWithFrame:CGRectMake(0,0,SCREEN_WIDTH, 200)];
     
     //colors defined
     NSArray * colors = @[[UIColor colorWithRed:0.251f green:0.251f blue:0.251f alpha:1.0f],
@@ -95,7 +95,7 @@
     for (UIColor * color in colors)
     {
         int index = [colors indexOfObject:color];
-        UIButton * button = [[UIButton alloc] initWithFrame:CGRectMake(buttonWidth * index, 0, buttonWidth, 40)];
+        UIButton * button = [[UIButton alloc] initWithFrame:CGRectMake(buttonWidth * index, 100, buttonWidth, 100)];
         button.backgroundColor = color;
         [button addTarget:self action:@selector(changeColor:) forControlEvents:UIControlEventTouchUpInside];
         [colorsDrawer addSubview:button];
@@ -184,6 +184,7 @@
 {
     lineColor = sender.backgroundColor;
     scribbleView.lineColor = sender.backgroundColor;
+    NSLog(@"selected");
     
     //linesView.lineColor = sender.backgroundColor;
 }

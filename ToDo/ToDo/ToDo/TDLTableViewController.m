@@ -194,28 +194,32 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 
 {    
-    NSDictionary *listItem = [[TDLSingleton sharedCollection] allListItems][indexPath.row];
-    
-    NSLog(@"%@",listItem);
     
     UIViewController *webController = [[UIViewController alloc] init];
     
     UIWebView *webView = [[UIWebView alloc] init];
-    
+
     webController.view = webView;
     
-    [self.navigationController pushViewController:webController animated:YES];
-    
-   // UIWindow *window = [[UIApplication sharedApplication].windows firstObject];
-    
-   //  UINavigationController *navController = (UINavigationController *)window.rootViewController;
-    
-    //NSURL * url = [NSURL URLWithString:listItem[@"github"]];
-    //NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    //[webView loadRequest:request];
-    // above does same as line with [webview...
+    [self.navigationController pushViewController:webController animated:NO];
+
+    NSDictionary *listItem = [[TDLSingleton sharedCollection] allListItems][indexPath.row];
     
     [webView loadRequest:[NSURLRequest requestWithURL: [NSURL URLWithString:listItem[@"github"]]]];
+
+    NSLog(@"%@",listItem);
+
+    
+//    UIWindow *window = [[UIApplication sharedApplication].windows firstObject];
+//    
+//     UINavigationController *navController = (UINavigationController *)window.rootViewController;
+//    
+//    NSURL * url = [NSURL URLWithString:listItem[@"github"]];
+//    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+//    [webView loadRequest:request];
+//   
+    // above does same as line with [webview...
+    
     
 }
 
@@ -246,20 +250,22 @@
     return YES;
 }
 
-//-(void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
-//{
-//    if(sourceIndexPath == destinationIndexPath) return;
-//    
-//    NSDictionary * sourceItem = [self getListItem:sourceIndexPath.row];
-//    NSDictionary * toItem = [self getListItem:destinationIndexPath.row];
-//    
-//    [listItems removeObjectIdenticalTo:sourceItem];
-//    [listItems insertObject:sourceItem atIndex:[listItems indexOfObject:toItem]];
-//    
-//    [self saveData];
-//    
-//}
 
+/*
+-(void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
+{
+    if(sourceIndexPath == destinationIndexPath) return;
+    
+    NSDictionary * sourceItem = [self getListItem:sourceIndexPath.row];
+    NSDictionary * toItem = [self getListItem:destinationIndexPath.row];
+    
+    [listItems removeObjectIdenticalTo:sourceItem];
+    [listItems insertObject:sourceItem atIndex:[listItems indexOfObject:toItem]];
+    
+    [self saveData];
+    
+}
+*/
 
 //- (NSDictionary *)getListItem:(NSInteger)row
 //{

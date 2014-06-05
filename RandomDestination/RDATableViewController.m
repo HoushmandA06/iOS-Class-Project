@@ -1,43 +1,31 @@
 //
-//  GATTableViewController.m
-//  GrabATweet
+//  RDATableViewController.m
+//  RandomDestination
 //
-//  Created by Ali Houshmand on 4/13/14.
+//  Created by Ali Houshmand on 6/5/14.
 //  Copyright (c) 2014 Ali Houshmand. All rights reserved.
 //
 
-#import "GATTableViewController.h"
-#import "GATTableViewCell.h"
+#import "RDATableViewController.h"
 
-
-@interface GATTableViewController ()
-
-{
-    NSMutableArray * tweetItems;
-    
-}
+@interface RDATableViewController ()
 
 @end
 
-@implementation GATTableViewController
+@implementation RDATableViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
         
-        tweetItems = [@[@{
-                            @"username" : @"Jo Albright",
-                            @"image" : @"placeholder",
-                            @"text" : @"http://jo2.co/twitter.json",
-                        }] mutableCopy];    }
+        
+        // used for forIndexPath:indexPath
+        [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+        
     
-    NSLog(@"tweetItems : %@ .... ", tweetItems);
-    
+    }
     return self;
-    
-    
-    
 }
 
 - (void)viewDidLoad
@@ -59,41 +47,26 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    // Return the number of sections.
-    return [tweetItems count];
-    
-}
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [tweetItems count];
+     return [self.venues count];
 
 }
 
 
- - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
-    if (cell == nil)
-    {
-        cell = [[GATTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-        
-    }
+    cell.textLabel.text = self.venues[indexPath.row][@"venue"][@"name"];
     
-    NSDictionary *tweetItem = tweetItems[indexPath.row];
-    
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.textLabel.text = tweetItem[@"username"];
-    cell.textLabel.textColor = [UIColor blackColor];
-    
+
     return cell;
 }
 
- 
- 
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
