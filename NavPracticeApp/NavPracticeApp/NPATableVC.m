@@ -153,7 +153,6 @@
         UILabel * sample = [[UILabel alloc] initWithFrame:CGRectMake(100,100,200,50)];
         sample.text = @"you are in Numbers VC";
         [numbersVC.view addSubview:sample];
-        
     }
     
 }

@@ -18,6 +18,7 @@
 @property (nonatomic) NSString * cityState;
 @property (nonatomic) float latitude;
 @property (nonatomic) float longitude;
-
+@property (nonatomic) NSString * endDate;
+@property (nonatomic) NSString * beginDate;
 
 @end

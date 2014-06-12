@@ -37,8 +37,7 @@
 {
     if (self)
     {
-    
-        
+
         self.tableView.backgroundColor = [UIColor lightGrayColor];
         
         self.tableView.contentInset = UIEdgeInsetsMake(50,0,0,0);
@@ -104,7 +103,6 @@
     
     
     NSLog(@"clicking");
-    
     NSDictionary * userInfo = [TDLGitHubRequest getUserWithUsername:username];
     
     if([[userInfo allKeys] count] == 3)
@@ -236,7 +234,7 @@
     
     [[TDLSingleton sharedCollection] removeListItemAtIndex:indexPath.row];
     
-   // [listItems removeObjectIdenticalTo:listItem];
+    // [listItems removeObjectIdenticalTo:listItem];
     
     TDLTableViewCell *cell = (TDLTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
     cell.alpha = 0;
@@ -246,7 +244,7 @@
 
 -(BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+
     return YES;
 }
 

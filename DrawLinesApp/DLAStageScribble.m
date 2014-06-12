@@ -123,7 +123,8 @@
         [self.lines addObject:[@{
                               @"color" : self.lineColor,
                               @"width" : @(self.lineWidth), // makes the float (or an int) an object
-                              @"points" : [@[[NSValue valueWithCGPoint:location]] mutableCopy]} mutableCopy]];
+                              @"points" : [@[[NSValue valueWithCGPoint:location]] mutableCopy]
+                              } mutableCopy]];
         
         
     }
