@@ -1,4 +1,4 @@
 iOS-Class-Project
 =================
 
-1st class project at TIY iOS
+Collection of projects and exercises completed / started at The Iron Yard - iOS Bootcamp
