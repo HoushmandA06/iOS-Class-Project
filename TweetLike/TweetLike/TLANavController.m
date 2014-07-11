@@ -67,7 +67,7 @@
 {
     if ([newCaption.text isEqualToString:@""]) return;
     
-    [TVC createNewTweet:newCaption.text];  // created createnewtweet method in TableViewController
+    [TVC createNewTweet:newCaption.text];
     
     newCaption.text = @"";
     

@@ -17,8 +17,9 @@
 
 {
 
-    //   NSMutableArray * tweetItems;
-    UITextField * tweetField;
+     UITextField * tweetField;
+
+    
 
 }
 
