@@ -34,7 +34,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
 }
 
 -(void)tapScreen:(UITapGestureRecognizer *)redScored
@@ -42,13 +42,10 @@
 
     [BVRScoreManager mainData].scoreCountRed += 1;
     [self.delegate setRedScore:[BVRScoreManager mainData].scoreCountRed];
-    NSLog(@"Red Score: %d",[BVRScoreManager mainData].scoreCountRed);
-    
-//    self.view.frame = CGRectMake(0, SCREEN_HEIGHT/2-[BVRScoreManager mainData].scoreCountRed, SCREEN_WIDTH, SCREEN_HEIGHT/2+[BVRScoreManager mainData].scoreCountRed);
-    
+        
     NSInteger scoreTotal = [BVRScoreManager mainData].scoreCountBlue + [BVRScoreManager mainData].scoreCountRed;
     [BVRScoreManager mainData].scoreTotal = scoreTotal;
-    NSLog(@"totalscore : %d",scoreTotal);
+
 }
 
 - (void)didReceiveMemoryWarning
