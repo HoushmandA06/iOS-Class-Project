@@ -12,12 +12,11 @@
 
 +(BBAGameData *)mainData //singleton method, creates an instance object
 {
-    static dispatch_once_t create; //declares a block that will be called once
+    static dispatch_once_t create;
     
     static BBAGameData * singleton = nil;
     
-    //below will alloc once only
-    dispatch_once(&create, ^ {
+     dispatch_once(&create, ^ {
         singleton = [[BBAGameData alloc] init];
     });
     
