@@ -57,7 +57,10 @@ class RootViewController: UITableViewController, UITextFieldDelegate {
             return
         }
         
-        dinosaurs += inputField.text
+//        dinosaurs += inputField.text
+        
+        dinosaurs.insert(inputField.text, atIndex: 0)
+        
         inputField.text = ""
         
         self.tableView.reloadData()
