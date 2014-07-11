@@ -9,11 +9,14 @@
 #import "GATTableViewController.h"
 #import "GATTableViewCell.h"
 
+// simple TVC exercise
 
 @interface GATTableViewController ()
 
 {
     NSMutableArray * tweetItems;
+    
+        
     
 }
 
