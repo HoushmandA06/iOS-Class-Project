@@ -11,13 +11,6 @@
 #import "PNAPixelSounds.h"
 
 ////////// HOMEWORK
-// make spoon move on touch // DONE
-// Make your egg more sensitive // DONE
-// egg to roll off of the edge (fall outside ofspoon) // DONE
-// add splatter sound // DONE
-// change egg image to cracked egg // DONE
-// add timer  // DONE
-// add increasing roll sensitivity
 // add distance walked feature track steps
 
 
