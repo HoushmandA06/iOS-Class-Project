@@ -2,7 +2,7 @@
 //  DLAStageScribble.h
 //  DrawLinesApp
 //
-//  Created by Ali Houshmand on 4/15/14.
+//  Created by Ali Houshmand on 6/18/14.
 //  Copyright (c) 2014 Ali Houshmand. All rights reserved.
 //
 
@@ -10,12 +10,12 @@
 
 @interface DLAStageScribble : UIView
 
-@ property (nonatomic) float lineWidth;
-@ property (nonatomic) UIColor * lineColor;
-@ property (nonatomic) NSMutableArray * lines;
+
+@property (nonatomic) float lineWidth;
+@property (nonatomic) UIColor * lineColor;
+@property (nonatomic) NSMutableArray * lines;
 
 -(void)clearStage;
 -(void)undo;
-
 
 @end

@@ -2,7 +2,7 @@
 //  DLAStageScribble.m
 //  DrawLinesApp
 //
-//  Created by Ali Houshmand on 4/15/14.
+//  Created by Ali Houshmand on 6/18/14.
 //  Copyright (c) 2014 Ali Houshmand. All rights reserved.
 //
 
@@ -22,9 +22,9 @@
         self.lines = [@[] mutableCopy];
         self.lineWidth = 2.0;  // default width
         self.lineColor = [UIColor colorWithWhite:0.3 alpha:1.0];  // default color
-
+        
         self.backgroundColor = [UIColor colorWithWhite:.90 alpha:1.0];
-    
+        
     }
     return self;
 }
@@ -52,7 +52,7 @@
 
 
 
-    
+
 -(void)setLineColor:(UIColor *)lineColor
 {
     _lineColor = lineColor;
@@ -63,22 +63,22 @@
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef context = UIGraphicsGetCurrentContext();  //addellipseinrect, fill path ---> play with CGContext Reference
-//    CGContextSetLineCap(context, kCGLineCapRound);
-//    CGContextSetLineJoin(context, kCGLineJoinRound);
-//    CGContextSetLineWidth(context, self.lineWidth);
-//
-//    [[UIColor redColor] set]; // sequence matters with set
+    //    CGContextSetLineCap(context, kCGLineCapRound);
+    //    CGContextSetLineJoin(context, kCGLineJoinRound);
+    //    CGContextSetLineWidth(context, self.lineWidth);
+    //
+    //    [[UIColor redColor] set]; // sequence matters with set
     
-//    CGContextSetFillColor(context, CGColorGetComponents([UIColor redColor].CGColor));
+    //    CGContextSetFillColor(context, CGColorGetComponents([UIColor redColor].CGColor));
     
-//    CGContextMoveToPoint(context, 50, 50);
-//    CGContextAddCurveToPoint(context, 270, 50, 270, 400, 50, 400);
-//    CGContextStrokePath(context);
-//    
-//    CGContextMoveToPoint(context, 100, 100);
-//    CGContextFillEllipseInRect(context, CGRectMake(75, 75, 50, 50)); //makes a filled circle
-//    CGContextStrokePath(context);
-//    CGContextFillRect (context, CGRectMake (50, 150, 100, 200));
+    //    CGContextMoveToPoint(context, 50, 50);
+    //    CGContextAddCurveToPoint(context, 270, 50, 270, 400, 50, 400);
+    //    CGContextStrokePath(context);
+    //
+    //    CGContextMoveToPoint(context, 100, 100);
+    //    CGContextFillEllipseInRect(context, CGRectMake(75, 75, 50, 50)); //makes a filled circle
+    //    CGContextStrokePath(context);
+    //    CGContextFillRect (context, CGRectMake (50, 150, 100, 200));
     
     
     
@@ -89,17 +89,17 @@
     for (NSDictionary * line in self.lines)
     {
         CGContextSetLineWidth(context, [line[@
-                              "width"] floatValue]);
+                                             "width"] floatValue]);
         [(UIColor *)line[@"color"] set];
-
+        
         NSLog(@"%d",[line count]);
-
+        
         NSArray * points = line[@"points"];
         CGPoint start = [points[0] CGPointValue];
         CGContextMoveToPoint(context, start.x, start.y);
         
         for (NSValue * value in points) {
-
+            
             //int index = [scribble indexOfObject:value];
             //if (index > 0 || [scribble count] < 3)
             
@@ -116,15 +116,15 @@
     for (UITouch * touch in touches) {
         CGPoint location = [touch locationInView:self];
         
-//        [self.lines addObject:[@[
-//                                [NSValue valueWithCGPoint:location]]
-//                                mutableCopy]];
+        //        [self.lines addObject:[@[
+        //                                [NSValue valueWithCGPoint:location]]
+        //                                mutableCopy]];
         
         [self.lines addObject:[@{
-                              @"color" : self.lineColor,
-                              @"width" : @(self.lineWidth), // makes the float (or an int) an object
-                              @"points" : [@[[NSValue valueWithCGPoint:location]] mutableCopy]
-                              } mutableCopy]];
+                                 @"color" : self.lineColor,
+                                 @"width" : @(self.lineWidth), // makes the float (or an int) an object
+                                 @"points" : [@[[NSValue valueWithCGPoint:location]] mutableCopy]
+                                 } mutableCopy]];
         
         
     }
@@ -151,7 +151,6 @@
     [[self.lines lastObject][@"points"] addObject:[NSValue valueWithCGPoint:location]];
     [self setNeedsDisplay];
 }
-
 
 
 @end

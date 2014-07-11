@@ -2,25 +2,26 @@
 //  DLAViewController.m
 //  DrawLinesApp
 //
-//  Created by Ali Houshmand on 4/15/14.
+//  Created by Ali Houshmand on 6/18/14.
 //  Copyright (c) 2014 Ali Houshmand. All rights reserved.
 //
 
 #import "DLAViewController.h"
 #import "DLAStageLines.h"
-#import "DLAStageScribble.h"
+
 
 @interface DLAViewController ()
 
 @end
 
 @implementation DLAViewController
+
 {
     DLAStageScribble * scribbleView;
     DLAStageLines * linesView;
-   
+    
     UIView * colorsDrawer;
-
+    
     float lineWidth;
     UIColor * lineColor;
     
@@ -32,12 +33,9 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-
+        
         // self.view = [[DLAStageLines alloc] initWithFrame:self.view.frame];
         // self.view = [[DLAStageScribble alloc] initWithFrame:self.view.frame];
-    
-        
-        
     }
     return self;
 }
@@ -46,24 +44,24 @@
 {
     [super viewDidLoad];
     
-  //  scribbleView = [[DLAStageLines alloc] initWithFrame:self.view.frame];
+    //  scribbleView = [[DLAStageLines alloc] initWithFrame:self.view.frame];
     
-    lineColor = BLUE_COLOR;
+    lineColor = [UIColor blueColor];
     lineWidth = 5.0;
     
     [self toggleStage];
     
     [self.view addSubview:scribbleView];
     
-  //  linesView = [[DLAStageLines alloc] initWithFrame:self.view.frame];
-  //  [self.view addSubview:linesView];
+    //  linesView = [[DLAStageLines alloc] initWithFrame:self.view.frame];
+    //  [self.view addSubview:linesView];
     
     
-//    UIButton * eraser = [[UIButton alloc] initWithFrame:CGRectMake(40,280,40,40)];
-//    eraser.backgroundColor = [UIColor whiteColor];
-//    eraser.layer.cornerRadius = 6;
-//    [eraser addTarget:self action:@selector(drawEraser:) forControlEvents:UIControlEventAllEvents];
-//    [self.view addSubview:eraser];
+    //    UIButton * eraser = [[UIButton alloc] initWithFrame:CGRectMake(40,280,40,40)];
+    //    eraser.backgroundColor = [UIColor whiteColor];
+    //    eraser.layer.cornerRadius = 6;
+    //    [eraser addTarget:self action:@selector(drawEraser:) forControlEvents:UIControlEventAllEvents];
+    //    [self.view addSubview:eraser];
     
     //widthSlider button
     UISlider * widthSlider = [[UISlider alloc] initWithFrame:CGRectMake(20, SCREEN_HEIGHT - 43,280,23)];
@@ -103,14 +101,14 @@
     [self.view addSubview:colorsDrawer];
     
     /////////////////////////////////////////////////////////////////
-    /*
-    UIButton * toggleButton = [[UIButton alloc] initWithFrame:CGRectMake(10,50,50,50)];
-    toggleButton.backgroundColor = [UIColor orangeColor];
-    [toggleButton setImage:[UIImage imageNamed:@"Toggle"] forState:UIControlStateNormal];
-    toggleButton.layer.cornerRadius = 25;
-    [toggleButton addTarget:self action:@selector(toggleStage) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:toggleButton];
-    */
+    
+     UIButton * toggleButton = [[UIButton alloc] initWithFrame:CGRectMake(10,50,50,50)];
+     toggleButton.backgroundColor = [UIColor orangeColor];
+     [toggleButton setImage:[UIImage imageNamed:@"Toggle"] forState:UIControlStateNormal];
+     toggleButton.layer.cornerRadius = 25;
+     [toggleButton addTarget:self action:@selector(toggleStage) forControlEvents:UIControlEventTouchUpInside];
+     [self.view addSubview:toggleButton];
+    
     /////////////////////////////////////////////////////////////////
     
     UIButton * undoButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 120,50,50,50)];
@@ -145,13 +143,13 @@
     [scribbleView removeFromSuperview];
     
     if([scribbleView isMemberOfClass:[DLAStageScribble class]])
-        {
-            scribbleView = [[DLAStageLines alloc] initWithFrame:self.view.frame];
-            
-        } else
-        {
-            scribbleView = [[DLAStageScribble alloc] initWithFrame:self.view.frame];
-        }
+    {
+        scribbleView = [[DLAStageLines alloc] initWithFrame:self.view.frame];
+        
+    } else
+    {
+        scribbleView = [[DLAStageScribble alloc] initWithFrame:self.view.frame];
+    }
     
     scribbleView.lineWidth = lineWidth;
     scribbleView.lineColor = lineColor;
@@ -164,6 +162,7 @@
 -(void)undoStage
 {
     [scribbleView undo];
+    // Do any additional setup after loading the view.
 }
 
 -(void)clearStage
@@ -194,18 +193,7 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
