@@ -29,7 +29,9 @@
 
 - (IBAction)buttonPressed:(id)sender {
     self.MyLabel.text = @"Ali Houshmand";
-
-
+    
+    NSLog(@"button selected");
+    
+    
 }
 @end
