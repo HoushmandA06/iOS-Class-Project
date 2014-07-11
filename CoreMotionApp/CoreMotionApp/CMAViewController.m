@@ -18,8 +18,6 @@
 {
     CMMotionManager * mManager;
     
-    
-    
 }
 
 
@@ -111,22 +109,7 @@
         
     }];
     
-    
-//    [mManager startMagnetometerUpdatesToQueue:[NSOperationQueue mainQueue] withHandler:^(CMMagnetometerData *magnetometerData, NSError *error) {
-//        NSLog(@"%f",magnetometerData.magneticField.z);
-//        
-//    }];
-//    
-//    [mManager startGyroUpdatesToQueue:[NSOperationQueue mainQueue] withHandler:^(CMGyroData *gyroData, NSError *error) {
-//        
-//        
-//    }];
-//    
-//    [mManager startDeviceMotionUpdatesToQueue:[NSOperationQueue mainQueue] withHandler:^(CMDeviceMotion *motion, NSError *error) {
-//       
-//     motion.
-//        
-//    }];
+
 
 
 }
