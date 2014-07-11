@@ -25,7 +25,6 @@
     //// Location
     CLLocationManager * lManager;
 
-    
 }
 
 @end
