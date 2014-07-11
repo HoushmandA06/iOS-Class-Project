@@ -23,6 +23,13 @@
     NSDictionary * fsInfo = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
     
     venues = fsInfo[@"response"][@"groups"][0][@"items"];
+
+    NSLog(@"%lu",[[fsInfo allKeys] count]);
+    
+    
+    
+   // venues = fsInfo[@"response"][@"categories"][3][@"name"];
+    
     
     return venues;
     

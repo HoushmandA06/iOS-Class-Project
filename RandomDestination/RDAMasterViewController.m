@@ -66,6 +66,7 @@
     
 }
 
+
 -(void)createMapAnnotationsWithVenues:(NSArray *)venues andLocation:(CLLocationCoordinate2D)coordinate
 
 {
@@ -77,8 +78,6 @@
     minLong = coordinate.longitude,
     maxLat = coordinate.latitude,
     maxLong = coordinate.longitude;
-    
-    
     
     for (NSDictionary * venue in venues)
     {

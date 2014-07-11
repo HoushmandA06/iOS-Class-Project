@@ -19,11 +19,9 @@
     self = [super initWithStyle:style];
     if (self) {
         
+    // used for forIndexPath:indexPath
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
         
-        // used for forIndexPath:indexPath
-        [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
-        
-    
     }
     return self;
 }
@@ -58,12 +56,19 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
-    cell.textLabel.text = self.venues[indexPath.row][@"venue"][@"name"];
+    //  cell.textLabel.text = self.venues[indexPath.row][@"venue"][@"name"];
     
+    
+    //  cell.textLabel.text = self.venues[indexPath.row][@"venue"][@"contact"][@"phone"];
+    
+    cell.textLabel.text = self.venues[indexPath.row][@"venue"][@"price"][@"message"];
 
+    
     return cell;
+
 }
 
 

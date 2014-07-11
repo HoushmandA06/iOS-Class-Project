@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0FA7FFD419647438009FF521 /* RDANavVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA7FFD319647438009FF521 /* RDANavVC.m */; };
 		0FB877EF1940A9EC0043F98C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FB877EE1940A9EC0043F98C /* Foundation.framework */; };
 		0FB877F11940A9EC0043F98C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FB877F01940A9EC0043F98C /* CoreGraphics.framework */; };
 		0FB877F31940A9EC0043F98C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FB877F21940A9EC0043F98C /* UIKit.framework */; };
@@ -36,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0FA7FFD219647438009FF521 /* RDANavVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDANavVC.h; sourceTree = "<group>"; };
+		0FA7FFD319647438009FF521 /* RDANavVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDANavVC.m; sourceTree = "<group>"; };
 		0FB877EB1940A9EC0043F98C /* RandomDestination.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RandomDestination.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FB877EE1940A9EC0043F98C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0FB877F01940A9EC0043F98C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -89,6 +92,8 @@
 		0FB877E21940A9EC0043F98C = {
 			isa = PBXGroup;
 			children = (
+				0FA7FFD219647438009FF521 /* RDANavVC.h */,
+				0FA7FFD319647438009FF521 /* RDANavVC.m */,
 				0FB8781D1940AAA80043F98C /* RDAMasterViewController.h */,
 				0FB8781E1940AAA80043F98C /* RDAMasterViewController.m */,
 				0FB878231940ADE80043F98C /* RDAFourSquareRequest.h */,
@@ -265,6 +270,7 @@
 				0FB8781F1940AAA80043F98C /* RDAMasterViewController.m in Sources */,
 				0FB878251940ADE80043F98C /* RDAFourSquareRequest.m in Sources */,
 				0FB878281940B9F20043F98C /* RDAAnnotation.m in Sources */,
+				0FA7FFD419647438009FF521 /* RDANavVC.m in Sources */,
 				0FB877FB1940A9EC0043F98C /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
