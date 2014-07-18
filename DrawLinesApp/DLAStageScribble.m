@@ -23,7 +23,7 @@
         self.lineWidth = 2.0;  // default width
         self.lineColor = [UIColor colorWithWhite:0.3 alpha:1.0];  // default color
         
-        self.backgroundColor = [UIColor colorWithWhite:.90 alpha:1.0];
+        self.backgroundColor = [UIColor blackColor];
         
     }
     return self;

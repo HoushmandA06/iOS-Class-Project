@@ -53,16 +53,6 @@
     
     [self.view addSubview:scribbleView];
     
-    //  linesView = [[DLAStageLines alloc] initWithFrame:self.view.frame];
-    //  [self.view addSubview:linesView];
-    
-    
-    //    UIButton * eraser = [[UIButton alloc] initWithFrame:CGRectMake(40,280,40,40)];
-    //    eraser.backgroundColor = [UIColor whiteColor];
-    //    eraser.layer.cornerRadius = 6;
-    //    [eraser addTarget:self action:@selector(drawEraser:) forControlEvents:UIControlEventAllEvents];
-    //    [self.view addSubview:eraser];
-    
     //widthSlider button
     UISlider * widthSlider = [[UISlider alloc] initWithFrame:CGRectMake(20, SCREEN_HEIGHT - 43,280,23)];
     widthSlider.backgroundColor = [UIColor colorWithRed:0.561f green:0.627f blue:0.733f alpha:1.0f];
@@ -75,11 +65,13 @@
     [widthSlider addTarget:self action:@selector(changeSize:) forControlEvents:UIControlEventAllEvents];
     //CGAffineTransform trans = CGAffineTransformMakeRotation(M_PI_2);
     //widthSlider.transform = trans;
+    
     [self.view addSubview:widthSlider];
     
     //color frame
-    colorsDrawer = [[UIView alloc] initWithFrame:CGRectMake(0,0,SCREEN_WIDTH, 200)];
-    
+    colorsDrawer = [[UIView alloc] initWithFrame:CGRectMake(0,0,SCREEN_WIDTH, 100)];
+    [self.view addSubview:colorsDrawer];
+
     //colors defined
     NSArray * colors = @[[UIColor colorWithRed:0.251f green:0.251f blue:0.251f alpha:1.0f],
                          [UIColor colorWithRed:0.008f green:0.353f blue:0.431f alpha:1.0f],
@@ -87,22 +79,23 @@
                          [UIColor colorWithRed:1.000f green:0.988f blue:0.910f alpha:1.0f],
                          [UIColor colorWithRed:1.000f green:0.298f blue:0.153f alpha:1.0f]];
     
+    
     float buttonWidth = SCREEN_WIDTH/[colors count]; //use to set colorButton width
     
     //colorButton creator
     for (UIColor * color in colors)
     {
         int index = [colors indexOfObject:color];
-        UIButton * button = [[UIButton alloc] initWithFrame:CGRectMake(buttonWidth * index, 100, buttonWidth, 100)];
+        UIButton * button = [[UIButton alloc] initWithFrame:CGRectMake(buttonWidth * index, 0, buttonWidth, 100)];
         button.backgroundColor = color;
         [button addTarget:self action:@selector(changeColor:) forControlEvents:UIControlEventTouchUpInside];
         [colorsDrawer addSubview:button];
     }
-    [self.view addSubview:colorsDrawer];
+    
     
     /////////////////////////////////////////////////////////////////
     
-     UIButton * toggleButton = [[UIButton alloc] initWithFrame:CGRectMake(10,50,50,50)];
+     UIButton * toggleButton = [[UIButton alloc] initWithFrame:CGRectMake(10,110,50,50)];
      toggleButton.backgroundColor = [UIColor orangeColor];
      [toggleButton setImage:[UIImage imageNamed:@"Toggle"] forState:UIControlStateNormal];
      toggleButton.layer.cornerRadius = 25;
@@ -111,7 +104,7 @@
     
     /////////////////////////////////////////////////////////////////
     
-    UIButton * undoButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 120,50,50,50)];
+    UIButton * undoButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 120,110,50,50)];
     undoButton.backgroundColor = [UIColor lightGrayColor];
     [undoButton setImage:[UIImage imageNamed:@"arrow_undo"] forState:UIControlStateNormal];
     undoButton.layer.cornerRadius = 25;
@@ -120,7 +113,7 @@
     
     /////////////////////////////////////////////////////////////////
     
-    UIButton * clearButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 60,50,50,50)];
+    UIButton * clearButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 60,110,50,50)];
     clearButton.backgroundColor = [UIColor redColor];
     [clearButton setImage:[UIImage imageNamed:@"Delete"] forState:UIControlStateNormal];
     clearButton.layer.cornerRadius = 25;
@@ -128,7 +121,7 @@
     [self.view addSubview:clearButton];
     
     /////////// sample toggle switch
-    UISwitch * sampleSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(10, 50, 50, 50)];
+    UISwitch * sampleSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(10, 110, 50, 50)];
     [sampleSwitch  addTarget:self action:@selector(toggleStage) forControlEvents:UIControlEventTouchUpInside];
     sampleSwitch.tintColor = [UIColor orangeColor];
     [self.view addSubview:sampleSwitch];
