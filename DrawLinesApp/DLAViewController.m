@@ -69,7 +69,7 @@
     [self.view addSubview:widthSlider];
     
     //color frame
-    colorsDrawer = [[UIView alloc] initWithFrame:CGRectMake(0,0,SCREEN_WIDTH, 100)];
+    colorsDrawer = [[UIView alloc] initWithFrame:CGRectMake(0,0,SCREEN_WIDTH, 50)];
     [self.view addSubview:colorsDrawer];
 
     //colors defined
@@ -86,25 +86,37 @@
     for (UIColor * color in colors)
     {
         int index = [colors indexOfObject:color];
-        UIButton * button = [[UIButton alloc] initWithFrame:CGRectMake(buttonWidth * index, 0, buttonWidth, 100)];
+        UIButton * button = [[UIButton alloc] initWithFrame:CGRectMake(buttonWidth * index, 0, buttonWidth, 50)];
         button.backgroundColor = color;
         [button addTarget:self action:@selector(changeColor:) forControlEvents:UIControlEventTouchUpInside];
         [colorsDrawer addSubview:button];
     }
     
+    /////////////////////////////////////////////////////////////////
+    
+//    UIButton * toggleButton = [[UIButton alloc] initWithFrame:CGRectMake(10,110,50,50)];
+//    toggleButton.backgroundColor = [UIColor orangeColor];
+//    [toggleButton setImage:[UIImage imageNamed:@"Toggle"] forState:UIControlStateNormal];
+//    toggleButton.layer.cornerRadius = 25;
+//    [toggleButton addTarget:self action:@selector(toggleStage) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:toggleButton];
+    
+    
+    
     
     /////////////////////////////////////////////////////////////////
     
-     UIButton * toggleButton = [[UIButton alloc] initWithFrame:CGRectMake(10,110,50,50)];
-     toggleButton.backgroundColor = [UIColor orangeColor];
-     [toggleButton setImage:[UIImage imageNamed:@"Toggle"] forState:UIControlStateNormal];
-     toggleButton.layer.cornerRadius = 25;
-     [toggleButton addTarget:self action:@selector(toggleStage) forControlEvents:UIControlEventTouchUpInside];
-     [self.view addSubview:toggleButton];
+    
+    UIButton * takeScreenShot = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 180,55,50,50)];
+    takeScreenShot.backgroundColor = [UIColor greenColor];
+    takeScreenShot.layer.cornerRadius = 25;
+    [takeScreenShot addTarget:self action:@selector(takeScreenShot) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:takeScreenShot];
+    
     
     /////////////////////////////////////////////////////////////////
     
-    UIButton * undoButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 120,110,50,50)];
+    UIButton * undoButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 120,55,50,50)];
     undoButton.backgroundColor = [UIColor lightGrayColor];
     [undoButton setImage:[UIImage imageNamed:@"arrow_undo"] forState:UIControlStateNormal];
     undoButton.layer.cornerRadius = 25;
@@ -113,7 +125,7 @@
     
     /////////////////////////////////////////////////////////////////
     
-    UIButton * clearButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 60,110,50,50)];
+    UIButton * clearButton = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 60,55,50,50)];
     clearButton.backgroundColor = [UIColor redColor];
     [clearButton setImage:[UIImage imageNamed:@"Delete"] forState:UIControlStateNormal];
     clearButton.layer.cornerRadius = 25;
@@ -121,7 +133,7 @@
     [self.view addSubview:clearButton];
     
     /////////// sample toggle switch
-    UISwitch * sampleSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(10, 110, 50, 50)];
+    UISwitch * sampleSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(10, 55, 50, 50)];
     [sampleSwitch  addTarget:self action:@selector(toggleStage) forControlEvents:UIControlEventTouchUpInside];
     sampleSwitch.tintColor = [UIColor orangeColor];
     [self.view addSubview:sampleSwitch];
@@ -137,11 +149,23 @@
     
     if([scribbleView isMemberOfClass:[DLAStageScribble class]])
     {
-        scribbleView = [[DLAStageLines alloc] initWithFrame:self.view.frame];
+       // scribbleView = [[DLAStageLines alloc] initWithFrame:self.view.frame];
+        
+        scribbleView = [[DLAStageLines alloc] initWithFrame:CGRectMake(0, 120, SCREEN_WIDTH, SCREEN_HEIGHT-200)];
+        scribbleView.backgroundColor = [UIColor colorWithWhite:.90 alpha:1.0];
+
         
     } else
     {
-        scribbleView = [[DLAStageScribble alloc] initWithFrame:self.view.frame];
+        // scribbleView = [[DLAStageScribble alloc] initWithFrame:self.view.frame];
+        
+        //// TEST CODE: want to limit drawing stage to defined box
+        
+        scribbleView = [[DLAStageScribble alloc] initWithFrame:CGRectMake(0, 120, SCREEN_WIDTH, SCREEN_HEIGHT-200)];
+        scribbleView.backgroundColor = [UIColor colorWithWhite:.90 alpha:1.0];
+
+
+        
     }
     
     scribbleView.lineWidth = lineWidth;
@@ -151,6 +175,36 @@
     
     [self.view insertSubview:scribbleView atIndex:0];
 }
+
+-(void)takeScreenShot
+{
+    NSLog(@"selected");
+    
+//    CGRect origFrame = scribbleView.frame;
+//    CGRect frame = scribbleView.frame;
+//    scribbleView.frame = frame;
+//    scribbleView.bounds = frame;
+    
+    if([[UIScreen mainScreen] respondsToSelector:@selector(scale)])
+        UIGraphicsBeginImageContextWithOptions(scribbleView.bounds.size, NO, [UIScreen mainScreen].scale);
+    else
+        UIGraphicsBeginImageContext(scribbleView.bounds.size);
+    
+    [scribbleView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+    
+    NSMutableDictionary * checkListScreenshot = [[NSMutableDictionary alloc] init];
+    [checkListScreenshot setObject:image forKey:@"checkListScreenshot"];
+//    [[MIOSingleton mainData] currentResident][@"screenShot2"] = checkListScreenshot;
+    
+//    scribbleView.frame = origFrame;
+    
+}
+
+
+
 
 -(void)undoStage
 {
